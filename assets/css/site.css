@@ -635,13 +635,7 @@ summary:focus-visible {
 
 @media (max-width: 30rem) {
   .release-status {
-    padding: 0.35rem;
-    font-size: 0;
-  }
-
-  .release-status span {
-    width: 0.6rem;
-    height: 0.6rem;
+    display: none;
   }
 
   .prose h1 {
