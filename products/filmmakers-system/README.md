@@ -1,3 +1,11 @@
+---
+layout: default
+title: Filmmakers System
+description: Product-specific design guidance for Filmmakers System.
+section: Product
+permalink: /products/filmmakers-system/
+---
+
 # Filmmakers System
 
 `Status: Draft`

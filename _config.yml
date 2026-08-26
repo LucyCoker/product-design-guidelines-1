@@ -1,0 +1,19 @@
+title: Product design guidelines
+description: Product design and UX guidance for Filmmakers System.
+url: https://denkungsart.github.io
+baseurl: /product-design-guidelines
+repository: denkungsart/product-design-guidelines
+
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled: true
+  collections: true
+
+exclude:
+  - AGENTS.md
+  - CLAUDE.md

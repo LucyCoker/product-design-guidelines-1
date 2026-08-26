@@ -1,0 +1,24 @@
+<nav class="guideline-nav">
+  <div class="nav-group">
+    <p>Start here</p>
+    <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Overview</a>
+    <a href="{{ '/products/filmmakers-system/' | relative_url }}"{% if page.url == '/products/filmmakers-system/' %} aria-current="page"{% endif %}>Filmmakers System</a>
+  </div>
+
+  <div class="nav-group">
+    <p>Shared patterns</p>
+    <a href="{{ '/patterns/button-hierarchy/' | relative_url }}"{% if page.url == '/patterns/button-hierarchy/' %} aria-current="page"{% endif %}>Button hierarchy</a>
+    <a href="{{ '/patterns/destructive-actions/' | relative_url }}"{% if page.url == '/patterns/destructive-actions/' %} aria-current="page"{% endif %}>Destructive actions</a>
+  </div>
+
+  <div class="nav-group">
+    <p>Foundations</p>
+    <a href="{{ '/products/filmmakers-system/foundations/colour/' | relative_url }}"{% if page.url == '/products/filmmakers-system/foundations/colour/' %} aria-current="page"{% endif %}>Colour</a>
+    <a href="{{ '/products/filmmakers-system/foundations/typography/' | relative_url }}"{% if page.url == '/products/filmmakers-system/foundations/typography/' %} aria-current="page"{% endif %}>Typography</a>
+  </div>
+
+  <div class="nav-group">
+    <p>Components</p>
+    <a href="{{ '/products/filmmakers-system/components/buttons/' | relative_url }}"{% if page.url == '/products/filmmakers-system/components/buttons/' %} aria-current="page"{% endif %}>Buttons</a>
+  </div>
+</nav>

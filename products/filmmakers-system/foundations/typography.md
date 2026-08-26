@@ -1,3 +1,11 @@
+---
+layout: default
+title: Typography
+description: The typography scale and usage rules for Filmmakers System.
+section: Foundation
+permalink: /products/filmmakers-system/foundations/typography/
+---
+
 # Typography
 
 `Status: Draft` · `Owner: [name]`

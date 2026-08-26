@@ -1,3 +1,11 @@
+---
+layout: default
+title: Destructive actions
+description: Handle irreversible and consequential actions safely.
+section: Shared pattern
+permalink: /patterns/destructive-actions/
+---
+
 # Destructive actions
 
 `Status: Draft` · `Owner: [name]`

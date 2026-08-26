@@ -1,3 +1,11 @@
+---
+layout: default
+title: Buttons
+description: Permitted Bootstrap 6 button combinations for Filmmakers System.
+section: Component
+permalink: /products/filmmakers-system/components/buttons/
+---
+
 # Buttons
 
 `Status: Draft` · `Owner: [name]`

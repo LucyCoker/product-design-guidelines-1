@@ -1,3 +1,11 @@
+---
+layout: default
+title: Colour
+description: How colour carries meaning in Filmmakers System.
+section: Foundation
+permalink: /products/filmmakers-system/foundations/colour/
+---
+
 # Filmmakers System — Colour
 
 `Status: Draft` · `Owner: [name]`

@@ -2,6 +2,8 @@
 
 > **Status: Early draft** — published for review and expanded as product decisions are made.
 
+**[Read the published guidelines](https://denkungsart.github.io/product-design-guidelines/)**
+
 Shared guidance for how our products should look, behave, and communicate, together with product-specific values and component choices.
 
 This repository is not a replacement for Bootstrap or the production frontend. It is the product-policy layer that explains which available options we use, when we use them, and why.
@@ -35,7 +37,7 @@ Use this repository and the Bootstrap 6 design system together:
 - **Developers** use them when implementing and reviewing product UI.
 - **AI agents** use the same Markdown as design context; start with [AGENTS.md](AGENTS.md). Claude loads the same instructions through [CLAUDE.md](CLAUDE.md).
 
-A future public site can render these same files so that the human-readable and machine-readable guidance stays in sync.
+The public site renders these same files so that the human-readable and machine-readable guidance stays in sync.
 
 ## Repository structure
 

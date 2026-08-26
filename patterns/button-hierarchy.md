@@ -1,3 +1,11 @@
+---
+layout: default
+title: Button hierarchy
+description: Decide which action on a screen receives emphasis.
+section: Shared pattern
+permalink: /patterns/button-hierarchy/
+---
+
 # Button hierarchy
 
 `Status: Draft` · `Owner: [name]`
