@@ -86,7 +86,6 @@ reliably available. Use `--bs-secondary-color` at 400.
 
 ### Watching
 
-- Do we need to add an option for **`body small` (13px)** — to be used for dense cards (e.g. Suggestions) or tables.
 - Do we need to add an option for `.fw-bold` / `font-weight: 700`
 
 ## Sources
