@@ -22,16 +22,19 @@ We use Bootstrap's native font stack unmodified — the OS picks the best availa
 
 ## Scale
 
-This is adjusted from Bootstrap v6 headings scale to be closer to the 14px default body size.
+### Heading roles
 
-| Headings | Size | Weight |
-|---|---|---|
-| h1 | 1.875rem / 30px | 600 |
-| h2 | 1.5rem / 24px | 600 |
-| h3 | 1.25rem / 20px | 600 |
-| h4 | 1.125rem / 18px | 600 |
-| h5 | 1rem / 16px | 600 |
-| h6 | 0.875rem / 14px | 600 |
+Heading sizes MUST use Bootstrap's existing size utilities. Use the following sizes for each role; do not introduce a custom heading scale.
+
+| Heading role | Class | Size | Weight |
+|---|---|---|---|
+| Page title | `.fs-2xl` | 28–32px | 600 |
+| Section heading | `.fs-lg` | 18–20px | 600 |
+| Card or group heading | `.fs-md` | 16px | 600 |
+
+Pixel values assume `1rem = 16px`. The ranges follow Bootstrap's responsive size tokens and vary with viewport width.
+
+Heading elements (`h1`–`h6`) MUST reflect the document structure. Use the size utility to express the visual role independently of the heading level. For example, a page title can use `<h1 class="fs-2xl fw-semibold">Project details</h1>`.
 
 ---
 
@@ -39,7 +42,7 @@ This is adjusted from Bootstrap v6 headings scale to be closer to the 14px defau
 |---|---|---|---|
 | body large | 1rem / 16px | 400 | Anything the user reads in paragraphs, however not for user-entered reference descriptions (e.g. project or role descriptions within a caster's own project)|
 | **body** | **0.875rem / 14px** | **400** | **Default. Anything the user scans, operates, or fills in** |
-| caption | 0.75rem / 12px | 400 | Tooltips, timestamps, legal | 
+| caption | 0.75rem / 12px | 400 | Tooltips, timestamps, legal |
 
 **12px is the floor**. MUST NOT use it for anything the user must read to complete a task.
 
@@ -79,7 +82,7 @@ reliably available. Use `--bs-secondary-color` at 400.
 
 ### Open decisions
 
-- When the base font size is changed to 14px, does Bootstrap v6 automatically adjust the typogrpahy scale? If so, do those sizes work for our system and should we change our guidelines to match the auto generated scale rather than making it custom?
+*None yet.*
 
 ### Watching
 
