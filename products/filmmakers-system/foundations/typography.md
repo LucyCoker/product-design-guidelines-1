@@ -70,7 +70,7 @@ reliably available. Use `--bs-secondary-color` at 400.
 
 ## Accessibility
 
-- **Critical:** 14px for `body` is achieved by setting `$font-size-base: .875rem`, *not* by shrinking the root. `1rem` must always equal the user's browser default so that browser font-size preferences and 200% text zoom (WCAG 2.1 AA, SC 1.4.4) work correctly.
+- **Critical:** Set `--bs-body-font-size: var(--bs-font-size-sm)` in the central Bootstrap adapter to select the 14px `body` default. Do not shrink the document root to achieve this. Changing the body default does not rescale Bootstrap's independent named sizes or headings. Browser font-size preferences and 200% text zoom (WCAG 2.1 AA, SC 1.4.4) MUST remain supported.
 - Body copy MUST NOT be justified. Uneven word spacing makes it harder to read for users with dyslexia.
 - All-caps MUST NOT be used for anything longer than a short label.
 - Line length limit: MUST NOT exceed 80 characters per WCAG advisory guidelines (Guideline 1.4.8).
