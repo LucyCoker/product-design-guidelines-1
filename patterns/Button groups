@@ -1,0 +1,129 @@
+# Button groups
+
+`Status: Draft` · `Owner: [name]`
+
+Which Bootstrap button group combinations we use, and how. For deciding which action gets emphasis, see button hierarchy. For variants and themes, see buttons.
+
+## TL;DR
+
+- A button group is **two or three related actions**, joined, all the same variant.
+- Four or more actions → show fewer and move the rest to an overflow menu.
+- Never all-primary. Never mixed variants.
+- Not for switching views, not for selecting a value, not for navigation.
+
+## What it is
+
+Two or three closely related actions presented as one joined control. Bootstrap's `.btn-group`.
+
+The joining is the meaning: it says these actions belong together and apply to the same thing.
+
+A row of buttons with gaps between them is **not** a button group — that is a cluster of separate actions, and button hierarchy covers it.
+
+## When to use / when not to
+
+| Situation | Use |
+|---|---|
+| Two or three actions on the same object | Button group |
+| Four or more actions on the same object | One or two visible, rest in an overflow menu |
+| Actions with no relationship to each other | Separate buttons, not a group |
+| Variants of one action (Save / Save and new) | Split button |
+| Switching between views of the same content | Not a button group. See Unresolved |
+| Switching between different content sets | Tabs |
+| A yes/no or on/off choice | Switch or checkbox. See forms |
+| Choosing one value from a set | Radio group |
+| Navigating somewhere | Links |
+
+**Rules**
+
+- A button group MUST contain only actions that apply to the same object or data.
+- A button group MUST NOT be used to indicate a selection or a current state.
+- A button group MUST NOT be used as navigation or as a substitute for tabs.
+- Where actions are not related, they MUST be separated rather than grouped. Grouping unrelated actions implies a relationship that isn't there.
+- A button group MUST NOT mix destructive and non-destructive actions. The proximity invites mistakes. See destructive actions.
+
+## Styling
+
+**One variant per group.**
+
+A joined control reads as a single object. Mixing variants inside it breaks that reading — the shared border says these are peers, while a different fill says one of them matters more.
+
+- Every button in a group MUST use the same variant and theme.
+- Button groups use `btn-outline theme-secondary`.
+- A button group MUST NOT contain a `btn-solid` button of any theme.
+- A button group MUST NOT contain more than one visually distinct button.
+- Where one action deserves more weight than the others, it MUST sit outside the group as a separate button. It does not belong inside a joined control.
+- `btn-text` MUST NOT be used inside a button group. A borderless button inside a bordered group looks broken.
+
+**Sizes**
+
+- Every button in a group MUST be the same size.
+- Groups use small or extra small. See buttons.
+
+**Labels and icons**
+
+- A group MUST NOT mix text-labelled buttons with icon-only buttons.
+- **Exception:** a text-labelled button MAY be paired with an icon-only dropdown trigger belonging to it. That is a split button.
+- Where every button in a group is icon-only, each MUST have an accessible name and a tooltip on hover and keyboard focus.
+- Labels MUST be short and describe the action.
+
+## How many
+
+- Two or three actions. That is the whole range.
+- At four or more, keep the most frequent one or two visible and move the rest to an overflow menu.
+- A screen that needs many actions on the same object is a hierarchy problem, not a grouping problem. Lower the emphasis rather than adding buttons. See button hierarchy.
+
+## Orientation
+
+- Groups are horizontal by default.
+- Vertical stacking is only for narrow layouts where horizontal does not fit.
+- Below the tablet breakpoint, a group that does not fit MUST stack rather than scroll or truncate.
+
+## Accessibility
+
+- The group container MUST have `role="group"`, or `role="toolbar"` where it is a toolbar, with an `aria-label` naming what the group does.
+- Buttons MUST be `<button type="button">`. An `<a>` is a link and a `<span>` is not announced as a button.
+- Every button MUST be reachable by keyboard in visual order.
+- Focus MUST be visible on each button in the group, including where borders are shared.
+
+## Do this / not this
+
+**Variant**
+✅ Three `btn-outline theme-secondary` buttons, joined
+❌ Four solid primary buttons in a row
+
+**Count**
+✅ `Message` · `Release profiles` · overflow menu containing the rest
+❌ Six actions in one group
+
+**Mixing**
+✅ `Generate file ▾` — one text button with a dropdown trigger
+❌ `Generate file` followed by two unlabelled icon buttons
+
+**Wrong tool**
+✅ Tabs for Videos / Pictures / Documents
+❌ A button group for the same
+
+## Unresolved
+
+### Open decisions
+
+**Segmented controls** — whether we use them at all. Every current use is either view switching (tabs), a binary choice (switch or checkbox), or content sections (tabs). If nothing legitimate remains, we say we do not use them.
+*Review by: [date]*
+
+**Selected state** — only needed if segmented controls are adopted. The conventional treatment is a solid secondary, which is banned in buttons, so a selected state would need defining.
+*Review by: [date]*
+
+**Toolbars** — whether a toolbar of several groups is a pattern we use, and how groups are separated within one.
+*Review by: [date]*
+
+### Watching
+
+*None yet.*
+
+## Sources
+
+- [Button group](https://primer.style/components/button-group/) — GitHub Primer
+- [Button usage](https://carbondesignsystem.com/components/button/usage/) — IBM Carbon
+- [Button group](https://designsystem.digital.gov/components/button-group/) — USWDS
+- [Button](https://horizon.servicenow.com/workspace/components/now-button) — ServiceNow Horizon
+- [Bootstrap 6 button group](https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/)
