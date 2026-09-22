@@ -1,0 +1,129 @@
+# Patterns overview
+ 
+This document provides one-line answers for making a **prototype**.  
+Where a question needs more than a line, the full **Pattern** is in the Product Design Guidelines repository.
+ 
+**Precedence:** this page → the linked pattern → Bootstrap 6 defaults. Where something isn't covered, **ASK** rather than inventing.
+ 
+---
+ 
+## Colour
+ 
+- **Primary** — where the user acts. Set per user, so it carries no meaning beyond "most important thing here".
+- **Secondary** — the bulk of the interface. Most things are this.
+- **Status** — danger, warning, success, info. States only, never actions, never decoration.
+- **Accent** — marks a distinct area. Chrome and context, never actions. Rare.
+- Use the smallest amount of primary that still makes the next action obvious.
+- Colour is never the only signal. Pair it with an icon and text.
+- WCAG 2.1 AA: 4.5:1 for text, 3:1 for large text and controls.
+
+
+## Typography
+ 
+- Body is 14px. 16px for anything read in paragraphs. 12px is the floor.
+- Weights are 400 and 600 only. Never 500 — Windows has no Medium and it silently falls back.
+- Express de-emphasis with colour, not weight or size.
+- Never italics for emphasis.
+
+
+## Actions and emphasis
+ 
+- One primary action per screen. Zero is fine. Two is not.
+- Everything else is secondary; tertiary or text for the rest.
+- Destructive actions are never primary and never adjacent to the confirming action.
+- Four or more peer actions: keep one or two visible, move the rest to an overflow menu.
+- Buttons name the outcome — `Save changes`, not `Submit` or `OK`.
+- Two buttons on one screen never use the same verb for different outcomes.
+- Small is the default button size.
+
+
+## Page, modal, or inline?
+ 
+- **Inline** — editing one field in place, where the data changes often and all editable elements can be viewed within the row. 
+- **Modal** — one short decision, or a form of about six fields, finished in under 30 seconds.
+- **Side panel** — editing one record while the list behind it stays useful.
+- **Page** — anything with its own URL, longer than two screens, multi-step, or needing reference to other content.
+- If a modal needs scrolling at largest modal size, use a page.
+- Modals never open modals, never stack, never appear unprompted.
+
+
+## Destructive actions
+ 
+- Reversible → act immediately and offer **undo**. No confirmation dialog.
+- Irreversible → confirmation dialog naming the specific object and what is lost.
+- The confirming button repeats the verb: `Delete invoice`, never `OK`.
+- `Cancel` is the default focused control.
+- Destructive row actions live in an overflow menu, labelled with text, never as a bare icon.
+- Undo toasts do not auto-dismiss.
+
+
+## Messages
+ 
+- **Toast** — something happened. Auto-dismisses. If has an action, stays until dismissed.
+- **Banner** — a condition that is still true. Top of the content area. One per page.
+- **Inline** — this specific thing needs attention. Next to the thing.
+- **Nothing** — the result is already visible on screen. Say nothing.
+- Toast for events, banner for conditions.
+- Nothing important lives only in a toast.
+- No "successfully", no exclamation marks, no raw error codes.
+
+
+## Errors and validation
+ 
+- Validate on blur, not on keystroke, and never before the user has typed.
+- Error messages sit next to the field and say how to fix it, not just what's wrong.
+- On submit, a summary at the top links to each invalid field.
+- A modal with an invalid field stays open. The user's input is preserved.
+- A failed save never discards what the user entered.
+- Errors are carried by colour, icon and text together — never colour alone.
+
+
+## Empty states
+ 
+Five different states, five different messages. Never one generic "No data".
+ 
+- **First use** — what this is for, and one action to create the first item.
+- **No results** — restate the filters or query, and offer a way to clear them.
+- **No permission** — say access is restricted and who to ask.
+- **Error** — say what failed and offer a retry.
+- **Complete** — confirm this is a good state, not a broken one, e.g. "You're all caught up"
+- An empty state replaces the thing that would have been there, including table headers.
+- Where several empty states could show at once, use a tertiary action rather than a primary, e.g. on empty dashboards.
+
+
+## Forms
+ 
+- Single column. Labels above inputs. Placeholders are never labels.
+- **Switch** — applies immediately. **Checkbox** — applies on save. Never a switch in a form with a Save button.
+- Mark required with red asterisk after label, e.g. Name*.
+- Help needed to complete a field is always visible, never behind an icon.
+- Leaving with unsaved changes warns first.
+
+
+## Tables, filters, bulk actions
+ 
+- A table exists to find, compare, view or act on records. If it does none of those, it isn't a table.
+- One action per row → the whole row is clickable, with hover and focus states.
+- Two or more → an actions column; three or more → an overflow menu.
+- Row actions are never revealed on hover alone.
+- Selection uses checkboxes; bulk actions appear in a contextual bar stating the count.
+- Applied filters are always visible and removable, and survive navigating away and back.
+- Filtering narrows; sorting orders. Don't use one for the other.
+- Freeze the header and the identifying column when the table is larger than the screen.
+
+
+## Custom designs
+ 
+- Bootstrap default → our documented rule → propose a new one. There is no fourth option.
+- A custom pattern is justified only when no existing one can be adapted, and it needs a written proposal.
+- "It's just this one screen" is how inconsistency starts.
+- Never invent a class name. If it isn't in the permitted table, **ASK**.
+## What stays consistent everywhere
+ 
+These never vary by screen, area, product or persona:
+ 
+- Interaction patterns and component choice
+- The meaning of any status colour
+- Accessibility minimums
+- Content and label conventions
+- Terminology
