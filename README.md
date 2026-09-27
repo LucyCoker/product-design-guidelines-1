@@ -18,6 +18,7 @@ The first product covered is [Filmmakers System](products/filmmakers-system/READ
 | Filmmakers System foundations | Colour; typography | Draft |
 | Filmmakers System components | Buttons | Draft |
 | Proposals | [Design system platform](proposals/design-system-platform.md) | Draft |
+| Design system site | [Example build](design-system/README.md): Bootstrap 6 + Filmmakers tokens, primary switcher, rule checker | Example |
 | Other patterns, foundations, and components | Not documented yet; use the product's Bootstrap version as the fallback | Not started |
 
 All detailed guideline pages are currently drafts. Some include **ASK** items, unassigned owners, and review dates that still need to be agreed. The repository should become more complete as decisions are reviewed and recorded.

@@ -1,0 +1,122 @@
+{
+  "$description": "Machine-checkable parts of the Filmmakers System guidelines. Each rule cites the page it comes from. The prose page wins if the two disagree.",
+  "version": "0.1.0",
+  "selectors": {
+    "button": ["btn", "btn-solid", "btn-outline", "btn-text", "btn-subtle"]
+  },
+  "rules": [
+    {
+      "id": "button/no-status-theme",
+      "category": "brand",
+      "severity": "error",
+      "type": "banned-classes",
+      "match": { "any": "button", "anyOf": ["theme-success", "theme-warning", "theme-info"] },
+      "message": "Status themes are not used on buttons. Success is a state, not an action.",
+      "source": "products/filmmakers-system/components/buttons.md#banned-combinations"
+    },
+    {
+      "id": "button/solid-reserved",
+      "category": "brand",
+      "severity": "error",
+      "type": "allowed-themes",
+      "match": { "all": ["btn-solid"] },
+      "allowed": ["theme-primary", "theme-danger", "theme-inverse"],
+      "message": "btn-solid is reserved for theme-primary, theme-danger and theme-inverse.",
+      "source": "products/filmmakers-system/components/buttons.md#solid-is-reserved"
+    },
+    {
+      "id": "button/no-second-primary",
+      "category": "brand",
+      "severity": "error",
+      "type": "banned-classes",
+      "match": { "anyOf": ["btn-outline", "btn-subtle"], "all": ["theme-primary"] },
+      "message": "An outline or subtle primary becomes a second primary. Use btn-outline theme-secondary.",
+      "source": "products/filmmakers-system/components/buttons.md#banned-combinations"
+    },
+    {
+      "id": "button/no-subtle",
+      "category": "usage",
+      "severity": "error",
+      "type": "banned-classes",
+      "match": { "all": ["btn-subtle"] },
+      "message": "btn-subtle is not in use yet. Use btn-outline or btn-text.",
+      "source": "products/filmmakers-system/components/buttons.md#banned-combinations"
+    },
+    {
+      "id": "button/no-styled",
+      "category": "brand",
+      "severity": "error",
+      "type": "banned-classes",
+      "match": { "all": ["btn-styled"] },
+      "message": "Use the Default rounded corners. The styled button style is banned.",
+      "source": "products/filmmakers-system/components/buttons.md#permitted-combinations"
+    },
+    {
+      "id": "button/one-primary",
+      "category": "usage",
+      "severity": "error",
+      "type": "max-count",
+      "match": { "all": ["btn-solid", "theme-primary"] },
+      "max": 1,
+      "message": "A screen has at most one btn-solid theme-primary.",
+      "source": "patterns/button-hierarchy.md"
+    },
+    {
+      "id": "button/icon-only-name",
+      "category": "accessibility",
+      "severity": "error",
+      "type": "require-attribute",
+      "match": { "all": ["btn-icon"] },
+      "anyAttribute": ["aria-label", "aria-labelledby"],
+      "message": "Icon-only buttons need an accessible name (aria-label) and a tooltip.",
+      "source": "products/filmmakers-system/components/buttons.md#icon-only-buttons"
+    },
+    {
+      "id": "button/icon-only-variant",
+      "category": "brand",
+      "severity": "error",
+      "type": "allowed-themes",
+      "match": { "all": ["btn-icon"] },
+      "requireAll": ["btn-text", "theme-secondary"],
+      "message": "Icon-only buttons use btn-text theme-secondary.",
+      "source": "products/filmmakers-system/components/buttons.md#icon-only-buttons"
+    },
+    {
+      "id": "button/client-zone-outline-only",
+      "category": "brand",
+      "severity": "error",
+      "type": "allowed-themes",
+      "match": { "all": ["has-client-zone-icon"] },
+      "requireAll": ["btn-outline", "theme-secondary"],
+      "message": "The client zone icon goes on btn-outline theme-secondary only.",
+      "source": "products/filmmakers-system/components/buttons.md#custom-accent-button---client-zone-signal"
+    },
+    {
+      "id": "type/no-medium-weight",
+      "category": "brand",
+      "severity": "error",
+      "type": "banned-classes",
+      "match": { "all": ["fw-medium"] },
+      "message": "Weight 500 renders as 400 on Windows. Use fw-semibold.",
+      "source": "products/filmmakers-system/foundations/typography.md#weights"
+    },
+    {
+      "id": "type/no-italic-emphasis",
+      "category": "brand",
+      "severity": "warning",
+      "type": "banned-classes",
+      "match": { "all": ["fst-italic"] },
+      "message": "Do not use italics for emphasis. Use weight 600.",
+      "source": "products/filmmakers-system/foundations/typography.md#the-scale"
+    },
+    {
+      "id": "colour/no-hex",
+      "category": "brand",
+      "severity": "error",
+      "type": "banned-style",
+      "pattern": "#[0-9a-fA-F]{3,8}\\b|rgba?\\(|hsla?\\(",
+      "message": "Apply colour through theme tokens. Hex and raw colour values are not allowed.",
+      "source": "products/filmmakers-system/foundations/colour.md#we-use-the-bootstrap-6-colour-system"
+    }
+  ]
+}

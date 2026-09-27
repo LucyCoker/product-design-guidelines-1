@@ -1,0 +1,78 @@
+{
+  "$description": "EXAMPLE DATA. Shows the shape of the nightly production scan. No scan of production has run yet; every number here is invented.",
+  "example": true,
+  "scannedAt": null,
+  "repository": "production frontend (not connected)",
+  "files": 412,
+  "components": [
+    {
+      "name": "Buttons",
+      "uses": 1840,
+      "violations": 96
+    },
+    {
+      "name": "Type utilities",
+      "uses": 2210,
+      "violations": 41
+    },
+    {
+      "name": "Inline styles",
+      "uses": 265,
+      "violations": 17
+    },
+    {
+      "name": "Badges",
+      "uses": 530,
+      "violations": 0
+    },
+    {
+      "name": "Alerts",
+      "uses": 214,
+      "violations": 0
+    }
+  ],
+  "rules": [
+    {
+      "rule": "button/one-primary",
+      "count": 38
+    },
+    {
+      "rule": "button/no-second-primary",
+      "count": 22
+    },
+    {
+      "rule": "button/icon-only-name",
+      "count": 19
+    },
+    {
+      "rule": "type/no-medium-weight",
+      "count": 41
+    },
+    {
+      "rule": "colour/no-hex",
+      "count": 17
+    },
+    {
+      "rule": "button/no-status-theme",
+      "count": 11
+    },
+    {
+      "rule": "button/solid-reserved",
+      "count": 6
+    }
+  ],
+  "trend": [
+    231,
+    226,
+    219,
+    214,
+    201,
+    196,
+    188,
+    181,
+    172,
+    166,
+    160,
+    154
+  ]
+}

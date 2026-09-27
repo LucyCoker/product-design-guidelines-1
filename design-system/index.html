@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Filmmakers Design System</title>
+<meta name="description" content="Bootstrap 6 components with Filmmakers System tokens, rules and checks. Preview any customer primary.">
+<link rel="stylesheet" href="assets/bootstrap.min.css">
+<link rel="stylesheet" href="assets/filmmakers.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<!--ds:body-start-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-eye" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M1 8s2.6-5 7-5 7 5 7 5-2.6 5-7 5-7-5-7-5Z"/><circle cx="8" cy="8" r="2.25" fill="currentColor"/></symbol>
+  <symbol id="i-star" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="m8 1.8 1.9 3.9 4.3.6-3.1 3 .7 4.3L8 11.6l-3.8 2 .7-4.3-3.1-3 4.3-.6L8 1.8Z"/></symbol>
+  <symbol id="i-note" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="M3 2.5h10v8l-3 3H3v-11Z M10 13.5v-3h3 M5.5 6h5 M5.5 8.5h3"/></symbol>
+  <symbol id="i-more" viewBox="0 0 16 16"><circle cx="3" cy="8" r="1.4" fill="currentColor"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/><circle cx="13" cy="8" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M2 4h12M4.5 8h7M7 12h2"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="M8 1.8 15 14H1L8 1.8Z"/><path stroke="currentColor" stroke-width="1.4" stroke-linecap="round" d="M8 6.2v3.6"/><circle cx="8" cy="11.8" r=".9" fill="currentColor"/></symbol>
+</svg>
+
+<div class="ds-shell">
+  <aside class="ds-sidebar">
+    <div class="ds-brand">
+      <strong>Filmmakers Design System</strong>
+      <span>Bootstrap 6 · Example build</span>
+    </div>
+    <nav class="ds-nav" aria-label="Sections">
+      <div class="ds-nav-group">
+        <span>Start</span>
+        <a href="#overview">Overview</a>
+        <a href="#preview">Customer primary</a>
+      </div>
+      <div class="ds-nav-group">
+        <span>Foundations</span>
+        <a href="#colour">Colour</a>
+        <a href="#type">Typography</a>
+      </div>
+      <div class="ds-nav-group">
+        <span>Components</span>
+        <a href="#buttons">Buttons</a>
+      </div>
+      <div class="ds-nav-group">
+        <span>Quality</span>
+        <a href="#check">Check markup</a>
+        <a href="#health">Production health</a>
+      </div>
+      <div class="ds-nav-group">
+        <span>Use it</span>
+        <a href="#export">Export</a>
+        <a href="#contribute">Change the system</a>
+      </div>
+    </nav>
+    <div class="ds-sidebar-foot">
+      <span>Bootstrap <code>6.0.0-alpha1</code></span>
+      <span>Built from <code>bootstrap-v6-dev@bc4bcb4</code></span>
+      <span>Guidelines status: Draft</span>
+    </div>
+  </aside>
+
+  <main class="ds-main">
+    <div class="ds-bar" role="region" aria-label="Preview settings">
+      <div class="ds-bar-group">
+        <label class="ds-bar-label" for="brand-select">Primary</label>
+        <select id="brand-select" class="form-select form-select-sm ds-brand-select"></select>
+        <input id="brand-color" class="ds-color-input" type="color" value="#1566d6" aria-label="Pick a primary colour">
+        <input id="brand-hex" class="form-control form-control-sm ds-hex" type="text" value="" spellcheck="false" aria-label="Primary colour as hex">
+      </div>
+      <output id="bar-verdict" class="ds-verdict" data-state="pass" for="brand-select brand-color brand-hex">Checking…</output>
+      <span class="ds-bar-spacer"></span>
+      <div class="ds-bar-group">
+        <span class="ds-bar-label" id="mode-label">Mode</span>
+        <div class="ds-seg" role="group" aria-labelledby="mode-label">
+          <button type="button" data-mode="auto" aria-pressed="true">Auto</button>
+          <button type="button" data-mode="light" aria-pressed="false">Light</button>
+          <button type="button" data-mode="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-content">
+
+      <!-- Overview ------------------------------------------------------- -->
+      <section class="ds-section" id="overview">
+        <div class="ds-intro">
+          <span class="ds-eyebrow">Filmmakers System</span>
+          <h1>One source for how the product looks and behaves</h1>
+          <p>Every example on this page is real Bootstrap 6 markup with the Filmmakers token layer on top. Pick a customer primary in the bar above and the whole page, including every contrast check, updates to match.</p>
+          <div class="ds-meta">
+            <span class="ds-tag">bootstrap.min.css</span>
+            <span class="ds-tag">filmmakers.css</span>
+            <span class="ds-tag">data/tokens.json</span>
+            <span class="ds-tag">data/rules.json</span>
+          </div>
+        </div>
+        <div class="ds-note" role="note">
+          <span class="ds-ask">EXAMPLE</span>
+          <span><strong>This is an example build.</strong> It uses the rules written so far (colour, typography, buttons). Customer colours are invented, and the production health numbers are sample data until a real scan is connected. Open decisions are marked <span class="ds-ask">ASK</span>.</span>
+        </div>
+        <div class="ds-table-wrap ds-panel">
+          <table class="ds-table">
+            <thead><tr><th>Layer</th><th>Where it lives</th><th>What it decides</th></tr></thead>
+            <tbody>
+              <tr><td>1. Production frontend</td><td>Product repos</td><td>Which components and tokens exist</td></tr>
+              <tr><td>2. Filmmakers guidelines</td><td><code>products/filmmakers-system/</code>, <code>data/*.json</code>, <code>filmmakers.css</code></td><td>Which options we use, and how</td></tr>
+              <tr><td>3. Bootstrap 6</td><td><code>denkungsart/bootstrap-v6-dev</code></td><td>Markup, behaviour and defaults</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Customer primary ---------------------------------------------- -->
+      <section class="ds-section" id="preview">
+        <header>
+          <span class="ds-eyebrow">Customer primary</span>
+          <h2>See a screen in any customer's colour</h2>
+          <p>Each customer can set their own primary. Every primary role (button fill, link text, subtle surfaces, borders, focus ring) is derived from that one colour.</p>
+        </header>
+
+        <div class="ds-note" role="note">
+          <span class="ds-ask">ASK</span>
+          <span><strong>How does production derive the roles?</strong> This site uses Bootstrap's own scale recipe (<code>scss/_colors.scss</code>) and role map (<code>scss/_theme.scss</code>). Production may do it differently. The preview is only exact once it copies the production code.</span>
+        </div>
+
+        <div class="ds-stage" id="sample-stage">
+          <div class="ds-stage-inner">
+            <div class="ds-screen" id="sample-screen">
+              <div class="ds-screen-head">
+                <span class="ds-crumbs">Selections / Spring 2027 feature</span>
+                <h3>Lead roles shortlist</h3>
+              </div>
+              <div class="alert theme-secondary ds-zone ds-small" role="note">
+                <svg class="fm-icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+                <span><b>Client zone.</b> Two people at the production company can see this selection.</span>
+              </div>
+              <div class="ds-screen-tools">
+                <input class="form-control form-control-sm" type="search" id="sample-search" placeholder="Search people" aria-label="Search people">
+                <button type="button" class="btn-text theme-secondary btn-sm btn-icon" aria-label="Filter" title="Filter">
+                  <svg class="fm-icon" aria-hidden="true"><use href="#i-filter"></use></svg>
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-sm">
+                  <thead>
+                    <tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Status</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Mara Lindqvist</td><td>Ingrid (lead)</td>
+                      <td><span class="badge badge-subtle theme-success">Confirmed</span></td>
+                      <td><div class="ds-row-actions">
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add to favourites" title="Add to favourites"><svg class="fm-icon" aria-hidden="true"><use href="#i-star"></use></svg></button>
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add a note" title="Add a note"><svg class="fm-icon" aria-hidden="true"><use href="#i-note"></use></svg></button>
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="More actions" title="More actions"><svg class="fm-icon" aria-hidden="true"><use href="#i-more"></use></svg></button>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td>Jonas Achterberg</td><td>Paul (lead)</td>
+                      <td><span class="badge badge-subtle theme-warning">Awaiting reply</span></td>
+                      <td><div class="ds-row-actions">
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add to favourites" title="Add to favourites"><svg class="fm-icon" aria-hidden="true"><use href="#i-star"></use></svg></button>
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add a note" title="Add a note"><svg class="fm-icon" aria-hidden="true"><use href="#i-note"></use></svg></button>
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="More actions" title="More actions"><svg class="fm-icon" aria-hidden="true"><use href="#i-more"></use></svg></button>
+                      </div></td>
+                    </tr>
+                    <tr>
+                      <td>Selin Aydın</td><td>Ingrid (lead)</td>
+                      <td><span class="badge badge-subtle theme-danger">Declined</span></td>
+                      <td><div class="ds-row-actions">
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add to favourites" title="Add to favourites"><svg class="fm-icon" aria-hidden="true"><use href="#i-star"></use></svg></button>
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add a note" title="Add a note"><svg class="fm-icon" aria-hidden="true"><use href="#i-note"></use></svg></button>
+                        <button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="More actions" title="More actions"><svg class="fm-icon" aria-hidden="true"><use href="#i-more"></use></svg></button>
+                      </div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="ds-screen-foot">
+                <button type="button" class="btn-text theme-secondary btn-sm">Discard</button>
+                <button type="button" class="btn-outline theme-secondary btn-sm has-client-zone-icon"><svg class="fm-icon" aria-hidden="true"><use href="#i-eye"></use></svg>Preview as client</button>
+                <button type="button" class="btn-outline theme-secondary btn-sm">Save draft</button>
+                <button type="button" class="btn-solid theme-primary btn-sm">Publish selection</button>
+              </div>
+            </div>
+
+            <div class="card ds-dialog" role="group" aria-labelledby="dialog-title">
+              <div class="card-body">
+                <h4 id="dialog-title">Remove 3 people from this selection?</h4>
+                <p class="ds-small">The client will no longer see them. You can add them again later from the search.</p>
+              </div>
+              <div class="card-footer">
+                <button type="button" class="btn-outline theme-secondary btn-sm">Cancel</button>
+                <button type="button" class="btn-solid theme-danger btn-sm">Remove 3 people</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-panel">
+          <div class="ds-panel-head">
+            <strong>Compare customer primaries</strong>
+            <div class="ds-seg" role="group" aria-label="Compare in mode">
+              <button type="button" data-compare-mode="light" aria-pressed="true">Light</button>
+              <button type="button" data-compare-mode="dark" aria-pressed="false">Dark</button>
+            </div>
+          </div>
+          <div class="ds-panel-body">
+            <div class="ds-compare" id="compare"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Colour ------------------------------------------------------- -->
+      <section class="ds-section" id="colour">
+        <header>
+          <span class="ds-eyebrow">Foundation · Draft</span>
+          <h2>Colour</h2>
+          <p>Four roles, each with one job. Primary marks where people act. Secondary is most of the interface. Status reports state. Accent marks an area.</p>
+        </header>
+
+        <div class="ds-panel">
+          <div class="ds-panel-head"><strong>Contrast for the current primary</strong><span class="ds-small ds-muted" id="contrast-name"></span></div>
+          <div class="ds-table-wrap">
+            <table class="ds-table" id="contrast-table">
+              <thead><tr><th>Check</th><th>Pair</th><th class="num">Ratio</th><th class="num">Needs</th><th>Result</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ds-note" role="note" id="contrast-ask" hidden>
+          <span class="ds-ask">ASK</span>
+          <span><strong>This primary fails as a button background.</strong> The guidelines say it must not be used as-is, and that the fix is a decision. This site does not change the colour for you. Options to decide between: darken the fill, switch the text to black, or refuse the colour in settings.</span>
+        </div>
+
+        <div class="ds-grid-2">
+          <div class="ds-panel">
+            <div class="ds-panel-head"><strong>Primary roles</strong><span class="ds-small ds-muted">derived</span></div>
+            <div class="ds-panel-body"><div class="ds-swatches" id="primary-swatches"></div></div>
+          </div>
+          <div class="ds-panel">
+            <div class="ds-panel-head"><strong>Status and accent</strong><span class="ds-small ds-muted">fixed</span></div>
+            <div class="ds-panel-body"><div class="ds-swatches" id="fixed-swatches"></div></div>
+          </div>
+        </div>
+
+        <ul class="ds-rules">
+          <li><b>At most one primary action per screen.</b> Primary never means new, recommended or important.</li>
+          <li><b>Status colours report state only.</b> Never actions, emphasis or decoration.</li>
+          <li><b>Colour is never the only signal.</b> Carry meaning with two of colour, icon and text.</li>
+          <li><b>No hex values in component or page CSS.</b> A colour that is not in the theme does not exist.</li>
+          <li><b>Red or orange primaries:</b> danger and warning must carry an icon or text as well as hue.</li>
+        </ul>
+      </section>
+
+      <!-- Typography --------------------------------------------------- -->
+      <section class="ds-section" id="type">
+        <header>
+          <span class="ds-eyebrow">Foundation · Draft</span>
+          <h2>Typography</h2>
+          <p>The native system font stack, two weights, and a 14px body. <code>1rem</code> stays at the browser default so text zoom works.</p>
+        </header>
+        <div class="ds-panel">
+          <div class="ds-panel-body" id="type-scale">
+            <div class="ds-type-row"><span>h1</span><p class="ds-type-sample h1">Spring 2027 feature</p><span>30px · 600</span></div>
+            <div class="ds-type-row"><span>h2</span><p class="ds-type-sample h2">Lead roles shortlist</p><span>24px · 600</span></div>
+            <div class="ds-type-row"><span>h3</span><p class="ds-type-sample h3">Audition schedule</p><span>20px · 600</span></div>
+            <div class="ds-type-row"><span>h4</span><p class="ds-type-sample h4">Callback, day two</p><span>18px · 600</span></div>
+            <div class="ds-type-row"><span>h5</span><p class="ds-type-sample h5">Self-tape requirements</p><span>16px · 600</span></div>
+            <div class="ds-type-row"><span>h6</span><p class="ds-type-sample h6">Availability</p><span>14px · 600</span></div>
+            <div class="ds-type-row"><span>lead</span><p class="ds-type-sample fm-lead">Share a shortlist with the production company in one step.</p><span>18px · 400</span></div>
+            <div class="ds-type-row"><span>body large</span><p class="ds-type-sample fm-body-lg">Read in paragraphs: role descriptions, briefs, notes.</p><span>16px · 400</span></div>
+            <div class="ds-type-row"><span>body</span><p class="ds-type-sample">Scan, operate or fill in: tables, forms, lists. The default.</p><span>14px · 400</span></div>
+            <div class="ds-type-row"><span>body small</span><p class="ds-type-sample fm-body-sm">Tooltips, dense cards and tables.</p><span>13px · 400</span></div>
+            <div class="ds-type-row"><span>caption</span><p class="ds-type-sample fm-caption">Updated 12 minutes ago · Fine print only</p><span>12px · 400</span></div>
+          </div>
+        </div>
+        <ul class="ds-rules">
+          <li><b>Never weight 500 or <code>.fw-medium</code>.</b> Segoe UI on Windows 10 has no Medium, so it renders as Regular.</li>
+          <li><b>De-emphasise with colour, not size or weight.</b> Keep the size and use a secondary text colour.</li>
+          <li><b>12px is the floor,</b> and only for fine print. No italics for emphasis; use 600.</li>
+        </ul>
+      </section>
+
+      <!-- Buttons ------------------------------------------------------ -->
+      <section class="ds-section" id="buttons">
+        <header>
+          <span class="ds-eyebrow">Component · Draft</span>
+          <h2>Buttons</h2>
+          <p>Variant sets how loud a button is. Theme sets what it means. Never use theme to create emphasis. Small is the default size.</p>
+        </header>
+        <div class="ds-panel ds-table-wrap">
+          <table class="ds-table" id="permitted-table">
+            <thead><tr><th>Purpose</th><th>Example</th><th>Classes</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="ds-grid-2">
+          <div class="ds-panel">
+            <div class="ds-panel-head"><strong>Sizes</strong><span class="ds-small ds-muted">Small is the default</span></div>
+            <div class="ds-panel-body ds-table-wrap">
+              <table class="ds-table">
+                <tbody>
+                  <tr><td><button type="button" class="btn-outline theme-secondary btn-xs">Extra small</button></td><td><code class="ds-class">btn-xs</code></td><td class="ds-muted">Table rows, compact toolbars</td></tr>
+                  <tr><td><button type="button" class="btn-outline theme-secondary btn-sm">Small</button></td><td><code class="ds-class">btn-sm</code></td><td class="ds-muted">Default. Everything else</td></tr>
+                  <tr><td><button type="button" class="btn-outline theme-secondary">Medium</button></td><td><code class="ds-class">(none)</code></td><td class="ds-muted">Empty states, roomy screens</td></tr>
+                  <tr><td class="ds-muted">Large</td><td><code class="ds-class">btn-lg</code></td><td class="ds-muted">Marketing only. Not in the app</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="ds-panel">
+            <div class="ds-panel-head"><strong>Banned</strong><span class="ds-small ds-muted">from data/rules.json</span></div>
+            <div class="ds-panel-body ds-table-wrap">
+              <table class="ds-table" id="banned-table"><tbody></tbody></table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Check markup ------------------------------------------------- -->
+      <section class="ds-section" id="check">
+        <header>
+          <span class="ds-eyebrow">Quality</span>
+          <h2>Check markup against the rules</h2>
+          <p>Paste a template from production. The same checker runs in CI, where each finding shows up on the pull request line that caused it.</p>
+        </header>
+        <div class="ds-checker">
+          <div class="ds-panel">
+            <div class="ds-panel-head">
+              <label for="markup" class="mb-0"><strong>Markup</strong></label>
+              <div class="ds-bar-group">
+                <button type="button" class="btn-text theme-secondary btn-xs" id="markup-reset">Load example</button>
+                <button type="button" class="btn-outline theme-secondary btn-xs" id="markup-run">Check</button>
+              </div>
+            </div>
+            <div class="ds-panel-body">
+              <textarea id="markup" class="form-control" spellcheck="false"></textarea>
+            </div>
+          </div>
+          <div class="ds-panel">
+            <div class="ds-panel-head"><strong>Findings</strong><span class="ds-small" id="findings-summary"></span></div>
+            <div class="ds-panel-body"><ul class="ds-findings" id="findings"></ul></div>
+          </div>
+        </div>
+        <div class="ds-panel">
+          <div class="ds-panel-head"><strong>Run it in a production repo's CI</strong><button type="button" class="btn-text theme-secondary btn-xs ds-copy" data-copy="ci-snippet">Copy</button></div>
+<pre class="ds-pre" id="ci-snippet"># .github/workflows/design-system.yml
+name: Design system checks
+on: pull_request
+jobs:
+  markup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: denkungsart/product-design-guidelines
+          path: .design-system
+      - run: node .design-system/design-system/scripts/check-markup.mjs $(git ls-files 'app/views/**' '*.html')</pre>
+        </div>
+      </section>
+
+      <!-- Health ------------------------------------------------------- -->
+      <section class="ds-section" id="health">
+        <header>
+          <span class="ds-eyebrow">Quality</span>
+          <h2>Production health</h2>
+          <p>A nightly job scans production templates with the same rules, then renders key screens with three customer primaries and runs axe-core accessibility checks.</p>
+        </header>
+        <div class="ds-note" role="note">
+          <span class="ds-ask">EXAMPLE</span>
+          <span><strong>Sample numbers.</strong> No production repo is connected yet, so the figures below show the shape of the report, not real results.</span>
+        </div>
+        <div class="ds-stats" id="health-stats"></div>
+        <div class="ds-grid-2">
+          <div class="ds-panel">
+            <div class="ds-panel-head"><strong>Findings by rule</strong><span class="ds-small ds-muted">sample</span></div>
+            <div class="ds-panel-body"><div class="ds-bars" id="health-rules"></div></div>
+          </div>
+          <div class="ds-panel ds-table-wrap">
+            <table class="ds-table" id="health-components">
+              <thead><tr><th>Component</th><th class="num">Uses</th><th class="num">Findings</th><th class="num">Share</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="ds-panel">
+          <div class="ds-panel-head"><strong>Guidelines vs Bootstrap 6</strong><span class="ds-small ds-muted">real findings from bootstrap-v6-dev@bc4bcb4</span></div>
+          <ul class="ds-find-list">
+            <li><span class="ds-pill" data-state="fail">Fixed here</span><div><b>Default primary fails contrast.</b><p>Bootstrap's primary fill is <code>blue-500</code>. White text on it is below 4.5:1. The colour page says to use <code>blue-600</code>, so <code>filmmakers.css</code> overrides it.</p></div></li>
+            <li><span class="ds-pill" data-state="fail">Fixed here</span><div><b>Headings default to weight 500.</b><p>Bootstrap 6 sets headings to <code>--bs-font-weight-medium</code>. The typography page bans 500, so <code>filmmakers.css</code> sets <code>--bs-heading-font-weight: 600</code>. Prose headings, <code>.otp-slot</code> and <code>.fw-medium</code> still use 500 directly.</p></div></li>
+            <li><span class="ds-pill" data-state="warn">ASK</span><div><b>The focus ring fails 3:1.</b><p>Bootstrap mixes the primary 50% into the page background for <code>--bs-primary-focus-ring</code>. With the default primary that gives about 2.2:1 on white, below the 3:1 the colour page asks for focus indicators. Check the live value in the Colour section.</p></div></li>
+            <li><span class="ds-pill" data-state="warn">ASK</span><div><b>Client zone orange fails 3:1 as an icon.</b><p>Bootstrap <code>orange-500</code> on white is about 2.9:1. The client zone icon is a meaningful graphic, so it needs 3:1. A darker step such as <code>orange-600</code> would pass, but changing the accent is a decision.</p></div></li>
+            <li><span class="ds-pill" data-state="warn">ASK</span><div><b>"Accent" means two things.</b><p>Bootstrap 6 has a theme colour called <code>accent</code> (indigo, <code>.theme-accent</code>). Our colour page uses Accent for area colours such as the orange client zone. Tokens and Figma variables need one meaning per name.</p></div></li>
+            <li><span class="ds-pill" data-state="warn">Guideline fix</span><div><b><code>--bs-secondary-color</code> does not exist in Bootstrap 6.</b><p>The typography page tells people to de-emphasise text with it. That is a Bootstrap 5 token. Bootstrap 6 uses <code>--bs-fg-2</code> / <code>--bs-fg-3</code> (utilities <code>.fg-2</code>, <code>.fg-3</code>). The page needs updating.</p></div></li>
+            <li><span class="ds-pill" data-state="warn">Watching</span><div><b>Bootstrap 6 is alpha.</b><p>Token names can still change. The vendored CSS and the <code>bootstrap</code> group in <code>tokens.json</code> should be regenerated from the source on each upgrade, never edited by hand.</p></div></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Export ------------------------------------------------------- -->
+      <section class="ds-section" id="export">
+        <header>
+          <span class="ds-eyebrow">Use it</span>
+          <h2>Export</h2>
+          <p>Every export is generated from the same token and rule files, with the primary from the bar above as the customer value.</p>
+        </header>
+        <div class="ds-panel">
+          <div class="ds-panel-head">
+            <div class="ds-tabs" role="tablist" aria-label="Export format">
+              <button type="button" role="tab" id="tab-figma" aria-selected="true" aria-controls="export-out" data-export="figma">Figma variables</button>
+              <button type="button" role="tab" id="tab-css" aria-selected="false" aria-controls="export-out" data-export="css">CSS</button>
+              <button type="button" role="tab" id="tab-ai" aria-selected="false" aria-controls="export-out" data-export="ai">AI prototype brief</button>
+            </div>
+            <button type="button" class="btn-outline theme-secondary btn-xs ds-copy" data-copy="export-out">Copy</button>
+          </div>
+          <p class="ds-small ds-muted mb-0 px-3 pt-3" id="export-help"></p>
+          <pre class="ds-pre mt-3" id="export-out" role="tabpanel" tabindex="0"></pre>
+        </div>
+      </section>
+
+      <!-- Contribute --------------------------------------------------- -->
+      <section class="ds-section" id="contribute">
+        <header>
+          <span class="ds-eyebrow">Use it</span>
+          <h2>Change the system</h2>
+          <p>Every change is a pull request. The pull request builds a preview of this site so reviewers see the result, not a diff.</p>
+        </header>
+        <div class="ds-panel ds-table-wrap">
+          <table class="ds-table">
+            <thead><tr><th>You want to change</th><th>Edit this</th><th>Where designers work</th></tr></thead>
+            <tbody>
+              <tr><td>A token value</td><td><code>design-system/data/tokens.json</code></td><td>Figma with Tokens Studio, which opens the pull request</td></tr>
+              <tr><td>A rule the checker enforces</td><td><code>design-system/data/rules.json</code> and the guideline page it cites</td><td>GitHub web editor, or Claude Code on the web</td></tr>
+              <tr><td>Guideline wording</td><td><code>products/filmmakers-system/**/*.md</code></td><td>GitHub web editor, or Claude Code on the web</td></tr>
+              <tr><td>An example on this page</td><td><code>design-system/index.html</code></td><td>Claude Code on the web: "add a loading state to the button examples"</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="assets/app.js"></script>
+<!--ds:body-end-->
+</body>
+</html>

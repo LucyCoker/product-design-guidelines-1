@@ -12,6 +12,7 @@ permalink: /
   <p class="lede">Shared guidance for how our products should look, behave, and communicate—written for product managers, designers, developers, and the AI tools working alongside them.</p>
   <div class="hero-actions">
     <a class="button-link" href="{{ '/products/filmmakers-system/' | relative_url }}">Explore the guidelines</a>
+    <a class="button-link secondary" href="{{ '/design-system/' | relative_url }}">Open the design system</a>
     <a class="button-link secondary" href="https://github.com/denkungsart/product-design-guidelines">View on GitHub</a>
   </div>
 </section>
