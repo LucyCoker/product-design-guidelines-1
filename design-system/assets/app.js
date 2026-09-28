@@ -347,28 +347,77 @@ async function setupKit() {
     }
     return known
   }
+  // Known fixes for classes that look plausible but do not exist here.
+  const HINTS = {
+    'menu-end': 'Not in this Bootstrap 6 build. Put data-bs-placement="bottom-end" on the trigger instead.',
+    'badge-dot': 'Not in this Bootstrap 6 build. Use a small badge with visually-hidden text.',
+    'alert-info': 'Bootstrap 5 name. Use alert theme-info.',
+    'alert-danger': 'Bootstrap 5 name. Use alert theme-danger.',
+    'text-danger': 'Bootstrap 5 name. Use fg-danger.',
+    'text-muted': 'Bootstrap 5 name. Use fg-3.',
+    'btn-primary': 'Bootstrap 5 name. Use btn-solid theme-primary.',
+    'btn-secondary': 'Bootstrap 5 name. Use btn-outline theme-secondary.',
+    'dropdown-menu': 'Bootstrap 5 name. Use menu.',
+    'dropdown-item': 'Bootstrap 5 name. Use menu-item.'
+  }
+  // Placeholders filled in when a template runs: {{ … }} (Claude Design and
+  // most template languages) and ${ … } (JavaScript template strings).
+  const TEMPLATE = /\{\{[\s\S]*?\}\}|\$\{[\s\S]*?\}/g
+
   $('#kit-check-run').addEventListener('click', async () => {
     const html = $('#kit-check').value
-    const doc = new DOMParser().parseFromString(html, 'text/html')
+    if (!html.trim()) { $('#kit-check-out').innerHTML = '<p class="lib-note">Paste some HTML first.</p>'; return }
     const classes = await loadKnown()
+
+    // Classes the prototype defines itself, in its own <style> blocks.
+    const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/gi)].map((m) => m[1]).join('\n')
+    const local = new Set([...css.replace(/\{[^{}]*\}/g, '{}').matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)].map((m) => m[1]))
+    const cssColours = [...css.matchAll(/([^{};]+)\{([^}]*)\}/g)]
+      .flatMap(([, sel, body]) => body.split(';').filter((d) => /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i.test(d)).map((d) => `<code>${escapeHtml(sel.trim())} { ${escapeHtml(d.trim())} }</code>`))
+
+    // Read class lists straight from the source, so markup inside templates
+    // and scripts is checked too.
     const unknown = new Map()
+    const invented = new Map()
+    const dynamic = new Map()
     const banned = []
-    const styles = []
-    for (const el of doc.body.querySelectorAll('*')) {
-      const list = [...el.classList]
-      for (const c of list) if (!classes.has(c) && !c.startsWith('lib-')) unknown.set(c, (unknown.get(c) || 0) + 1)
+    let lists = 0
+    let primaries = 0
+    for (const m of html.matchAll(/\b(?:class|className)\s*=\s*(?:"([^"]*)"|'([^']*)'|\{([^}]*)\})/g)) {
+      if (m[3] !== undefined) { dynamic.set(`className={${m[3].trim()}}`, (dynamic.get(`className={${m[3].trim()}}`) || 0) + 1); continue }
+      lists++
+      const raw = m[1] ?? m[2]
+      const holes = []
+      const masked = raw.replace(TEMPLATE, (t) => { holes.push(t); return `\u0000${holes.length - 1}\u0000` })
+      const tokens = masked.split(/\s+/).filter(Boolean)
+      const list = []
+      for (const t of tokens) {
+        if (t.includes('\u0000')) {
+          const shown = t.replace(/\u0000(\d+)\u0000/g, (_, i) => holes[i].replace(/\s+/g, ' '))
+          dynamic.set(shown, (dynamic.get(shown) || 0) + 1)
+          continue
+        }
+        list.push(t)
+        if (classes.has(t)) continue
+        const bucket = local.has(t) ? invented : unknown
+        bucket.set(t, (bucket.get(t) || 0) + 1)
+      }
       for (const [all, why] of BANNED) if (all.every((c) => list.includes(c))) banned.push(`<code>${all.join(' ')}</code>: ${why}`)
       if (list.some((c) => /^btn-(solid|outline|text)$/.test(c)) && list.some((c) => STATUS.includes(c))) banned.push(`<code>${escapeHtml(list.join(' '))}</code>: status themes are never used on buttons.`)
-      const style = el.getAttribute('style') || ''
-      if (/#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i.test(style)) styles.push(`<code>${escapeHtml(el.tagName.toLowerCase())}</code> style="${escapeHtml(style)}"`)
+      if (list.includes('btn-solid') && list.includes('theme-primary')) primaries++
     }
-    const solid = doc.body.querySelectorAll('.btn-solid.theme-primary').length
-    if (solid > 1) banned.push(`${solid} × <code>btn-solid theme-primary</code>: at most one primary per screen.`)
-    const block = (title, items, state) => `<p class="lib-flag"><span class="badge theme-${state} badge-subtle">${items.length || '✓'}</span><span><b>${title}</b></span></p>` + (items.length ? `<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>` : '')
-    $('#kit-check-out').innerHTML = !html.trim() ? '<p class="lib-note">Paste some HTML first.</p>' :
-      block('Not allowed', banned, banned.length ? 'danger' : 'success') +
-      block('Classes the design system does not define', [...unknown].map(([c, n]) => `<code>${escapeHtml(c)}</code>${n > 1 ? ` × ${n}` : ''}`), unknown.size ? 'warning' : 'success') +
-      block('Hard-coded colours', styles, styles.length ? 'danger' : 'success')
+    if (primaries > 1) banned.push(`${primaries} × <code>btn-solid theme-primary</code> in the source. At most one primary per screen, so check these are not on the same screen.`)
+    const inline = [...html.matchAll(/\bstyle\s*=\s*"([^"]*)"/g)].map((m) => m[1]).filter((v) => /#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i.test(v))
+
+    const count = (map, hint) => [...map].map(([c, n]) => `<code>${escapeHtml(c)}</code>${n > 1 ? ` × ${n}` : ''}${hint && HINTS[c] ? ` — ${escapeHtml(HINTS[c])}` : ''}`)
+    const block = (title, note, items, state) => `<p class="lib-flag"><span class="badge theme-${items.length ? state : 'success'} badge-subtle">${items.length || '✓'}</span><span><b>${title}</b>${note ? ` <span class="fg-3">${note}</span>` : ''}</span></p>` + (items.length ? `<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>` : '')
+    $('#kit-check-out').innerHTML =
+      `<p class="lib-note">Checked ${lists} class lists.${dynamic.size ? (() => { const n = [...dynamic.values()].reduce((a, b) => a + b, 0); return ` ${n} ${n === 1 ? 'value is' : 'values are'} set while the page runs, so ${n === 1 ? 'it is' : 'they are'} listed separately.` })() : ''}</p>` +
+      block('Not allowed', 'Banned by the guidelines.', banned, 'danger') +
+      block('Classes that do not exist', 'Not in Bootstrap 6 or the Filmmakers layer. A typo, an old name, or another UI kit.', count(unknown, true), 'danger') +
+      block('Custom classes', 'Made up by the prototype in its own &lt;style&gt;. Replace with library markup.', count(invented), 'warning') +
+      block('Hard-coded colours', 'Use theme classes or var(--bs-…).', [...cssColours, ...inline.map((v) => `<code>style="${escapeHtml(v)}"</code>`)], 'danger') +
+      block('Set while the page runs', 'Cannot be checked here. Make sure each value resolves to an allowed class, for example a theme name.', count(dynamic), 'secondary')
   })
 }
 
