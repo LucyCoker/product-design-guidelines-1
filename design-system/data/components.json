@@ -398,20 +398,237 @@
    "id": "button-group",
    "section": "components",
    "title": "Button group",
-   "intro": "Related buttons joined into one control.",
+   "intro": "Two or three related actions, joined into one control, all the same variant.",
    "items": [
     {
-     "code": "BTN-6",
-     "name": "Button group",
+     "code": "",
      "status": "Direct",
-     "classes": ".btn-group.btn-group-sm",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
-     "replaces": "btn-group",
-     "note": "Direct. Never let a btn-group stretch — icon buttons would grow to squares.",
-     "unresolved": false,
-     "flags": [],
      "layout": "row",
-     "example": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Row actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Edit\" title=\"Edit\"><i class=\"fa-solid fa-pencil\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Copy\" title=\"Copy\"><i class=\"fa-regular fa-copy\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Download\" title=\"Download\"><i class=\"fa-solid fa-download\"></i></button></div>"
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-sizes",
+     "name": "Sizes",
+     "classes": "btn-group-sm · btn-group-xs",
+     "note": "Groups use small or extra small only. Put the size on the group and on every button in it, so they always match.",
+     "rules": [
+      "Every button in a group is the same size.",
+      "Small is the default. Use extra small in table rows and compact toolbars.",
+      "Medium and large are not used for groups."
+     ],
+     "examples": [
+      {
+       "label": "Small",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Download</button></div>",
+       "caption": "Everything else",
+       "badge": "Default"
+      },
+      {
+       "label": "Extra small",
+       "html": "<div class=\"btn-group btn-group-xs\" role=\"group\" aria-label=\"Row actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\">Release</button><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\">Download</button></div>",
+       "caption": "Table rows, compact toolbars",
+       "badge": "btn-group-xs"
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-labels",
+     "name": "Text labels",
+     "classes": "btn-group > btn-outline theme-secondary",
+     "note": "Two or three closely related actions on the same object, joined into one control. The joining is the meaning: these actions belong together.",
+     "rules": [
+      "Two or three actions. That is the whole range.",
+      "Every button uses <code>btn-outline theme-secondary</code>. No solid buttons, no text buttons, no second variant.",
+      "Labels are short and name the action.",
+      "Where one action deserves more weight, put it outside the group as a separate button."
+     ],
+     "examples": [
+      {
+       "label": "Two actions",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button></div>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Three actions",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Download</button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The Buttons guideline says icon-only buttons must use btn-text theme-secondary. The Button groups pattern says btn-text is never used inside a group, which makes outline icon-only buttons the only option here. Confirm this exception and add it to the Buttons guideline."
+      }
+     ],
+     "id": "bg-icons",
+     "name": "Icon only",
+     "classes": "btn-group > btn-outline theme-secondary btn-icon",
+     "note": "A group where every button is icon only. Use only when each icon is well known.",
+     "rules": [
+      "Every button is icon only. Never mix icon-only and text buttons in one group.",
+      "Each button has an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus."
+     ],
+     "examples": [
+      {
+       "label": "Icon only",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Row actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Edit\" data-bs-toggle=\"tooltip\" data-bs-title=\"Edit\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Copy\" data-bs-toggle=\"tooltip\" data-bs-title=\"Copy\"><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Download\" data-bs-toggle=\"tooltip\" data-bs-title=\"Download\"><i class=\"fa-solid fa-download\" aria-hidden=\"true\"></i></button></div>",
+       "caption": "Accessible name and tooltip on each",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-split",
+     "name": "Split button",
+     "classes": "btn-group > btn-outline theme-secondary + menu-toggle-split",
+     "note": "One action with variants: a text button plus an icon-only menu trigger that belongs to it. This is the only group that may mix a text button and an icon button.",
+     "rules": [
+      "The trigger opens variants of the same action (Save / Save and new, Generate PDF / CSV).",
+      "The trigger has an accessible name that says what the menu holds."
+     ],
+     "examples": [
+      {
+       "label": "Split button",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Generate file\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Generate file</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm menu-toggle-split\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More file types\"><i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Generate PDF</button><button type=\"button\" class=\"menu-item\">Generate CSV</button><button type=\"button\" class=\"menu-item\">Generate contact sheet</button></div></div>",
+       "caption": "Generate file ▾",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [
+      {
+       "type": "info",
+       "text": "The pattern does not say whether the overflow trigger sits inside the group. This example keeps it outside, which breaks no rule."
+      }
+     ],
+     "id": "bg-overflow",
+     "name": "With an overflow menu",
+     "classes": "btn-group + btn-text theme-secondary btn-icon",
+     "note": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu.",
+     "rules": [
+      "A screen that needs many actions on one object is a hierarchy problem. Lower the emphasis rather than adding buttons.",
+      "Destructive actions go in the overflow menu with a text label."
+     ],
+     "examples": [
+      {
+       "label": "Group and overflow",
+       "html": "<div class=\"d-inline-flex align-items-center gap-1\"><div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button></div><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions\" title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item text-danger\">Remove from selection</button></div></div>",
+       "caption": "Message · Release profiles · the rest in the menu",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-vertical",
+     "name": "Vertical",
+     "classes": "btn-group-vertical btn-group-sm",
+     "note": "Groups are horizontal. Stack them only in narrow layouts where horizontal does not fit.",
+     "rules": [
+      "Below the tablet breakpoint, a group that does not fit stacks. It never scrolls or truncates.",
+      "Never stretch a group to fill its container. Icon buttons would grow into squares."
+     ],
+     "examples": [
+      {
+       "label": "Stacked",
+       "html": "<div class=\"btn-group-vertical btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Download</button></div>",
+       "caption": "Narrow layouts only",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-accessibility",
+     "name": "Accessibility",
+     "classes": "role=\"group\" · aria-label",
+     "note": "What every group needs, whatever its version.",
+     "rules": [
+      "The container has <code>role=\"group\"</code> (or <code>role=\"toolbar\"</code> for a toolbar) and an <code>aria-label</code> that names what the group does.",
+      "Every button is a <code>&lt;button type=\"button\"&gt;</code>. Not a link, not a span.",
+      "Buttons are reachable by keyboard in visual order.",
+      "Focus is visible on each button, including where borders are shared."
+     ],
+     "examples": []
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-not-allowed",
+     "name": "Not allowed",
+     "classes": "",
+     "note": "A button group is for actions only.",
+     "rules": [
+      "All-primary groups, or any <code>btn-solid</code> button inside a group.",
+      "Mixed variants or themes in one group, or <code>btn-text</code> inside a group.",
+      "Destructive and non-destructive actions in the same group.",
+      "More than three actions in a group.",
+      "Switching views or content sets: use tabs.",
+      "A yes/no or on/off choice: use a switch or checkbox. Choosing one value: use a radio group.",
+      "Navigation: use links.",
+      "Unrelated actions grouped together. Separate them."
+     ],
+     "examples": []
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "",
+     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
+     "flags": [],
+     "id": "bg-open",
+     "name": "Open decisions",
+     "classes": "",
+     "unresolved": true,
+     "note": "Not yet decided in the Button groups pattern. Do not build these until they are.",
+     "rules": [
+      "<b>Segmented controls:</b> whether we use them at all.",
+      "<b>Selected state:</b> only needed if segmented controls are adopted. Solid secondary is banned, so a selected state needs defining.",
+      "<b>Toolbars:</b> whether a toolbar of several groups is a pattern we use, and how groups are separated in one."
+     ],
+     "examples": []
     }
    ]
   },

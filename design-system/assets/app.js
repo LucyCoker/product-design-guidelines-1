@@ -29,7 +29,7 @@ function flagHtml(flag) {
 }
 
 const GUIDE_BASE = 'https://denkungsart.github.io/product-design-guidelines/'
-const guideUrl = (path) => GUIDE_BASE + path.replace(/\.md$/, '/')
+const guideUrl = (path) => /^https?:/.test(path) ? path : GUIDE_BASE + path.replace(/\.md$/, '/')
 const itemId = (item) => item.id || slug(item)
 
 // One allowed version: live example, name, optional class badge and caption.
