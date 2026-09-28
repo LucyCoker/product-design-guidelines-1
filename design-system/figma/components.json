@@ -465,13 +465,6 @@
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Definition list/Definition list",
-      "libraryId": "cnt-8",
-      "classes": ".row + .col-4 / .col-8",
-      "variants": {}
-    },
-    {
-      "figmaPage": "Components",
       "figmaName": "Alert/Alert",
       "libraryId": "msg-1",
       "classes": ".alert.theme-info",

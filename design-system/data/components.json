@@ -1209,27 +1209,6 @@
    ]
   },
   {
-   "id": "definition-list",
-   "section": "components",
-   "title": "Definition list",
-   "intro": "Label and value pairs, laid out with the grid.",
-   "items": [
-    {
-     "code": "CNT-8",
-     "name": "Definition list",
-     "status": "Replace",
-     "classes": ".row + .col-4 / .col-8",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/layout/grid/",
-     "replaces": "dl-horizontal",
-     "note": "Retire. Removed after v3 — use the grid on the definition list.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<dl class=\"row\" style=\"margin:0;font-size:14px\"><dt class=\"col-4\" style=\"font-weight:600\">Audition type</dt><dd class=\"col-8\" style=\"margin:0\">Self tape</dd><dt class=\"col-4\" style=\"font-weight:600\">Deadline</dt><dd class=\"col-8\" style=\"margin:0\">28/11/2020</dd></dl>"
-    }
-   ]
-  },
-  {
    "id": "alert",
    "section": "components",
    "title": "Alert",
@@ -1713,6 +1692,11 @@
    "code": "CNT-9",
    "name": "Image placeholder",
    "reason": "Only used inside the Profile tile (Section cards)."
+  },
+  {
+   "code": "CNT-8",
+   "name": "Definition list",
+   "reason": "Removed in review."
   }
  ]
 }
