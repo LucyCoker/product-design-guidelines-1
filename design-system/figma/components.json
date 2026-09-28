@@ -437,51 +437,37 @@
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Content/Card",
+      "figmaName": "Card/Card",
       "libraryId": "cnt-1",
       "classes": ".card / .card-body",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Content/Card header",
+      "figmaName": "Card/Card header",
       "libraryId": "cnt-7",
       "classes": ".card-header",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Content/List group",
-      "libraryId": "cnt-3",
-      "classes": ".list-group / .list-group-item",
-      "variants": {}
-    },
-    {
-      "figmaPage": "Components",
-      "figmaName": "Content/Accordion",
+      "figmaName": "Accordion/Accordion",
       "libraryId": "cnt-5",
       "classes": ".accordion.accordion-flush",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Content/Table",
+      "figmaName": "Table/Table",
       "libraryId": "cnt-6",
       "classes": ".table",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Content/Definition list",
+      "figmaName": "Definition list/Definition list",
       "libraryId": "cnt-8",
       "classes": ".row + .col-4 / .col-8",
-      "variants": {}
-    },
-    {
-      "figmaPage": "Components",
-      "figmaName": "Content/Image placeholder",
-      "libraryId": "cnt-9",
-      "classes": "bg-2 + hairline border",
       "variants": {}
     },
     {

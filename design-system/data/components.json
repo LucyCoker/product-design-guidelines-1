@@ -1133,10 +1133,10 @@
    ]
   },
   {
-   "id": "content",
+   "id": "card",
    "section": "components",
-   "title": "Content",
-   "intro": "Flat, border-led surfaces. No shadows.",
+   "title": "Card",
+   "intro": "A flat, border-led surface for one piece of content. Section cards are built from it.",
    "items": [
     {
      "code": "CNT-1",
@@ -1163,20 +1163,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"card\"><div class=\"card-header\" style=\"font-weight:600\">Roles</div><div class=\"card-body\" style=\"font-size:14px;color:var(--bs-fg-2)\">2 roles in this audition</div></div>"
-    },
-    {
-     "code": "CNT-3",
-     "name": "List group",
-     "status": "Direct",
-     "classes": ".list-group / .list-group-item",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/list-group/",
-     "replaces": "list-group",
-     "note": "Direct. Plain list rows.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div class=\"list-group\"><div class=\"list-group-item\">Role: Juror</div><div class=\"list-group-item\">Role: Kandidat</div></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "accordion",
+   "section": "components",
+   "title": "Accordion",
+   "intro": "Sections that open and close, for content people only sometimes need.",
+   "items": [
     {
      "code": "CNT-5",
      "name": "Accordion",
@@ -1189,7 +1184,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"accordion accordion-flush\"><details class=\"accordion-item\"><summary class=\"accordion-header\">Additional information</summary><div class=\"accordion-body\" style=\"padding:12px 0;font-size:14px;color:var(--bs-fg-2)\">Shooting days, travel, buy-out.</div></details></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "table",
+   "section": "components",
+   "title": "Table",
+   "intro": "Rows of records, with row actions in an actions column.",
+   "items": [
     {
      "code": "CNT-6",
      "name": "Table",
@@ -1202,7 +1205,15 @@
      "flags": [],
      "layout": "row",
      "example": "<table class=\"table\" style=\"margin:0\"><thead><tr><th>Block</th><th>People</th><th style=\"text-align:end\">Actions</th></tr></thead><tbody><tr><td>Block 11</td><td>76</td><td style=\"text-align:end\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button></td></tr></tbody></table>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "definition-list",
+   "section": "components",
+   "title": "Definition list",
+   "intro": "Label and value pairs, laid out with the grid.",
+   "items": [
     {
      "code": "CNT-8",
      "name": "Definition list",
@@ -1215,19 +1226,6 @@
      "flags": [],
      "layout": "row",
      "example": "<dl class=\"row\" style=\"margin:0;font-size:14px\"><dt class=\"col-4\" style=\"font-weight:600\">Audition type</dt><dd class=\"col-8\" style=\"margin:0\">Self tape</dd><dt class=\"col-4\" style=\"font-weight:600\">Deadline</dt><dd class=\"col-8\" style=\"margin:0\">28/11/2020</dd></dl>"
-    },
-    {
-     "code": "CNT-9",
-     "name": "Image placeholder",
-     "status": "Custom",
-     "classes": "bg-2 + hairline border",
-     "docs": "",
-     "replaces": "thumbnail .img-thumbnail",
-     "note": "Replace. Real product imagery is user content shown unfiltered; these are placeholders only.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div style=\"width:72px;height:54px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i></div><div style=\"width:44px;height:54px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i></div>"
     }
    ]
   },
@@ -1703,6 +1701,18 @@
    "code": "FRM-6",
    "replaces": "form-group",
    "reason": "Removed after v3. Spacing comes from flex gap and the spacing tokens."
+  }
+ ],
+ "removed": [
+  {
+   "code": "CNT-3",
+   "name": "List group",
+   "reason": "Only used inside the Entity list card (Section cards)."
+  },
+  {
+   "code": "CNT-9",
+   "name": "Image placeholder",
+   "reason": "Only used inside the Profile tile (Section cards)."
   }
  ]
 }
