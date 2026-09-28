@@ -134,17 +134,26 @@ export function initFilterBar(root) {
     if (compact) {
       const applied = DEFS.filter(isApplied).length
       const moreName = applied ? `More filters, ${applied} applied` : 'More filters'
+      // On small screens the popover and menus fill the bar's width, and each
+      // filter's menu fills the popover.
       const pop = moreOpen
-        ? popover.replace('inset-inline-start:0', 'inset-inline-end:0').replace('</div></div>', `${anyApplied ? `<div>${clearBtn}</div>` : ''}</div></div>`)
+        ? popover
+          .replace('inset-inline-start:0;top:calc(100% + 6px)', 'inset-inline:8px;top:calc(100% - 4px)')
+          .replace('width:300px', 'width:auto')
+          .replaceAll('min-width:220px', 'min-width:0;inset-inline-end:0')
+          .replace(/<\/div><\/div>$/, `${anyApplied ? `<div>${clearBtn}</div>` : ''}</div></div>`)
         : ''
+      const sortPop = sortMenu
+        .replace('inset-inline-end:0;top:calc(100% + 4px)', 'inset-inline:8px;top:calc(100% - 4px)')
+        .replace('min-width:200px', 'min-width:0')
       bar =
-        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)">' +
+        '<div style="position:relative;display:flex;align-items:center;gap:8px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)">' +
         search +
-        // One Button group (icon buttons), each button in a nested group so
-        // its popover or menu anchors to it.
-        '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="margin-inline-start:auto;flex:0 0 auto">' +
-        `<div class="btn-group btn-group-sm"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-label="${moreName}" title="${moreName}"${applied ? ' style="font-weight:600;width:auto;padding-inline:8px;gap:4px"' : ''}><i class="fa-solid fa-filter" aria-hidden="true"></i>${applied ? `<span style="font-variant-numeric:tabular-nums">${applied}</span>` : ''}</button>${pop}</div>` +
-        `<div class="btn-group btn-group-sm"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortMenu}</div>` +
+        // One Button group (icon buttons). The nested groups are static so
+        // the popover and menu anchor to the whole bar.
+        '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="position:static;margin-inline-start:auto;flex:0 0 auto">' +
+        `<div class="btn-group btn-group-sm" style="position:static"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-label="${moreName}" title="${moreName}"><i class="fa-solid fa-filter" aria-hidden="true"></i></button>${pop}</div>` +
+        `<div class="btn-group btn-group-sm" style="position:static"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortPop}</div>` +
         '</div>' +
         '</div>'
     } else {
