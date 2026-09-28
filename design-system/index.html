@@ -21,6 +21,7 @@
     <kbd class="lib-search-key" aria-hidden="true">/</kbd>
     <div class="menu show lib-search-results" id="lib-search-results" role="listbox" aria-label="Search results" hidden></div>
   </div>
+  <a class="btn-outline theme-secondary btn-sm lib-kit-link" href="#prototype-kit" aria-label="Prototype kit" title="Prototype kit"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><span>Prototype kit</span></a>
   <span class="lib-spacer"></span>
   <label class="fs-sm fg-3" for="primary-picker">Preview primary</label>
   <button type="button" class="btn-outline theme-secondary btn-sm" data-bs-toggle="menu" aria-expanded="false" id="primary-toggle">
@@ -57,6 +58,9 @@
     </div>
     <div class="lib-side-group">
       <a href="#guidelines" class="lib-side-title">Guidelines</a>
+    </div>
+    <div class="lib-side-group">
+      <a href="#prototype-kit" class="lib-side-title">Prototype kit</a>
     </div>
   </nav>
 
@@ -267,6 +271,64 @@
         <li><b>MUST</b> is not negotiable. <b>SHOULD</b> needs a reason to break. <b>MAY</b> is a free choice.</li>
       </ul>
     
+</section>
+<section class="lib-page" data-page="prototype-kit" data-title="Prototype kit" hidden>
+<div class="lib-page-head">
+  <h1 class="fs-2xl">Prototype kit</h1>
+  <p>Start any prototype from the real design system. Claude Design, Claude Code, Lovable, v0 or Bolt: the prototype loads the same CSS as this library, and copies markup from it. Nothing gets rebuilt, so nothing drifts.</p>
+</div>
+
+<div class="lib-steps">
+  <div class="card"><div class="card-body">
+    <small>Step 1</small><b>Load the real CSS</b>
+    <p>Four lines in the page head. Colours, type, the customer primary and every button state come with them.</p>
+  </div></div>
+  <div class="card"><div class="card-body">
+    <small>Step 2</small><b>Give the tool the brief</b>
+    <p>Paste the brief below before you ask for a screen. It sets the rules and bans other UI kits.</p>
+  </div></div>
+  <div class="card"><div class="card-body">
+    <small>Step 3</small><b>Start from the starter page</b>
+    <p>It has the header and subheader band. Ask the tool to fill in the page, using markup from this library.</p>
+  </div></div>
+  <div class="card"><div class="card-body">
+    <small>Step 4</small><b>Check the result</b>
+    <p>Paste the prototype's HTML into the checker below. It finds classes and combinations the design system does not allow.</p>
+  </div></div>
+</div>
+
+<h2 class="fs-lg m-0">By tool</h2>
+<div class="lib-table-wrap">
+<table class="table">
+  <thead><tr><th scope="col">Tool</th><th scope="col">How</th><th scope="col">Accuracy</th></tr></thead>
+  <tbody>
+    <tr><td><b>Claude Design, Claude Code</b></td><td>Connect the GitHub repo, or upload <code>starter.html</code> and <code>PROTOTYPE.md</code>. Ask it to copy markup from <code>data/components.json</code>.</td><td><span class="badge theme-success badge-subtle">Highest</span></td></tr>
+    <tr><td><b>Lovable, v0, Bolt</b></td><td>Paste the brief first. They default to React with Tailwind and shadcn, so say “No Tailwind, no shadcn. Use the linked CSS and Bootstrap 6 classes only.” Lovable can also sync with the GitHub repo.</td><td><span class="badge theme-warning badge-subtle">Good, if told firmly</span></td></tr>
+    <tr><td><b>Starting from Figma</b></td><td>Only accurate once components have Code Connect and variables have code syntax. Without both, the tool guesses.</td><td><span class="badge theme-secondary badge-subtle">Lowest for now</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="fs-lg m-0">1. The CSS</h2>
+<div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code id="kit-links"></code></pre></div>
+<p class="lib-flag"><span class="badge theme-warning badge-subtle">To do</span><span>These links serve the files from GitHub through jsDelivr, and work once this branch is merged to <code>main</code>. For links you control, turn on GitHub Pages for the repo.</span></p>
+
+<h2 class="fs-lg m-0">2. The brief</h2>
+<p class="lib-note">Also in the repo as <code>design-system/prototype-kit/PROTOTYPE.md</code>, with <code>llms.txt</code> for tools that read one.</p>
+<div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code id="kit-brief">Loading…</code></pre></div>
+
+<h2 class="fs-lg m-0">3. The starter page</h2>
+<p class="lib-note"><code>design-system/prototype-kit/starter.html</code></p>
+<div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code id="kit-starter">Loading…</code></pre></div>
+
+<h2 class="fs-lg m-0">4. Check a prototype</h2>
+<p class="lib-note">Paste HTML from any prototype. The checker reads it here in your browser; nothing is sent anywhere.</p>
+<div class="lib-checker">
+  <label for="kit-check" class="fw-semibold">Prototype HTML</label>
+  <textarea id="kit-check" class="form-control font-monospace" rows="8" spellcheck="false" placeholder="&lt;button class=&quot;btn-solid theme-secondary&quot;&gt;Save&lt;/button&gt;"></textarea>
+  <div><button type="button" class="btn-outline theme-secondary btn-sm" id="kit-check-run">Check</button></div>
+  <div id="kit-check-out" aria-live="polite"></div>
+</div>
 </section>
   </main>
 </div>

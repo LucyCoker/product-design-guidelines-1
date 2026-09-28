@@ -1,0 +1,17 @@
+# Filmmakers System design system
+
+> Bootstrap 6 with the Filmmakers layer. Prototypes MUST load the real CSS and use only Bootstrap 6 markup from the component list. No other UI kit, no custom colours.
+
+## Start here
+- [Prototype brief](PROTOTYPE.md): setup, rules, and what not to do
+- [Starter page](starter.html): header, subheader band and an empty page, with the CSS loaded
+
+## Design system
+- [Component markup](../data/components.json): every component, its classes, rules and example HTML
+- [Design tokens](../data/tokens.json)
+- [Filmmakers CSS layer](../assets/filmmakers.css)
+
+## Rules
+- [Patterns overview](../../patterns/Patterns%20overview): one-line answers
+- [Agent instructions](../../AGENTS.md): source order and the ASK rule
+- [Product guidelines](../../products/filmmakers-system/README.md)

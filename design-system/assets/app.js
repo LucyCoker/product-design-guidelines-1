@@ -311,6 +311,67 @@ function setupSearch() {
   })
 }
 
+// Prototype kit ------------------------------------------------------------
+const KIT = new URL('../prototype-kit/', import.meta.url)
+const CDN = 'https://cdn.jsdelivr.net/gh/LucyCoker/product-design-guidelines-1@main/design-system/assets'
+
+// Combinations the guidelines ban, as [all these classes, reason].
+const BANNED = [
+  [['btn-solid', 'theme-secondary'], 'Solid is only for primary, danger (in a dialog) and inverse.'],
+  [['btn-outline', 'theme-primary'], 'Becomes a second primary. Use btn-outline theme-secondary.'],
+  [['btn-subtle'], 'Not in use.'],
+  [['btn-styled'], 'Use the default rounded corners.'],
+  [['fw-medium'], 'Weight 500 renders as 400 on Windows. Use fw-semibold.'],
+  [['fst-italic'], 'No italics for emphasis. Use fw-semibold.']
+]
+const STATUS = ['theme-success', 'theme-warning', 'theme-info']
+
+async function setupKit() {
+  $('#kit-links').textContent = ['bootstrap.min.css', 'fontawesome.css', 'filmmakers.css']
+    .map((f) => `<link rel="stylesheet" href="${CDN}/${f}">`).join('\n') +
+    `\n<script type="module" src="${CDN}/bootstrap.bundle.min.js"></script>`
+  for (const [id, file] of [['#kit-brief', 'PROTOTYPE.md'], ['#kit-starter', 'starter.html']]) {
+    try { $(id).textContent = await (await fetch(new URL(file, KIT))).text() } catch { $(id).textContent = `Open design-system/prototype-kit/${file} in the repo.` }
+  }
+
+  // Every class the real CSS defines. Anything else in a prototype was invented.
+  let known = null
+  const loadKnown = async () => {
+    if (known) return known
+    known = new Set()
+    for (const sheet of document.styleSheets) {
+      let rules
+      try { rules = sheet.cssRules } catch { continue }
+      const walk = (list) => { for (const r of list) { if (r.selectorText) for (const m of r.selectorText.matchAll(/\.(-?[_a-zA-Z][\w-]*)/g)) known.add(m[1]); if (r.cssRules) walk(r.cssRules) } }
+      walk(rules)
+    }
+    return known
+  }
+  $('#kit-check-run').addEventListener('click', async () => {
+    const html = $('#kit-check').value
+    const doc = new DOMParser().parseFromString(html, 'text/html')
+    const classes = await loadKnown()
+    const unknown = new Map()
+    const banned = []
+    const styles = []
+    for (const el of doc.body.querySelectorAll('*')) {
+      const list = [...el.classList]
+      for (const c of list) if (!classes.has(c) && !c.startsWith('lib-')) unknown.set(c, (unknown.get(c) || 0) + 1)
+      for (const [all, why] of BANNED) if (all.every((c) => list.includes(c))) banned.push(`<code>${all.join(' ')}</code>: ${why}`)
+      if (list.some((c) => /^btn-(solid|outline|text)$/.test(c)) && list.some((c) => STATUS.includes(c))) banned.push(`<code>${escapeHtml(list.join(' '))}</code>: status themes are never used on buttons.`)
+      const style = el.getAttribute('style') || ''
+      if (/#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i.test(style)) styles.push(`<code>${escapeHtml(el.tagName.toLowerCase())}</code> style="${escapeHtml(style)}"`)
+    }
+    const solid = doc.body.querySelectorAll('.btn-solid.theme-primary').length
+    if (solid > 1) banned.push(`${solid} × <code>btn-solid theme-primary</code>: at most one primary per screen.`)
+    const block = (title, items, state) => `<p class="lib-flag"><span class="badge theme-${state} badge-subtle">${items.length || '✓'}</span><span><b>${title}</b></span></p>` + (items.length ? `<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>` : '')
+    $('#kit-check-out').innerHTML = !html.trim() ? '<p class="lib-note">Paste some HTML first.</p>' :
+      block('Not allowed', banned, banned.length ? 'danger' : 'success') +
+      block('Classes the design system does not define', [...unknown].map(([c, n]) => `<code>${escapeHtml(c)}</code>${n > 1 ? ` × ${n}` : ''}`), unknown.size ? 'warning' : 'success') +
+      block('Hard-coded colours', styles, styles.length ? 'danger' : 'success')
+  })
+}
+
 // Preview primary ----------------------------------------------------------
 const NAMES = { default: 'Default blue', 'var(--bs-red-600)': 'Red', 'var(--bs-green-600)': 'Green' }
 
@@ -351,6 +412,7 @@ async function start() {
   setupCopy()
   setupPages()
   setupSearch()
+  setupKit()
 }
 
 start()

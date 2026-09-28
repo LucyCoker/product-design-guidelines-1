@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototype · Filmmakers System</title>
+<!--
+  Filmmakers System prototype starter.
+  Loads the real Bootstrap 6 build and the Filmmakers layer, so every
+  component looks and behaves like the product. Do not add colours, fonts or
+  component styles of your own. Copy markup from design-system/data/components.json.
+
+  Working inside this repo? Swap the URLs for relative paths: ../assets/...
+-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LucyCoker/product-design-guidelines-1@main/design-system/assets/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LucyCoker/product-design-guidelines-1@main/design-system/assets/fontawesome.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/LucyCoker/product-design-guidelines-1@main/design-system/assets/filmmakers.css">
+<style>
+  /* Customer primary for this prototype. Remove to use the default blue. */
+  /* :root { --fm-primary: #b61e35; } */
+</style>
+</head>
+<body>
+
+<!-- App shell: header -->
+<nav class="navbar border-bottom px-3">
+  <span class="navbar-brand fw-semibold fs-md">Filmmakers System</span>
+  <div class="d-flex align-items-center gap-2 ms-auto">
+    <button type="button" class="btn-text theme-secondary btn-sm" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false">EN<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button>
+    <div class="menu"><button type="button" class="menu-item active" aria-current="true">English</button><button type="button" class="menu-item">Deutsch</button></div>
+    <button type="button" class="btn-text theme-secondary btn-sm" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false"><span class="avatar avatar-xs theme-secondary">C</span>Account<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button>
+    <div class="menu"><a class="menu-item" href="#">Home</a><a class="menu-item" href="#">Settings</a><hr class="menu-divider"><a class="menu-item" href="#">Sign out</a></div>
+  </div>
+</nav>
+
+<!-- App shell: subheader band -->
+<div class="px-3 pt-3">
+<nav class="navbar border rounded theme-primary" style="background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden"><div class="container-fluid" style="padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%"><div style="display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)"><a class="nav-link" href="#" aria-label="Home" title="Home" style="display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)" style-hover="background:var(--bs-primary-bg);color:var(--bs-primary-contrast)"><i class="fa-solid fa-house"></i></a></div><div style="display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap">Best Movie Ev...</div><div style="display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))"><span aria-hidden="true" style="flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)"></span><nav class="nav nav-underline" style="gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)"><a class="nav-link" href="#" style="padding:10px 10px;flex:0 0 auto">Audition</a><a class="nav-link active" href="#" aria-current="page" style="padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)">Selection</a></nav></div></div></nav>
+</div>
+
+<!-- Page content: replace everything in <main> -->
+<main class="container-fluid px-3 py-4 d-flex flex-column gap-4" style="max-width:72rem">
+  <div class="d-flex flex-wrap align-items-center gap-3">
+    <h1 class="fs-2xl fw-semibold m-0 me-auto">Page title</h1>
+    <button type="button" class="btn-outline theme-secondary btn-sm">Secondary action</button>
+    <button type="button" class="btn-solid theme-primary btn-sm">Primary action</button>
+  </div>
+  <section class="d-flex flex-column gap-3">
+    <h2 class="fs-lg fw-semibold m-0">Section heading</h2>
+    <div class="card"><div class="card-body">
+      <h3 class="fs-md fw-semibold mb-1">Card heading</h3>
+      <p class="m-0">Body text at 14px. Replace with the content of the screen you are prototyping.</p>
+    </div></div>
+  </section>
+</main>
+
+<script type="module" src="https://cdn.jsdelivr.net/gh/LucyCoker/product-design-guidelines-1@main/design-system/assets/bootstrap.bundle.min.js"></script>
+</body>
+</html>
