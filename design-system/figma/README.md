@@ -1,6 +1,8 @@
 # Figma
 
-How the component library and Figma stay in sync. The library (this repo) is the source; Figma follows it.
+How the component library and Figma stay in sync.
+
+**Code first.** Designs change in code or in this repo, never in Figma. Figma is a read-only copy of the library: it is rebuilt from the files here, and the audit plugin flags anything that drifts.
 
 | What | File | How it gets into Figma |
 |---|---|---|
@@ -43,7 +45,7 @@ The plugin's list of names is generated with `tokens.json`, so rerun `npm run fi
 
 **In Figma:** install Tokens Studio, choose GitHub as the sync provider, and point it at this repo, branch `main`, file `design-system/figma/tokens.json`. Then use *Styles & Variables → Export to Figma*. The Primary modes come from Tokens Studio themes, which may need a Tokens Studio Pro licence; without it, each primary set exports as its own collection. When `tokens.json` changes, pull in Tokens Studio and export again.
 
-Designers can also change a token in Tokens Studio and push. That opens a pull request, which a developer reviews against `filmmakers.css` before merging.
+Tokens Studio only pulls. Give it a GitHub token with **Contents: Read-only**, so nobody can push token changes from Figma by accident.
 
 ## 2. Component names
 
@@ -71,9 +73,9 @@ Three places hold the design system. Each one owns different things.
 |---|---|---|
 | **Code** (`filmmakers.css` on Bootstrap 6) | Token values, what components actually look like | Developers |
 | **GitHub** (this repo) | The rules (`products/`, `patterns/`), the component list (`design-system/data/`), and the generated Figma files (`design-system/figma/`) | Anyone, through pull requests |
-| **Figma** | Designs built from the library | Designers |
+| **Figma** | A read-only copy of the library, for designing screens | Rebuilt from GitHub, never edited by hand |
 
-The library website and the Figma files are both generated from GitHub, so GitHub is the source of truth. Figma never changes code directly: a change made in Figma arrives as a pull request.
+The library website and the Figma files are both generated from GitHub, so GitHub is the source of truth. Changes flow one way: code and GitHub → library and Figma. Nothing flows back from Figma.
 
 ### When something changes in code
 1. A developer changes `filmmakers.css`, or updates Bootstrap.
@@ -81,10 +83,10 @@ The library website and the Figma files are both generated from GitHub, so GitHu
 3. After merge, a designer pulls in Tokens Studio and exports to Figma.
 4. The designer runs the **Filmmakers audit** plugin. It should show everything in sync.
 
-### When something changes in Figma
-1. A designer changes a token in Tokens Studio and pushes it to a new branch. That opens a pull request on `tokens.json`.
-2. A developer makes the same change in `filmmakers.css` (the CSS is the source), reruns `npm run figma`, and pushes to the same branch.
-3. The check passes when the regenerated files match. Merge.
+### When a designer wants a change
+Figma is not where changes are made. Propose it where the source lives:
+1. Open a pull request, or ask Claude Code on the web, to change `filmmakers.css`, the guideline page or `components.json`. Prototype it with the Prototype kit if it needs showing.
+2. Once merged, it reaches Figma through the normal pull and export.
 
 ### When a component changes
 1. Update the guideline page and `design-system/data/components.json` (and `bindings.json` if the colours change). The library website updates on merge.
@@ -101,7 +103,7 @@ Run the **Filmmakers audit** plugin in the Figma file (import `audit-plugin/mani
 | Components | Library entries missing in Figma, missing variants, components that exist only in Figma |
 | Bindings | Buttons bound to the wrong variable, and any component using a raw colour or a `palette/*` colour |
 
-*Copy report* gives a Markdown summary to paste into a pull request or to Claude. Something marked "only in Figma" is either new work that needs adding to the library, or something to delete.
+*Copy report* gives a Markdown summary to paste into a pull request or to Claude. Differences are fixed in Figma, to match the library. Something marked "only in Figma" is deleted, or proposed for the library through a pull request.
 
 The GitHub check covers the other half: code and library against the Figma files. Together they answer "is anything out of sync, and which source needs updating?"
 
@@ -118,16 +120,14 @@ Build one slice end to end, in a blank Figma file, before building the full libr
 | 1. Variables in | Tokens Studio → Settings → Add sync provider → GitHub. Repo `denkungsart/product-design-guidelines`, the pilot branch, path `design-system/figma/tokens.json`. Pull, then *Export to Figma* (variables and text styles). | Figma has Palette, Theme, Primary, Size and Typography collections. `primary/bg` is `#006ac9` in Default Blue and `#b61e35` in Red. After running the code syntax plugin, code syntax on `primary/bg` reads `var(--bs-primary-bg)`. |
 | 2. One component | On a page named Components, build `Buttons/Primary` as a component set with variant properties `Version` (Label, Icon and label, Disabled, On a brand surface) and `Size` (Small, Extra small, Medium), and a text property `Label`. Bind every property exactly as listed in `bindings.json`: fill and stroke `primary/bg`, text `primary/contrast`, radius `radius/5`. Never pick a `palette/*` colour. | Switching the frame's Primary mode to Red recolours the button. It matches the library page with the Red preview side by side. |
 | 3. Code Connect | Paste the component's link into `code-connect/buttons.figma.ts`, then `npx figma connect publish` from `design-system/figma/`. | Dev Mode on the button shows `<button type="button" class="btn-solid theme-primary btn-sm">…</button>`. |
-| 4. Change in Figma | In Tokens Studio, change one value (for example `radius/4` to 8). Push to a new branch and open a pull request. | The pull request changes only that value in `tokens.json`. A developer can see which CSS token (`--bs-radius-4`) it maps to. |
-| 5. Change in code | Change one value in `filmmakers.css` (for example the Green preview primary). Run `npm run figma`, commit, push. Pull in Tokens Studio and export again. | Figma updates the variable in place. Components bound to it update, and nothing breaks or duplicates. |
-| 6. Names line up | Compare the Figma component names with `components.json`. | Every name matches exactly, including the `Group/Entry` path. |
+| 4. Change in code | Change one value in `filmmakers.css` (for example the Green preview primary). Run `npm run figma`, commit, push. Pull in Tokens Studio and export again. | Figma updates the variable in place. Components bound to it update, and nothing breaks or duplicates. |
+| 5. Names line up | Compare the Figma component names with `components.json`. | Every name matches exactly, including the `Group/Entry` path. |
 
 **Skipped for now — do before developers or AI tools use the file**
 - [ ] Run the **Filmmakers code syntax** plugin, so Dev Mode and AI tools see `var(--bs-…)` names instead of hex values. Skipped during the pilot on purpose.
 
 **What the pilot decides**
-- If step 4 is the way designers will want to work, decide who owns token values. Today the CSS is the source and `tokens.json` is generated from it, so a Figma change is a request that a developer applies by hand. To make Figma edits flow straight into code, flip it: make a token file the source and generate `filmmakers.css` from it.
-- If steps 1–3 need a plan you do not have, choose between upgrading and keeping Figma read-only (variables in, no Code Connect).
+- If steps 1–3 need a plan you do not have, choose between upgrading and keeping Figma variables-only (no Code Connect).
 
 ## Open decisions
 
