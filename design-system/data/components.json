@@ -663,24 +663,6 @@
    "intro": "Moving between pages, tabs and result pages.",
    "items": [
     {
-     "code": "NAV-2",
-     "name": "Navbar brand",
-     "status": "Direct",
-     "classes": ".navbar-brand",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/#brand",
-     "replaces": "navbar-brand",
-     "note": "Direct. Logo at 34px; in v3.4 it sat without a navbar parent.",
-     "unresolved": false,
-     "flags": [
-      {
-       "type": "info",
-       "text": "The logo file was not shared, so a text wordmark stands in."
-      }
-     ],
-     "layout": "row",
-     "example": "<span class=\"navbar-brand fw-semibold fs-md\">Filmmakers System</span>"
-    },
-    {
      "code": "NAV-4",
      "name": "Breadcrumb",
      "status": "Replace",
@@ -1424,7 +1406,7 @@
      "flags": [
       {
        "type": "info",
-       "text": "Full example lives in Header.dc.html, which was not shared. Built from Navbar brand (NAV-2), Language switch (MNU-5) and Menu (MNU-1, MNU-3)."
+       "text": "Full example lives in Header.dc.html, which was not shared. Built from the logo, Language switch (MNU-5) and Menu (MNU-1, MNU-3)."
       }
      ],
      "layout": "row",
