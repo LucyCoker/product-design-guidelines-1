@@ -1162,10 +1162,10 @@
    ]
   },
   {
-   "id": "status",
+   "id": "badges",
    "section": "components",
-   "title": "Status and people",
-   "intro": "Badges, chips and avatars. Never colour alone.",
+   "title": "Badges",
+   "intro": "Small labels for counts and states. Status badges always carry text, never colour alone.",
    "items": [
     {
      "code": "MSG-2",
@@ -1197,20 +1197,15 @@
      ],
      "layout": "row",
      "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Notifications\" title=\"Notifications\"><span style=\"position:relative;display:inline-flex;line-height:1\"><i class=\"fa-regular fa-bell\" style=\"font-size:16px\"></i><span class=\"badge badge-dot theme-danger\" style=\"position:absolute;display:block;width:7px;height:7px;min-width:0;min-height:0;border:0;padding:0;border-radius:50%;top:-1px;right:-2px;box-shadow:0 0 0 2px var(--bs-bg-body)\"><span class=\"visually-hidden\">New alerts</span></span></span></button>"
-    },
-    {
-     "code": "MSG-8",
-     "name": "Chip",
-     "status": "Added",
-     "classes": ".chip + .chip-dismiss",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/chip/",
-     "replaces": "(none)",
-     "note": "Added. One chip per applied filter, each with a dismiss button that resets that filter to its page default. Only used in the chips variant of SF-1, which is not in production use yet.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip theme-secondary\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "avatar",
+   "section": "components",
+   "title": "Avatar",
+   "intro": "A person shown as a picture or initials, alone or as a stack.",
+   "items": [
     {
      "code": "AVT-1",
      "name": "Avatar",
@@ -1236,6 +1231,27 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">MS</span><span class=\"avatar avatar-sm theme-secondary\">+2</span></div>"
+    }
+   ]
+  },
+  {
+   "id": "chips",
+   "section": "components",
+   "title": "Chips",
+   "intro": "Removable tokens, one per applied filter.",
+   "items": [
+    {
+     "code": "MSG-8",
+     "name": "Chip",
+     "status": "Added",
+     "classes": ".chip + .chip-dismiss",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/chips/",
+     "replaces": "(none)",
+     "note": "Added. One chip per applied filter, each with a dismiss button that resets that filter to its page default. Only used in the chips variant of SF-1, which is not in production use yet.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip theme-secondary\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
     }
    ]
   },
