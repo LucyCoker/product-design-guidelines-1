@@ -1246,37 +1246,6 @@
    "intro": "Larger compositions built from the components above.",
    "items": [
     {
-     "code": "NAV-1",
-     "name": "Header",
-     "status": "Replace",
-     "classes": ".navbar + .container-fluid",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
-     "replaces": "header .navbar-default",
-     "note": "",
-     "unresolved": false,
-     "flags": [
-      {
-       "type": "info",
-       "text": "Full example lives in Header.dc.html, which was not shared. Built from Navbar brand (NAV-2), Language switch (MNU-5) and Menu (MNU-1, MNU-3)."
-      }
-     ],
-     "layout": "row",
-     "example": ""
-    },
-    {
-     "code": "NAV-3",
-     "name": "Subheader band",
-     "status": "Replace",
-     "classes": "--bs-primary-bg-subtle",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
-     "replaces": "subheader fixed green band",
-     "note": "Replace. Tint derives from the per-user primary, not a fixed green. Three zones. The home icon sits alone in a chevron-clipped block on --bs-primary-bg-muted and turns solid primary with a white glyph on hover; the breadcrumb sits on the band tint; from the slanted divider onwards the band lightens (primary-bg-subtle mixed 45% with the body) and runs behind the tabs and the mode pill (FRM-8). The band never widens the page — the tab strip is the only part that scrolls.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "full",
-     "example": "<nav class=\"navbar border rounded theme-primary\" style=\"background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden\"><div class=\"container-fluid\" style=\"padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%\"><div style=\"display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)\"><a class=\"nav-link\" href=\"#\" aria-label=\"Home\" title=\"Home\" style=\"display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)\" style-hover=\"background:var(--bs-primary-bg);color:var(--bs-primary-contrast)\"><i class=\"fa-solid fa-house\"></i></a></div><div style=\"display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap\">Best Movie Ev...</div><div style=\"display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))\"><span aria-hidden=\"true\" style=\"flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)\"></span><nav class=\"nav nav-underline\" style=\"gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"padding:10px 10px;flex:0 0 auto\">Audition</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\">Selection</a></nav></div></div></nav>"
-    },
-    {
      "code": "SF-1",
      "name": "Search and filter bar",
      "status": "Custom",
@@ -1393,6 +1362,66 @@
       }
      ],
      "layout": "stack",
+     "example": ""
+    }
+   ]
+  },
+  {
+   "id": "app-shell",
+   "section": "components",
+   "title": "App shell",
+   "intro": "The elements that frame every page and never change: header, subheader band and footer. Pages and templates sit inside them.",
+   "items": [
+    {
+     "code": "NAV-1",
+     "name": "Header",
+     "status": "Replace",
+     "classes": ".navbar + .container-fluid",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
+     "replaces": "header .navbar-default",
+     "note": "",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": "Full example lives in Header.dc.html, which was not shared. Built from Navbar brand (NAV-2), Language switch (MNU-5) and Menu (MNU-1, MNU-3)."
+      }
+     ],
+     "layout": "row",
+     "example": "",
+     "id": "shell-header"
+    },
+    {
+     "code": "NAV-3",
+     "name": "Subheader band",
+     "status": "Replace",
+     "classes": "--bs-primary-bg-subtle",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
+     "replaces": "subheader fixed green band",
+     "note": "Replace. Tint derives from the per-user primary, not a fixed green. Three zones. The home icon sits alone in a chevron-clipped block on --bs-primary-bg-muted and turns solid primary with a white glyph on hover; the breadcrumb sits on the band tint; from the slanted divider onwards the band lightens (primary-bg-subtle mixed 45% with the body) and runs behind the tabs and the mode pill (FRM-8). The band never widens the page — the tab strip is the only part that scrolls.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "full",
+     "example": "<nav class=\"navbar border rounded theme-primary\" style=\"background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden\"><div class=\"container-fluid\" style=\"padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%\"><div style=\"display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)\"><a class=\"nav-link\" href=\"#\" aria-label=\"Home\" title=\"Home\" style=\"display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)\" style-hover=\"background:var(--bs-primary-bg);color:var(--bs-primary-contrast)\"><i class=\"fa-solid fa-house\"></i></a></div><div style=\"display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap\">Best Movie Ev...</div><div style=\"display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))\"><span aria-hidden=\"true\" style=\"flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)\"></span><nav class=\"nav nav-underline\" style=\"gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"padding:10px 10px;flex:0 0 auto\">Audition</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\">Selection</a></nav></div></div></nav>",
+     "id": "shell-subheader"
+    },
+    {
+     "code": "",
+     "id": "shell-footer",
+     "name": "Footer",
+     "status": "Direct",
+     "layout": "row",
+     "classes": "",
+     "docs": "",
+     "replaces": "",
+     "note": "The strip at the bottom of every page.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": "No footer was included in the Component mapping. Add it here once it is designed."
+      }
+     ],
      "example": ""
     }
    ]
