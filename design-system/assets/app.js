@@ -104,12 +104,15 @@ function render(data) {
   const components = inSection('components')
   const organisms = inSection('organisms')
   const forms = inSection('forms')
+  const templates = inSection('templates')
   $('#component-pages').outerHTML = components.map((g) => pageHtml(g, { id: 'components', title: 'Components' })).join('')
+  $('#template-pages').outerHTML = templates.map((g) => pageHtml(g, { id: 'templates', title: 'Templates' })).join('')
   $('#form-pages').outerHTML = forms.map((g) => pageHtml(g, { id: 'forms', title: 'Forms' })).join('')
   $('#organism-pages').outerHTML = organisms.map((g) => pageHtml(g, { id: 'organisms', title: 'Organisms' })).join('')
   $('#shell-page').outerHTML = inSection('app-shell').map((g) => pageHtml(g, null)).join('')
   $('#side-components').insertAdjacentHTML('beforeend', sideLinks(components))
   $('#side-forms').insertAdjacentHTML('beforeend', sideLinks(forms))
+  $('#side-templates').insertAdjacentHTML('beforeend', sideLinks(templates))
   $('#side-organisms').insertAdjacentHTML('beforeend', sideLinks(organisms))
 
   $('#components-excluded').innerHTML =
@@ -123,7 +126,7 @@ function render(data) {
       const count = $$('.lib-item', page).length
       const intro = $('.lib-page-head p', page)?.textContent || ''
       return `<a class="card" href="#${page.dataset.page}"><div class="card-body">
-        <small>${count ? `${count} ${count === 1 ? 'item' : 'items'}` : 'Foundation'}</small>
+        <small>${parent === 'templates' ? 'Template' : count ? `${count} ${count === 1 ? 'item' : 'items'}` : 'Foundation'}</small>
         <b>${escapeHtml(page.dataset.title)}</b><p>${escapeHtml(intro)}</p></div></a>`
     }).join('')
   }

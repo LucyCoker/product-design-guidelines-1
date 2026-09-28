@@ -113,7 +113,6 @@ body {
   padding: 32px 40px 96px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  max-width: 1080px;
 }
 
 /* Pages ------------------------------------------------------------------ */

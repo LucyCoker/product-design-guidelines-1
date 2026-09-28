@@ -560,17 +560,6 @@
     },
     {
       "figmaPage": "Organisms",
-      "figmaName": "Search and filter/Filtered list",
-      "libraryId": "sf-list",
-      "classes": "card > filter bar + table + table footer",
-      "variants": {
-        "Version": [
-          "Coworkers"
-        ]
-      }
-    },
-    {
-      "figmaPage": "Organisms",
       "figmaName": "Tables/Table",
       "libraryId": "cnt-6",
       "classes": ".table",
@@ -650,6 +639,17 @@
       "libraryId": "shell-subheader",
       "classes": "--bs-primary-bg-subtle",
       "variants": {}
+    },
+    {
+      "figmaPage": "Templates",
+      "figmaName": "List page/Coworkers",
+      "libraryId": "tpl-list-page",
+      "classes": "card > filter bar + table + table footer",
+      "variants": {
+        "Version": [
+          "Coworkers"
+        ]
+      }
     }
   ]
 }
