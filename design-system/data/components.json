@@ -1,0 +1,966 @@
+{
+ "$description": "Filmmakers System component library. Source: Component mapping (Selection and Manage Audition prototypes), Bootstrap 6 column only. Codes match the mapping document.",
+ "groups": [
+  {
+   "id": "icons",
+   "section": "foundations",
+   "title": "Icons",
+   "intro": "Font Awesome 7. Icons inherit the text colour.",
+   "items": [
+    {
+     "code": "ICN-1",
+     "name": "Solid icons",
+     "status": "Replace",
+     "classes": "fa-solid",
+     "docs": "",
+     "replaces": "glyphicon",
+     "note": "Replace. Glyphicons were dropped after v3. Solid carries the interface; icons inherit currentColor.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<i class=\"fa-solid fa-house\"></i><i class=\"fa-solid fa-pencil\"></i><i class=\"fa-solid fa-trash\"></i><i class=\"fa-solid fa-magnifying-glass\"></i><i class=\"fa-solid fa-ellipsis\"></i>"
+    },
+    {
+     "code": "ICN-2",
+     "name": "Regular icons",
+     "status": "Replace",
+     "classes": "fa-regular",
+     "docs": "",
+     "replaces": "glyphicon",
+     "note": "Replace. Used where solid would sit too heavy beside 14px text.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<i class=\"fa-regular fa-bell\"></i><i class=\"fa-regular fa-eye\"></i><i class=\"fa-regular fa-image\"></i><i class=\"fa-regular fa-copy\"></i><i class=\"fa-regular fa-circle-question\"></i>"
+    },
+    {
+     "code": "BTN-8",
+     "name": "Caret",
+     "status": "Replace",
+     "classes": "fa-solid fa-caret-down",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/extend/icons/",
+     "replaces": "caret span.caret",
+     "note": "Retire the class. v6 has no .caret; the glyph is drawn with the icon font.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\">Add profile(s)<i class=\"fa-solid fa-caret-down\"></i></button>"
+    },
+    {
+     "code": "ICN-3",
+     "name": "Screen-reader label",
+     "status": "Added",
+     "classes": ".visually-hidden",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/helpers/visually-hidden/",
+     "replaces": "—",
+     "note": "Added. Colour or icon is never the only signal — every icon count carries a hidden label.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<i class=\"fa-solid fa-user\"></i>76<span class=\"visually-hidden\">people in this selection</span><span style=\"font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px\">+ \"people in this selection\"</span>"
+    }
+   ]
+  },
+  {
+   "id": "buttons",
+   "section": "components",
+   "title": "Buttons",
+   "intro": "Variant sets emphasis, theme sets meaning. Small is the default size.",
+   "items": [
+    {
+     "code": "BTN-2",
+     "name": "Button, solid",
+     "status": "Direct",
+     "classes": ".btn-solid.theme-primary.btn-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/",
+     "replaces": "btn btn-primary",
+     "note": "Direct. One primary per screen; the colour is per user.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\"><i class=\"fa-solid fa-plus\"></i>Add block</button>"
+    },
+    {
+     "code": "BTN-1",
+     "name": "Button, outline",
+     "status": "Direct",
+     "classes": ".btn-outline.theme-secondary.btn-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#outline",
+     "replaces": "btn btn-default",
+     "note": "Direct. btn-default has no v6 equivalent; outline secondary is the permitted stand-in.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Open in search</button>"
+    },
+    {
+     "code": "BTN-3",
+     "name": "Button, text",
+     "status": "Direct",
+     "classes": ".btn-text.theme-primary.btn-xs",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#text",
+     "replaces": "btn btn-link",
+     "note": "Direct. Edit, Duplicate, Copy/Move, View as applicant.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Conflicts with the Buttons guideline: text buttons are listed as theme-secondary, and btn-text theme-primary is not a permitted combination. Decide which one changes."
+      }
+     ],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-copy\"></i>Duplicate</button>"
+    },
+    {
+     "code": "BTN-4",
+     "name": "Button, text danger",
+     "status": "Direct",
+     "classes": ".btn-text.theme-danger.btn-xs",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#text",
+     "replaces": "btn btn-link destructive",
+     "note": "Direct. Labelled Remove, not Delete — the action is reversible, so no confirmation dialog.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-text theme-danger btn-xs\"><i class=\"fa-solid fa-trash\"></i>Remove</button>"
+    },
+    {
+     "code": "BTN-5",
+     "name": "Button, icon only",
+     "status": "Replace",
+     "classes": ".btn-icon",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#icon-buttons",
+     "replaces": "btn with glyphicon only",
+     "note": "Replace. Needs an accessible name plus a tooltip; the 1:1 aspect ratio is automatic.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Help\" title=\"Help\"><i class=\"fa-regular fa-circle-question\"></i></button>"
+    },
+    {
+     "code": "BTN-10",
+     "name": "Back link",
+     "status": "Direct",
+     "classes": "a.btn-text.theme-secondary.btn-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#button-tags",
+     "replaces": "btn btn-link back link",
+     "note": "Direct. Anchor styled as a text button, with a left arrow icon.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<a class=\"btn-text theme-secondary btn-sm\" href=\"#\"><i class=\"fa-solid fa-arrow-left\"></i>All auditions</a>"
+    },
+    {
+     "code": "BTN-6",
+     "name": "Button group",
+     "status": "Direct",
+     "classes": ".btn-group.btn-group-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
+     "replaces": "btn-group",
+     "note": "Direct. Never let a btn-group stretch — icon buttons would grow to squares.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Row actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Edit\" title=\"Edit\"><i class=\"fa-solid fa-pencil\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Copy\" title=\"Copy\"><i class=\"fa-regular fa-copy\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Download\" title=\"Download\"><i class=\"fa-solid fa-download\"></i></button></div>"
+    },
+    {
+     "code": "BTN-7",
+     "name": "Button sizes",
+     "status": "Direct",
+     "classes": ".btn-sm .btn-xs",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#sizes",
+     "replaces": "btn-sm / btn-md",
+     "note": "Direct. btn-md never existed; small is the product default, xs for dense row actions.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">btn-sm</button><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\">btn-xs</button>"
+    },
+    {
+     "code": "MSG-5",
+     "name": "Client zone button",
+     "status": "Custom",
+     "classes": "accent #EF7428",
+     "docs": "",
+     "replaces": "visible-for-client icon",
+     "note": "Replace. The only icon permitted its own colour. Whether the signal extends past buttons is unresolved.",
+     "unresolved": true,
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The mapping uses accent #EF7428. The Colour guideline says an accent MUST be a Bootstrap palette colour, and Bootstrap orange-500 is a different value. Decide which one is right."
+      }
+     ],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm has-client-zone-icon\"><i class=\"fa-regular fa-eye\"></i>View as client</button>"
+    },
+    {
+     "code": "BTN-9",
+     "name": "Upload button",
+     "status": "Custom",
+     "classes": "",
+     "docs": "",
+     "replaces": "custom upload box",
+     "note": "No v6 component covers this. Class name and pattern are unresolved — needs a proposal.",
+     "unresolved": true,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" style=\"border:1px dashed var(--bs-primary-base);background:transparent;color:var(--bs-primary-base);border-radius:var(--bs-radius-5);padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;font-weight:600;font-family:inherit\"><i class=\"fa-solid fa-arrow-up-from-bracket\" style=\"font-size:18px\"></i>Upload additional Audition</button>"
+    }
+   ]
+  },
+  {
+   "id": "navigation",
+   "section": "components",
+   "title": "Navigation",
+   "intro": "Moving between pages, tabs and result pages.",
+   "items": [
+    {
+     "code": "NAV-2",
+     "name": "Navbar brand",
+     "status": "Direct",
+     "classes": ".navbar-brand",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/#brand",
+     "replaces": "navbar-brand",
+     "note": "Direct. Logo at 34px; in v3.4 it sat without a navbar parent.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": "The logo file was not shared, so a text wordmark stands in."
+      }
+     ],
+     "layout": "row",
+     "example": "<span class=\"navbar-brand fw-semibold fs-md\">Filmmakers System</span>"
+    },
+    {
+     "code": "NAV-4",
+     "name": "Breadcrumb",
+     "status": "Replace",
+     "classes": ".breadcrumb-item / -divider / -link",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/breadcrumb/",
+     "replaces": "subheader-breadcrumbs .breadcrumb",
+     "note": "Replace. The divider is an element in v6, not a CSS ::after. In the header band it inherits the band’s text colour, the parent crumb hides below lg, and a long project name truncates with an ellipsis and keeps the full name in its title. The divider glyph comes from --bs-breadcrumb-divider; links take a white background on hover.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<nav class=\"breadcrumb\" aria-label=\"Breadcrumb\" style=\"margin:0;align-items:center;flex-wrap:nowrap;white-space:nowrap;min-width:0;overflow:hidden\"><span class=\"breadcrumb-item\" style=\"flex:0 0 auto;display:flex;align-items:center\"><a class=\"breadcrumb-link\" href=\"#\" style=\"font-weight:600;line-height:1.5\">Your Projects</a></span><span class=\"breadcrumb-divider\" aria-hidden=\"true\" style=\"display:flex;align-items:center\"></span><span class=\"breadcrumb-item\" style=\"flex:0 0 auto;display:flex;align-items:center\"><a class=\"breadcrumb-link\" href=\"#\" title=\"Best Movie Ever Best Movie Ever Best Movie Ever\" style=\"font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:28px\">Best Movie Ev...</a></span></nav>"
+    },
+    {
+     "code": "NAV-5",
+     "name": "Nav underline",
+     "status": "Replace",
+     "classes": ".nav.nav-underline",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#underline",
+     "replaces": "subheader-nav .nav-tabs",
+     "note": "Replace. Reads better than tabs on the tinted band. Resting links are the secondary text colour — set through --bs-theme-fg, because a theme-primary parent defines that token and it wins over --bs-nav-link-color. Hover takes a white background; the active tab takes the body background, weight 600 and the primary text colour so it reads as a lifted tab.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<nav class=\"nav nav-underline\" style=\"gap:0;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"display:flex;align-items:center;gap:8px;padding:10px 12px\"><i class=\"fa-solid fa-photo-film\"></i>Audition</a><a class=\"nav-link\" href=\"#\" style=\"display:flex;align-items:center;gap:8px;padding:10px 12px\"><i class=\"fa-solid fa-users\"></i>Extras</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\"><i class=\"fa-solid fa-user-tag\"></i>Selection</a></nav>"
+    },
+    {
+     "code": "NAV-6",
+     "name": "Count tabs",
+     "status": "Direct",
+     "classes": ".nav.nav-tabs.nav-fill",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify",
+     "replaces": "Count tabs .nav-tabs.nav-justified",
+     "note": "Direct. nav-justified was removed after v3. Counts are icon + text, not badges.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<nav class=\"nav nav-tabs nav-fill\"><a class=\"nav-link active\" href=\"#\"><i class=\"fa-solid fa-layer-group\"></i>6</a><a class=\"nav-link\" href=\"#\"><i class=\"fa-solid fa-user\"></i>76</a><a class=\"nav-link\" href=\"#\"><i class=\"fa-solid fa-check\"></i>1 / 3</a></nav>"
+    },
+    {
+     "code": "NAV-7",
+     "name": "Step tabs",
+     "status": "Direct",
+     "classes": ".nav.nav-tabs.nav-fill",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify",
+     "replaces": "Step tabs .nav-tabs",
+     "note": "Direct. Two-step flow with a help icon per tab.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<nav class=\"nav nav-tabs nav-fill\"><a class=\"nav-link active\" href=\"#\">Invitation<i class=\"fa-regular fa-circle-question\"></i></a><a class=\"nav-link\" href=\"#\">Rating<i class=\"fa-regular fa-circle-question\"></i></a></nav>"
+    },
+    {
+     "code": "NAV-8",
+     "name": "View tabs",
+     "status": "Direct",
+     "classes": ".nav.nav-tabs",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#tabs",
+     "replaces": "View tabs .nav-tabs",
+     "note": "Direct. Bottom border removed so the tabs sit on the card below.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<nav class=\"nav nav-tabs\" style=\"justify-content:flex-end;border-bottom:0;flex-wrap:nowrap\"><a class=\"nav-link active\" href=\"#\">Upload view</a><a class=\"nav-link\" href=\"#\">Sort view</a></nav>"
+    },
+    {
+     "code": "NAV-9",
+     "name": "Icon nav link",
+     "status": "Direct",
+     "classes": ".nav-link",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/",
+     "replaces": "Home icon link",
+     "note": "Direct. Carries aria-label and title.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<a class=\"nav-link\" href=\"#\" aria-label=\"Home\" title=\"Home\" style=\"display:inline-flex\"><i class=\"fa-solid fa-house\"></i></a>"
+    },
+    {
+     "code": "NAV-10",
+     "name": "Pagination",
+     "status": "Added",
+     "classes": ".pagination.pagination-sm + .page-item / .page-link",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/pagination/#working-with-icons",
+     "replaces": "pagination .pagination",
+     "note": "Added. Sits in the table footer beside the range count. Icon-only previous and next carry an aria-label; the current page gets .active and aria-current, the ends get .disabled. Font Awesome chevrons, not Bootstrap’s SVG sprite. Used on Search and filter and Subscribers .",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<nav aria-label=\"Pagination\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous page\"><i class=\"fa-solid fa-chevron-left\"></i></a></li><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next page\"><i class=\"fa-solid fa-chevron-right\"></i></a></li></ul></nav>"
+    }
+   ]
+  },
+  {
+   "id": "menus",
+   "section": "components",
+   "title": "Menus",
+   "intro": "Bootstrap 6 Menu replaces the v3 dropdown.",
+   "items": [
+    {
+     "code": "MNU-1",
+     "name": "Menu",
+     "status": "Replace",
+     "classes": ".menu / .menu-item / .menu-item-content",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "replaces": "dropdown .dropdown-toggle / .dropdown-menu",
+     "note": "Replace. data-toggle becomes data-bs-toggle=\"menu\". Pressed/selected item is set through --bs-menu-item-active-bg / -color (bg-2, fg-body), not a custom rule, so it stays one step darker than the bg-1 hover.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "stack",
+     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\"><span class=\"avatar avatar-xs theme-secondary\">C</span>Constan...<i class=\"fa-solid fa-caret-down\"></i></button><ul class=\"menu show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-house menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Home</span></a></li><li><a class=\"menu-item active\" href=\"#\" aria-current=\"page\"><i class=\"fa-solid fa-gear menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Settings</span></a></li></ul>"
+    },
+    {
+     "code": "MNU-2",
+     "name": "Menu, end aligned",
+     "status": "Direct",
+     "classes": ".menu.menu-end",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/#alignment",
+     "replaces": "dropdown-menu-right",
+     "note": "Direct. Renamed for logical properties.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": ".menu-end is not in the Bootstrap build this site uses (bootstrap-v6-dev@bc4bcb4)."
+      }
+     ],
+     "layout": "row",
+     "example": "<ul class=\"menu menu-end show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><span class=\"menu-item-content\">Aligned to the trigger's end edge</span></a></li></ul>"
+    },
+    {
+     "code": "MNU-3",
+     "name": "Menu divider",
+     "status": "Direct",
+     "classes": "hr.menu-divider",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/#dividers",
+     "replaces": "divider",
+     "note": "Direct. Sits above Sign out.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<ul class=\"menu show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-gear menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Settings</span></a></li><li><hr class=\"menu-divider\"></li><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-arrow-right-from-bracket menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Sign out</span></a></li></ul>"
+    },
+    {
+     "code": "MNU-4",
+     "name": "More actions menu",
+     "status": "Replace",
+     "classes": ".btn-text[data-bs-toggle=\"menu\"]",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "replaces": "action-menu-list \"more\"",
+     "note": "Replace. Carries the third and later row actions; destructive items get a text label, never a bare icon.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "stack",
+     "example": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-ellipsis\"></i>more</button><ul class=\"menu show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-right-to-bracket menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Copy/Move</span></a></li><li><hr class=\"menu-divider\"></li><li><a class=\"menu-item theme-danger\" href=\"#\"><i class=\"fa-solid fa-trash menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Remove</span></a></li></ul>"
+    },
+    {
+     "code": "MNU-5",
+     "name": "Language switch",
+     "status": "Replace",
+     "classes": ".btn-text.theme-secondary.btn-sm[data-bs-toggle=\"menu\"]",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "replaces": "dropdown language switch",
+     "note": "Replace. EN language switch, top right. Header controls carry no primary colour.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\">EN<i class=\"fa-solid fa-caret-down\"></i></button>"
+    }
+   ]
+  },
+  {
+   "id": "forms",
+   "section": "components",
+   "title": "Forms",
+   "intro": "Inputs sit beside their labels, joined by for and id.",
+   "items": [
+    {
+     "code": "FRM-5",
+     "name": "Label",
+     "status": "Direct",
+     "classes": "label",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/overview/",
+     "replaces": "control-label",
+     "note": "Direct. Above or beside the input, 600 weight, sentence case.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<label for=\"map-label-demo\" style=\"display:block;margin-bottom:4px\">Search in</label><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" id=\"map-label-demo\" aria-describedby=\"map-label-demo-help\" style=\"width:200px\"><span class=\"combobox-value\">All fields</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><small class=\"form-text\" id=\"map-label-demo-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Narrows the search to a single profile field.</small>"
+    },
+    {
+     "code": "FRM-1",
+     "name": "Input",
+     "status": "Direct",
+     "classes": ".form-control.form-control-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/",
+     "replaces": "form-control",
+     "note": "Direct. Search fields.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<input class=\"form-control form-control-sm\" placeholder=\"Search auditions\" aria-label=\"Search auditions\">"
+    },
+    {
+     "code": "FRM-3",
+     "name": "Input group",
+     "status": "Direct",
+     "classes": ".input-group.input-group-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/",
+     "replaces": "input-group .input-group-btn",
+     "note": "Direct, with input-group-btn retired. The button now sits directly in the group.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"input-group input-group-sm\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"flex:0 0 auto;width:120px\"><span class=\"combobox-value\">Profile</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><input class=\"form-control\" placeholder=\"Search...\" aria-label=\"Search\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\"></i></button></div>"
+    },
+    {
+     "code": "FRM-4",
+     "name": "Input group text",
+     "status": "Direct",
+     "classes": ".input-group-text",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/",
+     "replaces": "input-group-addon",
+     "note": "Direct. Used as the separator between Block from and to.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"input-group input-group-sm\" style=\"max-width:220px\"><input class=\"form-control\" placeholder=\"from\" aria-label=\"Block from\"><span class=\"input-group-text\">—</span><input class=\"form-control\" placeholder=\"to\" aria-label=\"Block to\"></div>"
+    },
+    {
+     "code": "FRM-9",
+     "name": "Checkbox",
+     "status": "Replace",
+     "classes": ".check.check-sm + label",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
+     "replaces": "checkbox .checkbox > label > input",
+     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (FRM-11): the input is nested in the label so the whole row is the hit target, and it drops .check-sm. UNRESOLVED - whether the nested form is permitted or the menu item should carry for/id like every other checkbox.",
+     "unresolved": true,
+     "flags": [],
+     "layout": "stack",
+     "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>"
+    },
+    {
+     "code": "FRM-10",
+     "name": "Radio",
+     "status": "Replace",
+     "classes": ".radio .radio-sm  + label",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#radios",
+     "replaces": "radio .radio > label > input",
+     "note": "Replace. Same pattern as the checkbox: input beside the label, joined by for/id. Group them in a fieldset with a legend so the set has one accessible name.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<fieldset style=\"border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px\"><legend style=\"font-size:var(--bs-font-size-sm);font-weight:600;margin:0 0 4px;padding:0;float:none;width:auto;border:0\">Profile visibility</legend>\n<div class=\"form-field\"><input type=\"radio\" class=\"radio radio-sm\" name=\"map-visibility\" id=\"map-pv-all\" checked=\"checked\"><label for=\"map-pv-all\">Visible to all Casters</label></div>\n<div class=\"form-field\"><input type=\"radio\" class=\"radio radio-sm\" name=\"map-visibility\" id=\"map-pv-agency\"><label for=\"map-pv-agency\">Only visible to My Casting Agency 123</label></div>\n</fieldset>"
+    },
+    {
+     "code": "FRM-7",
+     "name": "Switch",
+     "status": "Replace",
+     "classes": ".switch + input[role=switch]",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#switches",
+     "replaces": "radio_switch",
+     "note": "",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"display:flex;align-items:center;gap:8px\"><span style=\"font-size:14px\">Off</span><div class=\"switch\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch\" checked aria-label=\"Expert mode\"></div><label for=\"map-switch\" style=\"font-size:14px;font-weight:600\">On</label></div>"
+    },
+    {
+     "code": "FRM-8",
+     "name": "Lite / Expert mode switch",
+     "status": "Replace",
+     "classes": ".switch.theme-primary inside a bordered pill",
+     "docs": "",
+     "replaces": "production mode pill new_production_dialog_mode_form",
+     "note": "In the header band the pill takes the body background so it lifts off the tint, and it hides below md.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"d-flex align-items-center gap-2 border border-primary rounded-pill px-3 py-1 text-uppercase fs-sm\" style=\"width:fit-content\">\n<span class=\"fg-3\" title=\"Lite Mode keeps the interface focused on essential functions. Perfect for new users or anyone who prefers a simple approach.\"><i class=\"fas fa-shapes\"></i><span class=\"fa5-text\">Lite</span></span>\n<div class=\"switch theme-primary\"><input role=\"switch\" aria-label=\"Mode\" type=\"checkbox\" id=\"production_mode_specimen\"></div>\n<label class=\"fg-primary fw-semibold\" title=\"Expert Mode gives experienced users the full feature set, including advanced settings and customization.\" for=\"production_mode_specimen\"><i class=\"fas fa-rocket\"></i><span class=\"fa5-text\">Expert</span></label>\n</div>"
+    },
+    {
+     "code": "SF-3",
+     "name": "Combobox",
+     "status": "Replace",
+     "classes": ".combobox-toggle + .menu + .check / .radio",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/combobox/",
+     "replaces": "dropdown of checkboxes .dropdown + .checkbox",
+     "note": "Replace. Multi-select filter: the toggle shows the label and the selection (“Language: 2 selected”), the menu holds one checkbox per value, and a .combobox-search input appears once the list passes six entries. One control for every filter: single-value filters carry radio items, multi-value filters checkbox items, and the toggle always reads label plus value. Replaces the native select the product used before (FRM-2, retired), including the Sort by control. Two deviations to settle: the checkbox is nested inside label.menu-item rather than paired by for/id (see FRM-9), and it resets --bs-theme-bg / --bs-theme-contrast because a themed .menu parent would otherwise paint the unchecked box in the menu's own fill.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"display:flex;flex-direction:column;gap:6px;width:200px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Single value - radio items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"All\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">All</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" checked=\"checked\" aria-label=\"Active\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Active</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"Inactive\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Inactive</span></label></div></div><div style=\"display:flex;flex-direction:column;gap:6px;width:240px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Multi value - checkbox items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\"></div><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"English\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">English</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"German\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">German</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" aria-label=\"French\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">French</span></label></div></div>"
+    }
+   ]
+  },
+  {
+   "id": "content",
+   "section": "components",
+   "title": "Content",
+   "intro": "Flat, border-led surfaces. No shadows.",
+   "items": [
+    {
+     "code": "CNT-1",
+     "name": "Card",
+     "status": "Consolidate",
+     "classes": ".card / .card-body",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
+     "replaces": "production-box / box",
+     "note": "Consolidate. Same component as the audition overview box; flat and border-led, no shadow.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"card\"><div class=\"card-body\" style=\"display:flex;gap:12px;align-items:center\"><div style=\"width:48px;height:48px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5)\"></div><div><div style=\"font-weight:600\">Das Supertalent</div><div style=\"font-size:12px;color:var(--bs-fg-3)\">Season 14</div></div></div></div>"
+    },
+    {
+     "code": "CNT-7",
+     "name": "Card header",
+     "status": "Replace",
+     "classes": ".card-header",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/#header-and-footer",
+     "replaces": "panel-heading",
+     "note": "Replace. Panels became cards after v3.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"card\"><div class=\"card-header\" style=\"font-weight:600\">Roles</div><div class=\"card-body\" style=\"font-size:14px;color:var(--bs-fg-2)\">2 roles in this audition</div></div>"
+    },
+    {
+     "code": "CNT-3",
+     "name": "List group",
+     "status": "Direct",
+     "classes": ".list-group / .list-group-item",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/list-group/",
+     "replaces": "list-group",
+     "note": "Direct. Plain list rows.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"list-group\"><div class=\"list-group-item\">Role: Juror</div><div class=\"list-group-item\">Role: Kandidat</div></div>"
+    },
+    {
+     "code": "CNT-5",
+     "name": "Accordion",
+     "status": "Replace",
+     "classes": ".accordion.accordion-flush",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/accordion/",
+     "replaces": "expander .collapse / .in",
+     "note": "Replace.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"accordion accordion-flush\"><details class=\"accordion-item\"><summary class=\"accordion-header\">Additional information</summary><div class=\"accordion-body\" style=\"padding:12px 0;font-size:14px;color:var(--bs-fg-2)\">Shooting days, travel, buy-out.</div></details></div>"
+    },
+    {
+     "code": "CNT-6",
+     "name": "Table",
+     "status": "Direct",
+     "classes": ".table",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/",
+     "replaces": "table table-striped",
+     "note": "Direct. Column headers get weight 600 from the product layer; row actions sit in an actions column.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<table class=\"table\" style=\"margin:0\"><thead><tr><th>Block</th><th>People</th><th style=\"text-align:end\">Actions</th></tr></thead><tbody><tr><td>Block 11</td><td>76</td><td style=\"text-align:end\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button></td></tr></tbody></table>"
+    },
+    {
+     "code": "CNT-8",
+     "name": "Definition list",
+     "status": "Replace",
+     "classes": ".row + .col-4 / .col-8",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/layout/grid/",
+     "replaces": "dl-horizontal",
+     "note": "Retire. Removed after v3 — use the grid on the definition list.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<dl class=\"row\" style=\"margin:0;font-size:14px\"><dt class=\"col-4\" style=\"font-weight:600\">Audition type</dt><dd class=\"col-8\" style=\"margin:0\">Self tape</dd><dt class=\"col-4\" style=\"font-weight:600\">Deadline</dt><dd class=\"col-8\" style=\"margin:0\">28/11/2020</dd></dl>"
+    },
+    {
+     "code": "CNT-9",
+     "name": "Image placeholder",
+     "status": "Custom",
+     "classes": "bg-2 + hairline border",
+     "docs": "",
+     "replaces": "thumbnail .img-thumbnail",
+     "note": "Replace. Real product imagery is user content shown unfiltered; these are placeholders only.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"width:72px;height:54px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i></div><div style=\"width:44px;height:54px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i></div>"
+    }
+   ]
+  },
+  {
+   "id": "feedback",
+   "section": "components",
+   "title": "Feedback",
+   "intro": "Messages, progress and overlays.",
+   "items": [
+    {
+     "code": "MSG-1",
+     "name": "Alert",
+     "status": "Direct",
+     "classes": ".alert.theme-info",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
+     "replaces": "alert alert-info .alert-link",
+     "note": "Direct. A banner for a condition that is still true, one per page.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"alert theme-info d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0\"><i class=\"fa-solid fa-circle-info\" style=\"margin-top:2px\"></i><div>This Project is administrated by <strong>Filmmakers System</strong>.</div></div>"
+    },
+    {
+     "code": "MSG-6",
+     "name": "Note",
+     "status": "Replace",
+     "classes": ".alert.theme-info[role=\"note\"]",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
+     "replaces": "help-block beside a card .help-block",
+     "note": "Replace. Guidance for a whole card, so not a form-text: that is reserved for the single control it is wired to with aria-describedby (FRM-5). role=\"note\" instead of role=\"alert\" because nothing changed and there is nothing to announce. The caret points at the card it explains.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"alert theme-info\" role=\"note\" style=\"margin:0;display:flex;gap:8px\"><i class=\"fa-solid fa-caret-left\" style=\"margin-top:3px\" aria-hidden=\"true\"></i><span>Determine the name of the Audition and provide as comprehensive information as possible.</span></div>"
+    },
+    {
+     "code": "MSG-10",
+     "name": "Toast",
+     "status": "Added",
+     "classes": ".toast-container > .toast",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/toasts/",
+     "replaces": "(none)",
+     "note": "Added. Confirms a reversible action and carries the Undo. States what happened and the count; does not auto-dismiss while an action is on it. Takes the Bootstrap status theme for the outcome - theme-success here - with an icon beside the text, never colour alone. Used on Subscribers after Unsubscribe.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"toast-container\" style=\"position:relative;inset:auto;width:100%\"><div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" style=\"display:flex;flex-direction:row;align-items:center;gap:12px;padding:10px 12px;--bs-toast-bg:var(--bs-success-bg-subtle);--bs-toast-border-color:var(--bs-success-border);color:var(--bs-success-fg-emphasis)\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\" style=\"color:var(--bs-success-fg-emphasis)\"></i><span>1 subscriber unsubscribed.</span><button type=\"button\" class=\"btn-text theme-secondary btn-xs\" style=\"color:var(--bs-success-fg-emphasis);text-decoration:underline\">Undo</button><button type=\"button\" class=\"btn-close\" aria-label=\"Dismiss\"></button></div></div>"
+    },
+    {
+     "code": "MSG-7",
+     "name": "Progress",
+     "status": "Direct",
+     "classes": ".progress > .progress-bar",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/progress/",
+     "replaces": "progress .progress-bar with inline width",
+     "note": "Direct. The role and aria-value attributes move to the outer .progress in v6; the bar keeps only its width. Shown while a file uploads, then replaced by the file row. The fill is Bootstrap blue-600 through --bs-progress-bar-bg, not the user primary.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "stack",
+     "example": "<div class=\"progress\" role=\"progressbar\" aria-label=\"Upload progress\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"45\" data-demo-progress><div class=\"progress-bar\" style=\"width:45%\"></div></div>\n<div style=\"display:flex;align-items:center;gap:8px\"><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-upload><i class=\"fa-solid fa-arrow-up-from-bracket\"></i>Simulate upload</button><small class=\"form-text\" style=\"margin:0;font-size:var(--bs-font-size-xs)\"><span data-demo-label>45%</span></small></div>"
+    },
+    {
+     "code": "MSG-4",
+     "name": "Tooltip",
+     "status": "Direct",
+     "classes": "data-bs-toggle=\"tooltip\"",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/tooltips/",
+     "replaces": "tooltip data-toggle",
+     "note": "Direct. Required on any icon-only control, on hover and on keyboard focus.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"Visible for client\" aria-label=\"Visible for client\"><i class=\"fa-regular fa-eye\"></i></button><span style=\"font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px\">Hover or focus the icon</span>"
+    },
+    {
+     "code": "SF-2",
+     "name": "Popover",
+     "status": "Added",
+     "classes": ".popover + .popover-body",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/popovers/",
+     "replaces": "(none)",
+     "note": "Added. Carries the filters that do not fit the bar. No popover-header - the button that opens it already names it. Body is a single column of full-width Comboboxes (SF-3); the trigger shows a count of applied filters inside. No Apply button - every filter applies on change, and the popover closes on outside click.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"More filters\" style=\"position:relative;display:block;max-width:none;width:260px\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">2FA: All</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">Profile access: All</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button></div></div>"
+    }
+   ]
+  },
+  {
+   "id": "status",
+   "section": "components",
+   "title": "Status and people",
+   "intro": "Badges, chips and avatars. Never colour alone.",
+   "items": [
+    {
+     "code": "MSG-2",
+     "name": "Badge",
+     "status": "Replace",
+     "classes": ".badge.theme-danger / .badge-subtle",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
+     "replaces": "label label-default .label-danger",
+     "note": "Replace. .label became .badge after v3.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<span class=\"badge theme-secondary\">#1</span><span class=\"badge theme-danger\">inactive</span><span class=\"badge theme-secondary badge-subtle\">CNT-02</span>"
+    },
+    {
+     "code": "MSG-3",
+     "name": "Notification dot",
+     "status": "Replace",
+     "classes": ".badge-dot.theme-danger",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
+     "replaces": "notification-icon",
+     "note": "Replace. The dot sits on the icon itself, not on the button box, so it stays attached at any button size; it is a 7px badge-dot ringed with the body background and its label is visually hidden. The bell keeps its own accessible name. The list itself opens in a popover, not a menu.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": ".badge-dot is not in the Bootstrap build this site uses (bootstrap-v6-dev@bc4bcb4), so the dot relies on its inline sizing."
+      }
+     ],
+     "layout": "row",
+     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Notifications\" title=\"Notifications\"><span style=\"position:relative;display:inline-flex;line-height:1\"><i class=\"fa-regular fa-bell\" style=\"font-size:16px\"></i><span class=\"badge badge-dot theme-danger\" style=\"position:absolute;display:block;width:7px;height:7px;min-width:0;min-height:0;border:0;padding:0;border-radius:50%;top:-1px;right:-2px;box-shadow:0 0 0 2px var(--bs-bg-body)\"><span class=\"visually-hidden\">New alerts</span></span></span></button>"
+    },
+    {
+     "code": "MSG-8",
+     "name": "Chip",
+     "status": "Added",
+     "classes": ".chip + .chip-dismiss",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/chip/",
+     "replaces": "(none)",
+     "note": "Added. One chip per applied filter, each with a dismiss button that resets that filter to its page default. Only used in the chips variant of SF-1, which is not in production use yet.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip theme-secondary\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
+    },
+    {
+     "code": "AVT-1",
+     "name": "Avatar",
+     "status": "Replace",
+     "classes": ".avatar.avatar-xs.theme-secondary",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/",
+     "replaces": "user avatar custom",
+     "note": "Replace. Initials fallback, weight 600 via the remapped medium token.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<span class=\"avatar avatar-xs theme-secondary\">C</span><span class=\"avatar avatar-sm theme-secondary\">DZ</span>"
+    },
+    {
+     "code": "AVT-2",
+     "name": "Avatar stack",
+     "status": "Replace",
+     "classes": ".avatar-stack.avatar-stack-sm",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/#stacks",
+     "replaces": "avatar list custom",
+     "note": "Replace.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">MS</span><span class=\"avatar avatar-sm theme-secondary\">+2</span></div>"
+    }
+   ]
+  },
+  {
+   "id": "organisms",
+   "section": "components",
+   "title": "Organisms",
+   "intro": "Larger compositions built from the components above.",
+   "items": [
+    {
+     "code": "NAV-1",
+     "name": "Header",
+     "status": "Replace",
+     "classes": ".navbar + .container-fluid",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
+     "replaces": "header .navbar-default",
+     "note": "",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": "Full example lives in Header.dc.html, which was not shared. Built from Navbar brand (NAV-2), Language switch (MNU-5) and Menu (MNU-1, MNU-3)."
+      }
+     ],
+     "layout": "row",
+     "example": ""
+    },
+    {
+     "code": "NAV-3",
+     "name": "Subheader band",
+     "status": "Replace",
+     "classes": "--bs-primary-bg-subtle",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
+     "replaces": "subheader fixed green band",
+     "note": "Replace. Tint derives from the per-user primary, not a fixed green. Three zones. The home icon sits alone in a chevron-clipped block on --bs-primary-bg-muted and turns solid primary with a white glyph on hover; the breadcrumb sits on the band tint; from the slanted divider onwards the band lightens (primary-bg-subtle mixed 45% with the body) and runs behind the tabs and the mode pill (FRM-8). The band never widens the page — the tab strip is the only part that scrolls.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "full",
+     "example": "<nav class=\"navbar border rounded theme-primary\" style=\"background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden\"><div class=\"container-fluid\" style=\"padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%\"><div style=\"display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)\"><a class=\"nav-link\" href=\"#\" aria-label=\"Home\" title=\"Home\" style=\"display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)\" style-hover=\"background:var(--bs-primary-bg);color:var(--bs-primary-contrast)\"><i class=\"fa-solid fa-house\"></i></a></div><div style=\"display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap\">Best Movie Ev...</div><div style=\"display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))\"><span aria-hidden=\"true\" style=\"flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)\"></span><nav class=\"nav nav-underline\" style=\"gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"padding:10px 10px;flex:0 0 auto\">Audition</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\">Selection</a></nav></div></div></nav>"
+    },
+    {
+     "code": "SF-1",
+     "name": "Search and filter bar",
+     "status": "Custom",
+     "classes": "",
+     "docs": "",
+     "replaces": "filter bar inline labels + selects",
+     "note": "Custom composition of FRM-1, FRM-3, SF-2, SF-3 and MSG-8. Search, up to three inline filters, the rest behind a More filters popover, sorting last, count on its own row. Takes its filters, rows and search fields as props and hands the filtered rows back to the page. Inline filter count drops with width: three above 880px, two from 740px, one from 600px, none below.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": "Full example lives in Search and filter.dc.html, which was not shared. Built from Input (FRM-1), Input group (FRM-3), Popover (SF-2), Combobox (SF-3) and Chip (MSG-8)."
+      }
+     ],
+     "layout": "row",
+     "example": ""
+    },
+    {
+     "code": "TBL-1",
+     "name": "Table footer",
+     "status": "Added",
+     "classes": "count + NAV-10 in a bordered row",
+     "docs": "",
+     "replaces": "result count above the table",
+     "note": "Added. Range count on the left (“1-3 of 4 coworkers”), pagination on the right, on bg-1 with a top hairline. The same range string is passed back into the filter bar count row (SF-1), so the two never disagree.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "full",
+     "example": "<div style=\"display:flex;align-items:center;gap:16px;border:1px solid var(--bs-border-color);border-radius:var(--bs-radius-5);padding:10px 12px;background:var(--bs-bg-1)\"><span style=\"font-size:14px;font-weight:600\">1-3 of 4 coworkers</span><nav aria-label=\"Pagination\" style=\"margin-inline-start:auto\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li></ul></nav></div>"
+    },
+    {
+     "code": "CNT-2",
+     "name": "Entity list card",
+     "status": "Replace",
+     "classes": ".card > .list-group.list-group-flush",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/list-group/#flush",
+     "replaces": "production-entity-list",
+     "note": "Replace. Three layouts were compared before choosing this one.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"card\"><div class=\"list-group list-group-flush\"><div class=\"list-group-item\" style=\"display:flex;justify-content:space-between;gap:12px\"><span>Season 14: Erste Runde</span><span style=\"color:var(--bs-fg-3);font-size:12px\">#2</span></div><div class=\"list-group-item\" style=\"display:flex;justify-content:space-between;gap:12px\"><span>Season 14: Zweite Runde</span><span style=\"color:var(--bs-fg-3);font-size:12px\">#3</span></div></div></div>"
+    },
+    {
+     "code": "CNT-4",
+     "name": "People card",
+     "status": "Replace",
+     "classes": ".card-body + .avatar-stack",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
+     "replaces": "Coworkers / Clients boxes",
+     "note": "Replace. The no-access variant uses bg-1 with a lock icon and text, never colour alone.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "stack",
+     "example": "<div class=\"card\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:12px\"><span style=\"color:var(--bs-fg-3)\">Coworkers:</span><div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">+3</span></div></div></div><div class=\"card\" style=\"background:var(--bs-bg-1)\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:8px;color:var(--bs-fg-2)\"><i class=\"fa-solid fa-lock\"></i>No access to clients</div></div>"
+    },
+    {
+     "code": "CNT-10",
+     "name": "Profile tile",
+     "status": "Custom",
+     "classes": "hairline border + radius-5",
+     "docs": "",
+     "replaces": "profile tile",
+     "note": "Replace. Not a .card, because it carries a rank badge and an open-profile action over the image.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"width:120px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"height:80px;background:var(--bs-bg-2);position:relative;display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i><span class=\"badge theme-secondary\" style=\"position:absolute;top:6px;left:6px\">#1</span></div><div style=\"padding:8px;font-size:12px\">Lena Brandt</div></div>"
+    },
+    {
+     "code": "CNT-11",
+     "name": "Empty state",
+     "status": "Replace",
+     "classes": ".card + .card-body",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
+     "replaces": "well / no-data text",
+     "note": "Replace. The empty state replaces the content, including table headers; the message names the state.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"card\"><div class=\"card-body\" style=\"text-align:center;color:var(--bs-fg-2);padding:24px\"><div style=\"font-weight:600;margin-bottom:4px\">No research entries yet</div><div style=\"font-size:12px;color:var(--bs-fg-3)\">Research entries you add appear here.</div></div></div>"
+    },
+    {
+     "code": "CNT-12",
+     "name": "Action gutter",
+     "status": "Custom",
+     "classes": "bg-1 + border-inline-start",
+     "docs": "",
+     "replaces": "action panel tinted gutter",
+     "note": "Replace. Row actions are always visible, never revealed on hover. The gutter tint is --bs-bg-1 on every page; the buttons inside are always CNT-13.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Uses btn-text theme-primary for Edit. See Button, text (BTN-3)."
+      }
+     ],
+     "layout": "row",
+     "example": "<div style=\"display:grid;grid-template-columns:1fr 132px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"padding:12px 16px;font-size:14px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-danger btn-xs\"><i class=\"fa-solid fa-trash\"></i>Remove</button></div></div>"
+    },
+    {
+     "code": "CNT-13",
+     "name": "Row actions",
+     "status": "Custom",
+     "classes": "",
+     "docs": "",
+     "replaces": "row action links separated by |",
+     "note": "Replace. One component for every row action group: Edit, Duplicate, View as applicant, Copy/Move, Messages, Remove, more. Each action is a boolean prop, so pages cannot drift. layout=\"stack\" fills a gutter, layout=\"inline\" sits in a table cell. The v3 pipe separators are gone — spacing comes from flex gap.",
+     "unresolved": false,
+     "flags": [
+      {
+       "type": "info",
+       "text": "Full example lives in RowActions.dc.html, which was not shared. The Action gutter (CNT-12) shows the stacked layout."
+      }
+     ],
+     "layout": "stack",
+     "example": ""
+    }
+   ]
+  }
+ ],
+ "excluded": [
+  {
+   "code": "FRM-2",
+   "replaces": "Filter bar dropdowns select",
+   "reason": "Retired. Every filter dropdown is the Combobox (SF-3) - one control for single and multi value filters, with radio or checkbox items. The native select stays legal only inside a form, never in a filter bar or as a Sort by control."
+  },
+  {
+   "code": "FRM-6",
+   "replaces": "form-group",
+   "reason": "Removed after v3. Spacing comes from flex gap and the spacing tokens."
+  }
+ ]
+}

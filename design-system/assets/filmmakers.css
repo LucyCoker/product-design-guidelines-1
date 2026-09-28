@@ -1,26 +1,25 @@
 /*
  * Filmmakers System theme layer for Bootstrap 6.
  *
- * Load after bootstrap.min.css. This file only overrides Bootstrap tokens and
- * adds the custom classes the guidelines permit. It adds no new components.
+ * Load after bootstrap.min.css. It overrides Bootstrap tokens and adds the
+ * few custom classes the guidelines permit. It adds no new components.
  *
+ * Sources: the product guidelines in this repo, and the product layer used by
+ * the Component mapping prototypes (Selection, Manage Audition).
  * Bootstrap 6 alpha emits its root tokens outside any CSS layer, so these
  * overrides are unlayered too and win by source order.
- *
- * Source of every value: data/tokens.json and the guideline pages it cites.
  */
+
+/* The product is light only for now. */
+:root { color-scheme: light; }
 
 /* ---------------------------------------------------------------------------
  * Primary
  *
  * One input, --fm-primary, drives every primary role. The default is
- * Bootstrap blue-600 (colour.md: blue-600 meets 4.5:1 with white text).
- * A customer primary sets --fm-primary on :root or on any [data-fm-primary]
- * element, and the roles below re-derive inside that scope.
- *
- * The derivation copies Bootstrap's own scale recipe (scss/_colors.scss:
- * tints mix toward white, shades toward black, in oklch) and its role map
- * (scss/_theme.scss). ASK: production may derive customer roles differently.
+ * Bootstrap blue-600 (colour.md). A customer primary sets --fm-primary on
+ * :root or on any [data-fm-primary] element. The mixes copy the Component
+ * mapping prototypes.
  * ------------------------------------------------------------------------ */
 :root {
   --fm-primary: var(--bs-blue-600);
@@ -28,29 +27,38 @@
 
 :root,
 [data-fm-primary] {
-  --fm-primary-100: color-mix(in oklch, var(--bs-white) 80%, var(--fm-primary));
-  --fm-primary-200: color-mix(in oklch, var(--bs-white) 60%, var(--fm-primary));
-  --fm-primary-300: color-mix(in oklch, var(--bs-white) 40%, var(--fm-primary));
-  --fm-primary-400: color-mix(in oklch, var(--bs-white) 20%, var(--fm-primary));
-  --fm-primary-600: color-mix(in oklch, var(--bs-black) 16%, var(--fm-primary));
-  --fm-primary-800: color-mix(in oklch, var(--bs-black) 48%, var(--fm-primary));
-  --fm-primary-900: color-mix(in oklch, var(--bs-black) 64%, var(--fm-primary));
-
   --bs-primary-base: var(--fm-primary);
   --bs-primary-bg: var(--fm-primary);
-  --bs-primary-fg: light-dark(var(--fm-primary-600), var(--fm-primary-400));
-  --bs-primary-fg-emphasis: light-dark(var(--fm-primary-800), var(--fm-primary-200));
-  --bs-primary-bg-subtle: light-dark(var(--fm-primary-100), var(--fm-primary-900));
-  --bs-primary-bg-muted: light-dark(var(--fm-primary-200), var(--fm-primary-800));
-  --bs-primary-border: light-dark(var(--fm-primary-300), var(--fm-primary-600));
-  --bs-primary-focus-ring: light-dark(
-    color-mix(in oklch, var(--fm-primary) 50%, var(--bs-bg-body)),
-    color-mix(in oklch, var(--fm-primary) 75%, var(--bs-bg-body))
-  );
-  /* Bootstrap default. Not adjusted for light primaries: colour.md says the
-     fix for a failing primary is an ASK, so the site reports it instead. */
+  --bs-primary-fg: var(--fm-primary);
+  --bs-primary-fg-emphasis: color-mix(in oklch, var(--fm-primary) 78%, var(--bs-black));
+  --bs-primary-bg-subtle: color-mix(in oklch, var(--fm-primary) 12%, var(--bs-white));
+  --bs-primary-bg-muted: color-mix(in oklch, var(--fm-primary) 26%, var(--bs-white));
+  --bs-primary-border: color-mix(in oklch, var(--fm-primary) 55%, var(--bs-white));
   --bs-primary-contrast: var(--bs-white);
 }
+
+/* ---------------------------------------------------------------------------
+ * Always Bootstrap blue
+ *
+ * These never follow the customer primary: checked controls, progress bars,
+ * native accent colour, and the focus ring.
+ * ------------------------------------------------------------------------ */
+:root {
+  --bs-control-checked-bg: var(--bs-blue-600);
+  --bs-control-checked-border-color: var(--bs-blue-600);
+  --bs-progress-bar-bg: var(--bs-blue-600);
+}
+
+:root,
+:root * {
+  --bs-focus-ring-color: color-mix(in oklch, var(--bs-blue-500) 50%, var(--bs-bg-body));
+  --bs-theme-focus-ring: var(--bs-focus-ring-color) !important;
+  --bs-focus-ring: var(--bs-focus-ring-width) solid var(--bs-focus-ring-color);
+}
+
+.form-control,
+select,
+input { accent-color: var(--bs-blue-600); }
 
 /* ---------------------------------------------------------------------------
  * Typography (typography.md)
@@ -58,7 +66,7 @@
 :root {
   /* Body is 14px through the base size, never by shrinking the root. */
   --bs-body-font-size: 0.875rem;
-  /* Bootstrap 6 headings default to weight 500, which typography.md bans. */
+  /* Bootstrap 6 defaults headings to 500, which typography.md bans. */
   --bs-heading-font-weight: 600;
 }
 
@@ -69,26 +77,59 @@ h4, .h4 { font-size: 1.125rem; }
 h5, .h5 { font-size: 1rem; }
 h6, .h6 { font-size: 0.875rem; }
 
-.fm-lead { font-size: 1.125rem; font-weight: 400; }
-.fm-body-lg { font-size: 1rem; }
-.fm-body-sm { font-size: 0.8125rem; }
-.fm-caption { font-size: 0.75rem; }
-
-/* Buttons are 600 (typography.md: headings, buttons, labels). */
 :where(.btn, .btn-solid, .btn-outline, .btn-text) {
   --bs-btn-font-weight: var(--bs-font-weight-semibold);
 }
 
+.table > thead th { font-weight: 600; }
+
+/* ---------------------------------------------------------------------------
+ * Component adjustments from the product layer
+ * ------------------------------------------------------------------------ */
+a:not([class]) { color: var(--bs-link-color); text-decoration: none; }
+a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: underline; }
+
+.breadcrumb-divider::before { content: var(--bs-breadcrumb-divider, "/"); }
+.breadcrumb-link { padding: 4px 8px; border-radius: var(--bs-radius-4); }
+.breadcrumb-link:hover,
+.nav-underline .nav-link:hover {
+  background: var(--bs-bg-body) !important;
+  color: var(--bs-primary-fg-emphasis) !important;
+  text-decoration: none !important;
+}
+
+/* Selected items are one step darker than the bg-1 hover, never primary. */
+.menu {
+  --bs-menu-item-active-bg: var(--bs-bg-2);
+  --bs-menu-item-active-color: var(--bs-fg-body);
+  --bs-theme-bg: var(--bs-bg-2);
+  --bs-theme-contrast: var(--bs-fg-body);
+  --bs-theme-bg-subtle: var(--bs-bg-1);
+}
+.list-group {
+  --bs-list-group-active-bg: var(--bs-bg-2);
+  --bs-list-group-active-color: var(--bs-fg-body);
+  --bs-list-group-active-border-color: var(--bs-border-color);
+}
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--bs-bg-2);
+  --bs-nav-pills-link-active-color: var(--bs-fg-body);
+}
+
+/* Icon and label spacing inside Font Awesome v5-style labels. */
+.fa5-text { margin-inline-start: 0.375rem; }
+
 /* ---------------------------------------------------------------------------
  * Accent: client zone (colour.md, buttons.md)
  *
- * `has-client-zone-icon` is a Filmmakers custom class. Its name and scope are
- * still an open decision in buttons.md.
+ * ASK: the Component mapping uses #EF7428. colour.md says an accent must be a
+ * Bootstrap palette colour. Until that is decided this uses orange-500.
  * ------------------------------------------------------------------------ */
 :root {
   --fm-accent-client-zone: var(--bs-orange-500);
 }
 
-.btn-outline.theme-secondary.has-client-zone-icon .fm-icon {
+.btn-outline.theme-secondary.has-client-zone-icon > i,
+.btn-outline.theme-secondary.has-client-zone-icon > .fm-icon {
   color: var(--fm-accent-client-zone);
 }
