@@ -82,26 +82,36 @@ function itemHtml(item) {
   </article>`
 }
 
-function pageHtml(group) {
-  return `<section class="lib-page" data-page="${group.id}" data-parent="components" data-title="${escapeHtml(group.title)}" hidden>
-    <nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#components">Components</a><span aria-hidden="true">/</span><span>${escapeHtml(group.title)}</span></nav>
+function pageHtml(group, parent) {
+  const crumbs = parent
+    ? `<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#${parent.id}">${parent.title}</a><span aria-hidden="true">/</span><span>${escapeHtml(group.title)}</span></nav>`
+    : ''
+  return `<section class="lib-page" data-page="${group.id}"${parent ? ` data-parent="${parent.id}"` : ''} data-title="${escapeHtml(group.title)}" hidden>
+    ${crumbs}
     <div class="lib-page-head"><h1>${escapeHtml(group.title)}</h1><p>${escapeHtml(group.intro)}</p></div>
     <div>${group.items.map(itemHtml).join('')}</div>
   </section>`
 }
 
+const sideLinks = (groups) => groups.map((g) =>
+  `<a href="#${g.id}" class="lib-sub">${escapeHtml(g.title)}<span class="lib-count">${g.items.length}</span></a>`).join('')
+
 function render(data) {
   const icons = data.groups.find((g) => g.id === 'icons')
   $('#icons-items').innerHTML = icons.items.map(itemHtml).join('')
 
-  const groups = data.groups.filter((g) => g.section === 'components')
-  $('#component-pages').outerHTML = groups.map(pageHtml).join('')
+  const inSection = (name) => data.groups.filter((g) => g.section === name)
+  const components = inSection('components')
+  const organisms = inSection('organisms')
+  $('#component-pages').outerHTML = components.map((g) => pageHtml(g, { id: 'components', title: 'Components' })).join('')
+  $('#organism-pages').outerHTML = organisms.map((g) => pageHtml(g, { id: 'organisms', title: 'Organisms' })).join('')
+  $('#shell-page').outerHTML = inSection('app-shell').map((g) => pageHtml(g, null)).join('')
+  $('#side-components').insertAdjacentHTML('beforeend', sideLinks(components))
+  $('#side-organisms').insertAdjacentHTML('beforeend', sideLinks(organisms))
+
   $('#components-excluded').innerHTML =
     `<div class="lib-page-head"><h2 class="h5">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>
      <ul class="lib-rules">${data.excluded.map((e) => `<li><b>${e.code}</b> ${escapeHtml(e.replaces)}: ${escapeHtml(e.reason)}</li>`).join('')}</ul>`
-
-  $('#side-components').insertAdjacentHTML('beforeend', groups.map((g) =>
-    `<a href="#${g.id}" class="lib-sub">${escapeHtml(g.title)}<span class="lib-count">${g.items.length}</span></a>`).join(''))
 
   // Overview pages list their child pages as cards.
   for (const overview of $$('[data-overview]')) {

@@ -1240,10 +1240,10 @@
    ]
   },
   {
-   "id": "organisms",
-   "section": "components",
-   "title": "Organisms",
-   "intro": "Larger compositions built from the components above.",
+   "id": "search-and-filter",
+   "section": "organisms",
+   "title": "Search and filter",
+   "intro": "Finding and narrowing the rows on a page.",
    "items": [
     {
      "code": "SF-1",
@@ -1262,7 +1262,15 @@
      ],
      "layout": "row",
      "example": ""
-    },
+    }
+   ]
+  },
+  {
+   "id": "tables",
+   "section": "organisms",
+   "title": "Tables",
+   "intro": "Table furniture beyond the table itself: the footer, and what shows when there is nothing to list.",
+   "items": [
     {
      "code": "TBL-1",
      "name": "Table footer",
@@ -1276,6 +1284,27 @@
      "layout": "full",
      "example": "<div style=\"display:flex;align-items:center;gap:16px;border:1px solid var(--bs-border-color);border-radius:var(--bs-radius-5);padding:10px 12px;background:var(--bs-bg-1)\"><span style=\"font-size:14px;font-weight:600\">1-3 of 4 coworkers</span><nav aria-label=\"Pagination\" style=\"margin-inline-start:auto\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li></ul></nav></div>"
     },
+    {
+     "code": "CNT-11",
+     "name": "Empty state",
+     "status": "Replace",
+     "classes": ".card + .card-body",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
+     "replaces": "well / no-data text",
+     "note": "Replace. The empty state replaces the content, including table headers; the message names the state.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div class=\"card\"><div class=\"card-body\" style=\"text-align:center;color:var(--bs-fg-2);padding:24px\"><div style=\"font-weight:600;margin-bottom:4px\">No research entries yet</div><div style=\"font-size:12px;color:var(--bs-fg-3)\">Research entries you add appear here.</div></div></div>"
+    }
+   ]
+  },
+  {
+   "id": "section-cards",
+   "section": "organisms",
+   "title": "Section cards",
+   "intro": "Cards that hold one section of a page: lists of entities, people and profiles.",
+   "items": [
     {
      "code": "CNT-2",
      "name": "Entity list card",
@@ -1314,20 +1343,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div style=\"width:120px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"height:80px;background:var(--bs-bg-2);position:relative;display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i><span class=\"badge theme-secondary\" style=\"position:absolute;top:6px;left:6px\">#1</span></div><div style=\"padding:8px;font-size:12px\">Lena Brandt</div></div>"
-    },
-    {
-     "code": "CNT-11",
-     "name": "Empty state",
-     "status": "Replace",
-     "classes": ".card + .card-body",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
-     "replaces": "well / no-data text",
-     "note": "Replace. The empty state replaces the content, including table headers; the message names the state.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div class=\"card\"><div class=\"card-body\" style=\"text-align:center;color:var(--bs-fg-2);padding:24px\"><div style=\"font-weight:600;margin-bottom:4px\">No research entries yet</div><div style=\"font-size:12px;color:var(--bs-fg-3)\">Research entries you add appear here.</div></div></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "actions",
+   "section": "organisms",
+   "title": "Actions",
+   "intro": "Where row and item actions live, and how they are laid out.",
+   "items": [
     {
      "code": "CNT-12",
      "name": "Action gutter",
@@ -1368,7 +1392,7 @@
   },
   {
    "id": "app-shell",
-   "section": "components",
+   "section": "app-shell",
    "title": "App shell",
    "intro": "The elements that frame every page and never change: header, subheader band and footer. Pages and templates sit inside them.",
    "items": [
