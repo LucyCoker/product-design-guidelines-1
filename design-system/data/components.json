@@ -1232,10 +1232,10 @@
    ]
   },
   {
-   "id": "feedback",
+   "id": "alert",
    "section": "components",
-   "title": "Feedback",
-   "intro": "Messages, progress and overlays.",
+   "title": "Alert",
+   "intro": "A banner for a condition that is still true, or a note that explains a card.",
    "items": [
     {
      "code": "MSG-1",
@@ -1262,7 +1262,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"alert theme-info\" role=\"note\" style=\"margin:0;display:flex;gap:8px\"><i class=\"fa-solid fa-caret-left\" style=\"margin-top:3px\" aria-hidden=\"true\"></i><span>Determine the name of the Audition and provide as comprehensive information as possible.</span></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "toasts",
+   "section": "components",
+   "title": "Toasts",
+   "intro": "Confirms that something just happened, and carries Undo when the action can be reversed.",
+   "items": [
     {
      "code": "MSG-10",
      "name": "Toast",
@@ -1275,7 +1283,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"toast-container\" style=\"position:relative;inset:auto;width:100%\"><div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" style=\"display:flex;flex-direction:row;align-items:center;gap:12px;padding:10px 12px;--bs-toast-bg:var(--bs-success-bg-subtle);--bs-toast-border-color:var(--bs-success-border);color:var(--bs-success-fg-emphasis)\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\" style=\"color:var(--bs-success-fg-emphasis)\"></i><span>1 subscriber unsubscribed.</span><button type=\"button\" class=\"btn-text theme-secondary btn-xs\" style=\"color:var(--bs-success-fg-emphasis);text-decoration:underline\">Undo</button><button type=\"button\" class=\"btn-close\" aria-label=\"Dismiss\"></button></div></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "progress",
+   "section": "components",
+   "title": "Progress",
+   "intro": "Shows how far a task such as an upload has got.",
+   "items": [
     {
      "code": "MSG-7",
      "name": "Progress",
@@ -1288,7 +1304,15 @@
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"progress\" role=\"progressbar\" aria-label=\"Upload progress\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"45\" data-demo-progress><div class=\"progress-bar\" style=\"width:45%\"></div></div>\n<div style=\"display:flex;align-items:center;gap:8px\"><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-upload><i class=\"fa-solid fa-arrow-up-from-bracket\"></i>Simulate upload</button><small class=\"form-text\" style=\"margin:0;font-size:var(--bs-font-size-xs)\"><span data-demo-label>45%</span></small></div>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "tooltips",
+   "section": "components",
+   "title": "Tooltips",
+   "intro": "A short label on hover and keyboard focus. Required on every icon-only control.",
+   "items": [
     {
      "code": "MSG-4",
      "name": "Tooltip",
@@ -1301,7 +1325,15 @@
      "flags": [],
      "layout": "row",
      "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"Visible for client\" aria-label=\"Visible for client\"><i class=\"fa-regular fa-eye\"></i></button><span style=\"font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px\">Hover or focus the icon</span>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "popover",
+   "section": "components",
+   "title": "Popover",
+   "intro": "A small panel opened from a button, for content that does not fit where it is triggered.",
+   "items": [
     {
      "code": "SF-2",
      "name": "Popover",

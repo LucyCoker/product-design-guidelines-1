@@ -486,42 +486,42 @@
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Feedback/Alert",
+      "figmaName": "Alert/Alert",
       "libraryId": "msg-1",
       "classes": ".alert.theme-info",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Feedback/Note",
+      "figmaName": "Alert/Note",
       "libraryId": "msg-6",
       "classes": ".alert.theme-info[role=\"note\"]",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Feedback/Toast",
+      "figmaName": "Toasts/Toast",
       "libraryId": "msg-10",
       "classes": ".toast-container > .toast",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Feedback/Progress",
+      "figmaName": "Progress/Progress",
       "libraryId": "msg-7",
       "classes": ".progress > .progress-bar",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Feedback/Tooltip",
+      "figmaName": "Tooltips/Tooltip",
       "libraryId": "msg-4",
       "classes": "data-bs-toggle=\"tooltip\"",
       "variants": {}
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Feedback/Popover",
+      "figmaName": "Popover/Popover",
       "libraryId": "sf-2",
       "classes": ".popover + .popover-body",
       "variants": {}
