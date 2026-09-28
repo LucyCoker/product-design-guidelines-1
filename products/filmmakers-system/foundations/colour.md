@@ -96,7 +96,7 @@ Accent adds meaning to something where secondary, status and primary are not eno
 
 | Accent      | Colour           | Usage                                                                                       |
 | ----------- | ---------------- | ------------------------------------------------------------------------------------------- |
-| Client zone | Bootstrap orange | Marks areas of Selections where clients or other users outside the team can see the content |
+| Client zone | Bootstrap `orange-500` | Marks areas of Selections where clients or other users outside the team can see the content |
 
 
 ### Brand personas

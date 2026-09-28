@@ -122,8 +122,8 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 /* ---------------------------------------------------------------------------
  * Accent: client zone (colour.md, buttons.md)
  *
- * ASK: the Component mapping uses #EF7428. colour.md says an accent must be a
- * Bootstrap palette colour. Until that is decided this uses orange-500.
+ * Bootstrap orange-500 (decided in review; replaces the mapping's #EF7428).
+ * ASK: about 2.9:1 on white, under the 3:1 icons need. orange-600 passes.
  * ------------------------------------------------------------------------ */
 :root {
   --fm-accent-client-zone: var(--bs-orange-500);

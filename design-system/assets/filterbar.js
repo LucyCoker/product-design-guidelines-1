@@ -123,16 +123,38 @@ export function initFilterBar(root) {
       ? `<div class="popover bs-popover-bottom show" role="dialog" aria-label="More filters" style="position:absolute;inset-inline-start:0;top:calc(100% + 6px);z-index:1050;display:block;max-width:none;width:300px"><div class="popover-body" style="display:flex;flex-direction:column;gap:10px">${overflow.map((d) => filter(d, true)).join('')}</div></div>`
       : ''
     const moreOpen = !!popover
-    const bar =
-      '<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)">' +
-      '<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 0 auto">' +
-      `<div class="input-group input-group-sm" style="flex:0 0 auto;width:min(240px,100%)"><input class="form-control form-control-sm" type="search" data-query placeholder="Search name, email, phone" aria-label="Search name, email, phone" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>` +
-      inline.map((d) => filter(d)).join('') +
-      `<div style="position:relative"><button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters${moreCount ? `<span style="font-variant-numeric:tabular-nums"> (${moreCount})</span>` : ''}<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button>${popover}</div>` +
-      (anyApplied ? '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>' : '') +
-      '</div>' +
-      `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto">${toggle('sort', `Sort by: ${SORTS[state.sort].label}`, 190, false)}${sortMenu}</div>` +
-      '</div>'
+    // Compact: once More filters and Sort by no longer fit beside search as
+    // text buttons, both become icon buttons side by side, and Clear filters
+    // moves to the bottom of the More filters popover.
+    const compact = inlineCount === 0 &&
+      root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + (anyApplied ? GAP + CLEAR_W : 0) + GAP + SORT_W
+    const clearBtn = '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>'
+    const search = `<div class="input-group input-group-sm" style="${compact ? 'flex:1 1 auto;min-width:0;max-width:240px' : 'flex:0 0 auto;width:min(240px,100%)'}"><input class="form-control form-control-sm" type="search" data-query placeholder="Search name, email, phone" aria-label="Search name, email, phone" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>`
+    let bar
+    if (compact) {
+      const applied = DEFS.filter(isApplied).length
+      const moreName = applied ? `More filters, ${applied} applied` : 'More filters'
+      const pop = moreOpen
+        ? popover.replace('inset-inline-start:0', 'inset-inline-end:0').replace('</div></div>', `${anyApplied ? `<div>${clearBtn}</div>` : ''}</div></div>`)
+        : ''
+      bar =
+        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)">' +
+        search +
+        `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-label="${moreName}" title="${moreName}"${applied ? ' style="font-weight:600;width:auto;padding-inline:8px;gap:4px"' : ''}><i class="fa-solid fa-filter" aria-hidden="true"></i>${applied ? `<span style="font-variant-numeric:tabular-nums">${applied}</span>` : ''}</button>${pop}</div>` +
+        `<div style="position:relative;flex:0 0 auto"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortMenu}</div>` +
+        '</div>'
+    } else {
+      bar =
+        '<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)">' +
+        '<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 0 auto">' +
+        search +
+        inline.map((d) => filter(d)).join('') +
+        `<div style="position:relative"><button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters${moreCount ? `<span style="font-variant-numeric:tabular-nums"> (${moreCount})</span>` : ''}<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button>${popover}</div>` +
+        (anyApplied ? clearBtn : '') +
+        '</div>' +
+        `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto">${toggle('sort', `Sort by: ${SORTS[state.sort].label}`, 190, false)}${sortMenu}</div>` +
+        '</div>'
+    }
     // Applied chips: one per search term and per applied value. An option in
     // the prototype, not in production use yet.
     const chipList = []
@@ -146,7 +168,7 @@ export function initFilterBar(root) {
     chipsState = chipList
     const chips = state.chips && chipList.length
       ? '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)"><span class="fs-xs fg-3" style="white-space:nowrap">Applied</span>' +
-        chipList.map((c, i) => `<span class="chip theme-secondary"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
+        chipList.map((c, i) => `<span class="chip"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
       : ''
     const count = `<div style="display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px">${list.length} of ${PEOPLE.length} coworkers</div>`
     const table = list.length
@@ -160,7 +182,10 @@ export function initFilterBar(root) {
     const focusKey = active && root.contains(active) ? (active.matches('[data-query]') ? '[data-query]' : active.matches('[data-find]') ? '[data-find]' : null) : null
     const caret = focusKey ? active.selectionStart : null
     const option = `<div class="d-flex align-items-center gap-2 mb-3"><div class="switch"><input type="checkbox" role="switch" id="${id}-chips" data-chips-toggle${state.chips ? ' checked' : ''}></div><label for="${id}-chips" class="fw-semibold">Show applied chips</label><span class="fs-xs fg-3">Optional. Not in production use yet</span></div>`
-    root.innerHTML = `${option}<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
+    const barOnly = root.dataset.variant === 'bar'
+    root.innerHTML = barOnly
+      ? `<div class="card" style="overflow:visible;width:100%">${bar}${count}</div>`
+      : `${option}<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
     if (focusKey) {
       const el = root.querySelector(focusKey)
       if (el) { el.focus(); try { el.setSelectionRange(caret, caret) } catch {} }

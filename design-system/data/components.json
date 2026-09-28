@@ -344,7 +344,7 @@
       },
       {
        "type": "ask",
-       "text": "The mapping uses accent #EF7428. The Colour guideline says an accent MUST be a Bootstrap palette colour, and Bootstrap orange-500 is a different value. Decide which one is right."
+       "text": "Client zone is Bootstrap orange-500 (#ff6800). Accessibility: the icon is about 2.9:1 on the white button, just under the 3:1 WCAG 2.1 AA needs for icons (1.4.11). It still passes overall because the label carries the meaning, but the colour itself fails. Decide: keep orange-500, or use orange-600 (#cd5100, about 4.4:1, passes)."
       }
      ],
      "examples": [
@@ -1050,11 +1050,11 @@
       },
       {
        "type": "info",
-       "text": "Accessibility: passes on text contrast (about 5.2:1), accessible names (“Remove the Status filter”), keyboard use and not relying on colour. Its focus ring is the site-wide one, which is about 2.2:1 against white (the open focus ring decision in Colour)."
+       "text": "Accessibility: passes on text contrast (about 15.6:1, Bootstrap’s default body text), accessible names (“Remove the Status filter”), keyboard use and not relying on colour. Its focus ring is the site-wide one, which is about 2.2:1 against white (the open focus ring decision in Colour)."
       }
      ],
      "layout": "row",
-     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip theme-secondary\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
+     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
     }
    ]
   },
@@ -1530,6 +1530,10 @@
       {
        "type": "info",
        "text": "The prototype opens Sort by with menu-end, which this Bootstrap build does not have. Use data-bs-placement=\"bottom-end\"."
+      },
+      {
+       "type": "ask",
+       "text": "The compact icon buttons are btn-outline theme-secondary, to match the search button beside them. The Buttons guideline says icon-only buttons are btn-text theme-secondary. Decide which applies in the filter bar."
       }
      ],
      "layout": "row",
@@ -1539,17 +1543,24 @@
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “1-3 of 4 coworkers”.",
-      "Narrow screens move inline filters into More filters: three above 880px, two from 740px, one from 600px, none below. Search, Clear filters and Sort by stay.",
+      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons side by side (filter and sort icons, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover.",
       "Pages with only two or three filters never show More filters. The bar adapts by removing, not adding.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
      "examples": [
       {
        "label": "Working example",
-       "caption": "Try it: search, pick filters, open More filters, clear and sort. Turn on applied chips to see that option. Narrow the window and filters move into More filters, down to none on small screens.",
+       "caption": "Try it: search, pick filters, open More filters, clear and sort. Turn on applied chips to see that option. It also adapts to the window width, like the breakpoints below.",
        "badge": "",
        "wide": true,
        "html": "<div data-filterbar style=\"padding-bottom:140px;width:100%\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 0 auto\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1-3 of 4 coworkers</div></div></div>"
+      },
+      {
+       "label": "Breakpoints",
+       "badge": "",
+       "wide": true,
+       "caption": "The same bar at five widths. Each one works. Filters move into More filters as space runs out; when More filters and Sort by would overlap, both become icon buttons and Clear filters moves into the More filters popover.",
+       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Three inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">860px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:860px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">700px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:700px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become two icon buttons</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
       }
      ]
     }
@@ -1688,19 +1699,6 @@
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"card\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:12px\"><span style=\"color:var(--bs-fg-3)\">Coworkers:</span><div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">+3</span></div></div></div><div class=\"card\" style=\"background:var(--bs-bg-1)\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:8px;color:var(--bs-fg-2)\"><i class=\"fa-solid fa-lock\"></i>No access to clients</div></div>"
-    },
-    {
-     "code": "CNT-10",
-     "name": "Profile tile",
-     "status": "Custom",
-     "classes": "hairline border + radius-5",
-     "docs": "",
-     "replaces": "profile tile",
-     "note": "Replace. Not a .card, because it carries a rank badge and an open-profile action over the image.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div style=\"width:120px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"height:80px;background:var(--bs-bg-2);position:relative;display:flex;align-items:center;justify-content:center;color:var(--bs-fg-4)\"><i class=\"fa-regular fa-image\"></i><span class=\"badge theme-secondary\" style=\"position:absolute;top:6px;left:6px\">#1</span></div><div style=\"padding:8px;font-size:12px\">Lena Brandt</div></div>"
     }
    ]
   },
@@ -1732,19 +1730,64 @@
      "code": "CNT-13",
      "name": "Row actions",
      "status": "Custom",
-     "classes": "",
+     "classes": "btn-text theme-primary btn-xs + .menu",
      "docs": "",
      "replaces": "row action links separated by |",
-     "note": "Replace. One component for every row action group: Edit, Duplicate, View as applicant, Copy/Move, Messages, Remove, more. Each action is a boolean prop, so pages cannot drift. layout=\"stack\" fills a gutter, layout=\"inline\" sits in a table cell. The v3 pipe separators are gone — spacing comes from flex gap.",
+     "note": "One component for every row action group. Each action is a boolean prop (messages, edit, duplicate, viewAsApplicant, copyMove, unsubscribe, remove, more), so pages cannot drift. layout=\"stack\" fills an Action gutter; layout=\"inline\" sits in a table cell. The v3 pipe separators are gone: spacing comes from flex gap.",
      "unresolved": false,
      "flags": [
       {
        "type": "info",
-       "text": "Full example lives in RowActions.dc.html, which was not shared. The Action gutter (CNT-12) shows the stacked layout."
+       "text": "Changed from RowActions.dc.html: the prototype’s More had no menu, it allowed up to seven visible actions, and it put Unsubscribe and Remove beside the others as bare danger buttons. Here More opens a real menu, at most three actions show, and the destructive ones are inside More, per the Buttons and Destructive actions guidelines."
+      },
+      {
+       "type": "ask",
+       "text": "The prototype puts Remove and Unsubscribe directly in the row (btn-text theme-danger btn-xs). The guidelines say destructive row actions go behind More. Decide whether reversible Remove is an exception. Until then this page follows the guidelines."
+      },
+      {
+       "type": "ask",
+       "text": "Which actions stay visible when more than three are on: the first three in order, or a per-page choice? This page shows the first three."
       }
      ],
-     "layout": "stack",
-     "example": ""
+     "layout": "row",
+     "guide": "products/filmmakers-system/components/buttons.md",
+     "rules": [
+      "Every action is a Row action: <code>btn-text theme-primary btn-xs</code>, icon plus text label. Edit is a link (<code>a</code>) because it navigates; the rest are buttons.",
+      "Fixed order on every row: Messages, Edit, Duplicate, View as applicant, Copy/Move, then More. Turning an action off never reorders the rest.",
+      "At most three actions show. The rest go into More, which is always last and always opens a <code>.menu</code>.",
+      "Unsubscribe and Remove are never bare controls. They go last in More, after a divider, as <code>menu-item theme-danger</code>, and follow Destructive actions (undo if reversible, confirm if not).",
+      "More carries an accessible name with the row, e.g. “More actions for Season 14: Erste Runde”, so repeated triggers are distinguishable.",
+      "Stack has no gap between buttons; inline uses an 8px gap."
+     ],
+     "examples": [
+      {
+       "label": "Stacked",
+       "badge": "Default",
+       "caption": "layout=\"stack\" in an Action gutter: Edit and More. Everything else is in More.",
+       "html": "<div style=\"display:grid;grid-template-columns:minmax(0,1fr) 150px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);max-width:480px\"><div style=\"padding:12px 16px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><a class=\"btn-text theme-primary btn-xs\" href=\"#\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</a><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Erste Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Duplicate</button><button type=\"button\" class=\"menu-item\">View as applicant</button><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></div>",
+       "wide": true
+      },
+      {
+       "label": "Stacked, three actions",
+       "badge": "",
+       "caption": "The most a row shows before More.",
+       "html": "<div style=\"display:grid;grid-template-columns:minmax(0,1fr) 150px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);max-width:480px\"><div style=\"padding:12px 16px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-envelope\" aria-hidden=\"true\"></i>Messages</button><a class=\"btn-text theme-primary btn-xs\" href=\"#\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</a><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Erste Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">View as applicant</button><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Unsubscribe</button><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></div>",
+       "wide": true
+      },
+      {
+       "label": "Inline",
+       "badge": "",
+       "caption": "layout=\"inline\" in the last table cell, aligned to the end.",
+       "wide": true,
+       "html": "<table class=\"table mb-0\" style=\"min-width:520px\"><tbody><tr><td>Season 14: Erste Runde</td><td class=\"text-end text-nowrap\"><div style=\"display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px\"><a class=\"btn-text theme-primary btn-xs\" href=\"#\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</a><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-eye\" aria-hidden=\"true\"></i>View as applicant</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Erste Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></td></tr><tr><td>Season 14: Zweite Runde</td><td class=\"text-end text-nowrap\"><div style=\"display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px\"><a class=\"btn-text theme-primary btn-xs\" href=\"#\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</a><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-eye\" aria-hidden=\"true\"></i>View as applicant</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Zweite Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></td></tr></tbody></table>"
+      },
+      {
+       "label": "More, open",
+       "badge": "",
+       "caption": "Destructive actions go last, after a divider, with a text label.",
+       "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start;gap:8px\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\" aria-expanded=\"true\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Duplicate</button><button type=\"button\" class=\"menu-item\">View as applicant</button><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Unsubscribe</button><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div>"
+      }
+     ]
     }
    ]
   },
@@ -1908,11 +1951,16 @@
   {
    "code": "CNT-9",
    "name": "Image placeholder",
-   "reason": "Only used inside the Profile tile (Section cards)."
+   "reason": "Only used inside the Profile tile, which was removed in review."
   },
   {
    "code": "CNT-8",
    "name": "Definition list",
+   "reason": "Removed in review."
+  },
+  {
+   "code": "CNT-10",
+   "name": "Profile tile",
    "reason": "Removed in review."
   }
  ]

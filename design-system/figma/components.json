@@ -550,7 +550,8 @@
       "classes": "input-group + combobox-toggle + popover + chip",
       "variants": {
         "Version": [
-          "Working example"
+          "Working example",
+          "Breakpoints"
         ]
       }
     },
@@ -605,17 +606,24 @@
     },
     {
       "figmaPage": "Organisms",
-      "figmaName": "Section cards/Profile tile",
-      "libraryId": "cnt-10",
-      "classes": "hairline border + radius-5",
-      "variants": {}
-    },
-    {
-      "figmaPage": "Organisms",
       "figmaName": "Actions/Action gutter",
       "libraryId": "cnt-12",
       "classes": "bg-1 + border-inline-start",
       "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Actions/Row actions",
+      "libraryId": "cnt-13",
+      "classes": "btn-text theme-primary btn-xs + .menu",
+      "variants": {
+        "Version": [
+          "Stacked",
+          "Stacked, three actions",
+          "Inline",
+          "More, open"
+        ]
+      }
     },
     {
       "figmaPage": "App shell",
