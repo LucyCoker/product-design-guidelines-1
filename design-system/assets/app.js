@@ -159,6 +159,12 @@ function quietExamples() {
   })
 }
 
+// Example frames clip overflow, so menus inside them open with fixed
+// positioning. Set at runtime so the copied code stays clean.
+function freeMenus() {
+  $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
+}
+
 function setupTooltips() {
   $$('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
 }
@@ -233,6 +239,7 @@ async function start() {
     return
   }
   quietExamples()
+  freeMenus()
   setupTooltips()
   setupUploadDemo()
   setupCopy()

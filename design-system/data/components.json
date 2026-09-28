@@ -525,21 +525,24 @@
      "flags": [
       {
        "type": "info",
-       "text": "The pattern does not say whether the overflow trigger sits inside the group. This example keeps it outside, which breaks no rule."
+       "text": "Decided in review: the overflow trigger sits inside the group, in outline style. The Button groups pattern should be updated to say so."
       }
      ],
      "id": "bg-overflow",
      "name": "With an overflow menu",
-     "classes": "btn-group + btn-text theme-secondary btn-icon",
-     "note": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu.",
+     "classes": "btn-group > btn-outline theme-secondary + btn-icon menu trigger",
+     "note": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu at the end of the group.",
      "rules": [
-      "A screen that needs many actions on one object is a hierarchy problem. Lower the emphasis rather than adding buttons.",
-      "Destructive actions go in the overflow menu with a text label."
+      "The overflow trigger is the last button in the group, in the same outline style and size.",
+      "It is icon only, with an accessible name (<code>aria-label=\"More actions\"</code>) and a tooltip.",
+      "Like the split-button trigger, it is an allowed exception to “never mix text and icon-only buttons”.",
+      "Destructive actions go in the overflow menu with a text label.",
+      "A screen that needs many actions on one object is a hierarchy problem. Lower the emphasis rather than adding buttons."
      ],
      "examples": [
       {
        "label": "Group and overflow",
-       "html": "<div class=\"d-inline-flex align-items-center gap-1\"><div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button></div><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions\" title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item text-danger\">Remove from selection</button></div></div>",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Profile actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Message</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Release profiles</button><div class=\"btn-group btn-group-sm\" role=\"group\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions\" title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item fg-danger\">Remove from selection</button></div></div></div>",
        "caption": "Message · Release profiles · the rest in the menu",
        "badge": ""
       }
