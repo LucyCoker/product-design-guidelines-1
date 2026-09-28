@@ -1,0 +1,9 @@
+{
+  "name": "Filmmakers code syntax",
+  "id": "filmmakers-code-syntax",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": { "allowedDomains": ["none"] }
+}

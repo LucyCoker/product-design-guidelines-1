@@ -136,6 +136,23 @@ const out = {
 }
 writeFileSync(join(root, 'figma/tokens.json'), JSON.stringify(out, null, 2) + '\n')
 
+// Code syntax plugin ----------------------------------------------------
+// Tokens Studio does not write code syntax into Figma variables, so a small
+// plugin sets it by variable name. The map is every token path with a CSS
+// variable, for example "primary/bg" -> "var(--bs-primary-bg)".
+const codeSyntax = {}
+const walk = (node, path) => {
+  if (node && typeof node === 'object' && '$value' in node) {
+    const web = node.$extensions?.['com.figma']?.codeSyntax?.WEB
+    if (web) codeSyntax[path.join('/')] = web
+    return
+  }
+  for (const [key, child] of Object.entries(node || {})) if (!key.startsWith('$')) walk(child, [...path, key])
+}
+for (const [set, tree] of Object.entries(out)) if (!set.startsWith('$')) walk(tree, [])
+const plugin = read('figma/code-syntax-plugin/code.template.js').replace('__CODE_SYNTAX__', JSON.stringify(codeSyntax, null, 2))
+writeFileSync(join(root, 'figma/code-syntax-plugin/code.js'), plugin)
+
 // Component names -------------------------------------------------------
 const library = JSON.parse(read('data/components.json'))
 const sectionName = { foundations: 'Foundations', components: 'Components', organisms: 'Organisms', 'app-shell': 'App shell' }
@@ -156,3 +173,4 @@ writeFileSync(join(root, 'figma/components.json'), JSON.stringify({ $description
 
 console.log(`figma/tokens.json: ${paletteVars.length} palette, ${themeVars.length} theme, ${Object.keys(primarySets).length} primary modes`)
 console.log(`figma/components.json: ${components.length} components`)
+console.log(`figma/code-syntax-plugin/code.js: ${Object.keys(codeSyntax).length} variables`)
