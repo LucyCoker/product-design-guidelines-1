@@ -45,7 +45,7 @@ body,
  * Always Bootstrap blue
  *
  * These never follow the customer primary: checked controls, progress bars,
- * native accent colour, and the focus ring.
+ * and native accent colour.
  * ------------------------------------------------------------------------ */
 :root {
   --bs-control-checked-bg: var(--bs-blue-600);
@@ -53,12 +53,9 @@ body,
   --bs-progress-bar-bg: var(--bs-blue-600);
 }
 
-:root,
-:root * {
-  --bs-focus-ring-color: color-mix(in oklch, var(--bs-blue-500) 50%, var(--bs-bg-body));
-  --bs-theme-focus-ring: var(--bs-focus-ring-color) !important;
-  --bs-focus-ring: var(--bs-focus-ring-width) solid var(--bs-focus-ring-color);
-}
+/* The focus ring is Bootstrap's default: 3px, 1px offset, each theme's own
+ * focus-ring colour (blue-500 at 50% for primary and default). Bootstrap's
+ * primary ring is blue already, so it never follows the customer primary. */
 
 .form-control,
 select,

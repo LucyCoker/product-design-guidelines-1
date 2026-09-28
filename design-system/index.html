@@ -98,7 +98,7 @@
         <div class="lib-swatches">
           <div class="lib-swatch-item"><span style="background:var(--bs-control-checked-bg)"></span><b>Checked controls</b><code>--bs-control-checked-bg · blue-600</code></div>
           <div class="lib-swatch-item"><span style="background:var(--bs-progress-bar-bg)"></span><b>Progress</b><code>--bs-progress-bar-bg · blue-600</code></div>
-          <div class="lib-swatch-item"><span style="background:var(--bs-focus-ring-color)"></span><b>Focus ring</b><code>blue-500 50% + body</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-focus-ring-color)"></span><b>Focus ring</b><code>Bootstrap default · blue-500 50% + body</code></div>
         </div>
 
         <h3 class="fs-md m-0">Neutrals</h3>
@@ -127,7 +127,7 @@
           <li><b>Colour is never the only signal.</b> Pair it with an icon or text.</li>
           <li><b>No hex values in component or page CSS.</b></li>
         </ul>
-        <p class="lib-flag"><span class="badge theme-warning badge-subtle">ASK</span><span>The focus ring is about 2.2:1 on white. The Colour guideline asks for 3:1 on focus indicators.</span></p>
+        <p class="lib-flag"><span class="badge theme-warning badge-subtle">ASK</span><span>The focus ring is Bootstrap’s default: 3px, in each theme’s own ring colour (light blue <code>#6fc8ff</code> for primary and plain controls, grey for secondary, light red for danger). It is about 1.9:1 on white, and the Colour guideline asks for 3:1 on focus indicators. Decide: accept Bootstrap’s default, or use full-strength blue-500 (<code>#0087fe</code>, about 3.6:1, passes).</span></p>
         <p class="lib-flag"><span class="badge theme-warning badge-subtle">ASK</span><span>Client zone is Bootstrap orange-500 (<code>#ff6800</code>). Accessibility: the icon is about 2.9:1 on the white button, just under the 3:1 WCAG 2.1 AA needs for icons (1.4.11). It still passes overall because the label carries the meaning, but the colour itself fails. Decide: keep orange-500, or use orange-600 (<code>#cd5100</code>, about 4.4:1, passes).</span></p>
       
 </section>

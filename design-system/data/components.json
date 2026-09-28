@@ -1046,7 +1046,7 @@
       },
       {
        "type": "info",
-       "text": "Accessibility: passes on text contrast (about 15.6:1, Bootstrap’s default body text), accessible names (“Remove the Status filter”), keyboard use and not relying on colour. Its focus ring is the site-wide one, which is about 2.2:1 against white (the open focus ring decision in Colour)."
+       "text": "Accessibility: passes on text contrast (about 15.6:1, Bootstrap’s default body text), accessible names (“Remove the Status filter”), keyboard use and not relying on colour. Its focus ring is Bootstrap’s default, about 1.9:1 against white (the open focus ring decision in Colour)."
       }
      ],
      "layout": "row",
