@@ -1,0 +1,12 @@
+{
+  "name": "@denkungsart/filmmakers-component-library",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "figma": "node scripts/build-figma.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.1"
+  }
+}

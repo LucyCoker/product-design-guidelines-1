@@ -257,9 +257,9 @@
      "note": "Actions on one item in a dense list: Edit, Duplicate, View as applicant, Copy/Move, Messages. Primary colour shows where to act on each row; text and extra small keep it quiet.",
      "rules": [
       "Only on an item: a table cell, a list row or a row gutter. Page-level quiet actions are Tertiary.",
-      "Always has a text label. Icon-only row actions are Tertiary (<code>btn-text theme-secondary btn-icon</code>).",
+      "Always has a text label. Never icon only.",
       "Same set, same order, on every row. Always visible, never revealed on hover.",
-      "At most three. Put the rest in an overflow menu. Never destructive.",
+      "At most three, then a “More” row action that opens the overflow menu. Never destructive.",
       "The label must meet 4.5:1 on the row background for every customer primary."
      ],
      "flags": [
@@ -299,8 +299,8 @@
       },
       {
        "label": "In a table row",
-       "html": "<table class=\"table table-sm mb-0\"><tbody><tr><td>Season 14: Erste Runde</td><td class=\"text-end text-nowrap\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button></td></tr></tbody></table>",
-       "caption": "The rest go in the overflow menu",
+       "html": "<table class=\"table table-sm mb-0\"><tbody><tr><td>Season 14: Erste Runde</td><td class=\"text-end text-nowrap\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button></td></tr></tbody></table>",
+       "caption": "The rest go behind More",
        "badge": "",
        "wide": true
       }
@@ -973,26 +973,28 @@
      "status": "Direct",
      "layout": "row",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
-     "flags": [
-      {
-       "type": "ask",
-       "text": "The Selection prototypes use a labelled “more” button in the primary colour (btn-text theme-primary) as the trigger. This page uses the icon-only Tertiary trigger, as in Button group and Row action. Decide which one is right."
-      }
-     ],
+     "flags": [],
      "id": "menu-overflow",
      "name": "Overflow menu",
-     "classes": "btn-text theme-secondary btn-icon + .menu",
-     "note": "Holds the less frequent actions on an item or page, behind a “More actions” button.",
+     "classes": "btn-text theme-primary btn-xs + .menu",
+     "note": "Holds the less frequent actions on an item, behind a “More” row action.",
      "rules": [
-      "The trigger is icon only (<code>fa-ellipsis</code>) with <code>aria-label=\"More actions\"</code> and a tooltip.",
-      "Destructive actions go here, last, with a text label."
+      "The trigger is a Row action: <code>btn-text theme-primary btn-xs</code> with the ellipsis icon and the label “More”.",
+      "It is the last row action, after at most three others.",
+      "Destructive actions go here, last, after a divider, with a text label."
      ],
      "examples": [
       {
        "label": "Overflow",
-       "html": "<div class=\"d-flex gap-2 align-items-start\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove from selection</button></div></div>",
+       "caption": "Click to open",
+       "badge": "",
+       "html": "<div class=\"d-flex gap-1 align-items-center\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove from selection</button></div></div></div>"
+      },
+      {
+       "label": "Open",
        "caption": "",
-       "badge": ""
+       "badge": "",
+       "html": "<div class=\"d-flex flex-column align-items-start gap-2\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove from selection</button></div></div>"
       }
      ]
     },
@@ -1117,7 +1119,7 @@
     },
     {
      "code": "FRM-8",
-     "name": "Lite / Expert mode switch",
+     "name": "Lite and Expert mode switch",
      "status": "Replace",
      "classes": ".switch.theme-primary inside a bordered pill",
      "docs": "",

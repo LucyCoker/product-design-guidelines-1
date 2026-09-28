@@ -100,11 +100,11 @@ It signals that the user is in a client zone — an area where clients or other 
 It is quiet in emphasis (text, extra small) and carries primary meaning (this is where you act on the item). It does not compete with the one `btn-solid theme-primary` on the screen.
 
 - Row actions MUST sit on an item: a table cell, a list row, or a row gutter. Page-level quiet actions stay `btn-text theme-secondary`.
-- Row actions MUST have a text label. An icon beside the label is optional. Icon-only row actions stay `btn-text theme-secondary`.
+- Row actions MUST have a text label. An icon beside the label is optional.
 - The same set MUST appear in the same order on every row, so people learn it once.
 - Row actions MUST be always visible, never revealed on hover alone.
 - Row actions MUST be non-destructive. Destructive actions follow [Destructive actions](../../../patterns/destructive-actions.md).
-- Show at most three row actions. Put the rest in an overflow menu (`btn-text theme-secondary btn-icon`).
+- Show at most three row actions. Put the rest in an overflow menu opened by a last row action labelled **More**, with the ellipsis icon.
 - The label MUST meet 4.5:1 against the row background for every customer primary. Where a customer primary fails, **ASK** — see [Colour](../foundations/colour.md).
 
 ### Icon action sets in rows

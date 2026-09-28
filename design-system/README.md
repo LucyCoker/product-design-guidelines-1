@@ -22,7 +22,10 @@ Sections: Foundations, Components (including Organisms), Templates (empty for no
 | `assets/fontawesome.css` | Font Awesome Free 7.0.1, solid and regular, fonts inlined |
 | `assets/app.js`, `assets/site.css` | The library page itself |
 
-To add or change a component, edit `data/components.json`.
+| `figma/` | Figma hand-off: variables (`tokens.json`), component names (`components.json`), Code Connect. See `figma/README.md`. |
+| `scripts/build-figma.mjs` | Regenerates the `figma/` files: `npm run figma --prefix design-system` |
+
+To add or change a component, edit `data/components.json`, then rerun the Figma build.
 
 ## Run it locally
 

@@ -1,0 +1,633 @@
+{
+  "$description": "One Figma component (or component set) per library entry. Keep figmaName exactly as written so names match the library and code.",
+  "components": [
+    {
+      "figmaPage": "Foundations",
+      "figmaName": "Icons/Solid icons",
+      "libraryId": "icn-1",
+      "classes": "fa-solid",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Foundations",
+      "figmaName": "Icons/Regular icons",
+      "libraryId": "icn-2",
+      "classes": "fa-regular",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Foundations",
+      "figmaName": "Icons/Caret",
+      "libraryId": "btn-8",
+      "classes": "fa-solid fa-caret-down",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Foundations",
+      "figmaName": "Icons/Screen-reader label",
+      "libraryId": "icn-3",
+      "classes": ".visually-hidden",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Sizes",
+      "libraryId": "btn-sizes",
+      "classes": "btn-xs · btn-sm · (none) · btn-lg",
+      "variants": {
+        "Version": [
+          "Extra small",
+          "Small",
+          "Medium",
+          "Large"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Primary",
+      "libraryId": "btn-primary",
+      "classes": "btn-solid theme-primary",
+      "variants": {
+        "Version": [
+          "Label",
+          "Icon and label",
+          "Disabled",
+          "On a brand surface"
+        ],
+        "Size": [
+          "Small",
+          "Extra small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Secondary",
+      "libraryId": "btn-secondary",
+      "classes": "btn-outline theme-secondary",
+      "variants": {
+        "Version": [
+          "Label",
+          "Icon and label",
+          "Disabled",
+          "On a brand surface"
+        ],
+        "Size": [
+          "Small",
+          "Extra small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Tertiary",
+      "libraryId": "btn-tertiary",
+      "classes": "btn-text theme-secondary",
+      "variants": {
+        "Version": [
+          "Label",
+          "Icon and label",
+          "Icon only",
+          "Back link",
+          "Disabled"
+        ],
+        "Size": [
+          "Small",
+          "Extra small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Row action",
+      "libraryId": "btn-row-action",
+      "classes": "btn-text theme-primary btn-xs",
+      "variants": {
+        "Version": [
+          "Label",
+          "Icon and label",
+          "Disabled",
+          "In a row gutter",
+          "In a table row"
+        ],
+        "Size": [
+          "Extra small"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Danger",
+      "libraryId": "btn-danger",
+      "classes": "btn-text theme-danger · btn-solid theme-danger",
+      "variants": {
+        "Version": [
+          "Text danger",
+          "Solid danger"
+        ],
+        "Size": [
+          "Small",
+          "Extra small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Client zone",
+      "libraryId": "btn-client-zone",
+      "classes": "btn-outline theme-secondary has-client-zone-icon",
+      "variants": {
+        "Version": [
+          "Icon and label"
+        ],
+        "Size": [
+          "Small",
+          "Extra small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Button group/Sizes",
+      "libraryId": "bg-sizes",
+      "classes": "btn-group-sm · btn-group-xs",
+      "variants": {
+        "Version": [
+          "Small",
+          "Extra small"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Button group/Text labels",
+      "libraryId": "bg-labels",
+      "classes": "btn-group > btn-outline theme-secondary",
+      "variants": {
+        "Version": [
+          "Two actions",
+          "Three actions"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Button group/Icon only",
+      "libraryId": "bg-icons",
+      "classes": "btn-group > btn-outline theme-secondary btn-icon",
+      "variants": {
+        "Version": [
+          "Icon only"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Button group/Split button",
+      "libraryId": "bg-split",
+      "classes": "btn-group > btn-outline theme-secondary + menu-toggle-split",
+      "variants": {
+        "Version": [
+          "Split button"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Button group/With an overflow menu",
+      "libraryId": "bg-overflow",
+      "classes": "btn-group > btn-outline theme-secondary + btn-icon menu trigger",
+      "variants": {
+        "Version": [
+          "Group and overflow"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Button group/Vertical",
+      "libraryId": "bg-vertical",
+      "classes": "btn-group-vertical btn-group-sm",
+      "variants": {
+        "Version": [
+          "Stacked"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "File upload/Upload button",
+      "libraryId": "btn-9",
+      "classes": "",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Breadcrumb",
+      "libraryId": "nav-4",
+      "classes": ".breadcrumb-item / -divider / -link",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Nav underline",
+      "libraryId": "nav-5",
+      "classes": ".nav.nav-underline",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Count tabs",
+      "libraryId": "nav-6",
+      "classes": ".nav.nav-tabs.nav-fill",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Step tabs",
+      "libraryId": "nav-7",
+      "classes": ".nav.nav-tabs.nav-fill",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/View tabs",
+      "libraryId": "nav-8",
+      "classes": ".nav.nav-tabs",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Icon nav link",
+      "libraryId": "nav-9",
+      "classes": ".nav-link",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Pagination",
+      "libraryId": "nav-10",
+      "classes": ".pagination.pagination-sm + .page-item / .page-link",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Menu",
+      "libraryId": "menu-basic",
+      "classes": "[data-bs-toggle=\"menu\"] + .menu > .menu-item",
+      "variants": {
+        "Version": [
+          "Closed",
+          "Open"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Icons",
+      "libraryId": "menu-icons",
+      "classes": ".menu-item-icon",
+      "variants": {
+        "Version": [
+          "With icons"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Active item",
+      "libraryId": "menu-active",
+      "classes": ".menu-item.active + aria-current",
+      "variants": {
+        "Version": [
+          "Active"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Headers and dividers",
+      "libraryId": "menu-groups",
+      "classes": ".menu-header · hr.menu-divider",
+      "variants": {
+        "Version": [
+          "Divider",
+          "Header"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Descriptions",
+      "libraryId": "menu-descriptions",
+      "classes": ".menu-item-content > .menu-item-description",
+      "variants": {
+        "Version": [
+          "With descriptions"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Destructive item",
+      "libraryId": "menu-danger",
+      "classes": ".menu-item.theme-danger",
+      "variants": {
+        "Version": [
+          "Last, after a divider"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Disabled item",
+      "libraryId": "menu-disabled",
+      "classes": ".menu-item.disabled + aria-disabled",
+      "variants": {
+        "Version": [
+          "Disabled"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Placement",
+      "libraryId": "menu-placement",
+      "classes": "data-bs-placement=\"bottom-start\" · \"bottom-end\"",
+      "variants": {
+        "Version": [
+          "Start (default)",
+          "End"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Menus/Overflow menu",
+      "libraryId": "menu-overflow",
+      "classes": "btn-text theme-primary btn-xs + .menu",
+      "variants": {
+        "Version": [
+          "Overflow",
+          "Open"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Label",
+      "libraryId": "frm-5",
+      "classes": "label",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Input",
+      "libraryId": "frm-1",
+      "classes": ".form-control.form-control-sm",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Input group",
+      "libraryId": "frm-3",
+      "classes": ".input-group.input-group-sm",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Input group text",
+      "libraryId": "frm-4",
+      "classes": ".input-group-text",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Checkbox",
+      "libraryId": "frm-9",
+      "classes": ".check.check-sm + label",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Radio",
+      "libraryId": "frm-10",
+      "classes": ".radio .radio-sm  + label",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Switch",
+      "libraryId": "frm-7",
+      "classes": ".switch + input[role=switch]",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Lite and Expert mode switch",
+      "libraryId": "frm-8",
+      "classes": ".switch.theme-primary inside a bordered pill",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Forms/Combobox",
+      "libraryId": "sf-3",
+      "classes": ".combobox-toggle + .menu + .check / .radio",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/Card",
+      "libraryId": "cnt-1",
+      "classes": ".card / .card-body",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/Card header",
+      "libraryId": "cnt-7",
+      "classes": ".card-header",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/List group",
+      "libraryId": "cnt-3",
+      "classes": ".list-group / .list-group-item",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/Accordion",
+      "libraryId": "cnt-5",
+      "classes": ".accordion.accordion-flush",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/Table",
+      "libraryId": "cnt-6",
+      "classes": ".table",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/Definition list",
+      "libraryId": "cnt-8",
+      "classes": ".row + .col-4 / .col-8",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Content/Image placeholder",
+      "libraryId": "cnt-9",
+      "classes": "bg-2 + hairline border",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Feedback/Alert",
+      "libraryId": "msg-1",
+      "classes": ".alert.theme-info",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Feedback/Note",
+      "libraryId": "msg-6",
+      "classes": ".alert.theme-info[role=\"note\"]",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Feedback/Toast",
+      "libraryId": "msg-10",
+      "classes": ".toast-container > .toast",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Feedback/Progress",
+      "libraryId": "msg-7",
+      "classes": ".progress > .progress-bar",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Feedback/Tooltip",
+      "libraryId": "msg-4",
+      "classes": "data-bs-toggle=\"tooltip\"",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Feedback/Popover",
+      "libraryId": "sf-2",
+      "classes": ".popover + .popover-body",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Badges/Badge",
+      "libraryId": "msg-2",
+      "classes": ".badge.theme-danger / .badge-subtle",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Badges/Notification dot",
+      "libraryId": "msg-3",
+      "classes": ".badge-dot.theme-danger",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Avatar/Avatar",
+      "libraryId": "avt-1",
+      "classes": ".avatar.avatar-xs.theme-secondary",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Avatar/Avatar stack",
+      "libraryId": "avt-2",
+      "classes": ".avatar-stack.avatar-stack-sm",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Chips/Chip",
+      "libraryId": "msg-8",
+      "classes": ".chip + .chip-dismiss",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Tables/Table footer",
+      "libraryId": "tbl-1",
+      "classes": "count + NAV-10 in a bordered row",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Tables/Empty state",
+      "libraryId": "cnt-11",
+      "classes": ".card + .card-body",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Section cards/Entity list card",
+      "libraryId": "cnt-2",
+      "classes": ".card > .list-group.list-group-flush",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Section cards/People card",
+      "libraryId": "cnt-4",
+      "classes": ".card-body + .avatar-stack",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Section cards/Profile tile",
+      "libraryId": "cnt-10",
+      "classes": "hairline border + radius-5",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Actions/Action gutter",
+      "libraryId": "cnt-12",
+      "classes": "bg-1 + border-inline-start",
+      "variants": {}
+    },
+    {
+      "figmaPage": "App shell",
+      "figmaName": "App shell/Header menus",
+      "libraryId": "shell-header-menus",
+      "classes": "btn-text theme-secondary btn-sm + .menu",
+      "variants": {
+        "Version": [
+          "Account menu",
+          "Language switch"
+        ]
+      }
+    },
+    {
+      "figmaPage": "App shell",
+      "figmaName": "App shell/Subheader band",
+      "libraryId": "shell-subheader",
+      "classes": "--bs-primary-bg-subtle",
+      "variants": {}
+    }
+  ]
+}
