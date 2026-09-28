@@ -249,6 +249,39 @@ const components = library.groups.flatMap((group) => group.items
   })))
 writeFileSync(join(root, 'figma/components.json'), JSON.stringify({ $description: 'One Figma component (or component set) per library entry. Keep figmaName exactly as written so names match the library and code.', components }, null, 2) + '\n')
 
+// Audit plugin ----------------------------------------------------------
+// Embeds what the library expects so the plugin can compare the Figma file.
+const values = {}
+const paths = {}
+const flatten = (node, trail, set) => {
+  if (node && typeof node === 'object' && '$value' in node) {
+    if (typeof node.$value === 'string' && node.$value.startsWith('{')) return
+    const key = trail.join('/')
+    values[set][key] = node.$value
+    ;(paths[key] ??= []).push(set)
+    return
+  }
+  for (const [k, child] of Object.entries(node || {})) if (!k.startsWith('$')) flatten(child, [...trail, k], set)
+}
+for (const set of ['palette', 'theme', ...Object.keys(primarySets), 'size']) { values[set] = {}; flatten(out[set], [], set) }
+const themes = Object.fromEntries(out.$themes.map((t) => [t.name, Object.keys(t.selectedTokenSets).find((k) => k.startsWith('primary/'))]))
+
+const B = JSON.parse(read('figma/bindings.json')).Buttons.variants
+const rule = (name, extra = {}) => ({ '*': { fill: B[name].fill, stroke: B[name].stroke, text: B[name].text }, ...extra })
+const iconOnly = (name) => ({ fill: B[name].fill, stroke: B[name].stroke })
+const buttonRules = {
+  'Buttons/Primary': rule('Primary', { 'On a brand surface': null }),
+  'Buttons/Secondary': rule('Secondary', { 'On a brand surface': null }),
+  'Buttons/Tertiary': rule('Tertiary', { 'Icon only': iconOnly('Tertiary') }),
+  'Buttons/Row action': rule('Row action', { 'In a row gutter': null, 'In a table row': null }),
+  'Buttons/Danger': { 'Text danger': rule('Danger text')['*'], 'Solid danger': rule('Danger solid')['*'] },
+  'Buttons/Client zone': rule('Client zone')
+}
+const git = (() => { try { return readFileSync(join(root, '../.git/HEAD'), 'utf8').trim().replace('ref: refs/heads/', '') } catch { return 'unknown' } })()
+const expected = { generatedFrom: `branch ${git}, built ${new Date().toISOString().slice(0, 10)}`, values, paths, themes, codeSyntax, components, buttonRules }
+writeFileSync(join(root, 'figma/audit-plugin/code.js'), read('figma/audit-plugin/code.template.js').replace('__EXPECTED__', JSON.stringify(expected)))
+
 console.log(`figma/tokens.json: ${paletteVars.length} palette, ${themeVars.length} theme, ${Object.keys(primarySets).length} primary modes`)
 console.log(`figma/components.json: ${components.length} components`)
 console.log(`figma/code-syntax-plugin/code.js: ${Object.keys(codeSyntax).length} variables`)
+console.log(`figma/audit-plugin/code.js: ${Object.keys(paths).length} tokens, ${components.length} components`)

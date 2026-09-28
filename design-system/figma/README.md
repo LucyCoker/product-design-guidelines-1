@@ -9,6 +9,7 @@ How the component library and Figma stay in sync. The library (this repo) is the
 | Button state colours (hover, active, focus) | `button-states.json`, and `button/*` variables in `tokens.json` | Generated. Bind hover and active variants to the `button/…` variables |
 | Which variable goes where | `bindings.json` | Follow it when building a component. Never pick a `palette/*` colour on a component |
 | Component → code links | `code-connect/*.figma.ts` | Figma Code Connect (`npx figma connect publish`) |
+| Audit | `audit-plugin/` | Figma plugin: compares the file with the library |
 
 ## 1. Variables
 
@@ -61,6 +62,48 @@ Code Connect makes Dev Mode show our Bootstrap markup for a component. `code-con
 1. Copy each component's link from Figma and replace `FILE_KEY` and `NODE_ID`.
 2. Give each button component the variant properties `Version` and `Size` from `components.json`, and a text property `Label`.
 3. Run `npx figma connect publish` from `design-system/figma/` with a Figma access token.
+
+## Daily sync
+
+Three places hold the design system. Each one owns different things.
+
+| Place | Owns | Who changes it |
+|---|---|---|
+| **Code** (`filmmakers.css` on Bootstrap 6) | Token values, what components actually look like | Developers |
+| **GitHub** (this repo) | The rules (`products/`, `patterns/`), the component list (`design-system/data/`), and the generated Figma files (`design-system/figma/`) | Anyone, through pull requests |
+| **Figma** | Designs built from the library | Designers |
+
+The library website and the Figma files are both generated from GitHub, so GitHub is the source of truth. Figma never changes code directly: a change made in Figma arrives as a pull request.
+
+### When something changes in code
+1. A developer changes `filmmakers.css`, or updates Bootstrap.
+2. They run `npm run figma --prefix design-system` and commit the result with the change. The **Design system sync** check on the pull request fails if they forget.
+3. After merge, a designer pulls in Tokens Studio and exports to Figma.
+4. The designer runs the **Filmmakers audit** plugin. It should show everything in sync.
+
+### When something changes in Figma
+1. A designer changes a token in Tokens Studio and pushes it to a new branch. That opens a pull request on `tokens.json`.
+2. A developer makes the same change in `filmmakers.css` (the CSS is the source), reruns `npm run figma`, and pushes to the same branch.
+3. The check passes when the regenerated files match. Merge.
+
+### When a component changes
+1. Update the guideline page and `design-system/data/components.json` (and `bindings.json` if the colours change). The library website updates on merge.
+2. Run `npm run figma`, commit.
+3. The designer updates the Figma component, then runs the audit.
+
+### Auditing: is everything in sync?
+Run the **Filmmakers audit** plugin in the Figma file (import `audit-plugin/manifest.json` once, like the code syntax plugin). It checks four things against the library:
+
+| Check | Finds |
+|---|---|
+| Variables | Tokens missing in Figma, values that differ in any mode, variables that exist only in Figma |
+| Code syntax | Variables without their `var(--bs-…)` name |
+| Components | Library entries missing in Figma, missing variants, components that exist only in Figma |
+| Bindings | Buttons bound to the wrong variable, and any component using a raw colour or a `palette/*` colour |
+
+*Copy report* gives a Markdown summary to paste into a pull request or to Claude. Something marked "only in Figma" is either new work that needs adding to the library, or something to delete.
+
+The GitHub check covers the other half: code and library against the Figma files. Together they answer "is anything out of sync, and which source needs updating?"
 
 ## Pilot: test the sync before building everything
 

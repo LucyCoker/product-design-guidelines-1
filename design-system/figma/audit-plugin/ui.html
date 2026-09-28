@@ -1,0 +1,50 @@
+<style>
+  body { font: 12px/1.5 Inter, system-ui, sans-serif; margin: 0; color: #1e1e1e; }
+  header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e6e6e6; padding: 12px 16px; display: flex; gap: 8px; align-items: center; }
+  header b { flex: 1; font-size: 13px; }
+  button { font: inherit; border: 1px solid #c4c4c4; background: #fff; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+  main { padding: 8px 16px 24px; }
+  .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #f0f0f0; }
+  .ok { color: #1a7f37; } .bad { color: #cf222e; } .warn { color: #9a6700; }
+  details { margin: 6px 0 10px; } summary { cursor: pointer; font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 18px; max-height: 180px; overflow: auto; }
+  li { margin: 2px 0; word-break: break-word; }
+  code { font: 11px ui-monospace, Menlo, monospace; }
+  textarea { position: absolute; left: -9999px; }
+</style>
+<header><b>Filmmakers audit</b><button id="rerun">Run again</button><button id="copy">Copy report</button></header>
+<main id="out">Checking the file…</main>
+<textarea id="clip"></textarea>
+<script>
+const $ = (id) => document.getElementById(id)
+let markdown = ''
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
+function section(title, ok, problems, lines) {
+  const state = problems === 0 ? 'ok' : 'bad'
+  const html = `<div class="row"><span>${title}</span><span class="${state}">${problems === 0 ? '✓ ' + ok + ' in sync' : '✕ ' + problems + ' to fix · ' + ok + ' ok'}</span></div>` +
+    (lines.length ? `<details ${problems && problems < 40 ? 'open' : ''}><summary>Details</summary><ul>${lines.map((l) => `<li>${l}</li>`).join('')}</ul></details>` : '')
+  markdown += `\n## ${title}: ${problems === 0 ? 'in sync' : problems + ' to fix'} (${ok} ok)\n` + lines.map((l) => '- ' + l.replace(/<[^>]+>/g, '')).join('\n') + '\n'
+  return html
+}
+onmessage = ({ data: { pluginMessage: r } }) => {
+  if (r.error) { $('out').textContent = 'Audit failed: ' + r.error; return }
+  markdown = `# Filmmakers audit\nFile: ${r.file}\nLibrary: ${r.library}\n`
+  const v = r.variables, c = r.codeSyntax, k = r.components, b = r.bindings
+  $('out').innerHTML =
+    section('Variables', v.ok, v.wrong.length + v.missing.length, [
+      ...v.wrong.map((w) => `<b>${esc(w.name)}</b> (${esc(w.mode)}): Figma <code>${esc(w.actual)}</code>, library <code>${esc(w.expected)}</code>`),
+      ...v.missing.map((m) => `Missing in Figma: <code>${esc(m)}</code>`),
+      ...v.extra.map((m) => `<span class="warn">Only in Figma: <code>${esc(m)}</code></span>`)]) +
+    section('Code syntax', c.ok, c.missing.length, c.missing.map((m) => `<code>${esc(m.name)}</code> should be <code>${esc(m.expected)}</code>`)) +
+    section('Components', k.ok, k.missing.length + k.variants.length, [
+      ...k.missing.map((m) => `Missing in Figma: <b>${esc(m)}</b>`),
+      ...k.variants.map((m) => `<b>${esc(m.name)}</b>: ${esc(m.problems.join('; '))}`),
+      ...k.extra.map((m) => `<span class="warn">Only in Figma: ${esc(m)}</span>`)]) +
+    section('Bindings', b.ok, b.wrong.length + b.raw.length + b.palette.length, [
+      ...b.wrong.map((w) => `<b>${esc(w.where)}</b> ${w.prop}: uses <code>${esc(w.actual)}</code>, should be <code>${esc(w.expected)}</code>`),
+      ...b.palette.map((p) => `<b>${esc(p.where)}</b> › ${esc(p.layer)} ${p.kind}: palette colour <code>${esc(p.variable)}</code>. Use a role variable.`),
+      ...b.raw.map((p) => `<b>${esc(p.where)}</b> › ${esc(p.layer)} ${p.kind}: raw colour <code>${p.colour}</code>, not a variable`)])
+}
+$('rerun').onclick = () => { $('out').textContent = 'Checking the file…'; parent.postMessage({ pluginMessage: 'rerun' }, '*') }
+$('copy').onclick = () => { $('clip').value = markdown; $('clip').select(); document.execCommand('copy'); $('copy').textContent = 'Copied'; setTimeout(() => $('copy').textContent = 'Copy report', 1500) }
+</script>
