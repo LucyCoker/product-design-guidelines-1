@@ -7,6 +7,6 @@
     "figma": "node scripts/build-figma.mjs"
   },
   "devDependencies": {
-    "playwright-core": "^1.56.1"
+    "playwright-core": "1.56.1"
   }
 }
