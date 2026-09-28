@@ -6,6 +6,7 @@ How the component library and Figma stay in sync. The library (this repo) is the
 |---|---|---|
 | Variables (colour, spacing, radius, type) | `tokens.json` | Tokens Studio plugin, synced with this GitHub repo |
 | Component names and variants | `components.json` | Build the Figma library to this list |
+| Which variable goes where | `bindings.json` | Follow it when building a component. Never pick a `palette/*` colour on a component |
 | Component → code links | `code-connect/*.figma.ts` | Figma Code Connect (`npx figma connect publish`) |
 
 ## 1. Variables
@@ -71,7 +72,7 @@ Build one slice end to end, in a blank Figma file, before building the full libr
 | Step | Do | Pass when |
 |---|---|---|
 | 1. Variables in | Tokens Studio → Settings → Add sync provider → GitHub. Repo `denkungsart/product-design-guidelines`, the pilot branch, path `design-system/figma/tokens.json`. Pull, then *Export to Figma* (variables and text styles). | Figma has Palette, Theme, Primary, Size and Typography collections. `primary/bg` is `#006ac9` in Default Blue and `#b61e35` in Red. After running the code syntax plugin, code syntax on `primary/bg` reads `var(--bs-primary-bg)`. |
-| 2. One component | On a page named Components, build `Buttons/Primary` as a component set with variant properties `Version` (Label, Icon and label, Disabled, On a brand surface) and `Size` (Small, Extra small, Medium), and a text property `Label`. Bind fill to `primary/bg`, text to `primary/contrast`, radius to `radius/4`. | Switching the frame's Primary mode to Red recolours the button. It matches the library page with the Red preview side by side. |
+| 2. One component | On a page named Components, build `Buttons/Primary` as a component set with variant properties `Version` (Label, Icon and label, Disabled, On a brand surface) and `Size` (Small, Extra small, Medium), and a text property `Label`. Bind every property exactly as listed in `bindings.json`: fill and stroke `primary/bg`, text `primary/contrast`, radius `radius/5`. Never pick a `palette/*` colour. | Switching the frame's Primary mode to Red recolours the button. It matches the library page with the Red preview side by side. |
 | 3. Code Connect | Paste the component's link into `code-connect/buttons.figma.ts`, then `npx figma connect publish` from `design-system/figma/`. | Dev Mode on the button shows `<button type="button" class="btn-solid theme-primary btn-sm">…</button>`. |
 | 4. Change in Figma | In Tokens Studio, change one value (for example `radius/4` to 8). Push to a new branch and open a pull request. | The pull request changes only that value in `tokens.json`. A developer can see which CSS token (`--bs-radius-4`) it maps to. |
 | 5. Change in code | Change one value in `filmmakers.css` (for example the Green preview primary). Run `npm run figma`, commit, push. Pull in Tokens Studio and export again. | Figma updates the variable in place. Components bound to it update, and nothing breaks or duplicates. |
