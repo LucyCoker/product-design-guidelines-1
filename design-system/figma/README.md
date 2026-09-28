@@ -77,6 +77,9 @@ Build one slice end to end, in a blank Figma file, before building the full libr
 | 5. Change in code | Change one value in `filmmakers.css` (for example the Green preview primary). Run `npm run figma`, commit, push. Pull in Tokens Studio and export again. | Figma updates the variable in place. Components bound to it update, and nothing breaks or duplicates. |
 | 6. Names line up | Compare the Figma component names with `components.json`. | Every name matches exactly, including the `Group/Entry` path. |
 
+**Skipped for now — do before developers or AI tools use the file**
+- [ ] Run the **Filmmakers code syntax** plugin, so Dev Mode and AI tools see `var(--bs-…)` names instead of hex values. Skipped during the pilot on purpose.
+
 **What the pilot decides**
 - If step 4 is the way designers will want to work, decide who owns token values. Today the CSS is the source and `tokens.json` is generated from it, so a Figma change is a request that a developer applies by hand. To make Figma edits flow straight into code, flip it: make a token file the source and generate `filmmakers.css` from it.
 - If steps 1–3 need a plan you do not have, choose between upgrading and keeping Figma read-only (variables in, no Code Connect).
