@@ -103,10 +103,13 @@ function render(data) {
   const inSection = (name) => data.groups.filter((g) => g.section === name)
   const components = inSection('components')
   const organisms = inSection('organisms')
+  const forms = inSection('forms')
   $('#component-pages').outerHTML = components.map((g) => pageHtml(g, { id: 'components', title: 'Components' })).join('')
+  $('#form-pages').outerHTML = forms.map((g) => pageHtml(g, { id: 'forms', title: 'Forms' })).join('')
   $('#organism-pages').outerHTML = organisms.map((g) => pageHtml(g, { id: 'organisms', title: 'Organisms' })).join('')
   $('#shell-page').outerHTML = inSection('app-shell').map((g) => pageHtml(g, null)).join('')
   $('#side-components').insertAdjacentHTML('beforeend', sideLinks(components))
+  $('#side-forms').insertAdjacentHTML('beforeend', sideLinks(forms))
   $('#side-organisms').insertAdjacentHTML('beforeend', sideLinks(organisms))
 
   $('#components-excluded').innerHTML =

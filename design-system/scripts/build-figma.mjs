@@ -233,7 +233,7 @@ writeFileSync(join(root, 'figma/code-syntax-plugin/code.js'), plugin)
 
 // Component names -------------------------------------------------------
 const library = JSON.parse(read('data/components.json'))
-const sectionName = { foundations: 'Foundations', components: 'Components', organisms: 'Organisms', 'app-shell': 'App shell' }
+const sectionName = { foundations: 'Foundations', components: 'Components', forms: 'Forms', organisms: 'Organisms', 'app-shell': 'App shell' }
 const components = library.groups.flatMap((group) => group.items
   .filter((item) => item.example || item.examples?.length)
   .map((item) => ({

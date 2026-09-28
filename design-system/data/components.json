@@ -1008,10 +1008,73 @@
    ]
   },
   {
-   "id": "forms",
-   "section": "components",
-   "title": "Forms",
-   "intro": "Inputs sit beside their labels, joined by for and id.",
+   "id": "checkbox",
+   "section": "forms",
+   "title": "Checkbox",
+   "intro": "Choose any number of options. The input sits beside its label, joined by for and id.",
+   "items": [
+    {
+     "code": "FRM-9",
+     "name": "Checkbox",
+     "status": "Replace",
+     "classes": ".check.check-sm + label",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
+     "replaces": "checkbox .checkbox > label > input",
+     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (FRM-11): the input is nested in the label so the whole row is the hit target, and it drops .check-sm. UNRESOLVED - whether the nested form is permitted or the menu item should carry for/id like every other checkbox.",
+     "unresolved": true,
+     "flags": [],
+     "layout": "stack",
+     "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>"
+    }
+   ]
+  },
+  {
+   "id": "chips",
+   "section": "forms",
+   "title": "Chips",
+   "intro": "Removable tokens, one per applied filter.",
+   "items": [
+    {
+     "code": "MSG-8",
+     "name": "Chip",
+     "status": "Added",
+     "classes": ".chip + .chip-dismiss",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/chips/",
+     "replaces": "(none)",
+     "note": "Added. One chip per applied filter, each with a dismiss button that resets that filter to its page default. Only used in the chips variant of SF-1, which is not in production use yet.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip theme-secondary\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
+    }
+   ]
+  },
+  {
+   "id": "combobox",
+   "section": "forms",
+   "title": "Combobox",
+   "intro": "One control for every filter and sort: radio items for one value, checkboxes for many.",
+   "items": [
+    {
+     "code": "SF-3",
+     "name": "Combobox",
+     "status": "Replace",
+     "classes": ".combobox-toggle + .menu + .check / .radio",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/combobox/",
+     "replaces": "dropdown of checkboxes .dropdown + .checkbox",
+     "note": "Replace. Multi-select filter: the toggle shows the label and the selection (“Language: 2 selected”), the menu holds one checkbox per value, and a .combobox-search input appears once the list passes six entries. One control for every filter: single-value filters carry radio items, multi-value filters checkbox items, and the toggle always reads label plus value. Replaces the native select the product used before (FRM-2, retired), including the Sort by control. Two deviations to settle: the checkbox is nested inside label.menu-item rather than paired by for/id (see FRM-9), and it resets --bs-theme-bg / --bs-theme-contrast because a themed .menu parent would otherwise paint the unchecked box in the menu's own fill.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<div style=\"display:flex;flex-direction:column;gap:6px;width:200px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Single value - radio items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"All\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">All</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" checked=\"checked\" aria-label=\"Active\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Active</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"Inactive\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Inactive</span></label></div></div><div style=\"display:flex;flex-direction:column;gap:6px;width:240px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Multi value - checkbox items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\"></div><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"English\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">English</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"German\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">German</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" aria-label=\"French\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">French</span></label></div></div>"
+    }
+   ]
+  },
+  {
+   "id": "field",
+   "section": "forms",
+   "title": "Field",
+   "intro": "Labels above or beside their control, weight 600, sentence case.",
    "items": [
     {
      "code": "FRM-5",
@@ -1025,7 +1088,15 @@
      "flags": [],
      "layout": "row",
      "example": "<label for=\"map-label-demo\" style=\"display:block;margin-bottom:4px\">Search in</label><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" id=\"map-label-demo\" aria-describedby=\"map-label-demo-help\" style=\"width:200px\"><span class=\"combobox-value\">All fields</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><small class=\"form-text\" id=\"map-label-demo-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Narrows the search to a single profile field.</small>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "form-controls",
+   "section": "forms",
+   "title": "Form controls",
+   "intro": "Text inputs. Small is the default size.",
+   "items": [
     {
      "code": "FRM-1",
      "name": "Input",
@@ -1038,7 +1109,15 @@
      "flags": [],
      "layout": "row",
      "example": "<input class=\"form-control form-control-sm\" placeholder=\"Search auditions\" aria-label=\"Search auditions\">"
-    },
+    }
+   ]
+  },
+  {
+   "id": "input-group",
+   "section": "forms",
+   "title": "Input group",
+   "intro": "An input joined with a button or text.",
+   "items": [
     {
      "code": "FRM-3",
      "name": "Input group",
@@ -1064,20 +1143,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"input-group input-group-sm\" style=\"max-width:220px\"><input class=\"form-control\" placeholder=\"from\" aria-label=\"Block from\"><span class=\"input-group-text\">—</span><input class=\"form-control\" placeholder=\"to\" aria-label=\"Block to\"></div>"
-    },
-    {
-     "code": "FRM-9",
-     "name": "Checkbox",
-     "status": "Replace",
-     "classes": ".check.check-sm + label",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
-     "replaces": "checkbox .checkbox > label > input",
-     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (FRM-11): the input is nested in the label so the whole row is the hit target, and it drops .check-sm. UNRESOLVED - whether the nested form is permitted or the menu item should carry for/id like every other checkbox.",
-     "unresolved": true,
-     "flags": [],
-     "layout": "stack",
-     "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "radio",
+   "section": "forms",
+   "title": "Radio",
+   "intro": "Choose one option from a set. Group the set in a fieldset with a legend.",
+   "items": [
     {
      "code": "FRM-10",
      "name": "Radio",
@@ -1090,7 +1164,15 @@
      "flags": [],
      "layout": "row",
      "example": "<fieldset style=\"border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px\"><legend style=\"font-size:var(--bs-font-size-sm);font-weight:600;margin:0 0 4px;padding:0;float:none;width:auto;border:0\">Profile visibility</legend>\n<div class=\"form-field\"><input type=\"radio\" class=\"radio radio-sm\" name=\"map-visibility\" id=\"map-pv-all\" checked=\"checked\"><label for=\"map-pv-all\">Visible to all Casters</label></div>\n<div class=\"form-field\"><input type=\"radio\" class=\"radio radio-sm\" name=\"map-visibility\" id=\"map-pv-agency\"><label for=\"map-pv-agency\">Only visible to My Casting Agency 123</label></div>\n</fieldset>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "switch",
+   "section": "forms",
+   "title": "Switch",
+   "intro": "Turn one setting on or off.",
+   "items": [
     {
      "code": "FRM-7",
      "name": "Switch",
@@ -1109,26 +1191,13 @@
      "name": "Lite and Expert mode switch",
      "status": "Replace",
      "classes": ".switch.theme-primary inside a bordered pill",
-     "docs": "",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/switch/",
      "replaces": "production mode pill new_production_dialog_mode_form",
      "note": "In the header band the pill takes the body background so it lifts off the tint, and it hides below md.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<div class=\"d-flex align-items-center gap-2 border border-primary rounded-pill px-3 py-1 text-uppercase fs-sm\" style=\"width:fit-content\">\n<span class=\"fg-3\" title=\"Lite Mode keeps the interface focused on essential functions. Perfect for new users or anyone who prefers a simple approach.\"><i class=\"fas fa-shapes\"></i><span class=\"fa5-text\">Lite</span></span>\n<div class=\"switch theme-primary\"><input role=\"switch\" aria-label=\"Mode\" type=\"checkbox\" id=\"production_mode_specimen\"></div>\n<label class=\"fg-primary fw-semibold\" title=\"Expert Mode gives experienced users the full feature set, including advanced settings and customization.\" for=\"production_mode_specimen\"><i class=\"fas fa-rocket\"></i><span class=\"fa5-text\">Expert</span></label>\n</div>"
-    },
-    {
-     "code": "SF-3",
-     "name": "Combobox",
-     "status": "Replace",
-     "classes": ".combobox-toggle + .menu + .check / .radio",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/combobox/",
-     "replaces": "dropdown of checkboxes .dropdown + .checkbox",
-     "note": "Replace. Multi-select filter: the toggle shows the label and the selection (“Language: 2 selected”), the menu holds one checkbox per value, and a .combobox-search input appears once the list passes six entries. One control for every filter: single-value filters carry radio items, multi-value filters checkbox items, and the toggle always reads label plus value. Replaces the native select the product used before (FRM-2, retired), including the Sort by control. Two deviations to settle: the checkbox is nested inside label.menu-item rather than paired by for/id (see FRM-9), and it resets --bs-theme-bg / --bs-theme-contrast because a themed .menu parent would otherwise paint the unchecked box in the menu's own fill.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div style=\"display:flex;flex-direction:column;gap:6px;width:200px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Single value - radio items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"All\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">All</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" checked=\"checked\" aria-label=\"Active\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Active</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"Inactive\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Inactive</span></label></div></div><div style=\"display:flex;flex-direction:column;gap:6px;width:240px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Multi value - checkbox items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\"></div><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"English\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">English</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"German\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">German</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" aria-label=\"French\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">French</span></label></div></div>"
     }
    ]
   },
@@ -1375,27 +1444,6 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">MS</span><span class=\"avatar avatar-sm theme-secondary\">+2</span></div>"
-    }
-   ]
-  },
-  {
-   "id": "chips",
-   "section": "components",
-   "title": "Chips",
-   "intro": "Removable tokens, one per applied filter.",
-   "items": [
-    {
-     "code": "MSG-8",
-     "name": "Chip",
-     "status": "Added",
-     "classes": ".chip + .chip-dismiss",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/chips/",
-     "replaces": "(none)",
-     "note": "Added. One chip per applied filter, each with a dismiss button that resets that filter to its page default. Only used in the chips variant of SF-1, which is not in production use yet.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip theme-secondary\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
     }
    ]
   },
