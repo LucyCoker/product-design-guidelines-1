@@ -28,30 +28,56 @@ function flagHtml(flag) {
   return `<p class="lib-flag">${badge}<span>${escapeHtml(flag.text)}</span></p>`
 }
 
+const GUIDE_BASE = 'https://denkungsart.github.io/product-design-guidelines/'
+const guideUrl = (path) => GUIDE_BASE + path.replace(/\.md$/, '/')
+const itemId = (item) => item.id || slug(item)
+
+// One allowed version: live example, name, optional class badge and caption.
+function exampleHtml(example) {
+  return `<figure class="lib-example">
+    <div class="lib-example-stage">${example.html}</div>
+    <figcaption><b>${escapeHtml(example.label)}</b>${example.badge ? `<span class="badge ${example.badge === 'Default' ? 'theme-primary' : 'theme-secondary'} badge-subtle">${escapeHtml(example.badge)}</span>` : ''}
+      ${example.caption ? `<span>${escapeHtml(example.caption)}</span>` : ''}</figcaption>
+  </figure>`
+}
+
 function itemHtml(item) {
   const chips = [
-    `<span class="badge theme-secondary badge-subtle">${item.code}</span>`,
+    item.code ? `<span class="badge theme-secondary badge-subtle">${item.code}</span>` : '',
     item.status === 'Custom' ? '<span class="badge theme-secondary">Custom</span>' : '',
     item.unresolved ? '<span class="badge theme-warning badge-subtle">Unresolved</span>' : ''
   ].join('')
   const meta = [
     item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',
     item.docs ? `<a href="${item.docs}" target="_blank" rel="noopener">Bootstrap 6 docs</a>` : '',
+    item.guide ? `<a href="${guideUrl(item.guide)}" target="_blank" rel="noopener">Guideline</a>` : '',
     item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : ''
   ].join('')
-  const preview = item.example
-    ? `<div class="lib-preview" data-layout="${item.layout}">${item.example}</div>`
-    : '<div class="lib-preview-missing"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Example not shared yet.</span></div>'
-  const code = item.example
+
+  let preview = ''
+  let markup = item.example || ''
+  if (item.examples) {
+    markup = item.examples.map((e) => `<!-- ${e.label} -->\n${formatMarkup(e.html)}`).join('\n\n')
+    preview = item.examples.length ? `<div class="lib-examples">${item.examples.map(exampleHtml).join('')}</div>` : ''
+  } else if (item.example) {
+    markup = formatMarkup(item.example)
+    preview = `<div class="lib-preview" data-layout="${item.layout}">${item.example}</div>`
+  } else {
+    preview = '<div class="lib-preview-missing"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Example not shared yet.</span></div>'
+  }
+  const code = markup
     ? `<details class="lib-code"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code</summary>
-        <div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code>${escapeHtml(formatMarkup(item.example))}</code></pre></div></details>`
+        <div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code>${escapeHtml(markup)}</code></pre></div></details>`
     : ''
-  return `<article class="lib-item" id="${slug(item)}">
+  // Rules are written in this repo and may carry inline markup.
+  const rules = item.rules?.length ? `<ul class="lib-rules">${item.rules.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''
+  return `<article class="lib-item" id="${itemId(item)}">
     <div class="lib-item-head"><h3>${escapeHtml(item.name)}</h3>${chips}</div>
-    <div class="lib-item-meta">${meta}</div>
+    ${meta ? `<div class="lib-item-meta">${meta}</div>` : ''}
     ${item.note ? `<p class="lib-note">${escapeHtml(item.note)}</p>` : ''}
-    ${item.flags.map(flagHtml).join('')}
     ${preview}
+    ${rules}
+    ${item.flags.map(flagHtml).join('')}
     ${code}
   </article>`
 }
@@ -84,7 +110,7 @@ function render(data) {
       const count = $$('.lib-item', page).length
       const intro = $('.lib-page-head p', page)?.textContent || ''
       return `<a class="card" href="#${page.dataset.page}"><div class="card-body">
-        <small>${count ? `${count} ${count === 1 ? 'component' : 'components'}` : 'Foundation'}</small>
+        <small>${count ? `${count} ${count === 1 ? 'item' : 'items'}` : 'Foundation'}</small>
         <b>${escapeHtml(page.dataset.title)}</b><p>${escapeHtml(intro)}</p></div></a>`
     }).join('')
   }

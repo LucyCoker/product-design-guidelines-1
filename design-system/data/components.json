@@ -65,91 +65,285 @@
    "id": "buttons",
    "section": "components",
    "title": "Buttons",
-   "intro": "Variant sets emphasis, theme sets meaning. Small is the default size.",
+   "intro": "Variant sets how loud a button is. Theme sets what it means. Never use theme to create emphasis.",
    "items": [
     {
-     "code": "BTN-2",
-     "name": "Button, solid",
-     "status": "Direct",
-     "classes": ".btn-solid.theme-primary.btn-sm",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/",
-     "replaces": "btn btn-primary",
-     "note": "Direct. One primary per screen; the colour is per user.",
-     "unresolved": false,
-     "flags": [],
+     "id": "btn-sizes",
+     "name": "Sizes",
+     "classes": "btn-xs · btn-sm · (none) · btn-lg",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/#sizes",
+     "note": "Small is the default. Filmmakers System is dense, and small suits it. Use a different size only for the cases below.",
+     "rules": [
+      "Use <code>btn-sm</code> unless one of the other rows applies.",
+      "Use <code>btn-xs</code> in table rows, inline row actions and compact toolbars.",
+      "Keep one size within a group of buttons."
+     ],
      "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\"><i class=\"fa-solid fa-plus\"></i>Add block</button>"
+     "examples": [
+      {
+       "label": "Extra small",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-xs\">Edit</button>",
+       "caption": "Table rows, row actions, compact toolbars",
+       "badge": "btn-xs"
+      },
+      {
+       "label": "Small",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Save draft</button>",
+       "caption": "Everything else",
+       "badge": "Default"
+      },
+      {
+       "label": "Medium",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary\">Add people</button>",
+       "caption": "Empty states and screens with room to breathe",
+       "badge": "no class"
+      },
+      {
+       "label": "Large",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-lg\">Start free trial</button>",
+       "caption": "Marketing surfaces only. Not used in the application",
+       "badge": "btn-lg"
+      }
+     ],
+     "status": "Direct",
+     "flags": [],
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
     },
     {
-     "code": "BTN-1",
-     "name": "Button, outline",
+     "id": "btn-primary",
+     "name": "Primary",
+     "classes": "btn-solid theme-primary",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
+     "note": "The one most important action on the screen. It takes the customer’s primary colour.",
+     "rules": [
+      "At most one primary button per screen. Where two compete, pick the one most people take, or make both secondary.",
+      "Primary means “most important thing here”. It never means safe, confirm, new or recommended.",
+      "On a dark or brand-coloured surface, use <code>btn-solid theme-inverse</code> instead."
+     ],
+     "examples": [
+      {
+       "label": "Label",
+       "html": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\">Publish selection</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Icon and label",
+       "html": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\"><i class=\"fa-solid fa-plus\" aria-hidden=\"true\"></i>Add block</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Disabled",
+       "html": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\" disabled>Publish selection</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "On a brand surface",
+       "html": "<div class=\"p-3 rounded d-inline-flex gap-2\" style=\"background:var(--bs-primary-bg)\"><button type=\"button\" class=\"btn-solid theme-inverse btn-sm\">Open selection</button></div>",
+       "caption": "",
+       "badge": "btn-solid theme-inverse"
+      }
+     ],
      "status": "Direct",
-     "classes": ".btn-outline.theme-secondary.btn-sm",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#outline",
-     "replaces": "btn btn-default",
-     "note": "Direct. btn-default has no v6 equivalent; outline secondary is the permitted stand-in.",
-     "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Open in search</button>"
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
     },
     {
-     "code": "BTN-3",
-     "name": "Button, text",
+     "id": "btn-secondary",
+     "name": "Secondary",
+     "classes": "btn-outline theme-secondary",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
+     "note": "Actions that matter but are not the main one: Cancel, Export, Save draft.",
+     "rules": [
+      "Use as many as the screen needs. Most actions are secondary.",
+      "Never use <code>btn-outline theme-primary</code>: it becomes a second primary.",
+      "On a dark or brand-coloured surface, use <code>btn-outline theme-inverse</code>."
+     ],
+     "examples": [
+      {
+       "label": "Label",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Save draft</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Icon and label",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\"><i class=\"fa-solid fa-arrow-up-right-from-square\" aria-hidden=\"true\"></i>Open in search</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Disabled",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" disabled>Save draft</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "On a brand surface",
+       "html": "<div class=\"p-3 rounded d-inline-flex gap-2\" style=\"background:var(--bs-primary-bg)\"><button type=\"button\" class=\"btn-outline theme-inverse btn-sm\">Not now</button></div>",
+       "caption": "",
+       "badge": "btn-outline theme-inverse"
+      }
+     ],
      "status": "Direct",
-     "classes": ".btn-text.theme-primary.btn-xs",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#text",
-     "replaces": "btn btn-link",
-     "note": "Direct. Edit, Duplicate, Copy/Move, View as applicant.",
-     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
+    },
+    {
+     "id": "btn-tertiary",
+     "name": "Tertiary",
+     "classes": "btn-text theme-secondary",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
+     "note": "Quiet actions: inline, in menus, in toolbars and in table rows. Discard, Learn more, Back.",
+     "rules": [
+      "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter).",
+      "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus.",
+      "The hit target is at least 44×44px. Icon-only buttons are never destructive."
+     ],
      "flags": [
       {
        "type": "ask",
-       "text": "Conflicts with the Buttons guideline: text buttons are listed as theme-secondary, and btn-text theme-primary is not a permitted combination. Decide which one changes."
+       "text": "The Component mapping prototypes use btn-text theme-primary for row actions such as Edit and Duplicate. That is not a permitted combination in the Buttons guideline. Decide which one changes."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Label",
+       "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\">Discard</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Icon and label",
+       "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\"><i class=\"fa-regular fa-circle-question\" aria-hidden=\"true\"></i>Learn more</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Icon only",
+       "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Close\" data-bs-toggle=\"tooltip\" data-bs-title=\"Close\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i></button>",
+       "caption": "Accessible name and tooltip required",
+       "badge": "btn-icon"
+      },
+      {
+       "label": "Back link",
+       "html": "<a class=\"btn-text theme-secondary btn-sm\" href=\"#\"><i class=\"fa-solid fa-arrow-left\" aria-hidden=\"true\"></i>All auditions</a>",
+       "caption": "An anchor styled as a text button",
+       "badge": "a.btn-text"
+      },
+      {
+       "label": "Disabled",
+       "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\" disabled>Discard</button>",
+       "caption": "",
+       "badge": ""
+      }
+     ],
+     "status": "Direct",
+     "layout": "row",
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
+    },
+    {
+     "id": "btn-danger",
+     "name": "Danger",
+     "classes": "btn-text theme-danger · btn-solid theme-danger",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
+     "note": "For actions that remove or destroy something. Red because of what it does. How loud it is depends on where it sits.",
+     "rules": [
+      "<b>Text danger</b> is for a destructive action in an overflow menu, or standalone on a detail page. Never as a bare control in a table row.",
+      "<b>Solid danger</b> is only for confirming a destructive action in a dialog.",
+      "Label the action with what it does (Remove, Delete). Never icon only.",
+      "See the <a href=\"https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/\" target=\"_blank\" rel=\"noopener\">Destructive actions</a> pattern for when to confirm."
+     ],
+     "layout": "row",
+     "examples": [
+      {
+       "label": "Text danger",
+       "html": "<button type=\"button\" class=\"btn-text theme-danger btn-sm\"><i class=\"fa-solid fa-trash\" aria-hidden=\"true\"></i>Remove</button>",
+       "caption": "In a menu, or on a detail page",
+       "badge": "btn-text theme-danger"
+      },
+      {
+       "label": "Solid danger",
+       "html": "<div class=\"card\" style=\"max-width:22rem\"><div class=\"card-body\"><div class=\"fw-semibold mb-1\">Delete this selection?</div><div class=\"fg-2\">Clients lose access to it. This cannot be undone.</div></div><div class=\"card-footer d-flex justify-content-end gap-2\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">Cancel</button><button type=\"button\" class=\"btn-solid theme-danger btn-sm\">Delete selection</button></div></div>",
+       "caption": "Confirmation dialogs only",
+       "badge": "btn-solid theme-danger"
+      }
+     ],
+     "status": "Direct",
+     "flags": [],
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
+    },
+    {
+     "id": "btn-client-zone",
+     "name": "Client zone",
+     "classes": "btn-outline theme-secondary has-client-zone-icon",
+     "docs": "",
+     "status": "Custom",
+     "note": "A secondary button whose icon takes the client zone accent. It tells people they are in an area that clients, or others outside the team, can see.",
+     "rules": [
+      "Use it on every such action inside a client zone. An inconsistent signal is worse than none.",
+      "Never use it outside client zones, and never on solid or text buttons.",
+      "It is never the only signal. The page itself must also say the content is visible to clients."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The class name, and whether the signal extends beyond buttons, need team review (Buttons guideline)."
+      },
+      {
+       "type": "ask",
+       "text": "The mapping uses accent #EF7428. The Colour guideline says an accent MUST be a Bootstrap palette colour, and Bootstrap orange-500 is a different value. Decide which one is right."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Icon and label",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm has-client-zone-icon\"><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i>View as client</button>",
+       "caption": "",
+       "badge": ""
       }
      ],
      "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-copy\"></i>Duplicate</button>"
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
     },
     {
-     "code": "BTN-4",
-     "name": "Button, text danger",
+     "id": "btn-not-allowed",
+     "name": "Not allowed",
+     "classes": "",
+     "docs": "",
+     "note": "Anything outside the versions above is a deviation. Propose it, do not improvise it.",
+     "rules": [
+      "<code>theme-success</code>, <code>theme-warning</code> or <code>theme-info</code> on any button. Success is a state, not an action.",
+      "<code>btn-solid theme-secondary</code>. Primary emphasis without primary meaning.",
+      "<code>btn-outline theme-primary</code> or <code>btn-subtle theme-primary</code>. It becomes a second primary.",
+      "<code>btn-subtle</code> in any theme. Not in use yet.",
+      "The styled button style (<code>btn-styled</code>). Use the default rounded corners."
+     ],
+     "examples": [],
      "status": "Direct",
-     "classes": ".btn-text.theme-danger.btn-xs",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#text",
-     "replaces": "btn btn-link destructive",
-     "note": "Direct. Labelled Remove, not Delete — the action is reversible, so no confirmation dialog.",
-     "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-text theme-danger btn-xs\"><i class=\"fa-solid fa-trash\"></i>Remove</button>"
-    },
-    {
-     "code": "BTN-5",
-     "name": "Button, icon only",
-     "status": "Replace",
-     "classes": ".btn-icon",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#icon-buttons",
-     "replaces": "btn with glyphicon only",
-     "note": "Replace. Needs an accessible name plus a tooltip; the 1:1 aspect ratio is automatic.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Help\" title=\"Help\"><i class=\"fa-regular fa-circle-question\"></i></button>"
-    },
-    {
-     "code": "BTN-10",
-     "name": "Back link",
-     "status": "Direct",
-     "classes": "a.btn-text.theme-secondary.btn-sm",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#button-tags",
-     "replaces": "btn btn-link back link",
-     "note": "Direct. Anchor styled as a text button, with a left arrow icon.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<a class=\"btn-text theme-secondary btn-sm\" href=\"#\"><i class=\"fa-solid fa-arrow-left\"></i>All auditions</a>"
-    },
+     "code": "",
+     "guide": "products/filmmakers-system/components/buttons.md"
+    }
+   ]
+  },
+  {
+   "id": "button-group",
+   "section": "components",
+   "title": "Button group",
+   "intro": "Related buttons joined into one control.",
+   "items": [
     {
      "code": "BTN-6",
      "name": "Button group",
@@ -162,38 +356,15 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Row actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Edit\" title=\"Edit\"><i class=\"fa-solid fa-pencil\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Copy\" title=\"Copy\"><i class=\"fa-regular fa-copy\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Download\" title=\"Download\"><i class=\"fa-solid fa-download\"></i></button></div>"
-    },
-    {
-     "code": "BTN-7",
-     "name": "Button sizes",
-     "status": "Direct",
-     "classes": ".btn-sm .btn-xs",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/buttons/#sizes",
-     "replaces": "btn-sm / btn-md",
-     "note": "Direct. btn-md never existed; small is the product default, xs for dense row actions.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\">btn-sm</button><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\">btn-xs</button>"
-    },
-    {
-     "code": "MSG-5",
-     "name": "Client zone button",
-     "status": "Custom",
-     "classes": "accent #EF7428",
-     "docs": "",
-     "replaces": "visible-for-client icon",
-     "note": "Replace. The only icon permitted its own colour. Whether the signal extends past buttons is unresolved.",
-     "unresolved": true,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "The mapping uses accent #EF7428. The Colour guideline says an accent MUST be a Bootstrap palette colour, and Bootstrap orange-500 is a different value. Decide which one is right."
-      }
-     ],
-     "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm has-client-zone-icon\"><i class=\"fa-regular fa-eye\"></i>View as client</button>"
-    },
+    }
+   ]
+  },
+  {
+   "id": "file-upload",
+   "section": "components",
+   "title": "File upload",
+   "intro": "Adding files to a production or audition.",
+   "items": [
     {
      "code": "BTN-9",
      "name": "Upload button",
@@ -924,7 +1095,7 @@
      "flags": [
       {
        "type": "ask",
-       "text": "Uses btn-text theme-primary for Edit. See Button, text (BTN-3)."
+       "text": "Uses btn-text theme-primary for Edit. See Tertiary buttons."
       }
      ],
      "layout": "row",
