@@ -56,7 +56,7 @@ let uid = 0
 export function initFilterBar(root) {
   const id = 'fb' + (++uid)
   const defaults = () => Object.fromEntries(DEFS.map((d) => [d.key, d.multi ? [] : (d.default ?? ALL)]))
-  const state = { query: '', values: defaults(), sort: 0, open: null, find: '' }
+  const state = { query: '', values: defaults(), sort: 0, open: null, find: '', chips: false }
 
   const isApplied = (d) => {
     const v = state.values[d.key]
@@ -106,6 +106,7 @@ export function initFilterBar(root) {
     `<div style="position:relative;display:flex;align-items:center${full ? ';width:100%' : ''}">${toggle(d.key, `${d.label}: ${valueLabel(d)}`, d.width, isApplied(d), full)}${state.open === d.key ? menu(d) : ''}</div>`
 
   let inlineCount = MAX_INLINE
+  let chipsState = []
   const inPopover = (key) => DEFS.slice(inlineCount).some((d) => d.key === key)
 
   function render() {
@@ -132,6 +133,21 @@ export function initFilterBar(root) {
       '</div>' +
       `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto">${toggle('sort', `Sort by: ${SORTS[state.sort].label}`, 190, false)}${sortMenu}</div>` +
       '</div>'
+    // Applied chips: one per search term and per applied value. An option in
+    // the prototype, not in production use yet.
+    const chipList = []
+    if (state.query.trim()) chipList.push({ label: `Search: “${state.query.trim()}”`, remove: 'Remove the search term', clear: { query: true } })
+    for (const d of DEFS) {
+      if (!isApplied(d)) continue
+      const v = state.values[d.key]
+      if (d.multi) v.forEach((item) => chipList.push({ label: `${d.label}: ${item}`, remove: `Remove ${d.label} ${item}`, clear: { key: d.key, item } }))
+      else chipList.push({ label: `${d.label}: ${v}`, remove: `Remove the ${d.label} filter`, clear: { key: d.key } })
+    }
+    chipsState = chipList
+    const chips = state.chips && chipList.length
+      ? '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)"><span class="fs-xs fg-3" style="white-space:nowrap">Applied</span>' +
+        chipList.map((c, i) => `<span class="chip theme-secondary"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
+      : ''
     const count = `<div style="display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px">${list.length} of ${PEOPLE.length} coworkers</div>`
     const table = list.length
       ? '<table class="table" style="margin:0"><thead><tr><th scope="col">Name</th><th scope="col">Permissions</th><th scope="col">Language</th><th scope="col">2FA</th><th scope="col">Profile access</th><th scope="col">Location access</th><th scope="col">Status</th></tr></thead><tbody>' +
@@ -143,7 +159,8 @@ export function initFilterBar(root) {
     const active = document.activeElement
     const focusKey = active && root.contains(active) ? (active.matches('[data-query]') ? '[data-query]' : active.matches('[data-find]') ? '[data-find]' : null) : null
     const caret = focusKey ? active.selectionStart : null
-    root.innerHTML = `<div class="card" style="overflow:visible;width:100%">${bar}${count}${table}</div>`
+    const option = `<div class="d-flex align-items-center gap-2 mb-3"><div class="switch"><input type="checkbox" role="switch" id="${id}-chips" data-chips-toggle${state.chips ? ' checked' : ''}></div><label for="${id}-chips" class="fw-semibold">Show applied chips</label><span class="fs-xs fg-3">Optional. Not in production use yet</span></div>`
+    root.innerHTML = `${option}<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
     if (focusKey) {
       const el = root.querySelector(focusKey)
       if (el) { el.focus(); try { el.setSelectionRange(caret, caret) } catch {} }
@@ -157,6 +174,17 @@ export function initFilterBar(root) {
       // Opening a filter inside More filters keeps the popover open.
       state.open = state.open === key ? (inPopover(key) ? 'more' : null) : key
       state.find = ''
+      render()
+      return
+    }
+    const chip = e.target.closest('[data-chip]')
+    if (chip) {
+      const c = chipsState[Number(chip.dataset.chip)].clear
+      if (c.query) state.query = ''
+      else {
+        const d = DEFS.find((x) => x.key === c.key)
+        state.values[d.key] = d.multi ? state.values[d.key].filter((x) => x !== c.item) : (d.default ?? ALL)
+      }
       render()
       return
     }
@@ -181,6 +209,7 @@ export function initFilterBar(root) {
       render()
       return
     }
+    if (e.target.matches('[data-chips-toggle]')) { state.chips = e.target.checked; render(); return }
     const sort = e.target.closest('[data-sort]')
     if (sort) { state.sort = Number(sort.dataset.sort); state.open = null; render() }
   })
