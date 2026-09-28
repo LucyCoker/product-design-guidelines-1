@@ -253,10 +253,6 @@
       {
        "type": "ask",
        "text": "\"Row action\" is a working name. Confirm it before it goes into code or Figma."
-      },
-      {
-       "type": "ask",
-       "text": "The prototypes put Remove (btn-text theme-danger) directly in the row gutter because it is reversible. The Buttons guideline says a destructive action is never a bare control in a table row. Decide whether reversible Remove is an exception."
       }
      ],
      "examples": [
@@ -1530,10 +1526,6 @@
       {
        "type": "info",
        "text": "The prototype opens Sort by with menu-end, which this Bootstrap build does not have. Use data-bs-placement=\"bottom-end\"."
-      },
-      {
-       "type": "ask",
-       "text": "The compact icon buttons are btn-outline theme-secondary, to match the search button beside them. The Buttons guideline says icon-only buttons are btn-text theme-secondary. Decide which applies in the filter bar."
       }
      ],
      "layout": "row",
@@ -1543,7 +1535,7 @@
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “1-3 of 4 coworkers”.",
-      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons side by side (filter and sort icons, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover.",
+      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover.",
       "Pages with only two or three filters never show More filters. The bar adapts by removing, not adding.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
@@ -1559,8 +1551,8 @@
        "label": "Breakpoints",
        "badge": "",
        "wide": true,
-       "caption": "The same bar at five widths. Each one works. Filters move into More filters as space runs out; when More filters and Sort by would overlap, both become icon buttons and Clear filters moves into the More filters popover.",
-       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Three inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">860px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:860px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">700px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:700px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become two icon buttons</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
+       "caption": "The same bar at five widths. Each one works. Filters move into More filters as space runs out; when More filters and Sort by would overlap, both become an icon Button group and Clear filters moves into the More filters popover.",
+       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Three inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">860px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:860px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">700px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:700px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become one icon Button group</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
       }
      ]
     }
@@ -1720,11 +1712,11 @@
      "flags": [
       {
        "type": "info",
-       "text": "Edit uses the Row action button (Buttons). Remove beside it is an open question on that page."
+       "text": "Edit uses the Row action button (Buttons). Remove is never in the gutter itself: it sits in the More overflow, as decided in review."
       }
      ],
      "layout": "row",
-     "example": "<div style=\"display:grid;grid-template-columns:1fr 132px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"padding:12px 16px;font-size:14px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-danger btn-xs\"><i class=\"fa-solid fa-trash\"></i>Remove</button></div></div>"
+     "example": "<div style=\"display:grid;grid-template-columns:minmax(0,1fr) 132px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"padding:12px 16px;font-size:14px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Erste Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></div>"
     },
     {
      "code": "CNT-13",
@@ -1738,15 +1730,7 @@
      "flags": [
       {
        "type": "info",
-       "text": "Changed from RowActions.dc.html: the prototype’s More had no menu, it allowed up to seven visible actions, and it put Unsubscribe and Remove beside the others as bare danger buttons. Here More opens a real menu, at most three actions show, and the destructive ones are inside More, per the Buttons and Destructive actions guidelines."
-      },
-      {
-       "type": "ask",
-       "text": "The prototype puts Remove and Unsubscribe directly in the row (btn-text theme-danger btn-xs). The guidelines say destructive row actions go behind More. Decide whether reversible Remove is an exception. Until then this page follows the guidelines."
-      },
-      {
-       "type": "ask",
-       "text": "Which actions stay visible when more than three are on: the first three in order, or a per-page choice? This page shows the first three."
+       "text": "Changed from RowActions.dc.html: the prototype’s More had no menu, it allowed up to seven visible actions, and it put Unsubscribe and Remove beside the others as bare danger buttons. Here More opens a real menu, at most three actions show, and the destructive ones are inside More, per the Buttons and Destructive actions guidelines. Decided in review: Remove goes under More, even when it is reversible."
       }
      ],
      "layout": "row",
@@ -1754,7 +1738,7 @@
      "rules": [
       "Every action is a Row action: <code>btn-text theme-primary btn-xs</code>, icon plus text label. Edit is a link (<code>a</code>) because it navigates; the rest are buttons.",
       "Fixed order on every row: Messages, Edit, Duplicate, View as applicant, Copy/Move, then More. Turning an action off never reorders the rest.",
-      "At most three actions show. The rest go into More, which is always last and always opens a <code>.menu</code>.",
+      "At most three actions show. Each page chooses which three; the choice is the same on every row of that page. The rest go into More, which is always last and always opens a <code>.menu</code>.",
       "Unsubscribe and Remove are never bare controls. They go last in More, after a divider, as <code>menu-item theme-danger</code>, and follow Destructive actions (undo if reversible, confirm if not).",
       "More carries an accessible name with the row, e.g. “More actions for Season 14: Erste Runde”, so repeated triggers are distinguishable.",
       "Stack has no gap between buttons; inline uses an 8px gap."
@@ -1770,7 +1754,7 @@
       {
        "label": "Stacked, three actions",
        "badge": "",
-       "caption": "The most a row shows before More.",
+       "caption": "The most a row shows before More. The page chooses which three.",
        "html": "<div style=\"display:grid;grid-template-columns:minmax(0,1fr) 150px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);max-width:480px\"><div style=\"padding:12px 16px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-envelope\" aria-hidden=\"true\"></i>Messages</button><a class=\"btn-text theme-primary btn-xs\" href=\"#\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</a><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Erste Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">View as applicant</button><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Unsubscribe</button><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></div>",
        "wide": true
       },

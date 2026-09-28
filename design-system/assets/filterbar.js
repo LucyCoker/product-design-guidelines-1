@@ -124,7 +124,7 @@ export function initFilterBar(root) {
       : ''
     const moreOpen = !!popover
     // Compact: once More filters and Sort by no longer fit beside search as
-    // text buttons, both become icon buttons side by side, and Clear filters
+    // text buttons, both become icon buttons in one Button group, and Clear filters
     // moves to the bottom of the More filters popover.
     const compact = inlineCount === 0 &&
       root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + (anyApplied ? GAP + CLEAR_W : 0) + GAP + SORT_W
@@ -140,8 +140,12 @@ export function initFilterBar(root) {
       bar =
         '<div style="display:flex;align-items:center;gap:8px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)">' +
         search +
-        `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-label="${moreName}" title="${moreName}"${applied ? ' style="font-weight:600;width:auto;padding-inline:8px;gap:4px"' : ''}><i class="fa-solid fa-filter" aria-hidden="true"></i>${applied ? `<span style="font-variant-numeric:tabular-nums">${applied}</span>` : ''}</button>${pop}</div>` +
-        `<div style="position:relative;flex:0 0 auto"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortMenu}</div>` +
+        // One Button group (icon buttons), each button in a nested group so
+        // its popover or menu anchors to it.
+        '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="margin-inline-start:auto;flex:0 0 auto">' +
+        `<div class="btn-group btn-group-sm"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-label="${moreName}" title="${moreName}"${applied ? ' style="font-weight:600;width:auto;padding-inline:8px;gap:4px"' : ''}><i class="fa-solid fa-filter" aria-hidden="true"></i>${applied ? `<span style="font-variant-numeric:tabular-nums">${applied}</span>` : ''}</button>${pop}</div>` +
+        `<div class="btn-group btn-group-sm"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortMenu}</div>` +
+        '</div>' +
         '</div>'
     } else {
       bar =

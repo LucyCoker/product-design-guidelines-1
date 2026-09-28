@@ -104,7 +104,9 @@ It is quiet in emphasis (text, extra small) and carries primary meaning (this is
 - The same set MUST appear in the same order on every row, so people learn it once.
 - Row actions MUST be always visible, never revealed on hover alone.
 - Row actions MUST be non-destructive. Destructive actions follow [Destructive actions](../../../patterns/destructive-actions.md).
+- Remove MUST go in the **More** overflow menu, even when it is reversible. It is never a bare control in a row or row gutter.
 - Show at most three row actions. Put the rest in an overflow menu opened by a last row action labelled **More**, with the ellipsis icon.
+- Each page chooses which row actions stay visible, up to three. The choice MUST be the same on every row of that page.
 - The label MUST meet 4.5:1 against the row background for every customer primary. Where a customer primary fails, **ASK** — see [Colour](../foundations/colour.md).
 
 ### Icon action sets in rows
@@ -138,9 +140,6 @@ Where any of these cannot be met, **ASK**.
 ### Open decisions
 
 **Row action name** — "Row action" is a working name for `btn-text theme-primary btn-xs`. Confirm the name before it goes into code or Figma.
-*Review by: [date]*
-
-**Remove in row gutters** — the Selection prototypes put Remove (`btn-text theme-danger btn-xs`) directly in the row gutter beside the row actions, because the action is reversible. This page says a destructive action is never a bare control in a table row. Decide whether reversible Remove is an exception.
 *Review by: [date]*
 
 **Sizes** — need to research how they are used and potentially come up with stricter guidelines.
