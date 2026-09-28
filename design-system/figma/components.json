@@ -458,13 +458,6 @@
     },
     {
       "figmaPage": "Components",
-      "figmaName": "Table/Table",
-      "libraryId": "cnt-6",
-      "classes": ".table",
-      "variants": {}
-    },
-    {
-      "figmaPage": "Components",
       "figmaName": "Alert/Alert",
       "libraryId": "msg-1",
       "classes": ".alert.theme-info",
@@ -538,6 +531,13 @@
       "figmaName": "Chips/Chip",
       "libraryId": "msg-8",
       "classes": ".chip + .chip-dismiss",
+      "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Tables/Table",
+      "libraryId": "cnt-6",
+      "classes": ".table",
       "variants": {}
     },
     {

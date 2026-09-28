@@ -1188,27 +1188,6 @@
    ]
   },
   {
-   "id": "table",
-   "section": "components",
-   "title": "Table",
-   "intro": "Rows of records, with row actions in an actions column.",
-   "items": [
-    {
-     "code": "CNT-6",
-     "name": "Table",
-     "status": "Direct",
-     "classes": ".table",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/",
-     "replaces": "table table-striped",
-     "note": "Direct. Column headers get weight 600 from the product layer; row actions sit in an actions column.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<table class=\"table\" style=\"margin:0\"><thead><tr><th>Block</th><th>People</th><th style=\"text-align:end\">Actions</th></tr></thead><tbody><tr><td>Block 11</td><td>76</td><td style=\"text-align:end\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button></td></tr></tbody></table>"
-    }
-   ]
-  },
-  {
    "id": "alert",
    "section": "components",
    "title": "Alert",
@@ -1450,8 +1429,21 @@
    "id": "tables",
    "section": "organisms",
    "title": "Tables",
-   "intro": "Table furniture beyond the table itself: the footer, and what shows when there is nothing to list.",
+   "intro": "The table itself, its footer, and what shows when there is nothing to list.",
    "items": [
+    {
+     "code": "CNT-6",
+     "name": "Table",
+     "status": "Direct",
+     "classes": ".table",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/",
+     "replaces": "table table-striped",
+     "note": "Direct. Column headers get weight 600 from the product layer; row actions sit in an actions column.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "example": "<table class=\"table\" style=\"margin:0\"><thead><tr><th>Block</th><th>People</th><th style=\"text-align:end\">Actions</th></tr></thead><tbody><tr><td>Block 11</td><td>76</td><td style=\"text-align:end\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button></td></tr></tbody></table>"
+    },
     {
      "code": "TBL-1",
      "name": "Table footer",
