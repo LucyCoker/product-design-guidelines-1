@@ -17,13 +17,6 @@
     },
     {
       "figmaPage": "Foundations",
-      "figmaName": "Icons/Caret",
-      "libraryId": "btn-8",
-      "classes": "fa-solid fa-caret-down",
-      "variants": {}
-    },
-    {
-      "figmaPage": "Foundations",
       "figmaName": "Icons/Screen-reader label",
       "libraryId": "icn-3",
       "classes": ".visually-hidden",

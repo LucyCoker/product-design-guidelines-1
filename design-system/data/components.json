@@ -34,19 +34,6 @@
      "example": "<i class=\"fa-regular fa-bell\"></i><i class=\"fa-regular fa-eye\"></i><i class=\"fa-regular fa-image\"></i><i class=\"fa-regular fa-copy\"></i><i class=\"fa-regular fa-circle-question\"></i>"
     },
     {
-     "code": "BTN-8",
-     "name": "Caret",
-     "status": "Replace",
-     "classes": "fa-solid fa-caret-down",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/extend/icons/",
-     "replaces": "caret span.caret",
-     "note": "Retire the class. v6 has no .caret; the glyph is drawn with the icon font.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-solid theme-primary btn-sm\">Add profile(s)<i class=\"fa-solid fa-caret-down\"></i></button>"
-    },
-    {
      "code": "ICN-3",
      "name": "Screen-reader label",
      "status": "Added",
