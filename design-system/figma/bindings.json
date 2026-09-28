@@ -2,25 +2,94 @@
   "$description": "Which Figma variable goes on which property of each component. Read from Bootstrap 6 (assets/bootstrap.min.css, bootstrap-v6-dev@bc4bcb4) plus filmmakers.css. Bootstrap's --bs-theme-* tokens become the theme's own roles: in theme-primary, --bs-theme-bg is primary/bg. Use these, never a palette/* colour.",
   "Buttons": {
     "variants": {
-      "Primary":      { "classes": "btn-solid theme-primary",    "fill": "primary/bg",     "stroke": "primary/bg",       "text": "primary/contrast" },
-      "Secondary":    { "classes": "btn-outline theme-secondary", "fill": null,             "stroke": "secondary/border", "text": "secondary/fg" },
-      "Tertiary":     { "classes": "btn-text theme-secondary",   "fill": null,             "stroke": null,               "text": "secondary/fg" },
-      "Row action":   { "classes": "btn-text theme-primary",     "fill": null,             "stroke": null,               "text": "primary/fg" },
-      "Danger text":  { "classes": "btn-text theme-danger",      "fill": null,             "stroke": null,               "text": "danger/fg" },
-      "Danger solid": { "classes": "btn-solid theme-danger",     "fill": "danger/bg",      "stroke": "danger/bg",        "text": "danger/contrast" },
-      "Client zone":  { "classes": "btn-outline theme-secondary has-client-zone-icon", "fill": null, "stroke": "secondary/border", "text": "secondary/fg", "icon": "accent/client-zone" }
+      "Primary": {
+        "classes": "btn-solid theme-primary",
+        "fill": "primary/bg",
+        "stroke": "primary/bg",
+        "text": "primary/contrast"
+      },
+      "Secondary": {
+        "classes": "btn-outline theme-secondary",
+        "fill": null,
+        "stroke": "secondary/border",
+        "text": "secondary/fg"
+      },
+      "Tertiary": {
+        "classes": "btn-text theme-secondary",
+        "fill": null,
+        "stroke": null,
+        "text": "secondary/fg"
+      },
+      "Row action": {
+        "classes": "btn-text theme-primary",
+        "fill": null,
+        "stroke": null,
+        "text": "primary/fg"
+      },
+      "Danger text": {
+        "classes": "btn-text theme-danger",
+        "fill": null,
+        "stroke": null,
+        "text": "danger/fg"
+      },
+      "Danger solid": {
+        "classes": "btn-solid theme-danger",
+        "fill": "danger/bg",
+        "stroke": "danger/bg",
+        "text": "danger/contrast"
+      },
+      "Client zone": {
+        "classes": "btn-outline theme-secondary has-client-zone-icon",
+        "fill": null,
+        "stroke": "secondary/border",
+        "text": "secondary/fg",
+        "icon": "accent/client-zone"
+      }
     },
     "all": {
       "cornerRadius": "radius/5",
       "strokeWeight": 1,
       "fontWeight": "font/weight/semibold",
       "iconColour": "same as text, except Client zone",
-      "disabled": "same variables, layer opacity 65%"
+      "disabled": "default colours, layer opacity 65%"
     },
     "sizes": {
-      "Small":       { "class": "btn-sm", "paddingX": 10, "paddingY": 4, "minHeight": 32, "gap": 6, "fontSize": 14, "lineHeight": "150%" },
-      "Extra small": { "class": "btn-xs", "paddingX": 8,  "paddingY": 2, "minHeight": 24, "gap": 4, "fontSize": 12, "lineHeight": "112.5%" },
-      "Medium":      { "class": "",       "paddingX": 12, "paddingY": 6, "minHeight": 38, "gap": 6, "fontSize": 14, "lineHeight": "150%" }
+      "Small": {
+        "class": "btn-sm",
+        "paddingX": 10,
+        "paddingY": 4,
+        "minHeight": 32,
+        "gap": 6,
+        "fontSize": 14,
+        "lineHeight": "150%"
+      },
+      "Extra small": {
+        "class": "btn-xs",
+        "paddingX": 8,
+        "paddingY": 2,
+        "minHeight": 24,
+        "gap": 4,
+        "fontSize": 12,
+        "lineHeight": "112.5%"
+      },
+      "Medium": {
+        "class": "",
+        "paddingX": 12,
+        "paddingY": 6,
+        "minHeight": 38,
+        "gap": 6,
+        "fontSize": 14,
+        "lineHeight": "150%"
+      }
+    },
+    "states": {
+      "$description": "State colours are generated per primary into figma/tokens.json as button/<type>/<state>/<fill|stroke|text|ring>, for example button/primary/hover/fill. Primary and Row action live in the Primary collection, so they follow the mode; the rest live in Theme. Full values: figma/button-states.json.",
+      "default": "The variables listed under variants.",
+      "hover": "button/<type>/hover/*. Bootstrap darkens the colour by 5% (oklch). Text buttons gain a tinted fill.",
+      "active": "button/<type>/active/*. The .active or .show class: a toggled button, or a menu trigger whose menu is open. Darkens by 10%. Bootstrap 6 has no separate mouse-down style.",
+      "focus": "Default colours plus a 3px ring, 1px outside the button, in always-blue/focus-ring (button/<type>/focus/ring). Never the customer primary.",
+      "disabled": "Default colours at 65% layer opacity.",
+      "loading": "Not defined. Bootstrap 6 has no loading button, and the Buttons guideline lists loading buttons as not yet covered. ASK."
     }
   }
 }

@@ -6,6 +6,7 @@ How the component library and Figma stay in sync. The library (this repo) is the
 |---|---|---|
 | Variables (colour, spacing, radius, type) | `tokens.json` | Tokens Studio plugin, synced with this GitHub repo |
 | Component names and variants | `components.json` | Build the Figma library to this list |
+| Button state colours (hover, active, focus) | `button-states.json`, and `button/*` variables in `tokens.json` | Generated. Bind hover and active variants to the `button/…` variables |
 | Which variable goes where | `bindings.json` | Follow it when building a component. Never pick a `palette/*` colour on a component |
 | Component → code links | `code-connect/*.figma.ts` | Figma Code Connect (`npx figma connect publish`) |
 
