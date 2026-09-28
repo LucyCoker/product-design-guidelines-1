@@ -1066,7 +1066,58 @@
      "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<div style=\"display:flex;flex-direction:column;gap:6px;width:200px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Single value - radio items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"All\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">All</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" checked=\"checked\" aria-label=\"Active\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Active</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"map-sf3-status\" aria-label=\"Inactive\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Inactive</span></label></div></div><div style=\"display:flex;flex-direction:column;gap:6px;width:240px\"><div style=\"font-size:12px;color:var(--bs-fg-3)\">Multi value - checkbox items</div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\"><span class=\"combobox-value\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><div class=\"menu show\" style=\"display:block;position:relative;opacity:1;transform:none;min-width:0\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\"></div><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"English\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">English</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" checked=\"checked\" aria-label=\"German\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">German</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" aria-label=\"French\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">French</span></label></div></div>"
+     "rules": [
+      "The toggle always reads <b>label: value</b>, for example “Status: Active” or “Language: 2 selected”, so a filter reads as a sentence.",
+      "A filter that differs from its default is <b>weight 600</b>. No colour, no badge.",
+      "One value: radio items, and the menu closes on pick. Several values: checkbox items, and the menu stays open.",
+      "More than six options: a find field appears at the top, with a “No … matches” line when nothing matches.",
+      "Filters apply on change. There is no Apply button. The menu closes on an outside click.",
+      "Use the Combobox for every filter and for Sort by. The native select is only for forms."
+     ],
+     "examples": [
+      {
+       "label": "Closed",
+       "html": "<button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Applied",
+       "html": "<button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Inactive</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button>",
+       "caption": "Differs from its default: weight 600",
+       "badge": ""
+      },
+      {
+       "label": "One value",
+       "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\" aria-expanded=\"true\" style=\"width:170px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: Admin</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div class=\"menu show\" style=\"position:static;display:block;min-width:220px;margin-top:4px\"><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-perm\" aria-label=\"All\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">All</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-perm\" checked aria-label=\"Admin\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Admin</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-perm\" aria-label=\"Limited\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Limited</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-perm\" aria-label=\"Read only\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Read only</span></label></div></div>",
+       "caption": "Radio items",
+       "badge": ""
+      },
+      {
+       "label": "Several values",
+       "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\" aria-expanded=\"true\" style=\"width:190px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div class=\"menu show\" style=\"position:static;display:block;min-width:220px;margin-top:4px\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\" value=\"\"></div><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" checked aria-label=\"English\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">English</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" checked aria-label=\"German\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">German</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" aria-label=\"French\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">French</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" aria-label=\"Spanish\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Spanish</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" aria-label=\"Italian\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Italian</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" aria-label=\"Polish\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Polish</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-lang\" aria-label=\"Portuguese\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Portuguese</span></label></div></div>",
+       "caption": "Checkbox items, find field above six",
+       "badge": ""
+      },
+      {
+       "label": "Find",
+       "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\" aria-expanded=\"true\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div class=\"menu show\" style=\"position:static;display:block;min-width:220px;margin-top:4px\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\" value=\"po\"></div><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-find\" aria-label=\"Polish\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Polish</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"check check-sm\" type=\"checkbox\" name=\"cb-find\" aria-label=\"Portuguese\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Portuguese</span></label></div></div>",
+       "caption": "Typing narrows the list",
+       "badge": ""
+      },
+      {
+       "label": "No matches",
+       "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\" aria-expanded=\"true\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div class=\"menu show\" style=\"position:static;display:block;min-width:220px;margin-top:4px\"><div class=\"combobox-search\"><input class=\"form-control form-control-sm combobox-search-input\" type=\"search\" placeholder=\"Find language\" aria-label=\"Find language\" value=\"xyz\"></div><div class=\"combobox-no-results\">No language matches</div></div></div>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Sort by",
+       "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\" aria-expanded=\"true\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div class=\"menu show\" style=\"position:static;display:block;min-width:200px;margin-top:4px\"><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-sort\" checked aria-label=\"Last name\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Last name</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-sort\" aria-label=\"First name\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">First name</span></label><label class=\"menu-item\" style=\"cursor:pointer\"><span class=\"menu-item-icon\"><input class=\"radio radio-sm\" type=\"radio\" name=\"cb-sort\" aria-label=\"Creation date\" style=\"--bs-theme-bg:initial;--bs-theme-contrast:initial\"></span><span class=\"menu-item-content\">Creation date</span></label></div></div>",
+       "caption": "Always last in the filter bar",
+       "badge": ""
+      }
+     ]
     }
    ]
   },
@@ -1451,25 +1502,110 @@
    "id": "search-and-filter",
    "section": "organisms",
    "title": "Search and filter",
-   "intro": "Finding and narrowing the rows on a page.",
+   "intro": "One filter bar for every list page: search, filters, sorting and a result count.",
    "items": [
     {
      "code": "SF-1",
      "name": "Search and filter bar",
      "status": "Custom",
-     "classes": "",
+     "classes": "input-group + combobox-toggle + popover + chip",
      "docs": "",
      "replaces": "filter bar inline labels + selects",
-     "note": "Custom composition of FRM-1, FRM-3, SF-2, SF-3 and MSG-8. Search, up to three inline filters, the rest behind a More filters popover, sorting last, count on its own row. Takes its filters, rows and search fields as props and hands the filtered rows back to the page. Inline filter count drops with width: three above 880px, two from 740px, one from 600px, none below.",
+     "note": "One filter bar for every list page. Search first, up to three inline filters, the rest behind More filters, sorting last, and the count on its own row. Each filter reads as a sentence, and the bar hands the filtered rows back to the page.",
      "unresolved": false,
      "flags": [
       {
+       "type": "ask",
+       "text": "Clear filters uses btn-text theme-primary. That combination is the Row action, which the Buttons guideline allows only on an item in a list. Decide whether Clear filters is an exception or becomes Tertiary (btn-text theme-secondary)."
+      },
+      {
        "type": "info",
-       "text": "Full example lives in Search and filter.dc.html, which was not shared. Built from Input (FRM-1), Input group (FRM-3), Popover (SF-2), Combobox (SF-3) and Chip (MSG-8)."
+       "text": "The applied-filter chips row is an option in the prototype that is not in production use yet."
+      },
+      {
+       "type": "info",
+       "text": "The prototype opens Sort by with menu-end, which this Bootstrap build does not have. Use data-bs-placement=\"bottom-end\"."
       }
      ],
      "layout": "row",
-     "example": ""
+     "rules": [
+      "Order: search, inline filters (up to three), More filters, Clear filters, then Sort by at the far end.",
+      "Every filter is a <a href=\"#sf-3\">Combobox</a> reading <b>label: value</b>. Applied filters are weight 600, and More filters shows how many of its filters are applied.",
+      "Clear filters appears only when a search or filter is applied, and resets all of them.",
+      "Filters apply on change. No Apply button.",
+      "The count row always shows, with the same range as the table footer, for example “1-3 of 4 coworkers”.",
+      "Narrow screens move inline filters into More filters: three above 880px, two from 740px, one from 600px, none below. Search, Clear filters and Sort by stay.",
+      "Pages with only two or three filters never show More filters. The bar adapts by removing, not adding.",
+      "The bar sits on the bg-1 surface at the top of the card that holds the list."
+     ],
+     "examples": [
+      {
+       "label": "Default",
+       "html": "<div class=\"lib-desktop\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1-3 of 4 coworkers</div></div></div>",
+       "caption": "Nothing applied · Shown at desktop width, scroll sideways",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "Filters applied",
+       "html": "<div class=\"lib-desktop\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: Admin</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<span style=\"font-variant-numeric:tabular-nums\"> (1)</span><i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-primary btn-sm\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i>Clear filters</button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1 of 4 coworkers</div></div></div>",
+       "caption": "Applied filters in weight 600, Clear filters appears · Shown at desktop width, scroll sideways",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "More filters open",
+       "html": "<div class=\"lib-desktop\"><div style=\"padding-bottom:190px;width:100%\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div style=\"position:relative\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"true\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<span style=\"font-variant-numeric:tabular-nums\"> (1)</span><i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"More filters\" style=\"position:absolute;top:calc(100% + 6px);inset-inline-start:0;display:block;max-width:none;width:300px;z-index:5\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:100%;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">2FA: Enabled</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:100%\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Profile access: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:100%\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Location access: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div></div><button type=\"button\" class=\"btn-text theme-primary btn-sm\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i>Clear filters</button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1 of 4 coworkers</div></div></div></div>",
+       "caption": "The rest of the filters, full width, in a popover. No Apply button. · Shown at desktop width, scroll sideways",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "With applied chips",
+       "html": "<div class=\"lib-desktop\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: Admin</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: 2 selected</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<span style=\"font-variant-numeric:tabular-nums\"> (1)</span><i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-primary btn-sm\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i>Clear filters</button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)\"><span class=\"fs-xs fg-3\" style=\"white-space:nowrap\">Applied</span><span class=\"chip theme-secondary\"><span>Permissions: Admin</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Permissions: Admin\" title=\"Remove Permissions: Admin\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: English</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language: English\" title=\"Remove Language: English\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\" style=\"font-size:11px\"></i></button></span><span class=\"chip theme-secondary\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language: German\" title=\"Remove Language: German\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\" style=\"font-size:11px\"></i></button></span></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1 of 4 coworkers</div></div></div>",
+       "caption": "Optional. Not in production use yet · Shown at desktop width, scroll sideways",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "Narrow screen",
+       "html": "<div style=\"max-width:480px;width:100%\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1-3 of 4 coworkers</div></div></div>",
+       "caption": "Below 600px every filter moves into More filters",
+       "badge": "",
+       "wide": true
+      }
+     ]
+    },
+    {
+     "code": "",
+     "id": "sf-list",
+     "name": "Filtered list",
+     "status": "Custom",
+     "layout": "row",
+     "classes": "card > filter bar + table + table footer",
+     "docs": "",
+     "replaces": "",
+     "note": "The whole pattern as it appears on a list page such as Coworkers: section heading with the page’s primary action, then one card holding the filter bar, the table and the table footer.",
+     "rules": [
+      "One card holds the bar, the table and the footer.",
+      "The section’s primary action (for example Add coworker) sits beside the heading, not in the bar.",
+      "When nothing matches, the table and footer are replaced by the No matches empty state; the bar stays."
+     ],
+     "flags": [
+      {
+       "type": "info",
+       "text": "Newsletter subscribers uses the same bar with its own two filters."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Coworkers",
+       "html": "<div class=\"lib-desktop\"><section style=\"width:100%;display:flex;flex-direction:column;gap:12px\"><div style=\"display:flex;align-items:center;gap:12px\"><h2 class=\"fs-lg fw-semibold m-0\">Coworkers</h2><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" style=\"margin-inline-start:auto\"><i class=\"fa-solid fa-plus\" aria-hidden=\"true\"></i>Add coworker</button></div><div class=\"card\" style=\"overflow:visible\"><div><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1-3 of 4 coworkers</div></div><table class=\"table\" style=\"margin:0\"><thead><tr><th scope=\"col\">Name</th><th scope=\"col\">Permissions</th><th scope=\"col\">Language</th><th scope=\"col\">2FA</th><th scope=\"col\">Profile access</th><th scope=\"col\">Location access</th><th scope=\"col\">Status</th></tr></thead><tbody><tr><td><div class=\"fw-semibold\">Alex Martin</div><div class=\"fs-xs fg-3\">alex.martin@example.com</div></td><td>Admin</td><td>English</td><td>Enabled</td><td>All profiles</td><td>All locations</td><td><span class=\"badge theme-success badge-subtle\">Active</span></td></tr><tr><td><div class=\"fw-semibold\">Sam Richter</div><div class=\"fs-xs fg-3\">sam.richter@example.com</div></td><td>Limited</td><td>English</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class=\"badge theme-success badge-subtle\">Active</span></td></tr><tr><td><div class=\"fw-semibold\">Jo Becker</div><div class=\"fs-xs fg-3\">jo.becker@example.com</div></td><td>Limited</td><td>German</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class=\"badge theme-success badge-subtle\">Active</span></td></tr></tbody></table><div style=\"display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)\"><span class=\"fw-semibold\">1-3 of 4 coworkers</span><nav aria-label=\"Pagination\" style=\"margin-inline-start:auto\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous page\"><i class=\"fa-solid fa-chevron-left\" aria-hidden=\"true\"></i></a></li><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next page\"><i class=\"fa-solid fa-chevron-right\" aria-hidden=\"true\"></i></a></li></ul></nav></div></div></section></div>",
+       "caption": "Shown at desktop width, scroll sideways",
+       "badge": "",
+       "wide": true
+      }
+     ]
     }
    ]
   },
@@ -1477,7 +1613,7 @@
    "id": "tables",
    "section": "organisms",
    "title": "Tables",
-   "intro": "The table itself, its footer, and what shows when there is nothing to list.",
+   "intro": "The table, its footer, and what shows when there is nothing to list.",
    "items": [
     {
      "code": "CNT-6",
@@ -1486,11 +1622,26 @@
      "classes": ".table",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/",
      "replaces": "table table-striped",
-     "note": "Direct. Column headers get weight 600 from the product layer; row actions sit in an actions column.",
+     "note": "Rows of records inside a card. Column headers are weight 600 from the product layer; row actions sit in an actions column.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<table class=\"table\" style=\"margin:0\"><thead><tr><th>Block</th><th>People</th><th style=\"text-align:end\">Actions</th></tr></thead><tbody><tr><td>Block 11</td><td>76</td><td style=\"text-align:end\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\"></i>Edit</button></td></tr></tbody></table>"
+     "rules": [
+      "Put the table in a card with no padding, so the filter bar, table and footer share one frame.",
+      "A second line of detail, such as an email under a name, sits in the same cell in fs-xs and fg-3.",
+      "Status is a subtle badge with text: theme-success for Active, theme-secondary for Inactive. Never colour alone.",
+      "The last row has no bottom border inside a card.",
+      "Never striped rows."
+     ],
+     "examples": [
+      {
+       "label": "In a card",
+       "html": "<div class=\"card\" style=\"width:100%;overflow:hidden\"><table class=\"table\" style=\"margin:0\"><thead><tr><th scope=\"col\">Name</th><th scope=\"col\">Permissions</th><th scope=\"col\">Language</th><th scope=\"col\">2FA</th><th scope=\"col\">Profile access</th><th scope=\"col\">Location access</th><th scope=\"col\">Status</th></tr></thead><tbody><tr><td><div class=\"fw-semibold\">Alex Martin</div><div class=\"fs-xs fg-3\">alex.martin@example.com</div></td><td>Admin</td><td>English</td><td>Enabled</td><td>All profiles</td><td>All locations</td><td><span class=\"badge theme-success badge-subtle\">Active</span></td></tr><tr><td><div class=\"fw-semibold\">Sam Richter</div><div class=\"fs-xs fg-3\">sam.richter@example.com</div></td><td>Limited</td><td>English</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class=\"badge theme-success badge-subtle\">Active</span></td></tr><tr><td><div class=\"fw-semibold\">Jo Becker</div><div class=\"fs-xs fg-3\">jo.becker@example.com</div></td><td>Limited</td><td>German</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class=\"badge theme-success badge-subtle\">Active</span></td></tr></tbody></table></div>",
+       "caption": "",
+       "badge": "",
+       "wide": true
+      }
+     ]
     },
     {
      "code": "TBL-1",
@@ -1499,11 +1650,31 @@
      "classes": "count + NAV-10 in a bordered row",
      "docs": "",
      "replaces": "result count above the table",
-     "note": "Added. Range count on the left (“1-3 of 4 coworkers”), pagination on the right, on bg-1 with a top hairline. The same range string is passed back into the filter bar count row (SF-1), so the two never disagree.",
+     "note": "The range count on the left and pagination on the right, on bg-1 at the bottom of the table card. The same range string feeds the filter bar count row, so the two never disagree.",
      "unresolved": false,
      "flags": [],
-     "layout": "full",
-     "example": "<div style=\"display:flex;align-items:center;gap:16px;border:1px solid var(--bs-border-color);border-radius:var(--bs-radius-5);padding:10px 12px;background:var(--bs-bg-1)\"><span style=\"font-size:14px;font-weight:600\">1-3 of 4 coworkers</span><nav aria-label=\"Pagination\" style=\"margin-inline-start:auto\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li></ul></nav></div>"
+     "layout": "row",
+     "rules": [
+      "The count names the thing: “1-3 of 4 coworkers”, not “1-3 of 4”.",
+      "Previous and next are icon only with an aria-label. The current page is active with aria-current=\"page\"; the ends are disabled.",
+      "Pagination uses Font Awesome chevrons, not Bootstrap’s SVG sprite."
+     ],
+     "examples": [
+      {
+       "label": "First page",
+       "html": "<div style=\"display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)\"><span class=\"fw-semibold\">1-3 of 4 coworkers</span><nav aria-label=\"Pagination\" style=\"margin-inline-start:auto\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous page\"><i class=\"fa-solid fa-chevron-left\" aria-hidden=\"true\"></i></a></li><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next page\"><i class=\"fa-solid fa-chevron-right\" aria-hidden=\"true\"></i></a></li></ul></nav></div>",
+       "caption": "",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "Last page",
+       "html": "<div style=\"display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)\"><span class=\"fw-semibold\">4-4 of 4 coworkers</span><nav aria-label=\"Pagination\" style=\"margin-inline-start:auto\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous page\"><i class=\"fa-solid fa-chevron-left\" aria-hidden=\"true\"></i></a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">2</a></li><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" aria-label=\"Next page\"><i class=\"fa-solid fa-chevron-right\" aria-hidden=\"true\"></i></a></li></ul></nav></div>",
+       "caption": "",
+       "badge": "",
+       "wide": true
+      }
+     ]
     },
     {
      "code": "CNT-11",
@@ -1512,11 +1683,31 @@
      "classes": ".card + .card-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "well / no-data text",
-     "note": "Replace. The empty state replaces the content, including table headers; the message names the state.",
+     "note": "What shows in place of a list when there is nothing to show. It replaces the table, including its headers.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<div class=\"card\"><div class=\"card-body\" style=\"text-align:center;color:var(--bs-fg-2);padding:24px\"><div style=\"font-weight:600;margin-bottom:4px\">No research entries yet</div><div style=\"font-size:12px;color:var(--bs-fg-3)\">Research entries you add appear here.</div></div></div>"
+     "rules": [
+      "Name the state, and say what to do next.",
+      "Nothing added yet: short heading and one line on what appears here.",
+      "No matches for a search or filter: keep the filter bar visible so people can change it, and tell them how."
+     ],
+     "examples": [
+      {
+       "label": "Nothing added yet",
+       "html": "<div class=\"card\" style=\"width:100%\"><div class=\"card-body text-center fg-2 p-4\"><div class=\"fw-semibold mb-1\">No research entries yet</div><div class=\"fs-xs fg-3\">Research entries you add appear here.</div></div></div>",
+       "caption": "",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "No matches",
+       "html": "<div class=\"lib-desktop\"><div class=\"card\" style=\"width:100%\"><div><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 1 auto;min-width:0\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" value=\"xyz\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-primary btn-sm\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i>Clear filters</button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">0 of 4 coworkers</div></div><div style=\"padding:48px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center\"><h3 class=\"fs-md fw-semibold m-0\">No matches found</h3><p class=\"fg-2 m-0\" style=\"max-width:52ch\">We couldn't find anything matching your search. Try adjusting your keywords, filters, or check for typos.</p></div></div></div>",
+       "caption": "After a search or filter · Shown at desktop width, scroll sideways",
+       "badge": "",
+       "wide": true
+      }
+     ]
     }
    ]
   },

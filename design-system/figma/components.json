@@ -391,7 +391,17 @@
       "figmaName": "Combobox/Combobox",
       "libraryId": "sf-3",
       "classes": ".combobox-toggle + .menu + .check / .radio",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Closed",
+          "Applied",
+          "One value",
+          "Several values",
+          "Find",
+          "No matches",
+          "Sort by"
+        ]
+      }
     },
     {
       "figmaPage": "Forms",
@@ -535,24 +545,64 @@
     },
     {
       "figmaPage": "Organisms",
+      "figmaName": "Search and filter/Search and filter bar",
+      "libraryId": "sf-1",
+      "classes": "input-group + combobox-toggle + popover + chip",
+      "variants": {
+        "Version": [
+          "Default",
+          "Filters applied",
+          "More filters open",
+          "With applied chips",
+          "Narrow screen"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Search and filter/Filtered list",
+      "libraryId": "sf-list",
+      "classes": "card > filter bar + table + table footer",
+      "variants": {
+        "Version": [
+          "Coworkers"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Organisms",
       "figmaName": "Tables/Table",
       "libraryId": "cnt-6",
       "classes": ".table",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "In a card"
+        ]
+      }
     },
     {
       "figmaPage": "Organisms",
       "figmaName": "Tables/Table footer",
       "libraryId": "tbl-1",
       "classes": "count + NAV-10 in a bordered row",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "First page",
+          "Last page"
+        ]
+      }
     },
     {
       "figmaPage": "Organisms",
       "figmaName": "Tables/Empty state",
       "libraryId": "cnt-11",
       "classes": ".card + .card-body",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Nothing added yet",
+          "No matches"
+        ]
+      }
     },
     {
       "figmaPage": "Organisms",
