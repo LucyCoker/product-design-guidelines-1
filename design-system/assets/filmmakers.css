@@ -68,18 +68,14 @@ input { accent-color: var(--bs-blue-600); }
  * Typography (typography.md)
  * ------------------------------------------------------------------------ */
 :root {
-  /* Body is 14px through the base size, never by shrinking the root. */
-  --bs-body-font-size: 0.875rem;
+  /* Body is 14px: select Bootstrap's small size, never shrink the root. */
+  --bs-body-font-size: var(--bs-font-size-sm);
   /* Bootstrap 6 defaults headings to 500, which typography.md bans. */
   --bs-heading-font-weight: 600;
 }
 
-h1, .h1 { font-size: 1.875rem; }
-h2, .h2 { font-size: 1.5rem; }
-h3, .h3 { font-size: 1.25rem; }
-h4, .h4 { font-size: 1.125rem; }
-h5, .h5 { font-size: 1rem; }
-h6, .h6 { font-size: 0.875rem; }
+/* Headings keep Bootstrap's sizes. Set the visual role with a size utility:
+   .fs-2xl page title, .fs-lg section heading, .fs-md card or group heading. */
 
 :where(.btn, .btn-solid, .btn-outline, .btn-text) {
   --bs-btn-font-weight: var(--bs-font-weight-semibold);

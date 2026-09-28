@@ -148,7 +148,7 @@ body {
 }
 .lib-item:last-child { border-bottom: 0; }
 .lib-item-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.lib-item-head h3 { margin: 0; font-size: 1rem; }
+.lib-item-head h3 { margin: 0; }
 .lib-item-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; font-size: 12px; color: var(--bs-fg-3); }
 .lib-item-meta code { font-size: 12px; color: var(--bs-fg-2); }
 .lib-item-meta a { color: var(--bs-fg-3); text-decoration: underline; text-decoration-color: var(--bs-border-color); text-underline-offset: 2px; }

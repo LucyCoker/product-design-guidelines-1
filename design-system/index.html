@@ -64,7 +64,7 @@
 <section class="lib-page" data-page="foundations" data-title="Foundations" hidden>
 
 <div class="lib-page-head">
-        <h1>Foundations</h1>
+        <h1 class="fs-2xl">Foundations</h1>
         <p>Colour, type and icons. Values come from Bootstrap 6 with the Filmmakers layer on top. Everything else in the library is built from these.</p>
       </div>
 <div class="lib-cards" data-overview="foundations"></div>
@@ -73,11 +73,11 @@
 <nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Colour</span></nav>
 
         <div class="lib-page-head">
-          <h1>Colour</h1>
+          <h1 class="fs-2xl">Colour</h1>
           <p>Primary is set per customer. Use the <b>Preview primary</b> control at the top to see any customer colour.</p>
         </div>
 
-        <h3 class="h6 m-0">Primary roles</h3>
+        <h3 class="fs-md m-0">Primary roles</h3>
         <div class="lib-swatches">
           <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg)"></span><b>Primary</b><code>--bs-primary-bg</code></div>
           <div class="lib-swatch-item"><span style="background:var(--bs-primary-fg-emphasis)"></span><b>Emphasis</b><code>--bs-primary-fg-emphasis · 78% + black</code></div>
@@ -86,7 +86,7 @@
           <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg-subtle)"></span><b>Subtle</b><code>--bs-primary-bg-subtle · 12% + white</code></div>
         </div>
 
-        <h3 class="h6 m-0">Always Bootstrap blue</h3>
+        <h3 class="fs-md m-0">Always Bootstrap blue</h3>
         <p class="lib-note">These never follow the customer primary.</p>
         <div class="lib-swatches">
           <div class="lib-swatch-item"><span style="background:var(--bs-control-checked-bg)"></span><b>Checked controls</b><code>--bs-control-checked-bg · blue-600</code></div>
@@ -94,7 +94,7 @@
           <div class="lib-swatch-item"><span style="background:var(--bs-focus-ring-color)"></span><b>Focus ring</b><code>blue-500 50% + body</code></div>
         </div>
 
-        <h3 class="h6 m-0">Neutrals</h3>
+        <h3 class="fs-md m-0">Neutrals</h3>
         <div class="lib-swatches">
           <div class="lib-swatch-item"><span style="background:var(--bs-bg-body)"></span><b>Body</b><code>--bs-bg-body</code></div>
           <div class="lib-swatch-item"><span style="background:var(--bs-bg-1)"></span><b>Surface 1</b><code>--bs-bg-1 · hover, gutters</code></div>
@@ -105,7 +105,7 @@
           <div class="lib-swatch-item"><span style="background:var(--bs-fg-3)"></span><b>Text muted</b><code>--bs-fg-3</code></div>
         </div>
 
-        <h3 class="h6 m-0">Status and accent</h3>
+        <h3 class="fs-md m-0">Status and accent</h3>
         <div class="lib-swatches">
           <div class="lib-swatch-item"><span style="background:var(--bs-success-bg)"></span><b>Success</b><code>--bs-success-bg</code></div>
           <div class="lib-swatch-item"><span style="background:var(--bs-danger-bg)"></span><b>Danger</b><code>--bs-danger-bg</code></div>
@@ -128,25 +128,23 @@
 <nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Typography</span></nav>
 
         <div class="lib-page-head">
-          <h1>Typography</h1>
-          <p>The native system font stack, two weights, and a 14px body.</p>
+          <h1 class="fs-2xl">Typography</h1>
+          <p>The native system font stack, two weights, and a 14px body. Headings use Bootstrap’s size utilities for their role.</p>
         </div>
         <div>
-          <div class="lib-type-row"><code>h1</code><p class="h1">Spring 2027 feature</p><span>30px · 600</span></div>
-          <div class="lib-type-row"><code>h2</code><p class="h2">Lead roles</p><span>24px · 600</span></div>
-          <div class="lib-type-row"><code>h3</code><p class="h3">Audition schedule</p><span>20px · 600</span></div>
-          <div class="lib-type-row"><code>h4</code><p class="h4">Callback, day two</p><span>18px · 600</span></div>
-          <div class="lib-type-row"><code>h5</code><p class="h5">Self-tape requirements</p><span>16px · 600</span></div>
-          <div class="lib-type-row"><code>h6</code><p class="h6">Availability</p><span>14px · 600</span></div>
-          <div class="lib-type-row"><code>body large</code><p class="fs-md">Paragraphs people read: briefs, role descriptions.</p><span>16px · 400</span></div>
+          <div class="lib-type-row"><code>.fs-2xl</code><p class="fs-2xl fw-semibold">Project details</p><span>28–32px · 600</span></div>
+          <div class="lib-type-row"><code>.fs-lg</code><p class="fs-lg fw-semibold">Audition schedule</p><span>18–20px · 600</span></div>
+          <div class="lib-type-row"><code>.fs-md</code><p class="fs-md fw-semibold">Availability</p><span>16px · 600</span></div>
+          <div class="lib-type-row"><code>body large</code><p class="fs-md">Paragraphs people read, such as a brief.</p><span>16px · 400</span></div>
           <div class="lib-type-row"><code>body</code><p>Anything people scan, operate or fill in. The default.</p><span>14px · 400</span></div>
-          <div class="lib-type-row"><code>body small</code><p style="font-size:0.8125rem">Tooltips, dense cards and tables.</p><span>13px · 400</span></div>
-          <div class="lib-type-row"><code>caption</code><p class="fs-xs">Updated 12 minutes ago · fine print only</p><span>12px · 400</span></div>
+                    <div class="lib-type-row"><code>caption</code><p class="fs-xs">Updated 12 minutes ago · tooltips, timestamps, legal</p><span>12px · 400</span></div>
         </div>
         <ul class="lib-rules">
-          <li><b>Weights 400 and 600 only.</b> Never 500: Segoe UI on Windows has no Medium face.</li>
+          <li><b>Heading roles use size utilities:</b> <code>.fs-2xl</code> page title, <code>.fs-lg</code> section heading, <code>.fs-md</code> card or group heading. No custom heading scale.</li>
+          <li><b>The heading element follows the page structure,</b> not the size. For example <code>&lt;h1 class="fs-2xl fw-semibold"&gt;</code>.</li>
+          <li><b>Weights 400 and 600 only.</b> Never 500: Segoe UI on Windows has no Medium face. Replace <code>.fw-medium</code> with <code>.fw-semibold</code>.</li>
           <li><b>De-emphasise with colour</b> (<code>.fg-2</code>, <code>.fg-3</code>), not size, weight or italics.</li>
-          <li><b>12px is the floor,</b> for fine print only.</li>
+          <li><b>12px is the floor.</b> Never for anything people must read to finish a task.</li>
         </ul>
       
 </section>
@@ -154,7 +152,7 @@
 <nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Icons</span></nav>
 
         <div class="lib-page-head">
-          <h1>Icons</h1>
+          <h1 class="fs-2xl">Icons</h1>
           <p>Font Awesome 7. Icons inherit the text colour.</p>
         </div>
         <div id="icons-items"></div>
@@ -164,7 +162,7 @@
 <nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Spacing, elevation and motion</span></nav>
 
         <div class="lib-page-head">
-          <h1>Spacing, elevation and motion</h1>
+          <h1 class="fs-2xl">Spacing, elevation and motion</h1>
           <p>These come from the design system token files.</p>
         </div>
         <div class="card"><div class="card-body text-center fg-2 p-4">
@@ -176,7 +174,7 @@
 <section class="lib-page" data-page="components" data-title="Components" hidden>
 
 <div class="lib-page-head">
-        <h1>Components</h1>
+        <h1 class="fs-2xl">Components</h1>
         <p>Every Bootstrap 6 component used in the Selection and Manage Audition prototypes. Codes match the Component mapping document. Larger compositions have their own Organisms section, and the header, subheader band and footer are in App shell.</p>
       </div>
 <div class="lib-cards" data-overview="components"></div>
@@ -186,7 +184,7 @@
 <section class="lib-page" data-page="organisms" data-title="Organisms" hidden>
 
 <div class="lib-page-head">
-        <h1>Organisms</h1>
+        <h1 class="fs-2xl">Organisms</h1>
         <p>Larger compositions built from components. Each one does a whole job on a page.</p>
       </div>
 <div class="lib-cards" data-overview="organisms"></div>
@@ -197,7 +195,7 @@
 
 
       <div class="lib-page-head">
-        <h1>Templates</h1>
+        <h1 class="fs-2xl">Templates</h1>
         <p>Whole page layouts built from organisms.</p>
       </div>
       <div class="card"><div class="card-body text-center fg-2 p-4">
@@ -210,11 +208,12 @@
 
 
       <div class="lib-page-head">
-        <h1>Guidelines</h1>
+        <h1 class="fs-2xl">Guidelines</h1>
         <p>How to choose between the components above. The same Markdown powers the guidelines site and the instructions AI tools read.</p>
       </div>
       <div class="lib-cards">
         <a class="card" href="https://denkungsart.github.io/product-design-guidelines/patterns/button-hierarchy/" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Button hierarchy</b><p>Choose emphasis when several actions compete.</p></div></a>
+        <a class="card" href="https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Patterns%20overview" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Patterns overview</b><p>One-line answers for building a prototype.</p></div></a>
         <a class="card" href="https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Button groups</b><p>Two or three related actions, joined into one control.</p></div></a>
         <a class="card" href="https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Destructive actions</b><p>Irreversible, reversible and consequential actions.</p></div></a>
         <a class="card" href="https://denkungsart.github.io/product-design-guidelines/products/filmmakers-system/foundations/colour/" target="_blank" rel="noopener"><div class="card-body"><small>Foundation</small><b>Colour</b><p>Primary, secondary, status and accent roles.</p></div></a>

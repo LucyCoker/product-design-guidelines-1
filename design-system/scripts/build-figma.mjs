@@ -101,7 +101,8 @@ await browser.close()
 
 // Sizes and type --------------------------------------------------------
 const bs = read('assets/bootstrap.min.css')
-const rem = (value) => Math.round(parseFloat(value) * 16 * 100) / 100
+// clamp() sizes take their largest (desktop) value in Figma.
+const rem = (value) => Math.round(parseFloat(String(value).startsWith('clamp') ? String(value).match(/([0-9.]+)rem\)$/)[1] : value) * 16 * 100) / 100
 const numbers = (prefix, group, cssPrefix) => {
   const out = {}
   for (const [, key, value] of bs.matchAll(new RegExp(`--bs-${prefix}-([0-9]+):([^;}]+)`, 'g'))) {
@@ -115,7 +116,7 @@ for (const [k, v] of Object.entries(tokens.weight)) if (!k.startsWith('$')) type
 for (const [k, v] of Object.entries(tokens.size)) if (!k.startsWith('$')) type.font.size[k] = { $type: 'fontSizes', $value: rem(v.$value) }
 const styles = {}
 for (const k of Object.keys(type.font.size)) {
-  const heading = /^h\d$/.test(k)
+  const heading = /title|heading/.test(k)
   styles[k] = { $type: 'typography', $value: { fontFamily: '{font.family}', fontWeight: heading ? '{font.weight.semibold}' : '{font.weight.normal}', fontSize: `{font.size.${k}}`, lineHeight: heading ? '120%' : '150%' } }
 }
 

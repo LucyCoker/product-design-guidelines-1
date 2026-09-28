@@ -72,7 +72,7 @@ function itemHtml(item) {
   // Rules are written in this repo and may carry inline markup.
   const rules = item.rules?.length ? `<ul class="lib-rules">${item.rules.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''
   return `<article class="lib-item" id="${itemId(item)}">
-    <div class="lib-item-head"><h3>${escapeHtml(item.name)}</h3>${chips}</div>
+    <div class="lib-item-head"><h3 class="fs-md">${escapeHtml(item.name)}</h3>${chips}</div>
     ${meta ? `<div class="lib-item-meta">${meta}</div>` : ''}
     ${item.note ? `<p class="lib-note">${escapeHtml(item.note)}</p>` : ''}
     ${preview}
@@ -88,7 +88,7 @@ function pageHtml(group, parent) {
     : ''
   return `<section class="lib-page" data-page="${group.id}"${parent ? ` data-parent="${parent.id}"` : ''} data-title="${escapeHtml(group.title)}" hidden>
     ${crumbs}
-    <div class="lib-page-head"><h1>${escapeHtml(group.title)}</h1><p>${escapeHtml(group.intro)}</p></div>
+    <div class="lib-page-head"><h1 class="fs-2xl">${escapeHtml(group.title)}</h1><p>${escapeHtml(group.intro)}</p></div>
     <div>${group.items.map(itemHtml).join('')}</div>
   </section>`
 }
@@ -110,7 +110,7 @@ function render(data) {
   $('#side-organisms').insertAdjacentHTML('beforeend', sideLinks(organisms))
 
   $('#components-excluded').innerHTML =
-    `<div class="lib-page-head"><h2 class="h5">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>
+    `<div class="lib-page-head"><h2 class="fs-lg">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>
      <ul class="lib-rules">${data.excluded.map((e) => `<li><b>${e.code}</b> ${escapeHtml(e.replaces)}: ${escapeHtml(e.reason)}</li>`).join('')}</ul>`
 
   // Overview pages list their child pages as cards.
