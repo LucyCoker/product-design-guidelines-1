@@ -131,14 +131,55 @@
           <h1 class="fs-2xl">Typography</h1>
           <p>The native system font stack, two weights, and a 14px body. Headings use Bootstrap’s size utilities for their role.</p>
         </div>
-        <div>
-          <div class="lib-type-row"><code>.fs-2xl</code><p class="fs-2xl fw-semibold">Project details</p><span>28–32px · 600</span></div>
-          <div class="lib-type-row"><code>.fs-lg</code><p class="fs-lg fw-semibold">Audition schedule</p><span>18–20px · 600</span></div>
-          <div class="lib-type-row"><code>.fs-md</code><p class="fs-md fw-semibold">Availability</p><span>16px · 600</span></div>
-          <div class="lib-type-row"><code>body large</code><p class="fs-md">Paragraphs people read, such as a brief.</p><span>16px · 400</span></div>
-          <div class="lib-type-row"><code>body</code><p>Anything people scan, operate or fill in. The default.</p><span>14px · 400</span></div>
-                    <div class="lib-type-row"><code>caption</code><p class="fs-xs">Updated 12 minutes ago · tooltips, timestamps, legal</p><span>12px · 400</span></div>
+        <h3 class="fs-md m-0">Headings</h3>
+        <p class="lib-note">Three roles. Page title and section heading scale with the screen: the left sample is the smallest size, the right one the largest.</p>
+        <div class="lib-type-scale">
+          <div class="lib-type-head"><span>Role</span><span>Smallest</span><span>Largest</span></div>
+          <div class="lib-type-role">
+            <div><b>Page title</b><code>.fs-2xl</code><span>28–32px · 600</span></div>
+            <p class="fw-semibold" style="font-size:1.75rem">Project details</p>
+            <p class="fw-semibold" style="font-size:2rem">Project details</p>
+          </div>
+          <div class="lib-type-role">
+            <div><b>Section heading</b><code>.fs-lg</code><span>18–20px · 600</span></div>
+            <p class="fw-semibold" style="font-size:1.125rem">Audition schedule</p>
+            <p class="fw-semibold" style="font-size:1.25rem">Audition schedule</p>
+          </div>
+          <div class="lib-type-role">
+            <div><b>Card or group heading</b><code>.fs-md</code><span>16px · 600</span></div>
+            <p class="fs-md fw-semibold">Availability</p>
+            <p class="fs-xs fg-3">Same at every screen width</p>
+          </div>
         </div>
+
+        <h3 class="fs-md m-0">Body</h3>
+        <div class="lib-type-scale">
+          <div class="lib-type-role lib-type-body">
+            <div><b>Body large</b><code>.fs-md</code><span>16px · 400</span></div>
+            <p class="fs-md">Paragraphs people read, such as a brief.</p>
+          </div>
+          <div class="lib-type-role lib-type-body">
+            <div><b>Body</b><span class="badge theme-primary badge-subtle">Default</span><span>14px · 400</span></div>
+            <p>Anything people scan, operate or fill in.</p>
+          </div>
+          <div class="lib-type-role lib-type-body">
+            <div><b>Caption</b><code>.fs-xs</code><span>12px · 400</span></div>
+            <p class="fs-xs">Updated 12 minutes ago · tooltips, timestamps, legal</p>
+          </div>
+        </div>
+
+        <h3 class="fs-md m-0">In context</h3>
+        <div class="lib-type-context">
+          <h1 class="fs-2xl fw-semibold">Project details</h1>
+          <h2 class="fs-lg fw-semibold">Audition schedule</h2>
+          <div class="card"><div class="card-body">
+            <h3 class="fs-md fw-semibold mb-1">Callback, day two</h3>
+            <p class="m-0">Twelve people are invited. Each slot is 20 minutes, in Studio B.</p>
+            <p class="fs-xs fg-3 m-0 mt-2">Updated 12 minutes ago</p>
+          </div></div>
+          <p class="fs-md m-0">The production company wants to see the shortlist by Friday. Add notes to each person before you share the selection.</p>
+        </div>
+
         <ul class="lib-rules">
           <li><b>Heading roles use size utilities:</b> <code>.fs-2xl</code> page title, <code>.fs-lg</code> section heading, <code>.fs-md</code> card or group heading. No custom heading scale.</li>
           <li><b>The heading element follows the page structure,</b> not the size. For example <code>&lt;h1 class="fs-2xl fw-semibold"&gt;</code>.</li>

@@ -279,6 +279,28 @@ body {
 .lib-type-row > span:last-child { text-align: end; font-variant-numeric: tabular-nums; }
 .lib-type-row p { margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+/* Type scale: role name and class on the left, samples beside it. */
+.lib-type-scale { border: 1px solid var(--bs-border-color); border-radius: var(--bs-radius-5, 8px); overflow: hidden; }
+.lib-type-head, .lib-type-role {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 16px 20px;
+}
+.lib-type-head { padding-block: 8px; background: var(--bs-bg-1); font-size: 12px; font-weight: 600; color: var(--bs-fg-2); border-bottom: 1px solid var(--bs-border-color); }
+.lib-type-role + .lib-type-role { border-top: 1px solid var(--bs-border-subtle); }
+.lib-type-role > div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.lib-type-role > div b { flex-basis: 100%; font-weight: 600; }
+.lib-type-role > div code { font-size: 12px; color: var(--bs-fg-2); }
+.lib-type-role > div span:not(.badge) { font-size: 12px; color: var(--bs-fg-3); font-variant-numeric: tabular-nums; }
+.lib-type-role p { margin: 0; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lib-type-body { grid-template-columns: 200px minmax(0, 1fr); }
+.lib-type-body p { line-height: 1.5; }
+.lib-type-context { display: grid; gap: 12px; padding: 24px; border: 1px solid var(--bs-border-color); border-radius: var(--bs-radius-5, 8px); max-width: 72ch; }
+.lib-type-context h1, .lib-type-context h2 { margin: 0; }
+.lib-type-context h2 { margin-top: 8px; }
+
 .lib-rules { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; color: var(--bs-fg-2); max-width: 80ch; }
 .lib-rules b { color: var(--bs-fg-body); font-weight: 600; }
 
@@ -317,6 +339,9 @@ body {
   .lib-main { padding: 24px 16px 72px; gap: 40px; }
   .lib-preview { padding: 16px; }
   .lib-type-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .lib-type-head { display: none; }
+  .lib-type-role, .lib-type-body { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .lib-type-role p + p { display: none; }
   .lib-type-row > code { grid-column: 1 / -1; }
 }
 
