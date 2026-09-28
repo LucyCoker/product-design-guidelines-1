@@ -4,7 +4,7 @@
  * borders, no shadows, weights 400 and 600, primary only for actions.
  */
 
-:root { color-scheme: light; }
+:root, body { color-scheme: light !important; }
 
 body {
   background: var(--bs-bg-body);

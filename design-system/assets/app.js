@@ -155,6 +155,8 @@ function setupNav() {
 }
 
 async function start() {
+  // Light only: pin Bootstrap's theme attribute too.
+  document.documentElement.setAttribute('data-bs-theme', 'light')
   setupPrimary()
   try {
     const response = await fetch(new URL('../data/components.json', import.meta.url))

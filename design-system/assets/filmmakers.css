@@ -10,8 +10,12 @@
  * overrides are unlayered too and win by source order.
  */
 
-/* The product is light only for now. */
-:root { color-scheme: light; }
+/* The product is light only for now. !important so a host page or OS
+   dark setting cannot switch Bootstrap's light-dark() tokens. */
+:root,
+body,
+[data-theme],
+[data-bs-theme] { color-scheme: light !important; }
 
 /* ---------------------------------------------------------------------------
  * Primary
