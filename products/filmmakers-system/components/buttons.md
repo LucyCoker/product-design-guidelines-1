@@ -34,6 +34,7 @@ All Buttons MUST use the "Default" rounded option for corner radius. The "styled
 | The one primary action | `btn-solid theme-primary` | Max one per screen |
 | Secondary action | `btn-outline theme-secondary` | Cancel, Export, Save draft |
 | Tertiary, inline, or in-menu action | `btn-text theme-secondary` | Discard, Learn more |
+| Row action on one item in a list, table, or row gutter | `btn-text theme-primary btn-xs` | Edit, Duplicate, View as applicant. See Row actions below |
 | Icon-only action | `btn-text theme-secondary` | See icon-only buttons below |
 | Confirming a destructive action | `btn-solid theme-danger` | Confirmation dialogs only |
 | Destructive action inside an overflow menu, or standalone on a detail page | `btn-text theme-danger` | Never as a bare control in a table row. See [Destructive actions](../../../patterns/destructive-actions.md) |
@@ -92,6 +93,20 @@ It signals that the user is in a client zone — an area where clients or other 
 - Icon-only buttons MUST NOT be used for destructive actions.
 
 
+## Row actions
+
+`btn-text theme-primary btn-xs` is a text button in the primary colour. It marks the actions people take on one item in a dense list — Edit, Duplicate, View as applicant, Copy/Move, Messages — so they can be found at a glance in every row.
+
+It is quiet in emphasis (text, extra small) and carries primary meaning (this is where you act on the item). It does not compete with the one `btn-solid theme-primary` on the screen.
+
+- Row actions MUST sit on an item: a table cell, a list row, or a row gutter. Page-level quiet actions stay `btn-text theme-secondary`.
+- Row actions MUST have a text label. An icon beside the label is optional. Icon-only row actions stay `btn-text theme-secondary`.
+- The same set MUST appear in the same order on every row, so people learn it once.
+- Row actions MUST be always visible, never revealed on hover alone.
+- Row actions MUST be non-destructive. Destructive actions follow [Destructive actions](../../../patterns/destructive-actions.md).
+- Show at most three row actions. Put the rest in an overflow menu (`btn-text theme-secondary btn-icon`).
+- The label MUST meet 4.5:1 against the row background for every customer primary. Where a customer primary fails, **ASK** — see [Colour](../foundations/colour.md).
+
 ### Icon action sets in rows
 
 A repeating set of icon actions on every row of a list is permitted, but only under all of the following:
@@ -121,6 +136,12 @@ Where any of these cannot be met, **ASK**.
 ## Unresolved
 
 ### Open decisions
+
+**Row action name** — "Row action" is a working name for `btn-text theme-primary btn-xs`. Confirm the name before it goes into code or Figma.
+*Review by: [date]*
+
+**Remove in row gutters** — the Selection prototypes put Remove (`btn-text theme-danger btn-xs`) directly in the row gutter beside the row actions, because the action is reversible. This page says a destructive action is never a bare control in a table row. Decide whether reversible Remove is an exception.
+*Review by: [date]*
 
 **Sizes** — need to research how they are used and potentially come up with stricter guidelines.
 *Review by: [date]*

@@ -172,6 +172,9 @@ body {
   margin-inline-end: -1px;
   margin-bottom: -1px;
 }
+.lib-example-wide { grid-column: 1 / -1; }
+.lib-example-wide .lib-example-stage { justify-content: stretch; }
+.lib-example-wide .lib-example-stage > * { flex: 1 1 auto; }
 .lib-example-stage {
   display: flex;
   flex-wrap: wrap;

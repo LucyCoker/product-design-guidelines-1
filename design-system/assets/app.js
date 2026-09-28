@@ -34,7 +34,7 @@ const itemId = (item) => item.id || slug(item)
 
 // One allowed version: live example, name, optional class badge and caption.
 function exampleHtml(example) {
-  return `<figure class="lib-example">
+  return `<figure class="lib-example${example.wide ? ' lib-example-wide' : ''}">
     <div class="lib-example-stage">${example.html}</div>
     <figcaption><b>${escapeHtml(example.label)}</b>${example.badge ? `<span class="badge ${example.badge === 'Default' ? 'theme-primary' : 'theme-secondary'} badge-subtle">${escapeHtml(example.badge)}</span>` : ''}
       ${example.caption ? `<span>${escapeHtml(example.caption)}</span>` : ''}</figcaption>

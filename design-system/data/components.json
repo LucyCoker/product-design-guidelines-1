@@ -201,18 +201,13 @@
      "name": "Tertiary",
      "classes": "btn-text theme-secondary",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
-     "note": "Quiet actions: inline, in menus, in toolbars and in table rows. Discard, Learn more, Back.",
+     "note": "Quiet page-level actions, in menus and in toolbars: Discard, Learn more, Back. For actions on one item in a list, use a Row action.",
      "rules": [
       "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter).",
       "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus.",
       "The hit target is at least 44×44px. Icon-only buttons are never destructive."
      ],
-     "flags": [
-      {
-       "type": "ask",
-       "text": "The Component mapping prototypes use btn-text theme-primary for row actions such as Edit and Duplicate. That is not a permitted combination in the Buttons guideline. Decide which one changes."
-      }
-     ],
+     "flags": [],
      "examples": [
       {
        "label": "Label",
@@ -249,6 +244,67 @@
      "layout": "row",
      "code": "",
      "guide": "products/filmmakers-system/components/buttons.md"
+    },
+    {
+     "id": "btn-row-action",
+     "name": "Row action",
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "classes": "btn-text theme-primary btn-xs",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
+     "guide": "products/filmmakers-system/components/buttons.md",
+     "note": "Actions on one item in a dense list: Edit, Duplicate, View as applicant, Copy/Move, Messages. Primary colour shows where to act on each row; text and extra small keep it quiet.",
+     "rules": [
+      "Only on an item: a table cell, a list row or a row gutter. Page-level quiet actions are Tertiary.",
+      "Always has a text label. Icon-only row actions are Tertiary (<code>btn-text theme-secondary btn-icon</code>).",
+      "Same set, same order, on every row. Always visible, never revealed on hover.",
+      "At most three. Put the rest in an overflow menu. Never destructive.",
+      "The label must meet 4.5:1 on the row background for every customer primary."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "\"Row action\" is a working name. Confirm it before it goes into code or Figma."
+      },
+      {
+       "type": "ask",
+       "text": "The prototypes put Remove (btn-text theme-danger) directly in the row gutter because it is reversible. The Buttons guideline says a destructive action is never a bare control in a table row. Decide whether reversible Remove is an exception."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Label",
+       "html": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\">Edit</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Icon and label",
+       "html": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Disabled",
+       "html": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\" disabled>Edit</button>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "In a row gutter",
+       "html": "<div class=\"d-flex flex-column align-items-start p-2 rounded\" style=\"background:var(--bs-bg-1);border:1px solid var(--bs-border-subtle)\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i>View as applicant</button></div>",
+       "caption": "Stacked, on the bg-1 gutter",
+       "badge": ""
+      },
+      {
+       "label": "In a table row",
+       "html": "<table class=\"table table-sm mb-0\"><tbody><tr><td>Season 14: Erste Runde</td><td class=\"text-end text-nowrap\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button></td></tr></tbody></table>",
+       "caption": "The rest go in the overflow menu",
+       "badge": "",
+       "wide": true
+      }
+     ]
     },
     {
      "id": "btn-danger",
@@ -1094,8 +1150,8 @@
      "unresolved": false,
      "flags": [
       {
-       "type": "ask",
-       "text": "Uses btn-text theme-primary for Edit. See Tertiary buttons."
+       "type": "info",
+       "text": "Edit uses the Row action button (Buttons). Remove beside it is an open question on that page."
       }
      ],
      "layout": "row",
