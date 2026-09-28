@@ -56,11 +56,12 @@ function itemHtml(item) {
   </article>`
 }
 
-function groupHtml(group) {
-  return `<div class="lib-group" id="${group.id}">
-    <div class="lib-group-head"><h2>${escapeHtml(group.title)}</h2><p>${escapeHtml(group.intro)}</p></div>
+function pageHtml(group) {
+  return `<section class="lib-page" data-page="${group.id}" data-parent="components" data-title="${escapeHtml(group.title)}" hidden>
+    <nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#components">Components</a><span aria-hidden="true">/</span><span>${escapeHtml(group.title)}</span></nav>
+    <div class="lib-page-head"><h1>${escapeHtml(group.title)}</h1><p>${escapeHtml(group.intro)}</p></div>
     <div>${group.items.map(itemHtml).join('')}</div>
-  </div>`
+  </section>`
 }
 
 function render(data) {
@@ -68,12 +69,60 @@ function render(data) {
   $('#icons-items').innerHTML = icons.items.map(itemHtml).join('')
 
   const groups = data.groups.filter((g) => g.section === 'components')
-  const excluded = data.excluded.map((e) => `<li><b>${e.code}</b> ${escapeHtml(e.replaces)}: ${escapeHtml(e.reason)}</li>`).join('')
-  $('#components-items').innerHTML = groups.map(groupHtml).join('') +
-    `<div class="lib-group"><div class="lib-group-head"><h2>Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div><ul class="lib-rules">${excluded}</ul></div>`
+  $('#component-pages').outerHTML = groups.map(pageHtml).join('')
+  $('#components-excluded').innerHTML =
+    `<div class="lib-page-head"><h2 class="h5">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>
+     <ul class="lib-rules">${data.excluded.map((e) => `<li><b>${e.code}</b> ${escapeHtml(e.replaces)}: ${escapeHtml(e.reason)}</li>`).join('')}</ul>`
 
   $('#side-components').insertAdjacentHTML('beforeend', groups.map((g) =>
     `<a href="#${g.id}" class="lib-sub">${escapeHtml(g.title)}<span class="lib-count">${g.items.length}</span></a>`).join(''))
+
+  // Overview pages list their child pages as cards.
+  for (const overview of $$('[data-overview]')) {
+    const parent = overview.dataset.overview
+    overview.innerHTML = $$(`.lib-page[data-parent="${parent}"]`).map((page) => {
+      const count = $$('.lib-item', page).length
+      const intro = $('.lib-page-head p', page)?.textContent || ''
+      return `<a class="card" href="#${page.dataset.page}"><div class="card-body">
+        <small>${count ? `${count} ${count === 1 ? 'component' : 'components'}` : 'Foundation'}</small>
+        <b>${escapeHtml(page.dataset.title)}</b><p>${escapeHtml(intro)}</p></div></a>`
+    }).join('')
+  }
+}
+
+// Pages -------------------------------------------------------------------
+// One page shows at a time. The hash names a page (#buttons) or a
+// component (#btn-2), which opens its page and scrolls to it.
+function pagerHtml(page, order) {
+  const i = order.indexOf(page.dataset.page)
+  const link = (id, dir) => {
+    const target = $(`.lib-page[data-page="${id}"]`)
+    if (!target) return '<span></span>'
+    return `<a class="lib-pager-${dir}" href="#${id}"><small>${dir === 'prev' ? 'Previous' : 'Next'}</small><b>${escapeHtml(target.dataset.title)}</b></a>`
+  }
+  return `<nav class="lib-pager" aria-label="Pages">${link(order[i - 1], 'prev')}${link(order[i + 1], 'next')}</nav>`
+}
+
+function setupPages() {
+  const order = $$('.lib-side a').map((a) => a.hash.slice(1))
+  for (const page of $$('.lib-page')) page.insertAdjacentHTML('beforeend', pagerHtml(page, order))
+
+  const show = () => {
+    const id = location.hash.slice(1) || 'foundations'
+    const target = document.getElementById(id)
+    const page = $(`.lib-page[data-page="${id}"]`) || target?.closest('.lib-page') || $('.lib-page[data-page="foundations"]')
+    $$('.lib-page').forEach((p) => { p.hidden = p !== page })
+    const current = page.dataset.page
+    $$('.lib-side a').forEach((a) => {
+      const hit = a.hash === '#' + current
+      a.setAttribute('aria-current', hit ? 'page' : 'false')
+    })
+    document.title = `${page.dataset.title} · Filmmakers Component Library`
+    if (target && !target.matches('.lib-page')) target.scrollIntoView({ block: 'start' })
+    else window.scrollTo(0, 0)
+  }
+  addEventListener('hashchange', show)
+  show()
 }
 
 // Examples are specimens. Stop their links from jumping the page.
@@ -144,16 +193,6 @@ function setupPrimary() {
   if (saved) setPrimary(saved)
 }
 
-function setupNav() {
-  const links = $$('.lib-side a')
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) links.forEach((a) => a.setAttribute('aria-current', String(a.hash === '#' + entry.target.id)))
-    }
-  }, { rootMargin: '-15% 0px -75% 0px' })
-  $$('.lib-group[id], .lib-section').forEach((el) => observer.observe(el))
-}
-
 async function start() {
   // Light only: pin Bootstrap's theme attribute too.
   document.documentElement.setAttribute('data-bs-theme', 'light')
@@ -162,15 +201,16 @@ async function start() {
     const response = await fetch(new URL('../data/components.json', import.meta.url))
     render(await response.json())
   } catch (error) {
-    $('#components-items').innerHTML = '<div class="alert theme-danger" role="alert">The component list did not load. Serve this folder over HTTP, not as a file.</div>'
+    $('#components-excluded').innerHTML = '<div class="alert theme-danger" role="alert">The component list did not load. Serve this folder over HTTP, not as a file.</div>'
     console.error(error)
+    setupPages()
     return
   }
   quietExamples()
   setupTooltips()
   setupUploadDemo()
   setupCopy()
-  setupNav()
+  setupPages()
 }
 
 start()

@@ -31,39 +31,37 @@
 <div class="lib-shell">
   <nav class="lib-side" aria-label="Library">
     <div class="lib-side-group">
-      <span class="lib-side-title">Foundations</span>
-      <a href="#foundations">Overview</a>
+      <a href="#foundations" class="lib-side-title">Foundations</a>
       <a href="#colour" class="lib-sub">Colour</a>
       <a href="#typography" class="lib-sub">Typography</a>
       <a href="#icons" class="lib-sub">Icons</a>
       <a href="#tokens" class="lib-sub">Spacing and more</a>
     </div>
     <div class="lib-side-group" id="side-components">
-      <span class="lib-side-title">Components</span>
-      <a href="#components">Overview</a>
+      <a href="#components" class="lib-side-title">Components</a>
     </div>
     <div class="lib-side-group">
-      <span class="lib-side-title">Templates</span>
-      <a href="#templates">Overview</a>
+      <a href="#templates" class="lib-side-title">Templates</a>
     </div>
     <div class="lib-side-group">
-      <span class="lib-side-title">Guidelines</span>
-      <a href="#guidelines">Overview</a>
+      <a href="#guidelines" class="lib-side-title">Guidelines</a>
     </div>
   </nav>
 
   <main class="lib-main">
+<section class="lib-page" data-page="foundations" data-title="Foundations" hidden>
 
-    <!-- Foundations ------------------------------------------------------ -->
-    <section class="lib-section" id="foundations">
-      <div class="lib-section-head">
+<div class="lib-page-head">
         <h1>Foundations</h1>
         <p>Colour, type and icons. Values come from Bootstrap 6 with the Filmmakers layer on top. Everything else in the library is built from these.</p>
       </div>
+<div class="lib-cards" data-overview="foundations"></div>
+</section>
+<section class="lib-page" data-page="colour" data-parent="foundations" data-title="Colour" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Colour</span></nav>
 
-      <div class="lib-group" id="colour">
-        <div class="lib-group-head">
-          <h2>Colour</h2>
+        <div class="lib-page-head">
+          <h1>Colour</h1>
           <p>Primary is set per customer. Use the <b>Preview primary</b> control at the top to see any customer colour.</p>
         </div>
 
@@ -112,11 +110,13 @@
         </ul>
         <p class="lib-flag"><span class="badge theme-warning badge-subtle">ASK</span><span>The focus ring is about 2.2:1 on white. The Colour guideline asks for 3:1 on focus indicators.</span></p>
         <p class="lib-flag"><span class="badge theme-warning badge-subtle">ASK</span><span>The client zone colour: the mapping uses <code>#EF7428</code>, the Colour guideline says an accent must be a Bootstrap palette colour. This page shows Bootstrap <code>orange-500</code> until that is decided.</span></p>
-      </div>
+      
+</section>
+<section class="lib-page" data-page="typography" data-parent="foundations" data-title="Typography" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Typography</span></nav>
 
-      <div class="lib-group" id="typography">
-        <div class="lib-group-head">
-          <h2>Typography</h2>
+        <div class="lib-page-head">
+          <h1>Typography</h1>
           <p>The native system font stack, two weights, and a 14px body.</p>
         </div>
         <div>
@@ -136,40 +136,45 @@
           <li><b>De-emphasise with colour</b> (<code>.fg-2</code>, <code>.fg-3</code>), not size, weight or italics.</li>
           <li><b>12px is the floor,</b> for fine print only.</li>
         </ul>
-      </div>
+      
+</section>
+<section class="lib-page" data-page="icons" data-parent="foundations" data-title="Icons" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Icons</span></nav>
 
-      <div class="lib-group" id="icons">
-        <div class="lib-group-head">
-          <h2>Icons</h2>
+        <div class="lib-page-head">
+          <h1>Icons</h1>
           <p>Font Awesome 7. Icons inherit the text colour.</p>
         </div>
         <div id="icons-items"></div>
-      </div>
+      
+</section>
+<section class="lib-page" data-page="tokens" data-parent="foundations" data-title="Spacing, elevation and motion" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Spacing, elevation and motion</span></nav>
 
-      <div class="lib-group" id="tokens">
-        <div class="lib-group-head">
-          <h2>Spacing, elevation and motion</h2>
+        <div class="lib-page-head">
+          <h1>Spacing, elevation and motion</h1>
           <p>These come from the design system token files.</p>
         </div>
         <div class="card"><div class="card-body text-center fg-2 p-4">
           <div class="fw-semibold mb-1">Waiting for the token files</div>
           <div class="fs-xs fg-3">Spacing, elevation and motion appear here once the token files are connected.</div>
         </div></div>
-      </div>
-    </section>
+      
+</section>
+<section class="lib-page" data-page="components" data-title="Components" hidden>
 
-    <!-- Components ------------------------------------------------------- -->
-    <section class="lib-section" id="components">
-      <div class="lib-section-head">
+<div class="lib-page-head">
         <h1>Components</h1>
         <p>Every Bootstrap 6 component used in the Selection and Manage Audition prototypes. Codes match the Component mapping document. Larger compositions are listed under Organisms.</p>
       </div>
-      <div id="components-items"></div>
-    </section>
+<div class="lib-cards" data-overview="components"></div>
+<div id="components-excluded"></div>
+</section>
+<div id="component-pages"></div>
+<section class="lib-page" data-page="templates" data-title="Templates" hidden>
 
-    <!-- Templates -------------------------------------------------------- -->
-    <section class="lib-section" id="templates">
-      <div class="lib-section-head">
+
+      <div class="lib-page-head">
         <h1>Templates</h1>
         <p>Whole page layouts built from organisms.</p>
       </div>
@@ -177,11 +182,12 @@
         <div class="fw-semibold mb-1">No templates yet</div>
         <div class="fs-xs fg-3">Page templates you add appear here.</div>
       </div></div>
-    </section>
+    
+</section>
+<section class="lib-page" data-page="guidelines" data-title="Guidelines" hidden>
 
-    <!-- Guidelines ------------------------------------------------------- -->
-    <section class="lib-section" id="guidelines">
-      <div class="lib-section-head">
+
+      <div class="lib-page-head">
         <h1>Guidelines</h1>
         <p>How to choose between the components above. The same Markdown powers the guidelines site and the instructions AI tools read.</p>
       </div>
@@ -197,7 +203,8 @@
         <li><b>ASK</b> marks a decision that has not been made. Do not guess it; leave it visibly open.</li>
         <li><b>MUST</b> is not negotiable. <b>SHOULD</b> needs a reason to break. <b>MAY</b> is a free choice.</li>
       </ul>
-    </section>
+    
+</section>
   </main>
 </div>
 
