@@ -215,6 +215,102 @@ function setupCopy() {
   })
 }
 
+// Search -------------------------------------------------------------------
+// Searches every page and component: names, codes, classes and notes.
+function buildIndex() {
+  const entries = []
+  for (const page of $$('.lib-page')) {
+    const parent = page.dataset.parent ? $(`.lib-page[data-page="${page.dataset.parent}"]`)?.dataset.title : ''
+    entries.push({
+      title: page.dataset.title,
+      where: parent || 'Section',
+      href: '#' + page.dataset.page,
+      text: ($('.lib-page-head p', page)?.textContent || '').toLowerCase()
+    })
+    for (const item of $$('.lib-item', page)) {
+      const code = $('.lib-item-head .badge', item)?.textContent || ''
+      entries.push({
+        title: $('h3', item).textContent,
+        where: page.dataset.title + (code && /^[A-Z]+-\d+$/.test(code) ? ` · ${code}` : ''),
+        href: '#' + item.id,
+        text: [code, $('.lib-item-meta code', item)?.textContent, $('.lib-note', item)?.textContent, $$('.lib-example figcaption b', item).map((b) => b.textContent).join(' ')].join(' ').toLowerCase()
+      })
+    }
+  }
+  return entries
+}
+
+function search(entries, query) {
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean)
+  if (!words.length) return []
+  return entries
+    .map((entry) => {
+      const title = entry.title.toLowerCase()
+      if (!words.every((w) => title.includes(w) || entry.text.includes(w) || entry.where.toLowerCase().includes(w))) return null
+      const score = (title.startsWith(words[0]) ? 0 : title.includes(words[0]) ? 1 : 2) + (entry.where === 'Section' ? 0 : 0.5)
+      return { entry, score }
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 10)
+    .map((r) => r.entry)
+}
+
+function highlight(text, query) {
+  const safe = escapeHtml(text)
+  const words = query.split(/\s+/).filter(Boolean).map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+  return words.length ? safe.replace(new RegExp(`(${words.join('|')})`, 'gi'), '<mark>$1</mark>') : safe
+}
+
+function setupSearch() {
+  const input = $('#lib-search')
+  const list = $('#lib-search-results')
+  const entries = buildIndex()
+  let results = []
+  let active = -1
+
+  const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant'); active = -1 }
+  const select = (i) => {
+    active = i
+    $$('[role="option"]', list).forEach((el, n) => el.setAttribute('aria-selected', String(n === i)))
+    const el = $(`#lib-opt-${i}`)
+    if (el) { input.setAttribute('aria-activedescendant', el.id); el.scrollIntoView({ block: 'nearest' }) }
+  }
+  const go = (entry) => { close(); input.value = ''; input.blur(); location.hash = entry.href }
+
+  const update = () => {
+    const query = input.value.trim()
+    if (!query) return close()
+    results = search(entries, query)
+    list.innerHTML = results.length
+      ? results.map((r, i) => `<a class="menu-item" role="option" id="lib-opt-${i}" href="${r.href}" aria-selected="false"><b>${highlight(r.title, query)}</b><small>${escapeHtml(r.where)}</small></a>`).join('')
+      : `<div class="lib-search-empty">Nothing matches “${escapeHtml(query)}”.</div>`
+    list.hidden = false
+    input.setAttribute('aria-expanded', 'true')
+    select(results.length ? 0 : -1)
+  }
+
+  input.addEventListener('input', update)
+  input.addEventListener('focus', () => { if (input.value.trim()) update() })
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' && results.length) { e.preventDefault(); select((active + 1) % results.length) }
+    else if (e.key === 'ArrowUp' && results.length) { e.preventDefault(); select((active - 1 + results.length) % results.length) }
+    else if (e.key === 'Enter' && results[active]) { e.preventDefault(); go(results[active]) }
+    else if (e.key === 'Escape') { if (!list.hidden) close(); else { input.value = ''; input.blur() } }
+  })
+  list.addEventListener('mousedown', (e) => e.preventDefault())
+  list.addEventListener('click', (e) => {
+    const option = e.target.closest('[role="option"]')
+    if (!option) return
+    e.preventDefault()
+    go(results[Number(option.id.split('-').pop())])
+  })
+  input.addEventListener('blur', close)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !e.target.closest('input, textarea, select, [contenteditable]')) { e.preventDefault(); input.focus() }
+  })
+}
+
 // Preview primary ----------------------------------------------------------
 const NAMES = { default: 'Default blue', 'var(--bs-red-600)': 'Red', 'var(--bs-green-600)': 'Green' }
 
@@ -254,6 +350,7 @@ async function start() {
   setupUploadDemo()
   setupCopy()
   setupPages()
+  setupSearch()
 }
 
 start()
