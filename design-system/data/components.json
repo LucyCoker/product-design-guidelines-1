@@ -759,77 +759,262 @@
    "id": "menus",
    "section": "components",
    "title": "Menus",
-   "intro": "Bootstrap 6 Menu replaces the v3 dropdown.",
+   "intro": "How we use the Bootstrap 6 Menu: actions and links that open from a trigger button.",
    "items": [
     {
-     "code": "MNU-1",
-     "name": "Menu",
-     "status": "Replace",
-     "classes": ".menu / .menu-item / .menu-item-content",
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
-     "replaces": "dropdown .dropdown-toggle / .dropdown-menu",
-     "note": "Replace. data-toggle becomes data-bs-toggle=\"menu\". Pressed/selected item is set through --bs-menu-item-active-bg / -color (bg-2, fg-body), not a custom rule, so it stays one step darker than the bg-1 hover.",
-     "unresolved": false,
      "flags": [],
-     "layout": "stack",
-     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\"><span class=\"avatar avatar-xs theme-secondary\">C</span>Constan...<i class=\"fa-solid fa-caret-down\"></i></button><ul class=\"menu show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-house menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Home</span></a></li><li><a class=\"menu-item active\" href=\"#\" aria-current=\"page\"><i class=\"fa-solid fa-gear menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Settings</span></a></li></ul>"
+     "id": "menu-basic",
+     "name": "Menu",
+     "classes": "[data-bs-toggle=\"menu\"] + .menu > .menu-item",
+     "note": "A list of actions or links that opens from a trigger button. Bootstrap 6 Menu replaces the v3 dropdown.",
+     "rules": [
+      "The trigger follows the Buttons rules: usually <code>btn-outline theme-secondary</code> or <code>btn-text theme-secondary</code>, with a caret icon.",
+      "Open on click, never on hover alone. Bootstrap handles the keyboard: arrow keys move, Esc closes.",
+      "Items are <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for links. Labels name the outcome."
+     ],
+     "examples": [
+      {
+       "label": "Closed",
+       "html": "<div><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-toggle=\"menu\" aria-expanded=\"false\">Export<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download PDF</button><button type=\"button\" class=\"menu-item\">Download CSV</button><button type=\"button\" class=\"menu-item\">Copy link</button></div></div>",
+       "caption": "Click to open",
+       "badge": ""
+      },
+      {
+       "label": "Open",
+       "html": "<div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Download PDF</button><button type=\"button\" class=\"menu-item\">Download CSV</button><button type=\"button\" class=\"menu-item\">Copy link</button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
     },
     {
-     "code": "MNU-2",
-     "name": "Menu, end aligned",
+     "code": "",
      "status": "Direct",
-     "classes": ".menu.menu-end",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/#alignment",
-     "replaces": "dropdown-menu-right",
-     "note": "Direct. Renamed for logical properties.",
-     "unresolved": false,
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [],
+     "id": "menu-icons",
+     "name": "Icons",
+     "classes": ".menu-item-icon",
+     "note": "An icon before the label helps people scan a longer menu. Use icons on all items or none.",
+     "rules": [
+      "Icons sit in the <code>menu-item-icon</code> slot, in the muted text colour (<code>fg-3</code>).",
+      "Every item still has a text label."
+     ],
+     "examples": [
+      {
+       "label": "With icons",
+       "html": "<div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\"><i class=\"fa-solid fa-pencil menu-item-icon fg-3\" aria-hidden=\"true\"></i>Edit</button><button type=\"button\" class=\"menu-item\"><i class=\"fa-regular fa-copy menu-item-icon fg-3\" aria-hidden=\"true\"></i>Duplicate</button><button type=\"button\" class=\"menu-item\"><i class=\"fa-solid fa-right-to-bracket menu-item-icon fg-3\" aria-hidden=\"true\"></i>Copy/Move</button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [],
+     "id": "menu-active",
+     "name": "Active item",
+     "classes": ".menu-item.active + aria-current",
+     "note": "Marks the current page, or the current item in a set.",
+     "rules": [
+      "The active item takes the <code>bg-2</code> surface, one step darker than the <code>bg-1</code> hover. Never the primary colour.",
+      "Add <code>aria-current=\"page\"</code> for the current page, or <code>aria-current=\"true\"</code> for the current item in a set."
+     ],
+     "examples": [
+      {
+       "label": "Active",
+       "html": "<div class=\"menu show position-static\"><a class=\"menu-item\" href=\"#\">Audition</a><a class=\"menu-item active\" href=\"#\" aria-current=\"page\">Selection</a><a class=\"menu-item\" href=\"#\">Subscribers</a></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [],
+     "id": "menu-groups",
+     "name": "Headers and dividers",
+     "classes": ".menu-header · hr.menu-divider",
+     "note": "Split a long menu into labelled groups.",
+     "rules": [
+      "Use a divider between groups, and above a destructive or sign-out item.",
+      "Use a header only when a group needs a name. Headers are short and sentence case."
+     ],
+     "examples": [
+      {
+       "label": "Divider",
+       "html": "<div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Edit</button><button type=\"button\" class=\"menu-item\">Duplicate</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item\">Archive</button></div>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Header",
+       "html": "<div class=\"menu show position-static\"><h6 class=\"menu-header\">Download</h6><button type=\"button\" class=\"menu-item\">PDF</button><button type=\"button\" class=\"menu-item\">CSV</button><hr class=\"menu-divider\"><h6 class=\"menu-header\">Share</h6><button type=\"button\" class=\"menu-item\">Copy link</button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [],
+     "id": "menu-descriptions",
+     "name": "Descriptions",
+     "classes": ".menu-item-content > .menu-item-description",
+     "note": "A second line under the label, for when the outcome needs explaining.",
+     "rules": [
+      "Keep descriptions to one short line. If every item needs one, a dialog may be the better tool."
+     ],
+     "examples": [
+      {
+       "label": "With descriptions",
+       "html": "<div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\"><span class=\"menu-item-content\">Publish now<small class=\"menu-item-description\">Clients see it straight away</small></span></button><button type=\"button\" class=\"menu-item\"><span class=\"menu-item-content\">Schedule<small class=\"menu-item-description\">Pick a date to publish</small></span></button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [],
+     "id": "menu-danger",
+     "name": "Destructive item",
+     "classes": ".menu-item.theme-danger",
+     "note": "Destructive actions live in menus, labelled with text. They go last, after a divider.",
+     "rules": [
+      "Always a text label. An icon beside it is optional.",
+      "Reversible actions act straight away and offer Undo. Irreversible ones open a confirmation dialog. See Destructive actions.",
+      "<code>theme-danger</code> is the only theme used on menu items."
+     ],
+     "guide": "patterns/destructive-actions.md",
+     "examples": [
+      {
+       "label": "Last, after a divider",
+       "html": "<div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\"><i class=\"fa-solid fa-pencil menu-item-icon fg-3\" aria-hidden=\"true\"></i>Edit</button><button type=\"button\" class=\"menu-item\"><i class=\"fa-solid fa-right-to-bracket menu-item-icon fg-3\" aria-hidden=\"true\"></i>Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\"><i class=\"fa-solid fa-trash menu-item-icon\" aria-hidden=\"true\"></i>Remove</button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [],
+     "id": "menu-disabled",
+     "name": "Disabled item",
+     "classes": ".menu-item.disabled + aria-disabled",
+     "note": "An action that exists but cannot be used right now.",
+     "rules": [
+      "Prefer hiding actions people can never use. Disable only when the reason is clear from the page."
+     ],
+     "examples": [
+      {
+       "label": "Disabled",
+       "html": "<div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Edit</button><a class=\"menu-item disabled\" aria-disabled=\"true\">Release profiles</a><button type=\"button\" class=\"menu-item\">Download</button></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
+    },
+    {
+     "code": "",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
      "flags": [
       {
        "type": "info",
-       "text": ".menu-end is not in the Bootstrap build this site uses (bootstrap-v6-dev@bc4bcb4)."
+       "text": "The mapping used a .menu-end class. This Bootstrap build has no such class; alignment is set with data-bs-placement on the trigger."
       }
      ],
-     "layout": "row",
-     "example": "<ul class=\"menu menu-end show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><span class=\"menu-item-content\">Aligned to the trigger's end edge</span></a></li></ul>"
+     "id": "menu-placement",
+     "name": "Placement",
+     "classes": "data-bs-placement=\"bottom-start\" · \"bottom-end\"",
+     "note": "Menus open below their trigger, aligned to its start edge. Triggers at the end of a row or page open aligned to the end edge, so the menu stays on screen.",
+     "rules": [
+      "Use logical placements (<code>start</code>, <code>end</code>) so the menu flips for right-to-left languages."
+     ],
+     "examples": [
+      {
+       "label": "Start (default)",
+       "html": "<div><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-toggle=\"menu\" aria-expanded=\"false\">Export<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download PDF</button><button type=\"button\" class=\"menu-item\">Download CSV</button><button type=\"button\" class=\"menu-item\">Copy link</button></div></div>",
+       "caption": "Click to open",
+       "badge": ""
+      },
+      {
+       "label": "End",
+       "html": "<div class=\"d-flex justify-content-end w-100\"><div><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-toggle=\"menu\" aria-expanded=\"false\" data-bs-placement=\"bottom-end\">Export<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"menu\"><button type=\"button\" class=\"menu-item\">Download PDF</button><button type=\"button\" class=\"menu-item\">Download CSV</button><button type=\"button\" class=\"menu-item\">Copy link</button></div></div></div>",
+       "caption": "Click to open",
+       "badge": "bottom-end"
+      }
+     ]
     },
     {
-     "code": "MNU-3",
-     "name": "Menu divider",
+     "code": "",
      "status": "Direct",
-     "classes": "hr.menu-divider",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/#dividers",
-     "replaces": "divider",
-     "note": "Direct. Sits above Sign out.",
-     "unresolved": false,
-     "flags": [],
      "layout": "row",
-     "example": "<ul class=\"menu show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-gear menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Settings</span></a></li><li><hr class=\"menu-divider\"></li><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-arrow-right-from-bracket menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Sign out</span></a></li></ul>"
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The Selection prototypes use a labelled “more” button in the primary colour (btn-text theme-primary) as the trigger. This page uses the icon-only Tertiary trigger, as in Button group and Row action. Decide which one is right."
+      }
+     ],
+     "id": "menu-overflow",
+     "name": "Overflow menu",
+     "classes": "btn-text theme-secondary btn-icon + .menu",
+     "note": "Holds the less frequent actions on an item or page, behind a “More actions” button.",
+     "rules": [
+      "The trigger is icon only (<code>fa-ellipsis</code>) with <code>aria-label=\"More actions\"</code> and a tooltip.",
+      "Destructive actions go here, last, with a text label."
+     ],
+     "examples": [
+      {
+       "label": "Overflow",
+       "html": "<div class=\"d-flex gap-2 align-items-start\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Download</button><button type=\"button\" class=\"menu-item\">Copy link</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Remove from selection</button></div></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ]
     },
     {
-     "code": "MNU-4",
-     "name": "More actions menu",
-     "status": "Replace",
-     "classes": ".btn-text[data-bs-toggle=\"menu\"]",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
-     "replaces": "action-menu-list \"more\"",
-     "note": "Replace. Carries the third and later row actions; destructive items get a text label, never a bare icon.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "stack",
-     "example": "<button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-ellipsis\"></i>more</button><ul class=\"menu show\" style=\"display:block;position:static;margin:0;opacity:1;transform:none\"><li><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-right-to-bracket menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Copy/Move</span></a></li><li><hr class=\"menu-divider\"></li><li><a class=\"menu-item theme-danger\" href=\"#\"><i class=\"fa-solid fa-trash menu-item-icon\" aria-hidden=\"true\"></i><span class=\"menu-item-content\">Remove</span></a></li></ul>"
-    },
-    {
-     "code": "MNU-5",
-     "name": "Language switch",
-     "status": "Replace",
-     "classes": ".btn-text.theme-secondary.btn-sm[data-bs-toggle=\"menu\"]",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
-     "replaces": "dropdown language switch",
-     "note": "Replace. EN language switch, top right. Header controls carry no primary colour.",
-     "unresolved": false,
-     "flags": [],
+     "code": "",
+     "status": "Direct",
      "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm\">EN<i class=\"fa-solid fa-caret-down\"></i></button>"
+     "docs": "",
+     "flags": [],
+     "id": "menu-not-allowed",
+     "name": "Not allowed",
+     "classes": "",
+     "note": "Bootstrap supports more than we use.",
+     "rules": [
+      "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items.",
+      "An active or selected item in the primary colour.",
+      "Menus of checkmarks or radios for choosing a value. Use the <a href=\"#sf-3\">Combobox</a>.",
+      "Icon-only menu items.",
+      "Dark or translucent menus.",
+      "Menus that open on hover."
+     ],
+     "examples": []
     }
    ]
   },
@@ -1406,12 +1591,50 @@
      "flags": [
       {
        "type": "info",
-       "text": "Full example lives in Header.dc.html, which was not shared. Built from the logo, Language switch (MNU-5) and Menu (MNU-1, MNU-3)."
+       "text": "Full example lives in Header.dc.html, which was not shared. Built from the logo, the Header menus below."
       }
      ],
      "layout": "row",
      "example": "",
      "id": "shell-header"
+    },
+    {
+     "code": "",
+     "id": "shell-header-menus",
+     "name": "Header menus",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
+     "classes": "btn-text theme-secondary btn-sm + .menu",
+     "replaces": "dropdown, dropdown-menu-right, language switch",
+     "note": "The two menus at the right of the header: the account menu and the language switch. Both use the standard Menu, opened from a text button.",
+     "rules": [
+      "Header controls carry no primary colour. Triggers are <code>btn-text theme-secondary btn-sm</code>.",
+      "Both menus open aligned to their end edge (<code>data-bs-placement=\"bottom-end\"</code>), because they sit at the right of the header.",
+      "The account menu shows the avatar and name, then Home and Settings, then a divider and Sign out.",
+      "The current page and the current language take the active state (<code>bg-2</code>)."
+     ],
+     "flags": [
+      {
+       "type": "info",
+       "text": "The name in the account trigger is example data, and the languages listed are examples too. The mapping showed EN only."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Account menu",
+       "html": "<div class=\"d-flex flex-column align-items-start gap-2\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm\"><span class=\"avatar avatar-xs theme-secondary\">C</span>Constanze Weber<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"menu show position-static\"><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-house menu-item-icon fg-3\" aria-hidden=\"true\"></i>Home</a><a class=\"menu-item active\" href=\"#\" aria-current=\"page\"><i class=\"fa-solid fa-gear menu-item-icon fg-3\" aria-hidden=\"true\"></i>Settings</a><hr class=\"menu-divider\"><a class=\"menu-item\" href=\"#\"><i class=\"fa-solid fa-arrow-right-from-bracket menu-item-icon fg-3\" aria-hidden=\"true\"></i>Sign out</a></div></div>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Language switch",
+       "html": "<div class=\"d-flex flex-column align-items-start gap-2\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm\">EN<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item active\" aria-current=\"true\">English</button><button type=\"button\" class=\"menu-item\">Deutsch</button></div></div>",
+       "caption": "",
+       "badge": ""
+      }
+     ],
+     "guide": ""
     },
     {
      "code": "NAV-3",
