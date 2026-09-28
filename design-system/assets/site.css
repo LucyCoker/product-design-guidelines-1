@@ -212,7 +212,7 @@ body {
 .lib-example-wide { grid-column: 1 / -1; }
 .lib-example-wide .lib-example-stage { justify-content: stretch; overflow-x: auto; }
 /* Desktop-only patterns keep their real width and scroll inside the frame. */
-.lib-desktop { min-width: 1180px; }
+.lib-desktop { min-width: 1180px; width: max-content; }
 .lib-example-wide .lib-example-stage > * { flex: 1 1 auto; }
 .lib-example-stage {
   display: flex;

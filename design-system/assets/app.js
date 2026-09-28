@@ -1,5 +1,6 @@
 // Filmmakers component library. Renders data/components.json.
 import * as bootstrap from './bootstrap.bundle.min.js'
+import { initFilterBar } from './filterbar.js'
 
 const $ = (selector, root = document) => root.querySelector(selector)
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)]
@@ -461,6 +462,7 @@ async function start() {
     return
   }
   quietExamples()
+  $$('[data-filterbar]').forEach(initFilterBar)
   freeMenus()
   setupTooltips()
   setupUploadDemo()

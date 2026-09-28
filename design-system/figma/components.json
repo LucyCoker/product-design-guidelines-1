@@ -550,9 +550,7 @@
       "classes": "input-group + combobox-toggle + popover + chip",
       "variants": {
         "Version": [
-          "Default",
-          "Filters applied",
-          "More filters open",
+          "Working example",
           "With applied chips",
           "Narrow screen"
         ]
