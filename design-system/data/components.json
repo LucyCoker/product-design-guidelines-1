@@ -1137,12 +1137,7 @@
      "replaces": "form-group + control-label",
      "note": "Every form control sits in a .form-field with its label above it. Labels are weight 600, sentence case.",
      "unresolved": false,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Inline labels are in Bootstrap 6, but the Forms pattern says labels sit above inputs in a single column. Decide whether inline labels are allowed, and where. Until then use Label above."
-      }
-     ],
+     "flags": [],
      "layout": "row",
      "examples": [
       {
@@ -1164,13 +1159,6 @@
        "badge": ""
       },
       {
-       "label": "Inline label",
-       "html": "<div class=\"row align-items-center\" style=\"width:100%;max-width:420px;margin:0\"><label for=\"fld-inline\" class=\"col-4 col-form-label col-form-label-sm fw-semibold\">Project name</label><div class=\"col-8\"><input type=\"text\" class=\"form-control form-control-sm\" id=\"fld-inline\"></div></div>",
-       "caption": "See the ASK below.",
-       "badge": "ASK",
-       "wide": true
-      },
-      {
        "label": "Floating label (sign in)",
        "html": "<div style=\"display:grid;gap:12px;width:100%;max-width:280px\"><div class=\"form-floating\"><label for=\"fld-float-email\">Email</label><input type=\"email\" class=\"form-control\" id=\"fld-float-email\" placeholder=\"Email\" autocomplete=\"email\"></div><div class=\"form-floating\"><label for=\"fld-float-pw\">Password</label><input type=\"password\" class=\"form-control\" id=\"fld-float-pw\" placeholder=\"Password\" autocomplete=\"current-password\"></div></div>",
        "caption": "Only for very short, familiar forms such as sign in.",
@@ -1183,7 +1171,8 @@
       "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above.",
       "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control.",
       "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>.",
-      "Errors follow the <a href=\"#frm-11\">Validation</a> rules."
+      "Errors follow the <a href=\"#frm-11\">Validation</a> rules.",
+      "No inline (side-by-side) labels. Removed in review; add them back only with a use case."
      ]
     }
    ]
