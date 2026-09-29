@@ -260,6 +260,15 @@ function setupAlertDemo() {
   }
 }
 
+// Links inside examples are placeholders: never navigate, so trying an
+// Edit or a chip keeps you on the page.
+function quietExampleLinks() {
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('.lib-example-stage a[href], .lib-preview a[href]')
+    if (a && a.getAttribute('href').startsWith('#')) e.preventDefault()
+  })
+}
+
 function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
@@ -555,6 +564,7 @@ async function start() {
   setupValidationDemo()
   setupToastDemo()
   setupAlertDemo()
+  quietExampleLinks()
   freeMenus()
   setupTooltips()
   setupUploadDemo()
