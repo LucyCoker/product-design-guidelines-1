@@ -38,7 +38,8 @@ const esc = (text) => String(text).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 
 export function initSimpleFilter(root) {
   const defaults = () => Object.fromEntries(DEFS.map((d) => [d.key, d.multi ? [] : ALL]))
-  const state = { query: '', values: defaults(), sort: 0, page: 1, open: null }
+  // data-query starts the bar with a search, e.g. to show the no-matches state.
+  const state = { query: root.dataset.query || '', values: defaults(), sort: 0, page: 1, open: null }
   // The menu that was open at the last render. Re-rendering it skips
   // Bootstrap's fade-in, so picking several values does not flicker.
   let shown = null
