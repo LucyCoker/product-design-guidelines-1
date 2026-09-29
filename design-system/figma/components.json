@@ -545,13 +545,23 @@
     },
     {
       "figmaPage": "Organisms",
-      "figmaName": "Search and filter/Search and filter bar",
+      "figmaName": "Search and filter/Complex",
       "libraryId": "sf-1",
       "classes": "input-group + combobox-toggle + popover + chip",
       "variants": {
         "Version": [
-          "Working example",
-          "Breakpoints"
+          "Working example"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Search and filter/Simple",
+      "libraryId": "sf-4",
+      "classes": "input-group + btn-text theme-secondary + menu",
+      "variants": {
+        "Version": [
+          "Working example"
         ]
       }
     },

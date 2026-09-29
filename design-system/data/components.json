@@ -1507,16 +1507,16 @@
    "id": "search-and-filter",
    "section": "organisms",
    "title": "Search and filter",
-   "intro": "One filter bar for every list page: search, filters, sorting and a result count.",
+   "intro": "Two filter bars for list pages. Complex for finding records in large sets of data; Simple for finding one item in a short, familiar list.",
    "items": [
     {
      "code": "SF-1",
-     "name": "Search and filter bar",
+     "name": "Complex",
      "status": "Custom",
      "classes": "input-group + combobox-toggle + popover + chip",
      "docs": "",
      "replaces": "filter bar inline labels + selects",
-     "note": "One filter bar for every list page. Search first, up to three inline filters, the rest behind More filters, sorting last, and the count on its own row. Each filter reads as a sentence, and the bar hands the filtered rows back to the page.",
+     "note": "Use it to find the right records in large sets of data, such as actors, locations or crew. People search and combine several filters to narrow the pool, so every applied filter shows as a chip they can remove on its own.",
      "unresolved": false,
      "flags": [
       {
@@ -1533,25 +1533,96 @@
       "Order: search, inline filters (up to three), More filters, Clear filters, then Sort by at the far end.",
       "Every filter is a <a href=\"#sf-3\">Combobox</a> reading <b>label: value</b>. Applied filters are weight 600, and More filters shows how many of its filters are applied.",
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
+      "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter.",
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “1-3 of 4 coworkers”.",
       "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover. The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths the popover and menus fill the bar’s width.",
-      "Pages with only two or three filters never show More filters. The bar adapts by removing, not adding.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
      "examples": [
       {
        "label": "Working example",
-       "caption": "Try it: search, pick filters, open More filters, clear and sort. Turn on applied chips to see that option. It also adapts to the window width, like the breakpoints below.",
+       "caption": "Try it: search, pick filters, open More filters, remove a chip, clear and sort. Narrow the window to see it adapt.",
        "badge": "",
        "wide": true,
        "html": "<div data-filterbar style=\"padding-bottom:140px;width:100%\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 0 auto\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px\">1-3 of 4 coworkers</div></div></div>"
+      }
+     ],
+     "links": [
+      {
+       "href": "#sf-responsive",
+       "label": "Responsive behaviour"
+      }
+     ]
+    },
+    {
+     "code": "SF-4",
+     "id": "sf-4",
+     "name": "Simple",
+     "status": "Custom",
+     "classes": "input-group + btn-text theme-secondary + menu",
+     "docs": "",
+     "replaces": "filter bar inline labels + selects",
+     "note": "Use it to find one item in a shorter, familiar list, such as coworkers or projects. A few filters sit in the bar and each one shows its current value, so no chip row is needed.",
+     "unresolved": false,
+     "layout": "row",
+     "rules": [
+      "Order: search, the filters, Clear filters, then Sort by at the far end.",
+      "Every filter is a text button reading <b>Label: value</b> that opens a <code>.menu</code>. The value is the link colour, weight 600 once applied.",
+      "Selected menu items carry a check, so the state is not colour alone. Multi-value filters stay open while you pick; single-value filters close.",
+      "All filters stay in the bar and wrap to a new line when space runs out. There is no More filters: if a page needs it, use Complex.",
+      "Clear filters appears only when a search or filter is applied, and resets all of them.",
+      "Filters apply on change. No Apply button.",
+      "The table footer shows the range and pagination, for example “1-3 of 4 coworkers”."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The filter buttons are btn-text theme-secondary with --bs-btn-bg set to bg-2, as in the prototype. That grey background is a local override, not a Bootstrap button variant. Decide whether to keep it or use a standard variant."
       },
       {
-       "label": "Breakpoints",
+       "type": "ask",
+       "text": "Clear filters uses btn-text theme-primary here too. The same open question as on Complex."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Working example",
+       "html": "<div data-simplefilter style=\"width:100%\"></div>",
+       "caption": "Try it: search, pick filters (Language takes several values), clear, sort and page through.",
+       "badge": "",
+       "wide": true
+      }
+     ]
+    }
+   ],
+   "introHtml": "<div class=\"lib-choose\"><h2 class=\"fs-lg m-0\">Which one?</h2><div class=\"lib-table-wrap\"><table class=\"table table-sm mb-0\"><thead><tr><th scope=\"col\"></th><th scope=\"col\"><a href=\"#sf-1\">Complex</a></th><th scope=\"col\"><a href=\"#sf-4\">Simple</a></th></tr></thead><tbody><tr><th scope=\"row\">The person is…</th><td>exploring: who or what fits?</td><td>looking something up: where is it?</td></tr><tr><th scope=\"row\">Data</th><td>Large, many attributes</td><td>Short list, few attributes</td></tr><tr><th scope=\"row\">Filters</th><td>Many, combined; some behind More filters</td><td>A few, all visible in the bar</td></tr><tr><th scope=\"row\">Applied filters</th><td>Always shown as chips</td><td>Value shown on each filter in the bar</td></tr><tr><th scope=\"row\">Examples</th><td>Actors, locations, crew</td><td>Coworkers, projects, invoices</td></tr></tbody></table></div></div>"
+  },
+  {
+   "id": "sf-responsive",
+   "section": "organisms",
+   "subpageOf": "search-and-filter",
+   "title": "Responsive behaviour",
+   "intro": "How the Complex search and filter bar adapts to its width. Each bar below works.",
+   "items": [
+    {
+     "code": "",
+     "id": "sf-1-breakpoints",
+     "name": "Complex: breakpoints",
+     "status": "Custom",
+     "classes": "",
+     "docs": "",
+     "replaces": "(none)",
+     "note": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, both become an icon Button group and Clear filters moves into the More filters popover.",
+     "unresolved": false,
+     "flags": [],
+     "layout": "row",
+     "examples": [
+      {
+       "label": "Five widths",
        "badge": "",
        "wide": true,
-       "caption": "The same bar at five widths. Each one works. Filters move into More filters as space runs out; when More filters and Sort by would overlap, both become an icon Button group and Clear filters moves into the More filters popover.",
+       "caption": "1240, 1040, 860, 700 and 440px. Chips are left out here to keep the bars comparable.",
        "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Three inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">860px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:860px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">700px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:700px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become one icon Button group</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
       }
      ]

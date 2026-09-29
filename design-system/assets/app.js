@@ -1,6 +1,7 @@
 // Filmmakers component library. Renders data/components.json.
 import * as bootstrap from './bootstrap.bundle.min.js'
 import { initFilterBar } from './filterbar.js'
+import { initSimpleFilter } from './simplefilter.js'
 
 const $ = (selector, root = document) => root.querySelector(selector)
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)]
@@ -52,7 +53,8 @@ function itemHtml(item) {
     item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',
     item.docs ? `<a href="${item.docs}" target="_blank" rel="noopener">Bootstrap 6 docs</a>` : '',
     item.guide ? `<a href="${guideUrl(item.guide)}" target="_blank" rel="noopener">Guideline</a>` : '',
-    item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : ''
+    item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : '',
+    ...(item.links || []).map((l) => `<a href="${l.href}">${escapeHtml(l.label)}</a>`)
   ].join('')
 
   let preview = ''
@@ -83,13 +85,18 @@ function itemHtml(item) {
   </article>`
 }
 
-function pageHtml(group, parent) {
-  const crumbs = parent
-    ? `<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#${parent.id}">${parent.title}</a><span aria-hidden="true">/</span><span>${escapeHtml(group.title)}</span></nav>`
+// parent is the page this one sits under; a sub-page also names its section
+// so the breadcrumb shows the whole path.
+function pageHtml(group, parent, section) {
+  const trail = [section, parent].filter(Boolean)
+  const crumbs = trail.length
+    ? `<nav class="lib-crumbs" aria-label="Breadcrumb">${trail.map((t) => `<a href="#${t.id}">${escapeHtml(t.title)}</a><span aria-hidden="true">/</span>`).join('')}<span>${escapeHtml(group.title)}</span></nav>`
     : ''
+  // introHtml is written in this repo and may carry markup, like rules.
   return `<section class="lib-page" data-page="${group.id}"${parent ? ` data-parent="${parent.id}"` : ''} data-title="${escapeHtml(group.title)}" hidden>
     ${crumbs}
     <div class="lib-page-head"><h1 class="fs-2xl">${escapeHtml(group.title)}</h1><p>${escapeHtml(group.intro)}</p></div>
+    ${group.introHtml || ''}
     <div>${group.items.map(itemHtml).join('')}</div>
   </section>`
 }
@@ -101,7 +108,8 @@ function render(data) {
   const icons = data.groups.find((g) => g.id === 'icons')
   $('#icons-items').innerHTML = icons.items.map(itemHtml).join('')
 
-  const inSection = (name) => data.groups.filter((g) => g.section === name)
+  // Sub-pages sit under another page: not in the sidebar or overview.
+  const inSection = (name) => data.groups.filter((g) => g.section === name && !g.subpageOf)
   const components = inSection('components')
   const organisms = inSection('organisms')
   const forms = inSection('forms')
@@ -109,7 +117,12 @@ function render(data) {
   $('#component-pages').outerHTML = components.map((g) => pageHtml(g, { id: 'components', title: 'Components' })).join('')
   $('#template-pages').outerHTML = templates.map((g) => pageHtml(g, { id: 'templates', title: 'Templates' })).join('')
   $('#form-pages').outerHTML = forms.map((g) => pageHtml(g, { id: 'forms', title: 'Forms' })).join('')
-  $('#organism-pages').outerHTML = organisms.map((g) => pageHtml(g, { id: 'organisms', title: 'Organisms' })).join('')
+  const section = { id: 'organisms', title: 'Organisms' }
+  $('#organism-pages').outerHTML = organisms.map((g) => pageHtml(g, section)).join('') +
+    data.groups.filter((g) => g.subpageOf).map((g) => {
+      const parent = data.groups.find((p) => p.id === g.subpageOf)
+      return pageHtml(g, { id: parent.id, title: parent.title }, section)
+    }).join('')
   $('#shell-page').outerHTML = inSection('app-shell').map((g) => pageHtml(g, null)).join('')
   $('#side-components').insertAdjacentHTML('beforeend', sideLinks(components))
   $('#side-forms').insertAdjacentHTML('beforeend', sideLinks(forms))
@@ -138,6 +151,8 @@ function render(data) {
 // component (#btn-2), which opens its page and scrolls to it.
 function pagerHtml(page, order) {
   const i = order.indexOf(page.dataset.page)
+  const back = i < 0 && page.dataset.parent && $(`.lib-page[data-page="${page.dataset.parent}"]`)
+  if (back) return `<nav class="lib-pager" aria-label="Pages"><a class="lib-pager-prev" href="#${page.dataset.parent}"><small>Back to</small><b>${escapeHtml(back.dataset.title)}</b></a><span></span></nav>`
   const link = (id, dir) => {
     const target = $(`.lib-page[data-page="${id}"]`)
     if (!target) return '<span></span>'
@@ -155,7 +170,8 @@ function setupPages() {
     const target = document.getElementById(id)
     const page = $(`.lib-page[data-page="${id}"]`) || target?.closest('.lib-page') || $('.lib-page[data-page="foundations"]')
     $$('.lib-page').forEach((p) => { p.hidden = p !== page })
-    const current = page.dataset.page
+    const inSide = (id) => $$('.lib-side a').some((a) => a.hash === '#' + id)
+    const current = inSide(page.dataset.page) ? page.dataset.page : page.dataset.parent
     $$('.lib-side a').forEach((a) => {
       const hit = a.hash === '#' + current
       a.setAttribute('aria-current', hit ? 'page' : 'false')
@@ -469,6 +485,7 @@ async function start() {
   }
   quietExamples()
   $$('[data-filterbar]').forEach(initFilterBar)
+  $$('[data-simplefilter]').forEach(initSimpleFilter)
   freeMenus()
   setupTooltips()
   setupUploadDemo()

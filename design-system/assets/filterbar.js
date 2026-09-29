@@ -1,5 +1,5 @@
-// Working Search and filter bar for the library, built from the Search and
-// filter prototype (FilterBar.dc.html). It renders the same Bootstrap 6
+// Working Complex search and filter bar for the library, built from the
+// Search and filter prototype (FilterBar.dc.html). It renders the same Bootstrap 6
 // markup as the static examples, so it doubles as a reference for behaviour:
 // search, three inline filters, More filters, Clear filters, Sort by, and a
 // count row, all applied on change.
@@ -56,7 +56,7 @@ let uid = 0
 export function initFilterBar(root) {
   const id = 'fb' + (++uid)
   const defaults = () => Object.fromEntries(DEFS.map((d) => [d.key, d.multi ? [] : (d.default ?? ALL)]))
-  const state = { query: '', values: defaults(), sort: 0, open: null, find: '', chips: false }
+  const state = { query: '', values: defaults(), sort: 0, open: null, find: '' }
 
   const isApplied = (d) => {
     const v = state.values[d.key]
@@ -168,8 +168,7 @@ export function initFilterBar(root) {
         `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto">${toggle('sort', `Sort by: ${SORTS[state.sort].label}`, 190, false)}${sortMenu}</div>` +
         '</div>'
     }
-    // Applied chips: one per search term and per applied value. An option in
-    // the prototype, not in production use yet.
+    // Applied chips: one per search term and per applied value. Always shown.
     const chipList = []
     if (state.query.trim()) chipList.push({ label: `Search: “${state.query.trim()}”`, remove: 'Remove the search term', clear: { query: true } })
     for (const d of DEFS) {
@@ -179,7 +178,7 @@ export function initFilterBar(root) {
       else chipList.push({ label: `${d.label}: ${v}`, remove: `Remove the ${d.label} filter`, clear: { key: d.key } })
     }
     chipsState = chipList
-    const chips = state.chips && chipList.length
+    const chips = chipList.length
       ? // Compact row: 24px chips on the primary muted tone (--bs-primary-bg-muted,
       // one step darker than bg-subtle), with body text.
       '<div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
@@ -196,13 +195,12 @@ export function initFilterBar(root) {
     const active = document.activeElement
     const focusKey = active && root.contains(active) ? (active.matches('[data-query]') ? '[data-query]' : active.matches('[data-find]') ? '[data-find]' : null) : null
     const caret = focusKey ? active.selectionStart : null
-    const option = `<div class="d-flex align-items-center gap-2 mb-3"><div class="switch"><input type="checkbox" role="switch" id="${id}-chips" data-chips-toggle${state.chips ? ' checked' : ''}></div><label for="${id}-chips" class="fw-semibold">Show applied chips</label><span class="fs-xs fg-3">Optional. Not in production use yet</span></div>`
     const barOnly = root.dataset.variant === 'bar'
     // With chips showing, the bar and the chips row read as one block.
     if (chips) bar = bar.replace('padding:12px 16px;', 'padding:12px 16px 6px;')
     root.innerHTML = barOnly
       ? `<div class="card" style="overflow:visible;width:100%">${bar}${count}</div>`
-      : `${option}<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
+      : `<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
     if (focusKey) {
       const el = root.querySelector(focusKey)
       if (el) { el.focus(); try { el.setSelectionRange(caret, caret) } catch {} }
@@ -251,7 +249,6 @@ export function initFilterBar(root) {
       render()
       return
     }
-    if (e.target.matches('[data-chips-toggle]')) { state.chips = e.target.checked; render(); return }
     const sort = e.target.closest('[data-sort]')
     if (sort) { state.sort = Number(sort.dataset.sort); state.open = null; render() }
   })

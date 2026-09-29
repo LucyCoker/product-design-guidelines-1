@@ -234,7 +234,7 @@ writeFileSync(join(root, 'figma/code-syntax-plugin/code.js'), plugin)
 // Component names -------------------------------------------------------
 const library = JSON.parse(read('data/components.json'))
 const sectionName = { foundations: 'Foundations', components: 'Components', forms: 'Forms', organisms: 'Organisms', 'app-shell': 'App shell', templates: 'Templates' }
-const components = library.groups.flatMap((group) => group.items
+const components = library.groups.filter((group) => !group.subpageOf).flatMap((group) => group.items
   .filter((item) => item.example || item.examples?.length)
   .map((item) => ({
     figmaPage: sectionName[group.section],
