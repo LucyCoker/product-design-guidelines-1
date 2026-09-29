@@ -117,14 +117,15 @@ export function initSimpleFilter(root) {
     const range = list.length ? `${from}-${to} of ${list.length} coworkers` : `0 of ${PEOPLE.length} coworkers`
     const count = `<div style="display:flex;align-items:center;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px">${range}</div>`
 
+    // No line between the last row and the footer.
     const page = list.slice((state.page - 1) * PAGE_SIZE, state.page * PAGE_SIZE)
     const pageLink = (label, target, { disabled, active, aria } = {}) =>
       `<li class="page-item${disabled ? ' disabled' : ''}${active ? ' active' : ''}"><a class="page-link" href="#" data-goto="${target}"${aria ? ` aria-label="${aria}"` : ''}${active ? ' aria-current="page"' : ''}>${label}</a></li>`
     const body = list.length
       ? '<div style="overflow-x:auto"><table class="table" style="margin:0"><thead><tr><th scope="col">Name</th><th scope="col">Permissions</th><th scope="col">Language</th><th scope="col">2FA</th><th scope="col">Profile access</th><th scope="col">Location access</th><th scope="col">Status</th></tr></thead><tbody>' +
-        page.map((p) => `<tr><td><div class="fw-semibold">${p.first} ${p.last}</div><div class="fs-xs fg-3">${p.email}</div></td><td>${p.permissions}</td><td>${p.language}</td><td>${p.twofa}</td><td>${p.profileAccess}</td><td>${p.locationAccess}</td><td><span class="badge ${p.status === 'Active' ? 'theme-success' : 'theme-secondary'} badge-subtle">${p.status}</span></td></tr>`).join('') +
+        page.map((p, i) => ((row) => i === page.length - 1 ? row.replaceAll('<td>', '<td style="border-bottom-width:0">') : row)(`<tr><td><div class="fw-semibold">${p.first} ${p.last}</div><div class="fs-xs fg-3">${p.email}</div></td><td>${p.permissions}</td><td>${p.language}</td><td>${p.twofa}</td><td>${p.profileAccess}</td><td>${p.locationAccess}</td><td><span class="badge ${p.status === 'Active' ? 'theme-success' : 'theme-secondary'} badge-subtle">${p.status}</span></td></tr>`)).join('') +
         '</tbody></table></div>' +
-        '<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1);border-top:1px solid var(--bs-border-subtle)">' +
+        '<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)">' +
         `<span style="font-size:14px;font-weight:600">${range}</span>` +
         '<nav aria-label="Pagination" style="margin-inline-start:auto"><ul class="pagination pagination-sm theme-primary" style="margin:0">' +
         pageLink('<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>', state.page - 1, { disabled: state.page <= 1, aria: 'Previous page' }) +
