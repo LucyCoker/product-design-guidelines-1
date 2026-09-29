@@ -1568,13 +1568,18 @@
        "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"Visible for client\" aria-label=\"Visible for client\"><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i></button>",
        "caption": "Hover or focus the icon.",
        "badge": "Default"
+      },
+      {
+       "label": "Icon button group",
+       "html": "<div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Row actions\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Edit\" data-bs-toggle=\"tooltip\" data-bs-title=\"Edit\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Copy\" data-bs-toggle=\"tooltip\" data-bs-title=\"Copy\"><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Download\" data-bs-toggle=\"tooltip\" data-bs-title=\"Download\"><i class=\"fa-solid fa-download\" aria-hidden=\"true\"></i></button></div>",
+       "caption": "Each icon in a group gets its own tooltip. Hover or focus each one.",
+       "badge": ""
       }
      ],
      "rules": [
       "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus.",
       "A few words, no full sentences, no links or buttons inside.",
-      "Help needed to complete a field is always visible, never only in a tooltip.",
-      "Icon-only buttons in a group each get their own tooltip: see Button group."
+      "Help needed to complete a field is always visible, never only in a tooltip."
      ]
     }
    ]
@@ -1639,17 +1644,12 @@
      "replaces": "label label-default .label-danger",
      "note": "Small labels for a state or a count. Always text, never colour alone.",
      "unresolved": false,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Which theme do in-between states use, such as Invited or Pending: warning, info or secondary? Not added until decided."
-      }
-     ],
+     "flags": [],
      "layout": "row",
      "examples": [
       {
        "label": "Status",
-       "html": "<span class=\"badge theme-success badge-subtle\">Active</span><span class=\"badge theme-secondary badge-subtle\">Inactive</span>",
+       "html": "<span class=\"badge theme-success badge-subtle\">Active</span><span class=\"badge theme-warning badge-subtle\">Invited</span><span class=\"badge theme-secondary badge-subtle\">Inactive</span>",
        "caption": "Subtle, as in table rows. The theme matches the state.",
        "badge": "Default"
       },
@@ -1661,7 +1661,7 @@
       }
      ],
      "rules": [
-      "Status badges are subtle (<code>badge-subtle</code>) and use the status theme for their meaning: success for Active, secondary for Inactive or neutral states.",
+      "Status badges are subtle (<code>badge-subtle</code>) and use the status theme for their meaning: success for Active, warning when someone still has to act for it to be complete (e.g. Invited), secondary for Inactive or neutral states.",
       "Counts are solid <code>theme-secondary</code>. Never primary, and never danger just to draw attention.",
       "Sentence case, one or two words."
      ]
