@@ -677,10 +677,15 @@
     },
     {
       "figmaPage": "Organisms",
-      "figmaName": "Section cards/Entity list card",
+      "figmaName": "Section cards/Production list",
       "libraryId": "cnt-2",
-      "classes": ".card > .list-group.list-group-flush",
-      "variants": {}
+      "classes": ".card > .list-group.list-group-flush[role=list] > .list-group-item + CSS grid + Action gutter",
+      "variants": {
+        "Version": [
+          "Auditions",
+          "Selections"
+        ]
+      }
     },
     {
       "figmaPage": "Organisms",
