@@ -38,7 +38,7 @@ const itemId = (item) => item.id || slug(item)
 function exampleHtml(example) {
   return `<figure class="lib-example${example.wide ? ' lib-example-wide' : ''}">
     <div class="lib-example-stage">${example.html}</div>
-    <figcaption><b>${escapeHtml(example.label)}</b>${example.badge ? `<span class="badge ${example.badge === 'Default' ? 'theme-primary' : 'theme-secondary'} badge-subtle">${escapeHtml(example.badge)}</span>` : ''}
+    <figcaption><b>${escapeHtml(example.label)}</b>${example.badge ? `<span class="badge ${example.badge === 'Default' ? 'theme-primary' : example.badge === 'ASK' ? 'theme-warning' : 'theme-secondary'} badge-subtle">${escapeHtml(example.badge)}</span>` : ''}
       ${example.caption ? `<span>${escapeHtml(example.caption)}</span>` : ''}</figcaption>
   </figure>`
 }
@@ -198,6 +198,39 @@ function quietExamples() {
 
 // Example frames clip overflow, so menus inside them open with fixed
 // positioning. Set at runtime so the copied code stays clean.
+// Validation example: on Save, mark every invalid field and show a summary
+// at the top that links to each one. Fields clear as they become valid.
+function setupValidationDemo() {
+  for (const form of $$('.lib-validate-demo')) {
+    const summary = $('[data-summary]', form)
+    const refresh = () => {
+      const bad = $$('.form-control', form).filter((c) => !c.checkValidity())
+      if (!bad.length) { summary.hidden = true; return bad }
+      $('[data-summary-title]', form).textContent = bad.length === 1 ? '1 field needs attention' : `${bad.length} fields need attention`
+      $('[data-summary-list]', form).innerHTML = bad.map((c) => `<li><a href="#${c.id}" class="alert-link" data-field="${c.id}">${escapeHtml(form.querySelector(`label[for="${c.id}"]`).firstChild.textContent)}</a></li>`).join('')
+      return bad
+    }
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const bad = refresh()
+      $$('.form-control', form).forEach((c) => c.classList.toggle('is-invalid', bad.includes(c)))
+      if (bad.length) {
+        summary.hidden = false
+        summary.tabIndex = -1
+        summary.focus()
+      }
+    })
+    form.addEventListener('input', (e) => {
+      if (e.target.checkValidity()) e.target.classList.remove('is-invalid')
+      if (!summary.hidden) refresh()
+    })
+    form.addEventListener('click', (e) => {
+      const link = e.target.closest('[data-field]')
+      if (link) { e.preventDefault(); document.getElementById(link.dataset.field).focus() }
+    })
+  }
+}
+
 function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
@@ -490,6 +523,7 @@ async function start() {
   quietExamples()
   $$('[data-filterbar]').forEach(initFilterBar)
   $$('[data-simplefilter]').forEach(initSimpleFilter)
+  setupValidationDemo()
   freeMenus()
   setupTooltips()
   setupUploadDemo()

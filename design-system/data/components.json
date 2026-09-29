@@ -1126,20 +1126,63 @@
    "id": "field",
    "section": "forms",
    "title": "Field",
-   "intro": "Labels above or beside their control, weight 600, sentence case.",
+   "intro": "The wrapper that lays out a control with its label, description and error message.",
    "items": [
     {
      "code": "FRM-5",
-     "name": "Label",
+     "name": "Field",
      "status": "Direct",
-     "classes": "label",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/overview/",
-     "replaces": "control-label",
-     "note": "Direct. Above or beside the input, 600 weight, sentence case.",
+     "classes": ".form-field + .form-label + .form-text",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/field/",
+     "replaces": "form-group + control-label",
+     "note": "Every form control sits in a .form-field with its label above it. Labels are weight 600, sentence case.",
      "unresolved": false,
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Inline and floating labels are in Bootstrap 6, but the Forms pattern says labels sit above inputs in a single column. Decide whether either is allowed, and where. Until then use Label above."
+      }
+     ],
      "layout": "row",
-     "example": "<label for=\"map-label-demo\" style=\"display:block;margin-bottom:4px\">Search in</label><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" id=\"map-label-demo\" aria-describedby=\"map-label-demo-help\" style=\"width:200px\"><span class=\"combobox-value\">All fields</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><small class=\"form-text\" id=\"map-label-demo-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Narrows the search to a single profile field.</small>"
+     "examples": [
+      {
+       "label": "Label above",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-name\" class=\"form-label fw-semibold\">Project name</label><input type=\"text\" class=\"form-control\" id=\"fld-name\"></div>",
+       "caption": "",
+       "badge": "Default"
+      },
+      {
+       "label": "Required",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control\" id=\"fld-email\" required></div>",
+       "caption": "Red asterisk after the label; the control has required.",
+       "badge": ""
+      },
+      {
+       "label": "With description",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-user\" class=\"form-label fw-semibold\">Username</label><input type=\"text\" class=\"form-control\" id=\"fld-user\" aria-describedby=\"fld-user-help\"><small class=\"form-text\" id=\"fld-user-help\">3 to 20 characters, letters and numbers only.</small></div>",
+       "caption": "Always visible under the control, wired with aria-describedby.",
+       "badge": ""
+      },
+      {
+       "label": "Inline label",
+       "html": "<div class=\"row align-items-center\" style=\"width:100%;max-width:420px;margin:0\"><label for=\"fld-inline\" class=\"col-4 col-form-label fw-semibold\">Project name</label><div class=\"col-8\"><input type=\"text\" class=\"form-control\" id=\"fld-inline\"></div></div>",
+       "caption": "See the ASK below.",
+       "badge": "ASK",
+       "wide": true
+      },
+      {
+       "label": "Floating label",
+       "html": "<div class=\"form-floating\" style=\"width:100%;max-width:280px\"><label for=\"fld-float\">Project name</label><input type=\"text\" class=\"form-control\" id=\"fld-float\" placeholder=\"Project name\"></div>",
+       "caption": "See the ASK below.",
+       "badge": "ASK"
+      }
+     ],
+     "rules": [
+      "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels.",
+      "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control.",
+      "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>.",
+      "Errors follow the <a href=\"#frm-11\">Validation</a> rules."
+     ]
     }
    ]
   },
@@ -1254,6 +1297,55 @@
    ]
   },
   {
+   "id": "validation",
+   "section": "forms",
+   "title": "Validation",
+   "intro": "How errors show on a field, and what happens when a form is submitted with errors.",
+   "items": [
+    {
+     "code": "FRM-11",
+     "id": "frm-11",
+     "name": "Validation",
+     "status": "Direct",
+     "classes": ".is-invalid + .invalid-feedback, [data-bs-validate]",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/validation/",
+     "replaces": "has-error + help-block",
+     "note": "Errors sit next to the field and say how to fix it. On submit, a summary at the top links to each invalid field.",
+     "unresolved": false,
+     "layout": "row",
+     "examples": [
+      {
+       "label": "Working example",
+       "html": "<form class=\"lib-validate-demo\" data-bs-validate novalidate style=\"width:100%;max-width:420px;display:grid;gap:16px\"><div class=\"alert theme-danger\" role=\"alert\" data-summary hidden style=\"margin:0\"><div class=\"d-flex gap-2\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div><strong data-summary-title></strong><ul class=\"mb-0 ps-3\" data-summary-list></ul></div></div></div><div class=\"form-field\"><label for=\"val-name\" class=\"form-label fw-semibold\">Name<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"text\" class=\"form-control\" id=\"val-name\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter a name.</div></div><div class=\"form-field\"><label for=\"val-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control\" id=\"val-email\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div><div><button type=\"submit\" class=\"btn-solid theme-primary btn-sm\">Save</button></div></form>",
+       "caption": "Try it: leave a field and it shows its error; press Save to see the summary. Nothing you typed is lost.",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "Invalid field",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-srv\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control is-invalid\" id=\"val-srv\" value=\"jo.becker@\" aria-describedby=\"val-srv-err\" required><div class=\"invalid-feedback\" id=\"val-srv-err\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div>",
+       "caption": "From the server: .is-invalid on the control shows the message at once.",
+       "badge": "Default"
+      }
+     ],
+     "rules": [
+      "Validate on blur, never on each keystroke and never before the person has typed. <code>data-bs-validate</code> on the form does this with <code>:user-invalid</code>.",
+      "The message sits under the field and says how to fix it, not just what is wrong: “Enter an email address, like name@example.com.”",
+      "Errors use colour, an icon and text together, never colour alone.",
+      "On submit, a danger alert at the top of the form names how many fields need attention and links to each one. Focus moves to it.",
+      "A failed save never discards what the person entered. A dialog with an invalid field stays open.",
+      "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Bootstrap can also show a green valid state (data-bs-validate=\"valid\"). The guidelines do not mention it. Decide whether valid fields are marked. Until then only errors show."
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "card",
    "section": "components",
    "title": "Card",
@@ -1321,11 +1413,44 @@
      "classes": ".alert.theme-info",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
      "replaces": "alert alert-info .alert-link",
-     "note": "Direct. A banner for a condition that is still true, one per page.",
+     "note": "A banner for a condition that is still true. Top of the content area, one per page.",
      "unresolved": false,
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Can alerts be dismissed? A banner reports a condition that is still true, so a close button may hide something that still matters. Decide whether any alert gets .btn-close."
+      }
+     ],
      "layout": "row",
-     "example": "<div class=\"alert theme-info d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0\"><i class=\"fa-solid fa-circle-info\" style=\"margin-top:2px\"></i><div>This Project is administrated by <strong>Filmmakers System</strong>.</div></div>"
+     "examples": [
+      {
+       "label": "Info",
+       "html": "<div class=\"alert theme-info d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>This project is administrated by <strong>Filmmakers System</strong>.</div></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      },
+      {
+       "label": "Warning",
+       "html": "<div class=\"alert theme-warning d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-triangle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Your subscription ends on 30 October. <a href=\"#\" class=\"alert-link\">Renew subscription</a></div></div>",
+       "caption": "",
+       "badge": "",
+       "wide": true
+      },
+      {
+       "label": "Danger",
+       "html": "<div class=\"alert theme-danger d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Payments are paused because the card on file has expired. <a href=\"#\" class=\"alert-link\">Update card</a></div></div>",
+       "caption": "",
+       "badge": "",
+       "wide": true
+      }
+     ],
+     "rules": [
+      "Alerts are for conditions that are still true. Something that just happened is a Toast.",
+      "Every alert has an icon and text, never colour alone. The theme matches the meaning: info, warning or danger.",
+      "Say how to resolve the condition, with an <code>.alert-link</code> where there is a next step.",
+      "No success alerts: when the result is already visible on screen, say nothing."
+     ]
     },
     {
      "code": "MSG-6",
@@ -1355,11 +1480,37 @@
      "classes": ".toast-container > .toast",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/toasts/",
      "replaces": "(none)",
-     "note": "Added. Confirms a reversible action and carries the Undo. States what happened and the count; does not auto-dismiss while an action is on it. Takes the Bootstrap status theme for the outcome - theme-success here - with an icon beside the text, never colour alone. Used on Subscribers after Unsubscribe.",
+     "note": "Confirms that something just happened. It takes the status theme of the outcome, with an icon beside the text.",
      "unresolved": false,
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Toast position on the screen, and whether it depends on the action. This is the open decision in Destructive actions."
+      }
+     ],
      "layout": "row",
-     "example": "<div class=\"toast-container\" style=\"position:relative;inset:auto;width:100%\"><div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" style=\"display:flex;flex-direction:row;align-items:center;gap:12px;padding:10px 12px;--bs-toast-bg:var(--bs-success-bg-subtle);--bs-toast-border-color:var(--bs-success-border);color:var(--bs-success-fg-emphasis)\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\" style=\"color:var(--bs-success-fg-emphasis)\"></i><span>1 subscriber unsubscribed.</span><button type=\"button\" class=\"btn-text theme-secondary btn-xs\" style=\"color:var(--bs-success-fg-emphasis);text-decoration:underline\">Undo</button><button type=\"button\" class=\"btn-close\" aria-label=\"Dismiss\"></button></div></div>"
+     "examples": [
+      {
+       "label": "Confirmation",
+       "html": "<div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center\"><div class=\"toast-body d-flex align-items-center gap-2 flex-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>Project archived.</span></div><button type=\"button\" class=\"btn-close me-2\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div>",
+       "caption": "Auto-dismisses.",
+       "badge": "Default"
+      },
+      {
+       "label": "With Undo",
+       "html": "<div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center\"><div class=\"toast-body d-flex align-items-center gap-2 flex-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>4 records archived.</span></div><button type=\"button\" class=\"btn-text btn-sm\">Undo</button><button type=\"button\" class=\"btn-close me-2\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div>",
+       "caption": "Stays until dismissed.",
+       "badge": ""
+      }
+     ],
+     "rules": [
+      "Toasts report events: something just happened. A condition that is still true is an Alert.",
+      "State what happened and the count, e.g. “4 records archived.” No “successfully”, no exclamation marks, no raw error codes.",
+      "Auto-dismisses unless it carries an action. A toast with Undo stays until dismissed, and Undo stays available for at least 10 seconds.",
+      "Nothing important lives only in a toast.",
+      "Use <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code>. The Undo and close buttons take the toast’s theme, with no colour overrides."
+     ],
+     "guide": "patterns/destructive-actions.md"
     }
    ]
   },
@@ -1376,11 +1527,16 @@
      "classes": ".progress > .progress-bar",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/progress/",
      "replaces": "progress .progress-bar with inline width",
-     "note": "Direct. The role and aria-value attributes move to the outer .progress in v6; the bar keeps only its width. Shown while a file uploads, then replaced by the file row. The fill is Bootstrap blue-600 through --bs-progress-bar-bg, not the user primary.",
+     "note": "Shows how far a task, such as an upload, has got. Shown while the file uploads, then replaced by the file row. The fill is Bootstrap blue-600 through --bs-progress-bar-bg, never the customer primary.",
      "unresolved": false,
      "flags": [],
-     "layout": "stack",
-     "example": "<div class=\"progress\" role=\"progressbar\" aria-label=\"Upload progress\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"45\" data-demo-progress><div class=\"progress-bar\" style=\"width:45%\"></div></div>\n<div style=\"display:flex;align-items:center;gap:8px\"><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-upload><i class=\"fa-solid fa-arrow-up-from-bracket\"></i>Simulate upload</button><small class=\"form-text\" style=\"margin:0;font-size:var(--bs-font-size-xs)\"><span data-demo-label>45%</span></small></div>"
+     "layout": "full",
+     "example": "<div class=\"progress\" role=\"progressbar\" aria-label=\"Upload progress\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-valuenow=\"45\" data-demo-progress style=\"width:100%\"><div class=\"progress-bar\" style=\"width:45%\"></div></div>\n<div style=\"display:flex;align-items:center;gap:8px\"><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-upload><i class=\"fa-solid fa-arrow-up-from-bracket\"></i>Simulate upload</button><small class=\"form-text\" style=\"margin:0;font-size:var(--bs-font-size-xs)\"><span data-demo-label>45%</span></small></div>",
+     "rules": [
+      "<code>role=\"progressbar\"</code> and the aria-value attributes sit on the outer <code>.progress</code> in Bootstrap 6; the bar keeps only its width.",
+      "Give it an <code>aria-label</code> that names the task, e.g. “Upload progress”.",
+      "Show the percentage as text beside the bar."
+     ]
     }
    ]
   },
@@ -1397,11 +1553,29 @@
      "classes": "data-bs-toggle=\"tooltip\"",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/tooltips/",
      "replaces": "tooltip data-toggle",
-     "note": "Direct. Required on any icon-only control, on hover and on keyboard focus.",
+     "note": "A short label shown on hover and keyboard focus. Required on every icon-only control.",
      "unresolved": false,
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Should tooltips also show the full text of truncated content, such as long names in a table cell? Not added until decided."
+      }
+     ],
      "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"Visible for client\" aria-label=\"Visible for client\"><i class=\"fa-regular fa-eye\"></i></button><span style=\"font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px\">Hover or focus the icon</span>"
+     "examples": [
+      {
+       "label": "Icon-only button",
+       "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"Visible for client\" aria-label=\"Visible for client\"><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i></button>",
+       "caption": "Hover or focus the icon.",
+       "badge": "Default"
+      }
+     ],
+     "rules": [
+      "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus.",
+      "A few words, no full sentences, no links or buttons inside.",
+      "Help needed to complete a field is always visible, never only in a tooltip.",
+      "Icon-only buttons in a group each get their own tooltip: see Button group."
+     ]
     }
    ]
   },
@@ -1409,7 +1583,7 @@
    "id": "popover",
    "section": "components",
    "title": "Popover",
-   "intro": "A small panel opened from a button, for content that does not fit where it is triggered.",
+   "intro": "A small panel opened from a button, for controls or a short list that do not fit where they are triggered.",
    "items": [
     {
      "code": "SF-2",
@@ -1418,11 +1592,35 @@
      "classes": ".popover + .popover-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/popovers/",
      "replaces": "(none)",
-     "note": "Added. Carries the filters that do not fit the bar. No popover-header - the button that opens it already names it. Body is a single column of full-width Comboboxes (SF-3); the trigger shows a count of applied filters inside. No Apply button - every filter applies on change, and the popover closes on outside click.",
+     "note": "Opens on click from the button that names it, below the button. Closes on outside click and Esc.",
      "unresolved": false,
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Can a popover hold plain help text, such as an explanation opened from an info icon? The Forms pattern says help needed to complete a field is always visible, never behind an icon. Not added until decided."
+      }
+     ],
      "layout": "row",
-     "example": "<div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"More filters\" style=\"position:relative;display:block;max-width:none;width:260px\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">2FA: All</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">Profile access: All</span><i class=\"fa-solid fa-caret-down combobox-caret\"></i></button></div></div>"
+     "examples": [
+      {
+       "label": "Form controls",
+       "html": "<div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"More filters\" style=\"position:relative;display:block;max-width:none;width:260px\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">2FA: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">Profile access: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div>",
+       "caption": "e.g. More filters in Complex search and filter.",
+       "badge": "Default"
+      },
+      {
+       "label": "List",
+       "html": "<div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"Notifications\" style=\"position:relative;display:block;max-width:none;width:300px\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><div style=\"display:grid;gap:2px\"><span>Jo Becker accepted the invitation.</span><small class=\"fs-xs fg-3\">2 hours ago</small></div><hr class=\"m-0\"><div style=\"display:grid;gap:2px\"><span>Selection “Season 14” was shared with you.</span><small class=\"fs-xs fg-3\">Yesterday</small></div></div></div>",
+       "caption": "e.g. the notifications list opened from the bell.",
+       "badge": ""
+      }
+     ],
+     "rules": [
+      "Opened by a click, never by hover. The trigger has <code>aria-expanded</code>.",
+      "No <code>.popover-header</code>: the button that opens it already names it.",
+      "Holds controls or a short list only. Anything longer, or anything that needs a Save button, is a dialog.",
+      "Filters inside a popover apply on change, like the bar they come from."
+     ]
     }
    ]
   },
@@ -1436,14 +1634,37 @@
      "code": "MSG-2",
      "name": "Badge",
      "status": "Replace",
-     "classes": ".badge.theme-danger / .badge-subtle",
+     "classes": ".badge.theme-* + .badge-subtle",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
      "replaces": "label label-default .label-danger",
-     "note": "Replace. .label became .badge after v3.",
+     "note": "Small labels for a state or a count. Always text, never colour alone.",
      "unresolved": false,
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Which theme do in-between states use, such as Invited or Pending: warning, info or secondary? Not added until decided."
+      }
+     ],
      "layout": "row",
-     "example": "<span class=\"badge theme-secondary\">#1</span><span class=\"badge theme-danger\">inactive</span><span class=\"badge theme-secondary badge-subtle\">CNT-02</span>"
+     "examples": [
+      {
+       "label": "Status",
+       "html": "<span class=\"badge theme-success badge-subtle\">Active</span><span class=\"badge theme-secondary badge-subtle\">Inactive</span>",
+       "caption": "Subtle, as in table rows. The theme matches the state.",
+       "badge": "Default"
+      },
+      {
+       "label": "Count",
+       "html": "<span class=\"d-inline-flex align-items-center gap-2\">Messages<span class=\"badge theme-secondary\">3</span></span>",
+       "caption": "Solid secondary, beside the label it counts.",
+       "badge": ""
+      }
+     ],
+     "rules": [
+      "Status badges are subtle (<code>badge-subtle</code>) and use the status theme for their meaning: success for Active, secondary for Inactive or neutral states.",
+      "Counts are solid <code>theme-secondary</code>. Never primary, and never danger just to draw attention.",
+      "Sentence case, one or two words."
+     ]
     },
     {
      "code": "MSG-3",

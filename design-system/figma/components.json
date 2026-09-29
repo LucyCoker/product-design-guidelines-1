@@ -405,10 +405,18 @@
     },
     {
       "figmaPage": "Forms",
-      "figmaName": "Field/Label",
+      "figmaName": "Field/Field",
       "libraryId": "frm-5",
-      "classes": "label",
-      "variants": {}
+      "classes": ".form-field + .form-label + .form-text",
+      "variants": {
+        "Version": [
+          "Label above",
+          "Required",
+          "With description",
+          "Inline label",
+          "Floating label"
+        ]
+      }
     },
     {
       "figmaPage": "Forms",
@@ -453,6 +461,18 @@
       "variants": {}
     },
     {
+      "figmaPage": "Forms",
+      "figmaName": "Validation/Validation",
+      "libraryId": "frm-11",
+      "classes": ".is-invalid + .invalid-feedback, [data-bs-validate]",
+      "variants": {
+        "Version": [
+          "Working example",
+          "Invalid field"
+        ]
+      }
+    },
+    {
       "figmaPage": "Components",
       "figmaName": "Card/Card",
       "libraryId": "cnt-1",
@@ -478,7 +498,13 @@
       "figmaName": "Alert/Alert",
       "libraryId": "msg-1",
       "classes": ".alert.theme-info",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Info",
+          "Warning",
+          "Danger"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
@@ -492,7 +518,12 @@
       "figmaName": "Toasts/Toast",
       "libraryId": "msg-10",
       "classes": ".toast-container > .toast",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Confirmation",
+          "With Undo"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
@@ -506,21 +537,35 @@
       "figmaName": "Tooltips/Tooltip",
       "libraryId": "msg-4",
       "classes": "data-bs-toggle=\"tooltip\"",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Icon-only button"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
       "figmaName": "Popover/Popover",
       "libraryId": "sf-2",
       "classes": ".popover + .popover-body",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Form controls",
+          "List"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
       "figmaName": "Badges/Badge",
       "libraryId": "msg-2",
-      "classes": ".badge.theme-danger / .badge-subtle",
-      "variants": {}
+      "classes": ".badge.theme-* + .badge-subtle",
+      "variants": {
+        "Version": [
+          "Status",
+          "Count"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
