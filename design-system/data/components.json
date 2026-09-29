@@ -1140,7 +1140,7 @@
      "flags": [
       {
        "type": "ask",
-       "text": "Inline and floating labels are in Bootstrap 6, but the Forms pattern says labels sit above inputs in a single column. Decide whether either is allowed, and where. Until then use Label above."
+       "text": "Inline labels are in Bootstrap 6, but the Forms pattern says labels sit above inputs in a single column. Decide whether inline labels are allowed, and where. Until then use Label above."
       }
      ],
      "layout": "row",
@@ -1171,14 +1171,15 @@
        "wide": true
       },
       {
-       "label": "Floating label",
-       "html": "<div class=\"form-floating\" style=\"width:100%;max-width:280px\"><label for=\"fld-float\">Project name</label><input type=\"text\" class=\"form-control\" id=\"fld-float\" placeholder=\"Project name\"></div>",
-       "caption": "See the ASK below.",
-       "badge": "ASK"
+       "label": "Floating label (sign in)",
+       "html": "<div style=\"display:grid;gap:12px;width:100%;max-width:280px\"><div class=\"form-floating\"><label for=\"fld-float-email\">Email</label><input type=\"email\" class=\"form-control\" id=\"fld-float-email\" placeholder=\"Email\" autocomplete=\"email\"></div><div class=\"form-floating\"><label for=\"fld-float-pw\">Password</label><input type=\"password\" class=\"form-control\" id=\"fld-float-pw\" placeholder=\"Password\" autocomplete=\"current-password\"></div></div>",
+       "caption": "Only for very short, familiar forms such as sign in.",
+       "badge": ""
       }
      ],
      "rules": [
       "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels.",
+      "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above.",
       "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control.",
       "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>.",
       "Errors follow the <a href=\"#frm-11\">Validation</a> rules."
@@ -1326,6 +1327,12 @@
        "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-srv\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control is-invalid\" id=\"val-srv\" value=\"jo.becker@\" aria-describedby=\"val-srv-err\" required><div class=\"invalid-feedback\" id=\"val-srv-err\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div>",
        "caption": "From the server: .is-invalid on the control shows the message at once.",
        "badge": "Default"
+      },
+      {
+       "label": "Valid (password creation)",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-pw\" class=\"form-label fw-semibold\">New password<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"password\" class=\"form-control is-valid\" id=\"val-pw\" value=\"correct-horse-42\" aria-describedby=\"val-pw-ok\" autocomplete=\"new-password\" required><div class=\"valid-feedback\" id=\"val-pw-ok\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i> Meets all the requirements.</div></div>",
+       "caption": "Green valid state, used only when creating a password.",
+       "badge": ""
       }
      ],
      "rules": [
@@ -1334,14 +1341,10 @@
       "Errors use colour, an icon and text together, never colour alone.",
       "On submit, a danger alert at the top of the form names how many fields need attention and links to each one. Focus moves to it.",
       "A failed save never discards what the person entered. A dialog with an invalid field stays open.",
-      "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>."
+      "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>.",
+      "The green valid state (<code>.is-valid</code> + <code>.valid-feedback</code>) is used only when creating a password, to confirm it meets the requirements. Other fields show errors only."
      ],
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Bootstrap can also show a green valid state (data-bs-validate=\"valid\"). The guidelines do not mention it. Decide whether valid fields are marked. Until then only errors show."
-      }
-     ]
+     "flags": []
     }
    ]
   },
