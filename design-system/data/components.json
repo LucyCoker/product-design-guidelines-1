@@ -1818,7 +1818,7 @@
       "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter.",
       "Filters apply on change. No Apply button.",
-      "The count row always shows, with the same range as the table footer, for example “1-3 of 4 coworkers”, in 12px (<code>fs-xs fw-semibold</code>).",
+      "The count row always shows, with the same range as the table footer, for example “5 of 8 auditions”, in 12px (<code>fs-xs fw-semibold</code>).",
       "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover. The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths the popover and menus fill the bar’s width.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
