@@ -242,6 +242,24 @@ function setupToastDemo() {
   })
 }
 
+// Alert example: Bootstrap removes a dismissed alert, so the demo hides it
+// instead and offers Show again. Real alerts use the plugin as it is.
+function setupAlertDemo() {
+  for (const alert of $$('[data-demo-alert]')) {
+    const again = alert.parentElement.querySelector('[data-demo-alert-again]')
+    alert.addEventListener('close.bs.alert', (e) => {
+      e.preventDefault()
+      alert.hidden = true
+      again.hidden = false
+      again.focus()
+    })
+    again.addEventListener('click', () => {
+      alert.hidden = false
+      again.hidden = true
+    })
+  }
+}
+
 function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
@@ -536,6 +554,7 @@ async function start() {
   $$('[data-simplefilter]').forEach(initSimpleFilter)
   setupValidationDemo()
   setupToastDemo()
+  setupAlertDemo()
   freeMenus()
   setupTooltips()
   setupUploadDemo()

@@ -1418,12 +1418,7 @@
      "replaces": "alert alert-info .alert-link",
      "note": "A banner for a condition that is still true. Top of the content area, one per page.",
      "unresolved": false,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Can alerts be dismissed? A banner reports a condition that is still true, so a close button may hide something that still matters. Decide whether any alert gets .btn-close."
-      }
-     ],
+     "flags": [],
      "layout": "row",
      "examples": [
       {
@@ -1446,13 +1441,21 @@
        "caption": "",
        "badge": "",
        "wide": true
+      },
+      {
+       "label": "Dismissible",
+       "html": "<div class=\"d-flex flex-column align-items-center gap-3\" style=\"width:100%\"><div class=\"alert theme-info d-flex align-items-start gap-2\" role=\"alert\" data-demo-alert style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Profiles you release are visible to the client for 30 days.</div><button type=\"button\" class=\"btn-close ms-auto\" data-bs-dismiss=\"alert\" aria-label=\"Dismiss\"></button></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-alert-again hidden><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>",
+       "caption": "A .btn-close with data-bs-dismiss=\"alert\". Dismiss it, then Show again.",
+       "badge": "",
+       "wide": true
       }
      ],
      "rules": [
       "Alerts are for conditions that are still true. Something that just happened is a Toast.",
       "Every alert has an icon and text, never colour alone. The theme matches the meaning: info, warning or danger.",
       "Say how to resolve the condition, with an <code>.alert-link</code> where there is a next step.",
-      "No success alerts: when the result is already visible on screen, say nothing."
+      "No success alerts: when the result is already visible on screen, say nothing.",
+      "An alert MAY be dismissed with a <code>.btn-close</code> (<code>data-bs-dismiss=\"alert\"</code>, <code>aria-label=\"Dismiss\"</code>) at the end. After dismissing, move focus to a sensible place, such as the page heading."
      ]
     },
     {
@@ -1605,7 +1608,7 @@
      "flags": [
       {
        "type": "ask",
-       "text": "Can a popover hold plain help text, such as an explanation opened from an info icon? The Forms pattern says help needed to complete a field is always visible, never behind an icon. Not added until decided."
+       "text": "Help text in popovers: ideally no, because help needed to complete a field is always visible. The system uses it a lot, so the cases and alternatives are being collected in the Help text guideline (draft) before deciding."
       }
      ],
      "layout": "row",
