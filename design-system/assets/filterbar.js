@@ -2,20 +2,20 @@
 // Search and filter prototype (FilterBar.dc.html). It renders the same Bootstrap 6
 // markup as the static examples, so it doubles as a reference for behaviour:
 // search, three inline filters, More filters, Clear filters, Sort by, and a
-// count row, all applied on change. The results are a list of auditions in
-// the Production list (CNT-2) layout.
+// count row, all applied on change. The results are Profile tiles (CNT-10).
 
 import * as bootstrap from './bootstrap.bundle.min.js'
 
 const ALL = 'All'
-const PRODUCTIONS = ['Nordlicht', 'Die Werkstatt', 'Stadt am Fluss', 'Kaltes Wasser', 'Sommerhaus', 'Der letzte Zug', 'Hafenrunde']
+const LANGUAGES = ['English', 'German', 'French', 'Spanish', 'Italian', 'Polish', 'Portuguese']
+const ROLES = ['Lead: Georgie (Adult)', 'Lead: Georgie (Teen)', 'Supporting: Mira', 'Day player: Officer']
 const DEFS = [
-  { key: 'status', label: 'Status', width: 150, options: ['Open', 'Closed'], default: 'Open' },
-  { key: 'production', label: 'Production', width: 190, multi: true, options: PRODUCTIONS },
-  { key: 'type', label: 'Type', width: 160, options: ['Self-tape', 'In person'] },
-  { key: 'visibility', label: 'Visibility', width: 190, options: ['Public', 'Invitation only'] },
-  { key: 'deadline', label: 'Deadline', width: 170, options: ['Upcoming', 'Expired'] },
-  { key: 'applications', label: 'New applications', width: 220, options: ['Yes', 'No'] }
+  { key: 'role', label: 'Role', width: 230, options: ROLES },
+  { key: 'language', label: 'Language', width: 190, multi: true, options: LANGUAGES },
+  { key: 'age', label: 'Playing age', width: 180, options: ['16–20', '21–35', '36–50', '51–65'] },
+  { key: 'location', label: 'Location', width: 170, options: ['Berlin', 'Hamburg', 'Munich', 'Cologne'] },
+  { key: 'agency', label: 'Agency', width: 200, options: ['Represented', 'Not represented'] },
+  { key: 'showreel', label: 'Showreel', width: 160, options: ['Yes', 'No'] }
 ]
 const MAX_INLINE = 3
 // Widths from the prototype, used to decide how many filters fit inline.
@@ -40,56 +40,44 @@ function fitCount(avail, anyApplied) {
   return n
 }
 const SORTS = [
-  { label: 'Deadline', key: 'due' },
-  { label: 'Title', key: 'title' },
-  { label: 'Creation date', key: 'created', dir: 'desc' }
+  { label: 'Last name', key: 'last' },
+  { label: 'First name', key: 'first' },
+  { label: 'Date applied', key: 'applied', dir: 'desc' }
 ]
-// Invented sample auditions. due is YYYY-MM-DD; shown as DD/MM/YYYY.
-const AUDITIONS = [
-  { title: 'Audition: Round 1', production: 'Nordlicht', status: 'Open', type: 'Self-tape', visibility: 'Invitation only', roles: 2, newApps: 3, invitations: 7, due: '2026-10-21', created: '2026-08-02', image: true },
-  { title: 'Lead casting', production: 'Die Werkstatt', status: 'Open', type: 'In person', visibility: 'Public', roles: 4, newApps: 0, invitations: 12, due: '2026-10-08', created: '2026-07-14', image: false },
-  { title: 'Supporting roles', production: 'Stadt am Fluss', status: 'Open', type: 'Self-tape', visibility: 'Public', roles: 6, newApps: 11, invitations: 0, due: '2026-11-03', created: '2026-09-01', image: true },
-  { title: 'Callback', production: 'Nordlicht', status: 'Open', type: 'In person', visibility: 'Invitation only', roles: 1, newApps: 0, invitations: 4, due: '2026-09-20', created: '2026-08-30', image: true },
-  { title: 'Kids casting', production: 'Sommerhaus', status: 'Open', type: 'Self-tape', visibility: 'Public', roles: 3, newApps: 5, invitations: 2, due: '2026-10-15', created: '2026-09-10', image: false },
-  { title: 'Day players', production: 'Kaltes Wasser', status: 'Closed', type: 'Self-tape', visibility: 'Public', roles: 8, newApps: 0, invitations: 20, due: '2026-06-30', created: '2026-05-02', image: true },
-  { title: 'Audition: Round 2', production: 'Der letzte Zug', status: 'Closed', type: 'In person', visibility: 'Invitation only', roles: 2, newApps: 0, invitations: 6, due: '2026-04-12', created: '2026-03-01', image: false },
-  { title: 'Extras', production: 'Hafenrunde', status: 'Open', type: 'Self-tape', visibility: 'Public', roles: 1, newApps: 2, invitations: 0, due: '2026-12-01', created: '2026-09-22', image: true }
-]
-// The library's fixed "today", so Upcoming and Expired don't drift.
-const TODAY = '2026-09-29'
-for (const a of AUDITIONS) {
-  a.deadline = a.due < TODAY ? 'Expired' : 'Upcoming'
-  a.applications = a.newApps ? 'Yes' : 'No'
+// Invented sample profiles. photo: false shows the placeholder.
+const PROFILES = [
+  ['Markus', 'John', 0, 'German', '51–65', 'Berlin', 'Represented', 'Yes', true],
+  ['Helga', 'Bellinghausen', 0, 'German', '51–65', 'Hamburg', 'Not represented', 'No', false],
+  ['Lena', 'Brandt', 1, 'English', '16–20', 'Berlin', 'Represented', 'Yes', true],
+  ['Jonas', 'Weber', 2, 'German', '21–35', 'Munich', 'Represented', 'Yes', true],
+  ['Aylin', 'Kaya', 2, 'English', '21–35', 'Cologne', 'Not represented', 'Yes', true],
+  ['Pierre', 'Martin', 3, 'French', '36–50', 'Berlin', 'Represented', 'No', true],
+  ['Sofia', 'Russo', 0, 'Italian', '36–50', 'Munich', 'Represented', 'Yes', false],
+  ['Tomasz', 'Nowak', 3, 'Polish', '36–50', 'Hamburg', 'Not represented', 'No', true],
+  ['Clara', 'Vogt', 1, 'German', '16–20', 'Cologne', 'Represented', 'Yes', true],
+  ['Diego', 'Santos', 2, 'Spanish', '21–35', 'Berlin', 'Not represented', 'Yes', true],
+  ['Ines', 'Costa', 3, 'Portuguese', '51–65', 'Munich', 'Represented', 'No', false],
+  ['Karl', 'Richter', 0, 'German', '51–65', 'Berlin', 'Represented', 'Yes', true]
+].map(([first, last, role, language, age, location, agency, showreel, photo], i) => ({
+  first, last, role: ROLES[role], language, age, location, agency, showreel, photo,
+  applied: `2026-09-${String(28 - i * 2).padStart(2, '0')}`
+}))
+const PHOTO = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236b5b4b'/%3E%3Cstop offset='1' stop-color='%23c9b8a3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='3' height='4' fill='url(%23g)'/%3E%3C/svg%3E"
+// One Profile tile (CNT-10), the same markup as the library examples.
+const tile = (p) => {
+  const name = `${p.first} ${p.last}`
+  return '<div class="card" role="listitem" style="overflow:hidden">' +
+    '<div style="position:relative">' +
+    (p.photo
+      ? `<img class="card-img-top" src="${PHOTO}" alt="${esc(name)}" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover">`
+      : '<div style="aspect-ratio:3/4;background:var(--bs-bg-2);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-user fg-3" aria-hidden="true" style="font-size:2rem"></i></div>') +
+    '<span class="badge badge-solid theme-inverse" style="position:absolute;top:8px;inset-inline-start:8px">A</span>' +
+    '</div>' +
+    '<div style="display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px">' +
+    `<div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px"><a href="#" class="fw-semibold">${esc(name)}</a><span class="fs-xs fg-2">${esc(p.role)}</span></div>` +
+    `<a class="btn-text theme-secondary btn-xs btn-icon" href="#" target="_blank" rel="noopener" aria-label="Open ${esc(name)}’s profile in a new tab" data-bs-toggle="tooltip" data-bs-title="Open profile in a new tab"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>` +
+    '</div></div>'
 }
-const date = (iso) => iso.split('-').reverse().join('/')
-const THUMB = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23334155'/%3E%3Cstop offset='1' stop-color='%23a3b1c2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='16' height='9' fill='url(%23g)'/%3E%3C/svg%3E"
-// A stat: icon + value, with a hidden label and a tooltip of the same name.
-const stat = (icon, label, value, tip = label) =>
-  `<span tabindex="0" data-bs-toggle="tooltip" data-bs-title="${esc(tip)}" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid ${icon}" aria-hidden="true"></i><span class="visually-hidden">${esc(label)}</span>${value}</span>`
-// One row in the Production list (CNT-2) layout.
-const auditionRow = (a) =>
-  '<div class="list-group-item" role="listitem" style="padding:0"><div class="fm-production-row" style="--fm-row-cols:132px minmax(200px,1fr) minmax(0,2fr) 140px;--fm-row-align:center">' +
-  '<div class="fm-row-media" style="padding:.75rem 1rem;min-width:0">' +
-  (a.image
-    ? `<img src="${THUMB}" alt="${esc(a.title)}" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle)">`
-    : '<div style="aspect-ratio:16/9;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle);background:var(--bs-bg-2);display:flex;align-items:center;justify-content:center"><i class="fa-solid fa-display fg-3" aria-hidden="true"></i></div>') +
-  '</div>' +
-  `<div style="padding:.75rem 1rem;min-width:0;display:flex;flex-direction:column;gap:2px"><span><a href="#" class="fw-semibold">${esc(a.title)}</a> <span class="fg-3">(${a.status.toLowerCase()})</span></span><span class="fg-3">${esc(a.production)}</span></div>` +
-  '<div style="padding:.75rem 1rem;min-width:0"><span style="display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1.25rem">' +
-  `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid ${a.type === 'Self-tape' ? 'fa-mobile-screen-button' : 'fa-location-dot'}" aria-hidden="true"></i><span class="fw-semibold">${a.type}</span></span>` +
-  (a.visibility === 'Invitation only'
-    ? '<span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Only invited actors/agents can see this Audition" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-user-lock" aria-hidden="true"></i>Invitation only</span>'
-    : '<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-globe" aria-hidden="true"></i>Public</span>') +
-  stat('fa-scroll', 'Roles', a.roles) +
-  (a.newApps ? `<a href="#" class="fw-semibold" style="display:inline-flex">${stat('fa-user-plus', 'New applications', a.newApps, `${a.newApps} new applications`)}</a>` : stat('fa-user-plus', 'New applications', 0)) +
-  stat('fa-envelope', 'Invitations', a.invitations) +
-  (a.deadline === 'Expired'
-    ? stat('fa-hourglass', 'Deadline', 'Deadline expired', date(a.due)).replace('<span class="visually-hidden">Deadline</span>', '')
-    : stat('fa-hourglass', 'Deadline', date(a.due))) +
-  '</span></div>' +
-  '<div class="fm-action-gutter"><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</a><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-clone" aria-hidden="true"></i>Duplicate</a>' +
-  `<div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" data-bs-placement="bottom-end" data-bs-strategy="fixed" aria-expanded="false" aria-label="More actions for ${esc(a.title)}"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><div class="menu"><button type="button" class="menu-item">Archive Audition</button><hr class="menu-divider"><button type="button" class="menu-item theme-danger">Delete Audition</button></div></div>` +
-  '</div></div></div>'
 const RESET = 'style="--bs-theme-bg:initial;--bs-theme-contrast:initial"'
 const esc = (text) => String(text).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
@@ -111,8 +99,8 @@ export function initFilterBar(root) {
   }
   const rows = () => {
     const q = state.query.trim().toLowerCase()
-    const out = AUDITIONS.filter((p) => {
-      if (q && !`${p.title} ${p.production}`.toLowerCase().includes(q)) return false
+    const out = PROFILES.filter((p) => {
+      if (q && !`${p.first} ${p.last}`.toLowerCase().includes(q)) return false
       for (const d of DEFS) {
         const v = state.values[d.key]
         if (d.multi ? v.length && !v.includes(p[d.key]) : v !== ALL && p[d.key] !== v) return false
@@ -171,7 +159,7 @@ export function initFilterBar(root) {
     const compact = inlineCount === 0 &&
       root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + (anyApplied ? GAP + CLEAR_W : 0) + GAP + SORT_W
     const clearBtn = '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>'
-    const search = `<div class="input-group input-group-sm" style="${compact ? 'flex:1 1 auto;min-width:0;max-width:240px' : 'flex:0 0 auto;width:min(240px,100%)'}"><input class="form-control form-control-sm" type="search" data-query placeholder="Search title, production" aria-label="Search auditions" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>`
+    const search = `<div class="input-group input-group-sm" style="${compact ? 'flex:1 1 auto;min-width:0;max-width:240px' : 'flex:0 0 auto;width:min(240px,100%)'}"><input class="form-control form-control-sm" type="search" data-query placeholder="Search name" aria-label="Search profiles by name" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>`
     let bar
     if (compact) {
       const applied = DEFS.filter(isApplied).length
@@ -226,9 +214,9 @@ export function initFilterBar(root) {
       '<div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
         chipList.map((c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
       : ''
-    const count = `<div style="display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px" class="fs-xs fw-semibold">${list.length} of ${AUDITIONS.length} auditions</div>`
+    const count = `<div style="display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px" class="fs-xs fw-semibold">${list.length} of ${PROFILES.length} profiles</div>`
     const table = list.length
-      ? `<div class="list-group list-group-flush" role="list" aria-label="Auditions">${list.map(auditionRow).join('')}</div>`
+      ? `<div role="list" aria-label="Profiles" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;padding:16px">${list.map(tile).join('')}</div>`
       : '<div style="padding:48px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><h3 class="fs-md fw-semibold m-0">No matches found</h3><p class="fg-2 m-0" style="max-width:52ch">We couldn\'t find anything matching your search. Try adjusting your keywords, filters, or check for typos.</p></div>'
 
     // Keep focus and caret in the field being typed in across re-renders.

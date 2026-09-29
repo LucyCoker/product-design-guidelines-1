@@ -1818,14 +1818,14 @@
       "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter.",
       "Filters apply on change. No Apply button.",
-      "The count row always shows, with the same range as the table footer, for example “5 of 8 auditions”, in 12px (<code>fs-xs fw-semibold</code>).",
+      "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>).",
       "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover. The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths the popover and menus fill the bar’s width.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
      "examples": [
       {
        "label": "Working example",
-       "caption": "Try it: search, pick filters, open More filters, remove a chip, clear and sort. Narrow the window to see it adapt.",
+       "caption": "Try it: search, pick filters, open More filters, remove a chip, clear and sort. The results are Profile tiles (CNT-10). Narrow the window to see it adapt.",
        "badge": "",
        "wide": true,
        "html": "<div data-filterbar style=\"padding-bottom:140px;width:100%\"><div class=\"card\" style=\"overflow:visible;width:100%\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;padding:12px 16px;background:var(--bs-bg-1)\"><div style=\"display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 0 auto\"><div class=\"input-group input-group-sm\" style=\"flex:0 0 auto;width:min(240px,100%)\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search name, email, phone\" aria-label=\"Search name, email, phone\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:170px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:150px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Status: Active</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Language: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" aria-expanded=\"false\" style=\"white-space:nowrap\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i>More filters<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div><div style=\"margin-inline-start:auto;flex:0 0 auto\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" aria-expanded=\"false\" style=\"width:190px\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Sort by: Last name</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px\" class=\"fs-xs fw-semibold\">1-3 of 4 coworkers</div></div></div>"
@@ -2012,7 +2012,7 @@
    "id": "section-cards",
    "section": "organisms",
    "title": "Section cards",
-   "intro": "Cards that hold one section of a page: the Project summary, lists of Auditions and Selections, and people.",
+   "intro": "Cards that hold one section of a page: the Project summary, lists of Auditions and Selections, people and profiles.",
    "items": [
     {
      "code": "CNT-14",
@@ -2137,6 +2137,58 @@
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"card\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:12px\"><span style=\"color:var(--bs-fg-3)\">Coworkers:</span><div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">+3</span></div></div></div><div class=\"card\" style=\"background:var(--bs-bg-1)\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:8px;color:var(--bs-fg-2)\"><i class=\"fa-solid fa-lock\"></i>No access to clients</div></div>"
+    },
+    {
+     "code": "CNT-10",
+     "id": "cnt-10",
+     "name": "Profile tile",
+     "status": "Custom",
+     "classes": ".card + .card-img-top + .badge + .btn-icon",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
+     "replaces": "profile tile (photo with name and role overlay)",
+     "note": "One actor profile in a grid, for example the applicants for an Audition role or the results of a search. Built from Card, a Badge and an icon-only Button.",
+     "unresolved": true,
+     "layout": "full",
+     "rules": [
+      "One <code>.card</code> per profile, in a grid of <code>repeat(auto-fill, minmax(160px, 1fr))</code> with a 16px gap. The grid has <code>role=\"list\"</code> and each tile <code>role=\"listitem\"</code>.",
+      "Photo: 3:4 portrait, <code>.card-img-top</code>, <code>object-fit: cover</code>, <code>alt</code> is the person’s name. When there is no photo, show the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon (<code>fa-user</code>). Never a broken image.",
+      "The name and role sit under the photo, never over it: the name is the tile’s link, weight 600; the role is <code>.fs-xs .fg-2</code>. No italics. Long names wrap.",
+      "Open in a new tab is an icon-only button beside the name: <code>btn-text theme-secondary btn-xs btn-icon</code> with <code>fa-arrow-up-right-from-square</code>, an <code>aria-label</code> naming the person, and a tooltip.",
+      "The badge sits top left on the photo: <code>badge badge-solid theme-inverse</code>, so it reads on any photo."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "What do the “A” badge and the sort arrows (↑↓) on the photo mean: a rating, a category, a rank, or drag to reorder? The tile shows the badge only until this is decided. The arrows are left out."
+      },
+      {
+       "type": "info",
+       "text": "Changes from production: the name and role move from a grey band over the photo to under it (text over photos fails contrast, and the band hid the missing-photo case); the role is no longer italic; the open-profile icon is neutral secondary with an accessible name, not red; a missing photo shows the placeholder instead of a broken image."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Photo",
+       "html": "<div role=\"list\" aria-label=\"Profiles\" style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;width:100%;max-width:560px\"><div class=\"card\" role=\"listitem\" style=\"overflow:hidden\"><div style=\"position:relative\"><img class=\"card-img-top\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236b5b4b'/%3E%3Cstop offset='1' stop-color='%23c9b8a3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='3' height='4' fill='url(%23g)'/%3E%3C/svg%3E\" alt=\"Markus John\" style=\"display:block;width:100%;aspect-ratio:3/4;object-fit:cover\"><span class=\"badge badge-solid theme-inverse\" style=\"position:absolute;top:8px;inset-inline-start:8px\">A</span></div><div style=\"display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px\"><div style=\"flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px\"><a href=\"#\" class=\"fw-semibold\">Markus John</a><span class=\"fs-xs fg-2\">Lead: Georgie (Adult)</span></div><a class=\"btn-text theme-secondary btn-xs btn-icon\" href=\"#\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open Markus John’s profile in a new tab\" data-bs-toggle=\"tooltip\" data-bs-title=\"Open profile in a new tab\"><i class=\"fa-solid fa-arrow-up-right-from-square\" aria-hidden=\"true\"></i></a></div></div><div class=\"card\" role=\"listitem\" style=\"overflow:hidden\"><div style=\"position:relative\"><img class=\"card-img-top\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236b5b4b'/%3E%3Cstop offset='1' stop-color='%23c9b8a3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='3' height='4' fill='url(%23g)'/%3E%3C/svg%3E\" alt=\"Lena Brandt\" style=\"display:block;width:100%;aspect-ratio:3/4;object-fit:cover\"><span class=\"badge badge-solid theme-inverse\" style=\"position:absolute;top:8px;inset-inline-start:8px\">A</span></div><div style=\"display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px\"><div style=\"flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px\"><a href=\"#\" class=\"fw-semibold\">Lena Brandt</a><span class=\"fs-xs fg-2\">Lead: Georgie (Teen)</span></div><a class=\"btn-text theme-secondary btn-xs btn-icon\" href=\"#\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open Lena Brandt’s profile in a new tab\" data-bs-toggle=\"tooltip\" data-bs-title=\"Open profile in a new tab\"><i class=\"fa-solid fa-arrow-up-right-from-square\" aria-hidden=\"true\"></i></a></div></div><div class=\"card\" role=\"listitem\" style=\"overflow:hidden\"><div style=\"position:relative\"><img class=\"card-img-top\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236b5b4b'/%3E%3Cstop offset='1' stop-color='%23c9b8a3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='3' height='4' fill='url(%23g)'/%3E%3C/svg%3E\" alt=\"Jonas Weber\" style=\"display:block;width:100%;aspect-ratio:3/4;object-fit:cover\"><span class=\"badge badge-solid theme-inverse\" style=\"position:absolute;top:8px;inset-inline-start:8px\">A</span></div><div style=\"display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px\"><div style=\"flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px\"><a href=\"#\" class=\"fw-semibold\">Jonas Weber</a><span class=\"fs-xs fg-2\">Supporting: Mira</span></div><a class=\"btn-text theme-secondary btn-xs btn-icon\" href=\"#\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open Jonas Weber’s profile in a new tab\" data-bs-toggle=\"tooltip\" data-bs-title=\"Open profile in a new tab\"><i class=\"fa-solid fa-arrow-up-right-from-square\" aria-hidden=\"true\"></i></a></div></div></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      },
+      {
+       "label": "No photo",
+       "html": "<div role=\"list\" aria-label=\"Profiles\" style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;width:100%;max-width:560px\"><div class=\"card\" role=\"listitem\" style=\"overflow:hidden\"><div style=\"position:relative\"><div style=\"aspect-ratio:3/4;background:var(--bs-bg-2);display:flex;align-items:center;justify-content:center\"><i class=\"fa-solid fa-user fg-3\" aria-hidden=\"true\" style=\"font-size:2rem\"></i></div><span class=\"badge badge-solid theme-inverse\" style=\"position:absolute;top:8px;inset-inline-start:8px\">A</span></div><div style=\"display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px\"><div style=\"flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px\"><a href=\"#\" class=\"fw-semibold\">Helga Bellinghausen</a><span class=\"fs-xs fg-2\">Lead: Georgie (Adult)</span></div><a class=\"btn-text theme-secondary btn-xs btn-icon\" href=\"#\" target=\"_blank\" rel=\"noopener\" aria-label=\"Open Helga Bellinghausen’s profile in a new tab\" data-bs-toggle=\"tooltip\" data-bs-title=\"Open profile in a new tab\"><i class=\"fa-solid fa-arrow-up-right-from-square\" aria-hidden=\"true\"></i></a></div></div></div>",
+       "caption": "The placeholder replaces the broken image.",
+       "badge": "",
+       "wide": true
+      }
+     ],
+     "links": [
+      {
+       "href": "#sf-1",
+       "label": "See it in the Complex search and filter bar",
+       "icon": "fa-magnifying-glass"
+      }
+     ]
     }
    ]
   },
@@ -2387,11 +2439,6 @@
   {
    "code": "CNT-8",
    "name": "Definition list",
-   "reason": "Removed in review."
-  },
-  {
-   "code": "CNT-10",
-   "name": "Profile tile",
    "reason": "Removed in review."
   }
  ]
