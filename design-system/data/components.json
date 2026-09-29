@@ -1520,6 +1520,10 @@
      "unresolved": false,
      "flags": [
       {
+       "type": "ask",
+       "text": "To review: how filters inside More filters apply. Today each one applies on change, like the inline filters. Options: keep that; add an Apply filters button to the popover (a batch filter, which Carbon suggests when people set several filters at once or results are slow to load); or apply on close. Decide which one."
+      },
+      {
        "type": "info",
        "text": "The prototype opens Sort by with menu-end, which this Bootstrap build does not have. Use data-bs-placement=\"bottom-end\"."
       }
