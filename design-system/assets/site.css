@@ -371,3 +371,4 @@ body {
 .lib-choose { display: grid; gap: 8px; margin-bottom: 24px; }
 .lib-table-wrap table { min-width: 520px; }
 .lib-table-wrap th[scope="row"] { font-weight: 600; white-space: nowrap; }
+.lib-item-links { display: flex; flex-wrap: wrap; gap: 8px; }

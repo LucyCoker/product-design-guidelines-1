@@ -1551,7 +1551,8 @@
      "links": [
       {
        "href": "#sf-responsive",
-       "label": "Responsive behaviour"
+       "label": "See responsive behaviour",
+       "icon": "fa-display"
       }
      ]
     },

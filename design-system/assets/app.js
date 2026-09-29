@@ -53,9 +53,12 @@ function itemHtml(item) {
     item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',
     item.docs ? `<a href="${item.docs}" target="_blank" rel="noopener">Bootstrap 6 docs</a>` : '',
     item.guide ? `<a href="${guideUrl(item.guide)}" target="_blank" rel="noopener">Guideline</a>` : '',
-    item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : '',
-    ...(item.links || []).map((l) => `<a href="${l.href}">${escapeHtml(l.label)}</a>`)
+    item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : ''
   ].join('')
+  // Related pages, such as responsive behaviour, as buttons under the note.
+  const links = item.links?.length
+    ? `<div class="lib-item-links">${item.links.map((l) => `<a class="btn-outline theme-secondary btn-sm" href="${l.href}"><i class="fa-solid ${l.icon || 'fa-arrow-right'}" aria-hidden="true"></i>${escapeHtml(l.label)}</a>`).join('')}</div>`
+    : ''
 
   let preview = ''
   let markup = item.example || ''
@@ -78,6 +81,7 @@ function itemHtml(item) {
     <div class="lib-item-head"><h3 class="fs-md">${escapeHtml(item.name)}</h3>${chips}</div>
     ${meta ? `<div class="lib-item-meta">${meta}</div>` : ''}
     ${item.note ? `<p class="lib-note">${escapeHtml(item.note)}</p>` : ''}
+    ${links}
     ${preview}
     ${rules}
     ${item.flags.map(flagHtml).join('')}
