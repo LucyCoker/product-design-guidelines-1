@@ -143,11 +143,11 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 /* ---------------------------------------------------------------------------
  * Accent: client zone (colour.md, buttons.md)
  *
- * Bootstrap orange-500 (decided in review; replaces the mapping's #EF7428).
- * ASK: about 2.9:1 on white, under the 3:1 icons need. orange-600 passes.
+ * Bootstrap orange-600 (decided in review; replaces the mapping's #EF7428).
+ * About 4.4:1 on white, so the icon passes the 3:1 WCAG 2.1 AA needs.
  * ------------------------------------------------------------------------ */
 :root {
-  --fm-accent-client-zone: var(--bs-orange-500);
+  --fm-accent-client-zone: var(--bs-orange-600);
 }
 
 .btn-outline.theme-secondary.has-client-zone-icon > i,

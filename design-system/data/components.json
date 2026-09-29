@@ -331,16 +331,13 @@
      "rules": [
       "Use it on every such action inside a client zone. An inconsistent signal is worse than none.",
       "Never use it outside client zones, and never on solid or text buttons.",
-      "It is never the only signal. The page itself must also say the content is visible to clients."
+      "It is never the only signal. The page itself must also say the content is visible to clients.",
+      "The icon is <code>--fm-accent-client-zone</code>, Bootstrap <code>orange-600</code> (about 4.4:1 on white)."
      ],
      "flags": [
       {
        "type": "ask",
        "text": "The class name, and whether the signal extends beyond buttons, need team review (Buttons guideline)."
-      },
-      {
-       "type": "ask",
-       "text": "Client zone is Bootstrap orange-500 (#ff6800). Accessibility: the icon is about 2.9:1 on the white button, just under the 3:1 WCAG 2.1 AA needs for icons (1.4.11). It still passes overall because the label carries the meaning, but the colour itself fails. Decide: keep orange-500, or use orange-600 (#cd5100, about 4.4:1, passes)."
       }
      ],
      "examples": [
