@@ -139,7 +139,8 @@ export function initSimpleFilter(root) {
     const active = document.activeElement
     const typing = active && root.contains(active) && active.matches('[data-query]')
     const caret = typing ? active.selectionStart : null
-    root.innerHTML = `<div class="card" style="overflow:visible;width:100%">${bar}${count}${body}</div>`
+    // No card outline: only the table rows carry lines.
+    root.innerHTML = `<div class="card" style="overflow:visible;width:100%;--bs-card-border-width:0">${bar}${count}${body}</div>`
     shown = state.open
     if (typing) {
       const el = root.querySelector('[data-query]')
