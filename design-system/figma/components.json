@@ -679,7 +679,7 @@
       "figmaPage": "Organisms",
       "figmaName": "Section cards/Production list",
       "libraryId": "cnt-2",
-      "classes": ".card > .list-group.list-group-flush[role=list] > .list-group-item + CSS grid + Action gutter",
+      "classes": ".card > .list-group-flush > .list-group-item > .fm-production-row + .fm-action-gutter",
       "variants": {
         "Version": [
           "Auditions",

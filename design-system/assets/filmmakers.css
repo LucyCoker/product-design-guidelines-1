@@ -188,3 +188,27 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
     border-start-end-radius: inherit;
   }
 }
+
+/* ---------------------------------------------------------------------------
+ * Production list row (CNT-2)
+ *
+ * From 1024px up: one grid per list (--fm-row-cols), columns aligned across
+ * rows, the Action gutter as the last column. Below that the cells wrap and
+ * the gutter becomes a bar along the bottom of the row.
+ * ------------------------------------------------------------------------ */
+.fm-production-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.fm-production-row > * { flex: 1 1 220px; min-width: 0; }
+.fm-production-row > .fm-row-media { flex: 0 0 164px; }
+.fm-production-row > .fm-action-gutter { flex: 1 1 100%; }
+@media (width >= 1024px) {
+  .fm-production-row {
+    display: grid;
+    grid-template-columns: var(--fm-row-cols);
+    align-items: var(--fm-row-align, start);
+  }
+  .fm-production-row > .fm-action-gutter { align-self: stretch; }
+}
