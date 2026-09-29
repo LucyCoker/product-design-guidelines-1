@@ -369,6 +369,5 @@ body {
 
 /* Search and filter: which one to use */
 .lib-choose { display: grid; gap: 8px; margin-bottom: 24px; }
-.lib-table-wrap { overflow-x: auto; border: 1px solid var(--bs-border-subtle); border-radius: var(--bs-radius-5, 8px); }
 .lib-table-wrap table { min-width: 520px; }
 .lib-table-wrap th[scope="row"] { font-weight: 600; white-space: nowrap; }
