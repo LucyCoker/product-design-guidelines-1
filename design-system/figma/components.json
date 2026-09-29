@@ -660,6 +660,18 @@
     },
     {
       "figmaPage": "Organisms",
+      "figmaName": "Section cards/Project card",
+      "libraryId": "cnt-14",
+      "classes": ".card + Action gutter + .menu",
+      "variants": {
+        "Version": [
+          "With image",
+          "Without image"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Organisms",
       "figmaName": "Section cards/Entity list card",
       "libraryId": "cnt-2",
       "classes": ".card > .list-group.list-group-flush",
