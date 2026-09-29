@@ -1958,6 +1958,7 @@
      "rules": [
       "One card holds the bar, the table and the footer.",
       "The section’s primary action (for example Add coworker) sits beside the heading, not in the bar.",
+      "The heading row has the same 16px side padding as the filter bar, so the heading lines up with search and the primary action with Sort by.",
       "When nothing matches, the table and footer are replaced by the No matches empty state; the bar stays.",
       "Built from: <a href=\"#sf-4\">Simple search and filter</a>, Table, Table footer, Empty state. Use <a href=\"#sf-1\">Complex</a> instead only for large data sets such as actors, locations or crew."
      ],
@@ -1970,7 +1971,7 @@
      "examples": [
       {
        "label": "Coworkers",
-       "html": "<section style=\"width:100%;display:flex;flex-direction:column;gap:12px\"><div style=\"display:flex;align-items:center;gap:12px\"><h2 class=\"fs-lg fw-semibold m-0\">Coworkers</h2><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" style=\"margin-inline-start:auto\"><i class=\"fa-solid fa-plus\" aria-hidden=\"true\"></i>Add coworker</button></div><div data-simplefilter style=\"width:100%\"></div></section>",
+       "html": "<section style=\"width:100%;display:flex;flex-direction:column;gap:12px\"><div style=\"display:flex;align-items:center;gap:12px;padding-inline:16px\"><h2 class=\"fs-lg fw-semibold m-0\">Coworkers</h2><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" style=\"margin-inline-start:auto\"><i class=\"fa-solid fa-plus\" aria-hidden=\"true\"></i>Add coworker</button></div><div data-simplefilter style=\"width:100%\"></div></section>",
        "caption": "Working: search, filter, sort and page through.",
        "badge": "",
        "wide": true
