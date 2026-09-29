@@ -14,7 +14,7 @@ Codes refer to entries in the design system library.
 | 2 | The results count is a slim grey row under the bar, in 12px ("1-5 of 5 newsletters"). | SF-4 Simple |
 | 3 | The card has no outline (`--bs-card-border-width:0`). Only the table rows have lines. | SF-4 Simple |
 | 4 | `table-hover` is removed. Column headers have `scope="col"`; the actions column has a hidden "Actions" label. | Tables |
-| 5 | A table footer shows the count and pagination. There's no line under the last row. | TBL-1 Table footer |
+| 5 | A table footer shows the count (12px) and pagination. There's no line under the last row. | TBL-1 Table footer |
 | 6 | When nothing matches, the table is replaced by **No matches found**, and the bar stays so people can change the search. | CNT-11 Empty state |
 | 7 | Row actions are `btn-text theme-primary btn-xs` (they were secondary). "more" is now **More**, with an `aria-label` naming the newsletter. | CNT-13 Row actions |
 | 8 | The More menu is a standard Bootstrap menu (`data-bs-toggle="menu"`), replacing the state toggle: Duplicate, a divider, then **Delete newsletter** in danger. | CNT-13 Row actions · Menu |
@@ -155,7 +155,7 @@ a:not([class]):hover{color:var(--bs-link-hover-color)}
 
 <!-- TBL-1 Table footer: no line above -->
 <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)">
-<span class="fw-semibold">{{ range }}</span>
+<span class="fs-xs fw-semibold">{{ range }}</span>
 <nav aria-label="Pagination" style="margin-inline-start:auto"><ul class="pagination pagination-sm theme-primary" style="margin:0">
 <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous page"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></a></li>
 <li class="page-item active"><a class="page-link" href="#" aria-current="page">1</a></li>

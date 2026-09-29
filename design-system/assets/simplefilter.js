@@ -154,7 +154,7 @@ export function initSimpleFilter(root) {
         page.map((p, i) => ((row) => i === page.length - 1 ? row.replaceAll('<td>', '<td style="border-bottom-width:0">') : row)(`<tr><td><div class="fw-semibold">${p.first} ${p.last}</div><div class="fs-xs fg-3">${p.email}</div></td><td>${p.permissions}</td><td>${p.language}</td><td>${p.twofa}</td><td>${p.profileAccess}</td><td>${p.locationAccess}</td><td><span class="badge ${p.status === 'Active' ? 'theme-success' : 'theme-secondary'} badge-subtle">${p.status}</span></td></tr>`)).join('') +
         '</tbody></table></div>' +
         '<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)">' +
-        `<span style="font-size:14px;font-weight:600">${range}</span>` +
+        `<span class="fs-xs fw-semibold">${range}</span>` +
         '<nav aria-label="Pagination" style="margin-inline-start:auto"><ul class="pagination pagination-sm theme-primary" style="margin:0">' +
         pageLink('<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>', state.page - 1, { disabled: state.page <= 1, aria: 'Previous page' }) +
         Array.from({ length: pageCount }, (_, i) => pageLink(String(i + 1), i + 1, { active: state.page === i + 1 })).join('') +
