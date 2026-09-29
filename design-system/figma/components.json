@@ -383,8 +383,13 @@
       "figmaPage": "Forms",
       "figmaName": "Chips/Chip",
       "libraryId": "msg-8",
-      "classes": ".chip + .chip-dismiss",
-      "variants": {}
+      "classes": ".chip + .chip-dismiss, a.chip",
+      "variants": {
+        "Version": [
+          "Applied filter",
+          "Attachment"
+        ]
+      }
     },
     {
       "figmaPage": "Forms",
@@ -662,7 +667,7 @@
       "figmaPage": "Organisms",
       "figmaName": "Section cards/Project card",
       "libraryId": "cnt-14",
-      "classes": ".card + Action gutter + .menu",
+      "classes": ".card + .fm-action-gutter + .menu",
       "variants": {
         "Version": [
           "With image",

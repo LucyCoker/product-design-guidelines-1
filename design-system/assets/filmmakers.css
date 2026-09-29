@@ -154,3 +154,37 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .btn-outline.theme-secondary.has-client-zone-icon > .fm-icon {
   color: var(--fm-accent-client-zone);
 }
+
+/* ---------------------------------------------------------------------------
+ * Action gutter (CNT-12, used by the Project card)
+ *
+ * From 1024px up: a 180px column on the right, actions stacked. Below that:
+ * a bar along the bottom of the card, actions in a row at the end.
+ * ------------------------------------------------------------------------ */
+.fm-action-gutter {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px 12px;
+  padding: .5rem .75rem;
+  background: var(--bs-bg-1);
+  border-block-start: 1px solid var(--bs-border-subtle);
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
+}
+@media (width >= 1024px) {
+  .fm-action-gutter {
+    flex: 0 0 180px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    padding: .75rem;
+    border-block-start: 0;
+    border-inline-start: 1px solid var(--bs-border-subtle);
+    border-end-start-radius: 0;
+    border-start-end-radius: inherit;
+  }
+}

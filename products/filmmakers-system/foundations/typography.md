@@ -50,7 +50,7 @@ Heading elements (`h1`–`h6`) MUST reflect the document structure. Use the size
 "less important" is the most common way this scale gets broken. Use `--bs-secondary-color`
 at the same size instead.
 
-MUST NOT use italics for emphasis; use weight 600.
+MUST NOT use italics for emphasis; use weight 600. Exception: user-written rich text (e.g. a Project description) keeps the italics its author added.
 
 ---
 
