@@ -340,6 +340,12 @@ async function setupKit() {
   for (const [id, file] of [['#kit-brief', 'PROTOTYPE.md'], ['#kit-starter', 'starter.html']]) {
     try { $(id).textContent = await (await fetch(new URL(file, KIT))).text() } catch { $(id).textContent = `Open design-system/prototype-kit/${file} in the repo.` }
   }
+  // One prompt: the brief, then the starter page, then what to build.
+  $('#kit-all').textContent = [
+    $('#kit-brief').textContent.trim().replace(/^Paste this into[^\n]*\n+/m, ''),
+    '## Start from this page\n\nUse this page as the starting point. Keep its head, header and subheader band, and build inside <main>.\n\n```html\n' + $('#kit-starter').textContent.trim() + '\n```',
+    '## What to build\n\n[Describe the screen you want here.]'
+  ].join('\n\n')
 
   // Every class the real CSS defines. Anything else in a prototype was invented.
   let known = null
