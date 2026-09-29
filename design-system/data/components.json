@@ -1323,6 +1323,18 @@
        "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-pw\" class=\"form-label fw-semibold\">New password<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"password\" class=\"form-control form-control-sm is-valid\" id=\"val-pw\" value=\"correct-horse-42\" aria-describedby=\"val-pw-ok\" autocomplete=\"new-password\" required><div class=\"valid-feedback\" id=\"val-pw-ok\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i> Meets all the requirements.</div></div>",
        "caption": "Green valid state, used only when creating a password.",
        "badge": ""
+      },
+      {
+       "label": "Valid (confirm password)",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-pw2\" class=\"form-label fw-semibold\">Confirm password<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"password\" class=\"form-control form-control-sm is-valid\" id=\"val-pw2\" value=\"correct-horse-42\" aria-describedby=\"val-pw2-ok\" autocomplete=\"new-password\" required><div class=\"valid-feedback\" id=\"val-pw2-ok\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i> Passwords match.</div></div>",
+       "caption": "Confirms the two entries match.",
+       "badge": ""
+      },
+      {
+       "label": "Valid (set-format code)",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-vat\" class=\"form-label fw-semibold\">VAT number<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"text\" class=\"form-control form-control-sm is-valid\" id=\"val-vat\" value=\"DE123456789\" aria-describedby=\"val-vat-ok\" required><div class=\"valid-feedback\" id=\"val-vat-ok\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i> Valid VAT number.</div></div>",
+       "caption": "For codes with a fixed format, e.g. VAT or voucher codes.",
+       "badge": ""
       }
      ],
      "rules": [
@@ -1332,7 +1344,7 @@
       "On submit, a danger alert at the top of the form names how many fields need attention and links to each one. Focus moves to it.",
       "A failed save never discards what the person entered. A dialog with an invalid field stays open.",
       "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>.",
-      "The green valid state (<code>.is-valid</code> + <code>.valid-feedback</code>) is used only when creating a password, to confirm it meets the requirements. Other fields show errors only."
+      "The green valid state (<code>.is-valid</code> + <code>.valid-feedback</code>, with a check icon) is used only where a field is checked against a rule people cannot see: creating a password, confirming a password, and codes with a set format (e.g. VAT or voucher codes). Other fields show errors only."
      ],
      "flags": []
     }
