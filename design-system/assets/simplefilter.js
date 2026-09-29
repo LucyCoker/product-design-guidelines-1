@@ -66,7 +66,7 @@ export function initSimpleFilter(root) {
   // A text button reading "Label: value". The value is the link colour, and
   // weight 600 once applied.
   const trigger = (key, label, value, applied) =>
-    `<button type="button" class="btn-text theme-secondary btn-sm" data-toggle="${key}" aria-haspopup="menu" aria-expanded="${state.open === key}" style="white-space:nowrap;gap:6px;--bs-btn-bg:var(--bs-bg-2)">` +
+    `<button type="button" class="btn-text theme-secondary btn-sm" data-toggle="${key}" aria-haspopup="menu" aria-expanded="${state.open === key}" style="white-space:nowrap;gap:6px">` +
     `<span style="font-weight:600;color:var(--bs-fg-body)">${esc(label)}:</span>` +
     `<span style="color:var(--bs-link-color);font-weight:${applied ? 600 : 400}">${esc(value)}</span>` +
     '<i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button>'
@@ -99,7 +99,7 @@ export function initSimpleFilter(root) {
     const narrow = root.clientWidth < NARROW
     const sortLabel = `Sort by: ${SORTS[state.sort].label}`
     const sortTrigger = narrow
-      ? `<button type="button" class="btn-text theme-secondary btn-sm btn-icon" data-toggle="sort" aria-haspopup="menu" aria-expanded="${state.open === 'sort'}" aria-label="${sortLabel}" title="${sortLabel}" style="--bs-btn-bg:var(--bs-bg-2)"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>`
+      ? `<button type="button" class="btn-text theme-secondary btn-sm btn-icon" data-toggle="sort" aria-haspopup="menu" aria-expanded="${state.open === 'sort'}" aria-label="${sortLabel}" title="${sortLabel}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>`
       : trigger('sort', 'Sort by', SORTS[state.sort].label, false)
     const bar =
       '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bs-border-color)">' +

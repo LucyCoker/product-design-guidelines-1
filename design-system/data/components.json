@@ -1569,7 +1569,7 @@
      "layout": "row",
      "rules": [
       "Two zones: search, the filters and Clear filters on the left; Sort by on its own at the top right.",
-      "Every filter is a text button reading <b>Label: value</b> that opens a <code>.menu</code>. The value is the link colour, weight 600 once applied.",
+      "Every filter is a Tertiary button (<code>btn-text theme-secondary btn-sm</code>, no overrides) reading <b>Label: value</b> that opens a <code>.menu</code>. The value is the link colour, weight 600 once applied.",
       "Selected menu items carry a check, so the state is not colour alone. Multi-value filters stay open while you pick; single-value filters close.",
       "When space runs out, the left zone wraps onto more lines and Sort by stays top right. Below 560px the search field takes its own line and Sort by becomes an icon button with an accessible name. There is no More filters: if a page needs it, use Complex.",
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
@@ -1577,10 +1577,6 @@
       "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. The table footer repeats it beside the pagination."
      ],
      "flags": [
-      {
-       "type": "ask",
-       "text": "The filter buttons are btn-text theme-secondary with --bs-btn-bg set to bg-2, as in the prototype. That grey background is a local override, not a Bootstrap button variant. Decide whether to keep it or use a standard variant."
-      },
       {
        "type": "ask",
        "text": "Clear filters uses btn-text theme-primary here too. The same open question as on Complex."
