@@ -181,7 +181,7 @@ export function initFilterBar(root) {
     chipsState = chipList
     const chips = state.chips && chipList.length
       ? // Compact row: 24px chips through Bootstrap's own chip tokens.
-      '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:6px 16px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)"><span class="fs-xs fg-3" style="white-space:nowrap">Applied</span>' +
+      '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)"><span class="fs-xs fg-3" style="white-space:nowrap">Applied</span>' +
         chipList.map((c, i) => `<span class="chip" style="--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
       : ''
     const count = `<div style="display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px">${list.length} of ${PEOPLE.length} coworkers</div>`
@@ -197,6 +197,8 @@ export function initFilterBar(root) {
     const caret = focusKey ? active.selectionStart : null
     const option = `<div class="d-flex align-items-center gap-2 mb-3"><div class="switch"><input type="checkbox" role="switch" id="${id}-chips" data-chips-toggle${state.chips ? ' checked' : ''}></div><label for="${id}-chips" class="fw-semibold">Show applied chips</label><span class="fs-xs fg-3">Optional. Not in production use yet</span></div>`
     const barOnly = root.dataset.variant === 'bar'
+    // With chips showing, the bar and the chips row read as one block.
+    if (chips) bar = bar.replace('padding:12px 16px;', 'padding:12px 16px 6px;')
     root.innerHTML = barOnly
       ? `<div class="card" style="overflow:visible;width:100%">${bar}${count}</div>`
       : `${option}<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
