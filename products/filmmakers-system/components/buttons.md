@@ -64,7 +64,7 @@ Anything outside this table is a deviation and MUST be proposed, not improvised.
 | `theme-success`, `theme-warning`, `theme-info` on any button | Success is a state, not an action. Warning duplicates danger. Info is indistinguishable from secondary. |
 | `btn-solid theme-secondary` | Primary emphasis without primary meaning. |
 | `btn-outline theme-primary`, `btn-subtle theme-primary` | Becomes a de facto second primary. If an action needs more than secondary but is not the primary, the hierarchy is wrong. |
-| `btn-subtle` (all themes) | Not yet in use. See Unresolved. |
+| `btn-subtle` anywhere except Search and filter | Only the Simple search and filter bar uses it, for its filter and Sort by buttons. See below. |
 | The "styled" button style | "Default" rounded corner radius only. |
 
 ## Solid is reserved
@@ -152,7 +152,7 @@ Where any of these cannot be met, **ASK**.
 **`has-client-zone-icon` naming and scope** — the class name and whether the client zone signal should extend beyond buttons to other components. Needs team review before adoption.
 *Review by: [date]*
 
-**`btn-subtle`** — deliberately not in use. Adding a fourth emphasis tier requires evidence that outline and text cannot cover the case, and all effort should first go into improving the UI so the tier is unnecessary.
+**`btn-subtle`** — decided for one use only: the filter and Sort by buttons in the Simple search and filter bar (`btn-subtle theme-secondary btn-sm`), where the grey fill marks each filter as a control. Anywhere else it stays out: adding it more widely needs evidence that outline and text cannot cover the case.
 *Review by: [date]*
 
 ### Watching

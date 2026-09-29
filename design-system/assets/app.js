@@ -346,7 +346,7 @@ const CDN = 'https://cdn.jsdelivr.net/gh/LucyCoker/product-design-guidelines-1@m
 const BANNED = [
   [['btn-solid', 'theme-secondary'], 'Solid is only for primary, danger (in a dialog) and inverse.'],
   [['btn-outline', 'theme-primary'], 'Becomes a second primary. Use btn-outline theme-secondary.'],
-  [['btn-subtle'], 'Not in use.'],
+  [['btn-subtle'], 'Only for the filter and Sort by buttons in Search and filter (Simple). Check this is one of them.'],
   [['btn-styled'], 'Use the default rounded corners.'],
   [['fw-medium'], 'Weight 500 renders as 400 on Windows. Use fw-semibold.'],
   [['fst-italic'], 'No italics for emphasis. Use fw-semibold.']
