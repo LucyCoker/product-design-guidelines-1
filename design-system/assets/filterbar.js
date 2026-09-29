@@ -181,7 +181,7 @@ export function initFilterBar(root) {
     chipsState = chipList
     const chips = state.chips && chipList.length
       ? // Compact row: 24px chips through Bootstrap's own chip tokens.
-      '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)"><span class="fs-xs fg-3" style="white-space:nowrap">Applied</span>' +
+      '<div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
         chipList.map((c, i) => `<span class="chip" style="--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
       : ''
     const count = `<div style="display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px">${list.length} of ${PEOPLE.length} coworkers</div>`
