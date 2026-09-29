@@ -1568,13 +1568,13 @@
      "unresolved": false,
      "layout": "row",
      "rules": [
-      "Order: search, the filters, Clear filters, then Sort by at the far end.",
+      "Two zones: search, the filters and Clear filters on the left; Sort by on its own at the top right.",
       "Every filter is a text button reading <b>Label: value</b> that opens a <code>.menu</code>. The value is the link colour, weight 600 once applied.",
       "Selected menu items carry a check, so the state is not colour alone. Multi-value filters stay open while you pick; single-value filters close.",
-      "All filters stay in the bar and wrap to a new line when space runs out. There is no More filters: if a page needs it, use Complex.",
+      "When space runs out, the left zone wraps onto more lines and Sort by stays top right. Below 560px the search field takes its own line and Sort by becomes an icon button with an accessible name. There is no More filters: if a page needs it, use Complex.",
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
       "Filters apply on change. No Apply button.",
-      "The table footer shows the range and pagination, for example “1-3 of 4 coworkers”."
+      "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. The table footer repeats it beside the pagination."
      ],
      "flags": [
       {
@@ -1590,7 +1590,7 @@
       {
        "label": "Working example",
        "html": "<div data-simplefilter style=\"width:100%\"></div>",
-       "caption": "Try it: search, pick filters (Language takes several values), clear, sort and page through.",
+       "caption": "Try it: search, pick filters (Language takes several values), clear, sort and page through. Narrow the window to see it wrap.",
        "badge": "",
        "wide": true
       }
