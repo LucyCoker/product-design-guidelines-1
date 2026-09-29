@@ -1307,7 +1307,7 @@
      "examples": [
       {
        "label": "Working example",
-       "html": "<form class=\"lib-validate-demo\" data-bs-validate novalidate style=\"width:100%;max-width:420px;display:grid;gap:16px\"><div class=\"alert theme-danger\" role=\"alert\" data-summary hidden style=\"margin:0\"><div class=\"d-flex gap-2\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div><strong data-summary-title></strong><ul class=\"mb-0 ps-3\" data-summary-list></ul></div></div></div><div class=\"form-field\"><label for=\"val-name\" class=\"form-label fw-semibold\">Name<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"text\" class=\"form-control form-control-sm\" id=\"val-name\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter a name.</div></div><div class=\"form-field\"><label for=\"val-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control form-control-sm\" id=\"val-email\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div><div><button type=\"submit\" class=\"btn-solid theme-primary btn-sm\">Save</button></div></form>",
+       "html": "<form class=\"lib-validate-demo\" data-bs-validate novalidate style=\"width:100%;max-width:420px;display:grid;gap:16px\"><div class=\"alert theme-danger\" role=\"alert\" data-summary hidden style=\"margin:0\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div class=\"d-flex flex-column gap-1\"><p class=\"alert-heading fw-semibold mb-0\" data-summary-title></p><ul class=\"mb-0\" data-summary-list></ul></div></div><div class=\"form-field\"><label for=\"val-name\" class=\"form-label fw-semibold\">Name<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"text\" class=\"form-control form-control-sm\" id=\"val-name\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter a name.</div></div><div class=\"form-field\"><label for=\"val-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control form-control-sm\" id=\"val-email\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div><div><button type=\"submit\" class=\"btn-solid theme-primary btn-sm\">Save</button></div></form>",
        "caption": "Try it: leave a field and it shows its error; press Save to see the summary. Nothing you typed is lost.",
        "badge": "",
        "wide": true
@@ -1425,28 +1425,28 @@
      "examples": [
       {
        "label": "Info",
-       "html": "<div class=\"alert theme-info d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>This project is administrated by <strong>Filmmakers System</strong>.</div></div>",
+       "html": "<div class=\"alert theme-info\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>This project is administrated by <strong>Filmmakers System</strong>.</div></div>",
        "caption": "",
        "badge": "Default",
        "wide": true
       },
       {
        "label": "Warning",
-       "html": "<div class=\"alert theme-warning d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-triangle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Your subscription ends on 30 October. <a href=\"#\" class=\"alert-link\">Renew subscription</a></div></div>",
+       "html": "<div class=\"alert theme-warning\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-triangle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Your subscription ends on 30 October. <a href=\"#\" class=\"alert-link\">Renew subscription</a></div></div>",
        "caption": "",
        "badge": "",
        "wide": true
       },
       {
        "label": "Danger",
-       "html": "<div class=\"alert theme-danger d-flex align-items-start gap-2\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Payments are paused because the card on file has expired. <a href=\"#\" class=\"alert-link\">Update card</a></div></div>",
+       "html": "<div class=\"alert theme-danger\" role=\"alert\" style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Payments are paused because the card on file has expired. <a href=\"#\" class=\"alert-link\">Update card</a></div></div>",
        "caption": "",
        "badge": "",
        "wide": true
       },
       {
        "label": "Dismissible",
-       "html": "<div class=\"d-flex flex-column align-items-center gap-3\" style=\"width:100%\"><div class=\"alert theme-info d-flex align-items-start gap-2\" role=\"alert\" data-demo-alert style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Profiles you release are visible to the client for 30 days.</div><button type=\"button\" class=\"btn-close ms-auto\" data-bs-dismiss=\"alert\" aria-label=\"Dismiss\"></button></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-alert-again hidden><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>",
+       "html": "<div class=\"d-flex flex-column align-items-center gap-3\" style=\"width:100%\"><div class=\"alert theme-info\" role=\"alert\" data-demo-alert style=\"margin:0;width:100%\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div>Profiles you release are visible to the client for 30 days.</div><button type=\"button\" class=\"btn-close ms-auto\" data-bs-dismiss=\"alert\" aria-label=\"Dismiss\"></button></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-alert-again hidden><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>",
        "caption": "A .btn-close with data-bs-dismiss=\"alert\". Dismiss it, then Show again.",
        "badge": "",
        "wide": true
