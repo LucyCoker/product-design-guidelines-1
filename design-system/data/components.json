@@ -1492,13 +1492,13 @@
      "examples": [
       {
        "label": "Confirmation",
-       "html": "<div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center\"><div class=\"toast-body d-flex align-items-center gap-2 flex-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>Project archived.</span></div><button type=\"button\" class=\"btn-close me-2\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div>",
-       "caption": "Auto-dismisses.",
+       "html": "<div class=\"d-flex flex-column align-items-center gap-3\"><div class=\"toast show theme-success\" data-bs-autohide=\"true\" data-bs-delay=\"5000\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center\"><div class=\"toast-body d-flex align-items-center gap-2 flex-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>Project archived.</span></div><button type=\"button\" class=\"btn-close me-2\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-toast><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>",
+       "caption": "Auto-dismisses after 5 seconds. Dismiss it, then Show again to watch.",
        "badge": "Default"
       },
       {
        "label": "With Undo",
-       "html": "<div class=\"toast show theme-success\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center\"><div class=\"toast-body d-flex align-items-center gap-2 flex-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>4 records archived.</span></div><button type=\"button\" class=\"btn-text btn-sm\">Undo</button><button type=\"button\" class=\"btn-close me-2\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div>",
+       "html": "<div class=\"d-flex flex-column align-items-center gap-3\"><div class=\"toast show theme-success\" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center\"><div class=\"toast-body d-flex align-items-center gap-2 flex-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>4 records archived.</span></div><button type=\"button\" class=\"btn-text btn-sm\">Undo</button><button type=\"button\" class=\"btn-close me-2\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-toast><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>",
        "caption": "Stays until dismissed.",
        "badge": ""
       }

@@ -231,6 +231,17 @@ function setupValidationDemo() {
   }
 }
 
+// Toast examples: Show again re-shows a dismissed toast with Bootstrap's
+// Toast plugin, using the toast's own data-bs-autohide and data-bs-delay.
+function setupToastDemo() {
+  document.addEventListener('click', (e) => {
+    const button = e.target.closest('[data-demo-toast]')
+    if (!button) return
+    const toast = button.parentElement.querySelector('.toast')
+    bootstrap.Toast.getOrCreateInstance(toast).show()
+  })
+}
+
 function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
@@ -524,6 +535,7 @@ async function start() {
   $$('[data-filterbar]').forEach(initFilterBar)
   $$('[data-simplefilter]').forEach(initSimpleFilter)
   setupValidationDemo()
+  setupToastDemo()
   freeMenus()
   setupTooltips()
   setupUploadDemo()
