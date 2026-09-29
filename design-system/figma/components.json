@@ -413,17 +413,25 @@
           "Label above",
           "Required",
           "With description",
-          "Inline label",
-          "Floating label"
+          "With a checkbox",
+          "Floating label (sign in)"
         ]
       }
     },
     {
       "figmaPage": "Forms",
-      "figmaName": "Form controls/Input",
+      "figmaName": "Form controls/Form control",
       "libraryId": "frm-1",
       "classes": ".form-control.form-control-sm",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Text input",
+          "Textarea",
+          "Select",
+          "Disabled",
+          "Readonly"
+        ]
+      }
     },
     {
       "figmaPage": "Forms",
@@ -450,7 +458,7 @@
       "figmaPage": "Forms",
       "figmaName": "Switch/Switch",
       "libraryId": "frm-7",
-      "classes": ".switch + input[role=switch]",
+      "classes": ".form-field > .switch + label",
       "variants": {}
     },
     {
@@ -468,7 +476,10 @@
       "variants": {
         "Version": [
           "Working example",
-          "Invalid field"
+          "Invalid field",
+          "Valid (password creation)",
+          "Valid (confirm password)",
+          "Valid (set-format code)"
         ]
       }
     },
@@ -502,7 +513,8 @@
         "Version": [
           "Info",
           "Warning",
-          "Danger"
+          "Danger",
+          "Dismissible"
         ]
       }
     },
@@ -539,7 +551,8 @@
       "classes": "data-bs-toggle=\"tooltip\"",
       "variants": {
         "Version": [
-          "Icon-only button"
+          "Icon-only button",
+          "Icon button group"
         ]
       }
     },

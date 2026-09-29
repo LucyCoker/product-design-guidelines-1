@@ -1159,6 +1159,12 @@
        "badge": ""
       },
       {
+       "label": "With a checkbox",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><input type=\"checkbox\" class=\"check check-sm\" id=\"fld-check\" aria-describedby=\"fld-check-help\"><div class=\"form-field-content\"><label for=\"fld-check\">Send me a copy</label><small class=\"form-text\" id=\"fld-check-help\">A copy goes to your email address.</small></div></div>",
+       "caption": "Checkbox, radio and switch sit in column one; the label and description in column two.",
+       "badge": ""
+      },
+      {
        "label": "Floating label (sign in)",
        "html": "<div style=\"display:grid;gap:12px;width:100%;max-width:280px\"><div class=\"form-floating\"><label for=\"fld-float-email\">Email</label><input type=\"email\" class=\"form-control\" id=\"fld-float-email\" placeholder=\"Email\" autocomplete=\"email\"></div><div class=\"form-floating\"><label for=\"fld-float-pw\">Password</label><input type=\"password\" class=\"form-control\" id=\"fld-float-pw\" placeholder=\"Password\" autocomplete=\"current-password\"></div></div>",
        "caption": "Only for very short, familiar forms such as sign in.",
@@ -1167,8 +1173,8 @@
      ],
      "rules": [
       "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels.",
-      "Inputs are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states. Floating labels keep their own size.",
-      "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above.",
+      "Controls inside a field follow the <a href=\"#frm-1\">Form control</a> rules, including the small size.",
+      "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above. Bootstrap documents these on a separate Floating labels page.",
       "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control.",
       "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>.",
       "Errors follow the <a href=\"#frm-11\">Validation</a> rules.",
@@ -1181,20 +1187,57 @@
    "id": "form-controls",
    "section": "forms",
    "title": "Form controls",
-   "intro": "Text inputs. Small is the default size.",
+   "intro": "The control itself: text input, textarea and select, with their states. In a form, each sits inside a Field with its label.",
    "items": [
     {
      "code": "FRM-1",
-     "name": "Input",
+     "name": "Form control",
      "status": "Direct",
      "classes": ".form-control.form-control-sm",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/",
      "replaces": "form-control",
-     "note": "Direct. Search fields.",
+     "note": "Text inputs, textareas and selects all use .form-control in Bootstrap 6. Shown here on their own; in a form, wrap each in a Field.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<input class=\"form-control form-control-sm\" placeholder=\"Search auditions\" aria-label=\"Search auditions\">"
+     "examples": [
+      {
+       "label": "Text input",
+       "html": "<input class=\"form-control form-control-sm\" type=\"text\" aria-label=\"Project name\" style=\"width:100%;max-width:280px\">",
+       "caption": "",
+       "badge": "Default"
+      },
+      {
+       "label": "Textarea",
+       "html": "<textarea class=\"form-control form-control-sm\" rows=\"3\" aria-label=\"Notes\" style=\"width:100%;max-width:280px\"></textarea>",
+       "caption": "",
+       "badge": ""
+      },
+      {
+       "label": "Select",
+       "html": "<select class=\"form-control form-control-sm\" aria-label=\"Country\" style=\"width:100%;max-width:280px\"><option>Germany</option><option>Austria</option><option>Switzerland</option></select>",
+       "caption": "Only inside forms. Filters and Sort by use the Combobox.",
+       "badge": ""
+      },
+      {
+       "label": "Disabled",
+       "html": "<input class=\"form-control form-control-sm\" type=\"text\" value=\"Season 14\" aria-label=\"Project name\" disabled style=\"width:100%;max-width:280px\">",
+       "caption": "Cannot be changed or focused.",
+       "badge": ""
+      },
+      {
+       "label": "Readonly",
+       "html": "<input class=\"form-control form-control-sm\" type=\"text\" value=\"Season 14\" aria-label=\"Project name\" readonly style=\"width:100%;max-width:280px\">",
+       "caption": "Can be focused and copied, not changed.",
+       "badge": ""
+      }
+     ],
+     "rules": [
+      "Controls are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states.",
+      "Select uses <code>.form-control</code> and appears only inside forms. Every filter and Sort by is a <a href=\"#sf-3\">Combobox</a>.",
+      "Use disabled when the value cannot change right now, and readonly when people should still be able to see, focus and copy it.",
+      "A control always has a label: in a <a href=\"#frm-5\">Field</a>, or an <code>aria-label</code> when there is no visible label, e.g. a search box in a filter bar."
+     ]
     }
    ]
   },
@@ -1263,14 +1306,14 @@
      "code": "FRM-7",
      "name": "Switch",
      "status": "Replace",
-     "classes": ".switch + input[role=switch]",
+     "classes": ".form-field > .switch + label",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#switches",
      "replaces": "radio_switch",
-     "note": "",
+     "note": "A switch inside a Field, like Checkbox and Radio: the switch in column one, its label beside it.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<div style=\"display:flex;align-items:center;gap:8px\"><span style=\"font-size:14px\">Off</span><div class=\"switch\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch\" checked aria-label=\"Expert mode\"></div><label for=\"map-switch\" style=\"font-size:14px;font-weight:600\">On</label></div>"
+     "example": "<div class=\"form-field\"><div class=\"switch\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch\" checked></div><label for=\"map-switch\">Expert mode</label></div>"
     },
     {
      "code": "FRM-8",
