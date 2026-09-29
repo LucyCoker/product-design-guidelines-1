@@ -1,7 +1,14 @@
 // Working Simple search and filter bar for the library, built from the Simple
-// filter bar prototype (Simple_filter_bar.dc.html). Each filter is a text
-// button reading "Label: value" that opens a menu, so the current value is
-// always in the bar and no chip row is needed. Filters apply on change.
+// filter bar prototype (Simple_filter_bar.dc.html). Each filter is a subtle
+// button reading "Label: value" that opens a Bootstrap 6 menu, so the current
+// value is always in the bar and no chip row is needed. Filters apply on
+// change.
+//
+// The menus are standard Bootstrap: data-bs-toggle="menu" opens, closes and
+// positions them (with keyboard support), data-bs-auto-close="outside" keeps
+// multi-value filters open, and .selected with .menu-item-check marks the
+// current value. The bar is drawn once; changes update it in place so the
+// plugin keeps its menus.
 
 const ALL = 'All'
 const DEFS = [
@@ -39,16 +46,20 @@ const esc = (text) => String(text).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 export function initSimpleFilter(root) {
   const defaults = () => Object.fromEntries(DEFS.map((d) => [d.key, d.multi ? [] : ALL]))
   // data-query starts the bar with a search, e.g. to show the no-matches state.
-  const state = { query: root.dataset.query || '', values: defaults(), sort: 0, page: 1, open: null }
-  // The menu that was open at the last render. Re-rendering it skips
-  // Bootstrap's fade-in, so picking several values does not flicker.
-  let shown = null
+  const state = { query: root.dataset.query || '', values: defaults(), sort: 0, page: 1 }
+  // Example frames clip overflow, so menus there use fixed positioning.
+  const strategy = root.closest('.lib-examples, .lib-preview') ? ' data-bs-strategy="fixed"' : ''
 
   const isApplied = (d) => (d.multi ? state.values[d.key].length > 0 : state.values[d.key] !== ALL)
   const valueLabel = (d) => {
     const v = state.values[d.key]
     if (!d.multi) return v
     return v.length === 0 ? ALL : v.length === 1 ? v[0] : `${v.length} selected`
+  }
+  const isOn = (key, value) => {
+    if (key === 'sort') return SORTS[state.sort].label === value
+    const d = DEFS.find((x) => x.key === key)
+    return d.multi ? state.values[key].includes(value) : state.values[key] === value
   }
   const rows = () => {
     const q = state.query.trim().toLowerCase()
@@ -64,45 +75,33 @@ export function initSimpleFilter(root) {
     return out.sort((a, b) => (sort.dir === 'desc' ? -1 : 1) * String(a[sort.key]).localeCompare(String(b[sort.key])))
   }
 
-  // A subtle button (grey bg-2 fill, Bootstrap's btn-subtle) reading
-  // "Label: value". The value is the link colour, and
-  // weight 600 once applied.
-  const trigger = (key, label, value, applied) =>
-    `<button type="button" class="btn-subtle theme-secondary btn-sm" data-toggle="${key}" aria-haspopup="menu" aria-expanded="${state.open === key}" style="white-space:nowrap;gap:6px">` +
+  // Menu items: the check sits on the right and shows on .selected items.
+  const items = (key, values) => values.map((v) =>
+    `<button type="button" class="menu-item${isOn(key, v) ? ' selected' : ''}" data-pick="${key}" data-value="${esc(v)}"${isOn(key, v) ? ' aria-current="true"' : ''}>` +
+    `${esc(v)}<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button>`).join('')
+
+  // A subtle button (Bootstrap's btn-subtle) reading "Label: value". The
+  // value is the link colour, and weight 600 once applied.
+  const trigger = (key, label, value, { multi, end } = {}) =>
+    `<button type="button" class="btn-subtle theme-secondary btn-sm" data-bs-toggle="menu" data-bs-auto-close="${multi ? 'outside' : 'true'}"${end ? ' data-bs-placement="bottom-end"' : ''}${strategy} aria-expanded="false" style="white-space:nowrap;gap:6px">` +
     `<span style="font-weight:600;color:var(--bs-fg-body)">${esc(label)}:</span>` +
-    `<span style="color:var(--bs-link-color);font-weight:${applied ? 600 : 400}">${esc(value)}</span>` +
+    `<span data-value-of="${key}" style="color:var(--bs-link-color)">${esc(value)}</span>` +
     '<i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button>'
 
-  // Selected items carry a check, so the state is not colour alone.
-  const menu = (key, items, end) =>
-    `<div class="menu show" role="menu" style="position:absolute;${end ? 'inset-inline-end:0' : 'inset-inline-start:0'};top:calc(100% + 4px);z-index:1060;display:block;min-width:200px${shown === key ? ';transition:none' : ''}">` +
-    items.map((it) => `<button type="button" class="menu-item" role="${it.multi ? 'menuitemcheckbox' : 'menuitemradio'}" aria-checked="${it.on}" data-pick="${key}" data-value="${esc(it.value)}">` +
-      `<i class="fa-solid fa-check" aria-hidden="true" style="width:16px;visibility:${it.on ? 'visible' : 'hidden'}"></i>${esc(it.value)}</button>`).join('') +
-    '</div>'
-
   const filter = (d) => {
-    const v = state.values[d.key]
     const options = d.multi ? d.options : [ALL, ...d.options]
-    const items = options.map((o) => ({ value: o, on: d.multi ? v.includes(o) : v === o, multi: d.multi }))
-    return `<div style="position:relative;display:flex">${trigger(d.key, d.label, valueLabel(d), isApplied(d))}${state.open === d.key ? menu(d.key, items) : ''}</div>`
+    return `<div style="display:flex">${trigger(d.key, d.label, valueLabel(d), { multi: d.multi })}<div class="menu" data-menu="${d.key}" style="min-width:200px">${items(d.key, options)}</div></div>`
   }
 
+  // The bar: drawn on start and when the width crosses NARROW.
   function render() {
-    const list = rows()
-    const anyApplied = state.query.trim() !== '' || DEFS.some(isApplied)
-    const pageCount = Math.max(1, Math.ceil(list.length / PAGE_SIZE))
-    state.page = Math.min(state.page, pageCount)
-    const from = list.length ? (state.page - 1) * PAGE_SIZE + 1 : 0
-    const to = Math.min(state.page * PAGE_SIZE, list.length)
-    const sortItems = SORTS.map((s, i) => ({ value: s.label, on: state.sort === i }))
-
     // Two zones: search, filters and Clear filters wrap on the left; Sort by
     // stays top right. Narrow bars show Sort by as an icon button.
     const narrow = root.clientWidth < NARROW
     const sortLabel = `Sort by: ${SORTS[state.sort].label}`
     const sortTrigger = narrow
-      ? `<button type="button" class="btn-subtle theme-secondary btn-sm btn-icon" data-toggle="sort" aria-haspopup="menu" aria-expanded="${state.open === 'sort'}" aria-label="${sortLabel}" title="${sortLabel}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>`
-      : trigger('sort', 'Sort by', SORTS[state.sort].label, false)
+      ? `<button type="button" class="btn-subtle theme-secondary btn-sm btn-icon" data-bs-toggle="menu" data-bs-placement="bottom-end"${strategy} aria-expanded="false" data-sort-icon aria-label="${sortLabel}" title="${sortLabel}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>`
+      : trigger('sort', 'Sort by', SORTS[state.sort].label, { end: true })
     const bar =
       '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px">' +
       '<div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;flex:1 1 auto;min-width:0">' +
@@ -110,14 +109,42 @@ export function initSimpleFilter(root) {
       `<input class="form-control form-control-sm" type="search" data-query placeholder="Search name, email" aria-label="Search coworkers" value="${esc(state.query)}">` +
       '<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>' +
       DEFS.map(filter).join('') +
-      (anyApplied ? '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>' : '') +
+      '<button type="button" class="btn-text theme-primary btn-sm" data-clear hidden style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>' +
       '</div>' +
-      `<div style="position:relative;display:flex;flex:0 0 auto">${sortTrigger}${state.open === 'sort' ? menu('sort', sortItems, true) : ''}</div>` +
+      `<div style="display:flex;flex:0 0 auto">${sortTrigger}<div class="menu" data-menu="sort" style="min-width:200px">${items('sort', SORTS.map((x) => x.label))}</div></div>` +
       '</div>'
+    // No card outline: only the table rows carry lines.
+    root.innerHTML = `<div class="card" style="overflow:visible;width:100%;--bs-card-border-width:0">${bar}<div data-results></div></div>`
+    update()
+  }
+
+  // Everything that changes with a pick, a search or a page: updated in place.
+  function update() {
+    for (const d of DEFS) {
+      const value = root.querySelector(`[data-value-of="${d.key}"]`)
+      value.textContent = valueLabel(d)
+      value.style.fontWeight = isApplied(d) ? 600 : 400
+    }
+    const sortValue = root.querySelector('[data-value-of="sort"]')
+    if (sortValue) sortValue.textContent = SORTS[state.sort].label
+    const sortIcon = root.querySelector('[data-sort-icon]')
+    if (sortIcon) for (const a of ['title', 'aria-label']) sortIcon.setAttribute(a, `Sort by: ${SORTS[state.sort].label}`)
+    for (const item of root.querySelectorAll('[data-pick]')) {
+      const on = isOn(item.dataset.pick, item.dataset.value)
+      item.classList.toggle('selected', on)
+      if (on) item.setAttribute('aria-current', 'true')
+      else item.removeAttribute('aria-current')
+    }
+    root.querySelector('[data-clear]').hidden = !(state.query.trim() !== '' || DEFS.some(isApplied))
+
+    const list = rows()
+    const pageCount = Math.max(1, Math.ceil(list.length / PAGE_SIZE))
+    state.page = Math.min(state.page, pageCount)
+    const from = list.length ? (state.page - 1) * PAGE_SIZE + 1 : 0
+    const to = Math.min(state.page * PAGE_SIZE, list.length)
     const range = list.length ? `${from}-${to} of ${list.length} coworkers` : `0 of ${PEOPLE.length} coworkers`
     // The count row is a grey band with no lines above or below.
     const count = `<div style="display:flex;align-items:center;padding:8px 16px;background:var(--bs-bg-1);font-size:14px;font-weight:600;min-height:40px">${range}</div>`
-
     // No line between the last row and the footer.
     const page = list.slice((state.page - 1) * PAGE_SIZE, state.page * PAGE_SIZE)
     const pageLink = (label, target, { disabled, active, aria } = {}) =>
@@ -134,71 +161,42 @@ export function initSimpleFilter(root) {
         pageLink('<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>', state.page + 1, { disabled: state.page >= pageCount, aria: 'Next page' }) +
         '</ul></nav></div>'
       : '<div style="padding:48px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><h3 class="fs-md fw-semibold m-0">No matches found</h3><p class="fg-2 m-0" style="max-width:52ch">We couldn\'t find anything matching your search. Try adjusting your keywords, filters, or check for typos.</p></div>'
-
-    // Keep focus and caret in the search field across re-renders.
-    const active = document.activeElement
-    const typing = active && root.contains(active) && active.matches('[data-query]')
-    const caret = typing ? active.selectionStart : null
-    // No card outline: only the table rows carry lines.
-    root.innerHTML = `<div class="card" style="overflow:visible;width:100%;--bs-card-border-width:0">${bar}${count}${body}</div>`
-    shown = state.open
-    if (typing) {
-      const el = root.querySelector('[data-query]')
-      el.focus()
-      try { el.setSelectionRange(caret, caret) } catch {}
-    }
+    root.querySelector('[data-results]').innerHTML = count + body
   }
 
   root.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-toggle]')
-    if (t) { state.open = state.open === t.dataset.toggle ? null : t.dataset.toggle; render(); return }
     const pick = e.target.closest('[data-pick]')
     if (pick) {
       const key = pick.dataset.pick
       const value = pick.dataset.value
-      if (key === 'sort') {
-        state.sort = SORTS.findIndex((s) => s.label === value)
-        state.open = null
-      } else {
+      if (key === 'sort') state.sort = SORTS.findIndex((x) => x.label === value)
+      else {
         const d = DEFS.find((x) => x.key === key)
         const v = state.values[key]
-        // Multi-value filters stay open so several values can be picked.
-        if (d.multi) state.values[key] = v.includes(value) ? v.filter((x) => x !== value) : [...v, value]
-        else { state.values[key] = value; state.open = null }
+        state.values[key] = d.multi ? (v.includes(value) ? v.filter((x) => x !== value) : [...v, value]) : value
         state.page = 1
       }
-      render()
+      update()
       return
     }
     const go = e.target.closest('[data-goto]')
     if (go) {
       e.preventDefault()
-      state.open = null
-      if (!go.closest('.disabled')) state.page = Number(go.dataset.goto)
-      render()
+      if (!go.closest('.disabled')) { state.page = Number(go.dataset.goto); update() }
       return
     }
     if (e.target.closest('[data-clear]')) {
       state.query = ''
       state.values = defaults()
       state.page = 1
-      state.open = null
-      render()
-      return
+      root.querySelector('[data-query]').value = ''
+      update()
     }
-    // Any other click outside the open menu closes it, inside the bar too.
-    if (state.open && !e.target.closest('.menu')) { state.open = null; render() }
   })
   root.addEventListener('input', (e) => {
-    if (e.target.matches('[data-query]')) { state.query = e.target.value; state.page = 1; render() }
+    if (e.target.matches('[data-query]')) { state.query = e.target.value; state.page = 1; update() }
   })
-  root.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && state.open) { state.open = null; render() }
-  })
-  document.addEventListener('click', (e) => {
-    if (state.open && !e.composedPath().includes(root)) { state.open = null; render() }
-  })
-  // Re-render when the bar crosses the narrow width.
+  // Redraw the bar when it crosses the narrow width.
   let wasNarrow = null
   new ResizeObserver(() => {
     const now = root.clientWidth < NARROW
