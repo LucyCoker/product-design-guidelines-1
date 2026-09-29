@@ -11,7 +11,7 @@ Codes refer to entries in the design system library.
 | # | Change | Library |
 |---|---|---|
 | 1 | The `FilterBar` import is replaced by the Simple search and filter bar: a search field plus **Status: All** (All, Draft (not sent), Sent). A filter applies as soon as it's picked. **Clear filters** shows once anything is applied. | SF-4 Simple |
-| 2 | The results count is a grey row under the bar ("1-5 of 5 newsletters"). | SF-4 Simple |
+| 2 | The results count is a slim grey row under the bar, in 12px ("1-5 of 5 newsletters"). | SF-4 Simple |
 | 3 | The card has no outline (`--bs-card-border-width:0`). Only the table rows have lines. | SF-4 Simple |
 | 4 | `table-hover` is removed. Column headers have `scope="col"`; the actions column has a hidden "Actions" label. | Tables |
 | 5 | A table footer shows the count and pagination. There's no line under the last row. | TBL-1 Table footer |
@@ -115,7 +115,7 @@ a:not([class]):hover{color:var(--bs-link-hover-color)}
 </div>
 
 <!-- Count row: grey band, no lines -->
-<div style="display:flex;align-items:center;padding:8px 16px;background:var(--bs-bg-1);font-weight:600;min-height:40px">{{ range }}</div>
+<div class="fs-xs fw-semibold" style="display:flex;align-items:center;padding:4px 16px;background:var(--bs-bg-1);min-height:28px">{{ range }}</div>
 
 <sc-if value="{{ hasResults }}">
 <div style="overflow-x:auto">

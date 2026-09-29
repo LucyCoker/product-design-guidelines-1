@@ -1859,7 +1859,7 @@
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
       "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Filters apply on change. No Apply button.",
-      "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. The table footer repeats it beside the pagination."
+      "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. It is a slim grey band in 12px (<code>fs-xs fw-semibold</code>). The table footer repeats it beside the pagination."
      ],
      "flags": [],
      "examples": [

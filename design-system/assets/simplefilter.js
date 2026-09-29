@@ -143,8 +143,8 @@ export function initSimpleFilter(root) {
     const from = list.length ? (state.page - 1) * PAGE_SIZE + 1 : 0
     const to = Math.min(state.page * PAGE_SIZE, list.length)
     const range = list.length ? `${from}-${to} of ${list.length} coworkers` : `0 of ${PEOPLE.length} coworkers`
-    // The count row is a grey band with no lines above or below.
-    const count = `<div style="display:flex;align-items:center;padding:8px 16px;background:var(--bs-bg-1);font-size:14px;font-weight:600;min-height:40px">${range}</div>`
+    // The count row is a slim grey band (12px text) with no lines above or below.
+    const count = `<div class="fs-xs fw-semibold" style="display:flex;align-items:center;padding:4px 16px;background:var(--bs-bg-1);min-height:28px">${range}</div>`
     // No line between the last row and the footer.
     const page = list.slice((state.page - 1) * PAGE_SIZE, state.page * PAGE_SIZE)
     const pageLink = (label, target, { disabled, active, aria } = {}) =>
