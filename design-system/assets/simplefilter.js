@@ -168,7 +168,9 @@ export function initSimpleFilter(root) {
     const go = e.target.closest('[data-goto]')
     if (go) {
       e.preventDefault()
-      if (!go.closest('.disabled')) { state.page = Number(go.dataset.goto); render() }
+      state.open = null
+      if (!go.closest('.disabled')) state.page = Number(go.dataset.goto)
+      render()
       return
     }
     if (e.target.closest('[data-clear]')) {
@@ -177,7 +179,10 @@ export function initSimpleFilter(root) {
       state.page = 1
       state.open = null
       render()
+      return
     }
+    // Any other click outside the open menu closes it, inside the bar too.
+    if (state.open && !e.target.closest('.menu')) { state.open = null; render() }
   })
   root.addEventListener('input', (e) => {
     if (e.target.matches('[data-query]')) { state.query = e.target.value; state.page = 1; render() }
