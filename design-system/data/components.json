@@ -2113,11 +2113,11 @@
       },
       {
        "type": "ask",
-       "text": "New applications: production highlights the count in red (class highlight). Red means danger and primary must not mean new. This page shows the count as a weight 600 link with “3 new applications” in its tooltip. Decide how new items are marked."
+       "text": "Status markings: find every status marking these lists use in production, what each one means, and which ones stay. Known so far: the red outline on the current Selection row (episode.active), the orange title on a client-visible Selection (brand-client), the red highlighted count for new applications, the primary-tinted ghost icon for restricted profile visibility, the green Selection status check (color-booked), the eye / eye-slash for client visibility, and the planned / active row classes. Each kept marking needs a meaning, a colour role and a text equivalent."
       },
       {
        "type": "ask",
-       "text": "Active row: in production the current Selection row has a red outline. What does it mean, and does it need a marker at all?"
+       "text": "New applications: production highlights the count in red (class highlight). Red means danger and primary must not mean new. This page shows the count as a weight 600 link with “3 new applications” in its tooltip. Decide how new items are marked."
       },
       {
        "type": "ask",
