@@ -1147,25 +1147,25 @@
      "examples": [
       {
        "label": "Label above",
-       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-name\" class=\"form-label fw-semibold\">Project name</label><input type=\"text\" class=\"form-control\" id=\"fld-name\"></div>",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-name\" class=\"form-label fw-semibold\">Project name</label><input type=\"text\" class=\"form-control form-control-sm\" id=\"fld-name\"></div>",
        "caption": "",
        "badge": "Default"
       },
       {
        "label": "Required",
-       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control\" id=\"fld-email\" required></div>",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control form-control-sm\" id=\"fld-email\" required></div>",
        "caption": "Red asterisk after the label; the control has required.",
        "badge": ""
       },
       {
        "label": "With description",
-       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-user\" class=\"form-label fw-semibold\">Username</label><input type=\"text\" class=\"form-control\" id=\"fld-user\" aria-describedby=\"fld-user-help\"><small class=\"form-text\" id=\"fld-user-help\">3 to 20 characters, letters and numbers only.</small></div>",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"fld-user\" class=\"form-label fw-semibold\">Username</label><input type=\"text\" class=\"form-control form-control-sm\" id=\"fld-user\" aria-describedby=\"fld-user-help\"><small class=\"form-text\" id=\"fld-user-help\">3 to 20 characters, letters and numbers only.</small></div>",
        "caption": "Always visible under the control, wired with aria-describedby.",
        "badge": ""
       },
       {
        "label": "Inline label",
-       "html": "<div class=\"row align-items-center\" style=\"width:100%;max-width:420px;margin:0\"><label for=\"fld-inline\" class=\"col-4 col-form-label fw-semibold\">Project name</label><div class=\"col-8\"><input type=\"text\" class=\"form-control\" id=\"fld-inline\"></div></div>",
+       "html": "<div class=\"row align-items-center\" style=\"width:100%;max-width:420px;margin:0\"><label for=\"fld-inline\" class=\"col-4 col-form-label col-form-label-sm fw-semibold\">Project name</label><div class=\"col-8\"><input type=\"text\" class=\"form-control form-control-sm\" id=\"fld-inline\"></div></div>",
        "caption": "See the ASK below.",
        "badge": "ASK",
        "wide": true
@@ -1179,6 +1179,7 @@
      ],
      "rules": [
       "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels.",
+      "Inputs are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states. Floating labels keep their own size.",
       "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above.",
       "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control.",
       "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>.",
@@ -1317,20 +1318,20 @@
      "examples": [
       {
        "label": "Working example",
-       "html": "<form class=\"lib-validate-demo\" data-bs-validate novalidate style=\"width:100%;max-width:420px;display:grid;gap:16px\"><div class=\"alert theme-danger\" role=\"alert\" data-summary hidden style=\"margin:0\"><div class=\"d-flex gap-2\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div><strong data-summary-title></strong><ul class=\"mb-0 ps-3\" data-summary-list></ul></div></div></div><div class=\"form-field\"><label for=\"val-name\" class=\"form-label fw-semibold\">Name<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"text\" class=\"form-control\" id=\"val-name\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter a name.</div></div><div class=\"form-field\"><label for=\"val-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control\" id=\"val-email\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div><div><button type=\"submit\" class=\"btn-solid theme-primary btn-sm\">Save</button></div></form>",
+       "html": "<form class=\"lib-validate-demo\" data-bs-validate novalidate style=\"width:100%;max-width:420px;display:grid;gap:16px\"><div class=\"alert theme-danger\" role=\"alert\" data-summary hidden style=\"margin:0\"><div class=\"d-flex gap-2\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\" style=\"margin-top:3px\"></i><div><strong data-summary-title></strong><ul class=\"mb-0 ps-3\" data-summary-list></ul></div></div></div><div class=\"form-field\"><label for=\"val-name\" class=\"form-label fw-semibold\">Name<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"text\" class=\"form-control form-control-sm\" id=\"val-name\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter a name.</div></div><div class=\"form-field\"><label for=\"val-email\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control form-control-sm\" id=\"val-email\" required><div class=\"invalid-feedback\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div><div><button type=\"submit\" class=\"btn-solid theme-primary btn-sm\">Save</button></div></form>",
        "caption": "Try it: leave a field and it shows its error; press Save to see the summary. Nothing you typed is lost.",
        "badge": "",
        "wide": true
       },
       {
        "label": "Invalid field",
-       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-srv\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control is-invalid\" id=\"val-srv\" value=\"jo.becker@\" aria-describedby=\"val-srv-err\" required><div class=\"invalid-feedback\" id=\"val-srv-err\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div>",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-srv\" class=\"form-label fw-semibold\">Email<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"email\" class=\"form-control form-control-sm is-invalid\" id=\"val-srv\" value=\"jo.becker@\" aria-describedby=\"val-srv-err\" required><div class=\"invalid-feedback\" id=\"val-srv-err\"><i class=\"fa-solid fa-circle-exclamation\" aria-hidden=\"true\"></i> Enter an email address, like name@example.com.</div></div>",
        "caption": "From the server: .is-invalid on the control shows the message at once.",
        "badge": "Default"
       },
       {
        "label": "Valid (password creation)",
-       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-pw\" class=\"form-label fw-semibold\">New password<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"password\" class=\"form-control is-valid\" id=\"val-pw\" value=\"correct-horse-42\" aria-describedby=\"val-pw-ok\" autocomplete=\"new-password\" required><div class=\"valid-feedback\" id=\"val-pw-ok\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i> Meets all the requirements.</div></div>",
+       "html": "<div class=\"form-field\" style=\"width:100%;max-width:280px\"><label for=\"val-pw\" class=\"form-label fw-semibold\">New password<span class=\"fg-danger\" aria-hidden=\"true\">*</span></label><input type=\"password\" class=\"form-control form-control-sm is-valid\" id=\"val-pw\" value=\"correct-horse-42\" aria-describedby=\"val-pw-ok\" autocomplete=\"new-password\" required><div class=\"valid-feedback\" id=\"val-pw-ok\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i> Meets all the requirements.</div></div>",
        "caption": "Green valid state, used only when creating a password.",
        "badge": ""
       }
