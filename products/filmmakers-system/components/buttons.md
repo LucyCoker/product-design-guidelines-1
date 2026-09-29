@@ -100,6 +100,7 @@ It signals that the user is in a client zone — an area where clients or other 
 It is quiet in emphasis (text, extra small) and carries primary meaning (this is where you act on the item). It does not compete with the one `btn-solid theme-primary` on the screen.
 
 - Row actions MUST sit on an item: a table cell, a list row, or a row gutter. Page-level quiet actions stay `btn-text theme-secondary`.
+- Exception: **Clear filters** in a filter bar (Search and filter, Complex and Simple) uses `btn-text theme-primary btn-sm`, even though it is not on an item.
 - Row actions MUST have a text label. An icon beside the label is optional.
 - The same set MUST appear in the same order on every row, so people learn it once.
 - Row actions MUST be always visible, never revealed on hover alone.

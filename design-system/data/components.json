@@ -1520,10 +1520,6 @@
      "unresolved": false,
      "flags": [
       {
-       "type": "ask",
-       "text": "Clear filters uses btn-text theme-primary. That combination is the Row action, which the Buttons guideline allows only on an item in a list. Decide whether Clear filters is an exception or becomes Tertiary (btn-text theme-secondary)."
-      },
-      {
        "type": "info",
        "text": "The prototype opens Sort by with menu-end, which this Bootstrap build does not have. Use data-bs-placement=\"bottom-end\"."
       }
@@ -1533,6 +1529,7 @@
       "Order: search, inline filters (up to three), More filters, Clear filters, then Sort by at the far end.",
       "Every filter is a <a href=\"#sf-3\">Combobox</a> reading <b>label: value</b>. Applied filters are weight 600, and More filters shows how many of its filters are applied.",
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
+      "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter.",
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “1-3 of 4 coworkers”.",
@@ -1573,15 +1570,11 @@
       "Selected menu items carry a check, so the state is not colour alone. Multi-value filters stay open while you pick; single-value filters close.",
       "When space runs out, the left zone wraps onto more lines and Sort by stays top right. Below 560px the search field takes its own line and Sort by becomes an icon button with an accessible name. There is no More filters: if a page needs it, use Complex.",
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
+      "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Filters apply on change. No Apply button.",
       "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. The table footer repeats it beside the pagination."
      ],
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Clear filters uses btn-text theme-primary here too. The same open question as on Complex."
-      }
-     ],
+     "flags": [],
      "examples": [
       {
        "label": "Working example",
