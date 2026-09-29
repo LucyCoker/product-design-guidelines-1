@@ -104,7 +104,7 @@ export function initSimpleFilter(root) {
       ? `<button type="button" class="btn-subtle theme-secondary btn-sm btn-icon" data-toggle="sort" aria-haspopup="menu" aria-expanded="${state.open === 'sort'}" aria-label="${sortLabel}" title="${sortLabel}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>`
       : trigger('sort', 'Sort by', SORTS[state.sort].label, false)
     const bar =
-      '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px;border-bottom:1px solid var(--bs-border-color)">' +
+      '<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px">' +
       '<div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;flex:1 1 auto;min-width:0">' +
       `<div class="input-group input-group-sm" style="${narrow ? 'flex:1 1 100%' : 'width:240px;flex:0 0 auto'}">` +
       `<input class="form-control form-control-sm" type="search" data-query placeholder="Search name, email" aria-label="Search coworkers" value="${esc(state.query)}">` +
@@ -115,7 +115,8 @@ export function initSimpleFilter(root) {
       `<div style="position:relative;display:flex;flex:0 0 auto">${sortTrigger}${state.open === 'sort' ? menu('sort', sortItems, true) : ''}</div>` +
       '</div>'
     const range = list.length ? `${from}-${to} of ${list.length} coworkers` : `0 of ${PEOPLE.length} coworkers`
-    const count = `<div style="display:flex;align-items:center;padding:8px 16px;border-bottom:1px solid var(--bs-border-subtle);font-size:14px;font-weight:600;min-height:40px">${range}</div>`
+    // The count row is a grey band with no lines above or below.
+    const count = `<div style="display:flex;align-items:center;padding:8px 16px;background:var(--bs-bg-1);font-size:14px;font-weight:600;min-height:40px">${range}</div>`
 
     // No line between the last row and the footer.
     const page = list.slice((state.page - 1) * PAGE_SIZE, state.page * PAGE_SIZE)
