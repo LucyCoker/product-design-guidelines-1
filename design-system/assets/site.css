@@ -372,3 +372,9 @@ body {
 .lib-table-wrap table { min-width: 520px; }
 .lib-table-wrap th[scope="row"] { font-weight: 600; white-space: nowrap; }
 .lib-item-links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* Colour: client zone options side by side */
+.lib-cz-compare { display: flex; flex-wrap: wrap; gap: 12px; }
+.lib-cz-cell { display: grid; gap: 4px; justify-items: start; padding: 16px; border: 1px solid var(--bs-border-subtle); border-radius: var(--bs-radius-5, 8px); font-size: 12px; }
+.lib-cz-cell b { font-weight: 600; font-size: 13px; margin-top: 4px; }
+.lib-cz-cell code { color: var(--bs-fg-3); }

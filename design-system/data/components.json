@@ -1041,16 +1041,15 @@
      "unresolved": false,
      "flags": [
       {
-       "type": "ask",
-       "text": "Accessibility: the dismiss button is 16×16px. That passes WCAG 2.1 AA, which has no target-size rule at AA, and very likely WCAG 2.2 AA through its spacing exception. It fails the Buttons guideline’s 44×44px rule for icon-only buttons. Decide whether to widen the hit area (at least 24×24px) without changing how the chip looks."
-      },
-      {
        "type": "info",
-       "text": "Accessibility: passes on text contrast (about 15.6:1, Bootstrap’s default body text), accessible names (“Remove the Status filter”), keyboard use and not relying on colour. Its focus ring is Bootstrap’s default, about 1.9:1 against white (the open focus ring decision in Colour)."
+       "text": "Accessibility: passes on text contrast (about 15.6:1, Bootstrap’s default body text), accessible names (“Remove the Status filter”), keyboard use and not relying on colour. Its focus ring is the site-wide blue-500 ring, about 3.6:1 against white."
       }
      ],
      "layout": "row",
-     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>"
+     "example": "<div style=\"display:flex;gap:8px;flex-wrap:wrap\"><span class=\"chip\"><span>Status: Inactive</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove the Status filter\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span><span class=\"chip\"><span>Language: German</span><button type=\"button\" class=\"chip-dismiss\" aria-label=\"Remove Language German\"><i class=\"fa-solid fa-xmark\" style=\"font-size:11px\"></i></button></span></div>",
+     "rules": [
+      "The remove button keeps its 16px icon but has a 24×24px hit area (an invisible ::after in filmmakers.css), so it meets WCAG 2.2 target size."
+     ]
     }
    ]
   },

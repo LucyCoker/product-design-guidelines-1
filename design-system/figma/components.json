@@ -558,7 +558,7 @@
       "figmaPage": "Organisms",
       "figmaName": "Search and filter/Simple",
       "libraryId": "sf-4",
-      "classes": "input-group + btn-text theme-secondary + menu",
+      "classes": "input-group + btn-subtle theme-secondary + menu (data-bs-toggle=\"menu\")",
       "variants": {
         "Version": [
           "Working example"
@@ -658,7 +658,7 @@
       "figmaPage": "Templates",
       "figmaName": "List page/Coworkers",
       "libraryId": "tpl-list-page",
-      "classes": "card > filter bar + table + table footer",
+      "classes": "heading + card > Simple search and filter + table + table footer",
       "variants": {
         "Version": [
           "Coworkers"

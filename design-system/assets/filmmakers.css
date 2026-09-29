@@ -45,7 +45,7 @@ body,
  * Always Bootstrap blue
  *
  * These never follow the customer primary: checked controls, progress bars,
- * and native accent colour.
+ * native accent colour, and the focus ring.
  * ------------------------------------------------------------------------ */
 :root {
   --bs-control-checked-bg: var(--bs-blue-600);
@@ -53,9 +53,33 @@ body,
   --bs-progress-bar-bg: var(--bs-blue-600);
 }
 
-/* The focus ring is Bootstrap's default: 3px, 1px offset, each theme's own
- * focus-ring colour (blue-500 at 50% for primary and default). Bootstrap's
- * primary ring is blue already, so it never follows the customer primary. */
+/* Focus ring: Bootstrap's 3px ring with a 1px offset, in full-strength
+ * blue-500 for every theme (about 3.6:1 on white; Bootstrap's 50% mix is
+ * about 1.9:1 and fails the 3:1 focus indicators need). One colour, so it
+ * never follows the customer primary or a status theme. */
+:root {
+  --bs-primary-focus-ring: var(--bs-blue-500);
+  --bs-secondary-focus-ring: var(--bs-blue-500);
+  --bs-accent-focus-ring: var(--bs-blue-500);
+  --bs-success-focus-ring: var(--bs-blue-500);
+  --bs-danger-focus-ring: var(--bs-blue-500);
+  --bs-warning-focus-ring: var(--bs-blue-500);
+  --bs-info-focus-ring: var(--bs-blue-500);
+  --bs-inverse-focus-ring: var(--bs-blue-500);
+}
+
+/* Chip remove button: a 24x24px hit area around the 16px icon, so it meets
+ * WCAG 2.2 target size without changing how the chip looks. */
+.chip-dismiss { position: relative; }
+.chip-dismiss::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 24px;
+  block-size: 24px;
+  transform: translate(-50%, -50%);
+}
 
 .form-control,
 select,
