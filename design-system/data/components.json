@@ -2372,7 +2372,7 @@
    "id": "page-sections",
    "section": "organisms",
    "title": "Page sections",
-   "intro": "Headings and headers that open a section or a page.",
+   "intro": "Headings that open a section of a page.",
    "items": [
     {
      "status": "Custom",
@@ -2404,40 +2404,6 @@
       }
      ],
      "id": "cnt-17"
-    },
-    {
-     "status": "Custom",
-     "docs": "",
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Name size: the mapping note says 24px and its example shows 20px. The tokens are .fs-2xl (28–32px, the page title in typography.md) and .fs-xl (24–28px). The example uses .fs-xl. Which?"
-      }
-     ],
-     "unresolved": false,
-     "layout": "full",
-     "code": "CNT-18",
-     "name": "Profile header",
-     "classes": "picture + h1 + badge + meta + Accordion (CNT-5) + action stack",
-     "replaces": "caster-header .caster-header + .caster-picture + .caster-header--actions",
-     "note": "The top of a profile (Sedcard): picture, name, status, meta line, important information and the profile actions. Used on Sedcard (Summary view).",
-     "rules": [
-      "Picture on the left. With no picture, the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon, as in the <a href=\"#cnt-10\">Profile tile</a>.",
-      "The name is the page’s <code>h1</code>, weight 600, never in capitals. A status <a href=\"#msg-2\">Badge</a> follows it.",
-      "The meta line (ID, profile type) is <code>.fg-2</code>.",
-      "Important information sits in an <a href=\"#cnt-5\">Accordion</a>, the Important version.",
-      "Actions are stacked, full width: one primary (Add profile, with its menu), the rest Secondary (<code>btn-outline theme-secondary btn-sm</code>)."
-     ],
-     "examples": [
-      {
-       "label": "Profile header",
-       "html": "<div style=\"display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;width:100%;max-width:760px\"><div style=\"width:72px;aspect-ratio:1;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center\"><i class=\"fa-solid fa-user fg-3\" aria-hidden=\"true\" style=\"font-size:1.5rem\"></i></div><div style=\"display:flex;flex-direction:column;gap:8px;flex:1;min-width:200px\"><div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap\"><h1 class=\"fs-xl fw-semibold m-0\">Helga Bellinghausen</h1><span class=\"badge theme-warning badge-subtle\"><i class=\"fa-solid fa-circle-question\" aria-hidden=\"true\"></i>In discussion</span></div><div class=\"fg-2\">ID: 1114 | (E) Professional Actor</div><div class=\"accordion accordion-sm\" style=\"max-width:420px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold fg-primary\">Important information<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\">Not available 12 to 14 November.</div></details></div></div><div style=\"display:flex;flex-direction:column;gap:6px;min-width:140px\"><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" style=\"justify-content:center\">Add profile<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" style=\"justify-content:center\">Send message</button></div></div>",
-       "caption": "",
-       "badge": "Default",
-       "wide": true
-      }
-     ],
-     "id": "cnt-18"
     }
    ]
   },
@@ -2554,6 +2520,48 @@
        "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start;gap:8px\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\" aria-expanded=\"true\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu show position-static\"><button type=\"button\" class=\"menu-item\">Duplicate</button><button type=\"button\" class=\"menu-item\">View as applicant</button><button type=\"button\" class=\"menu-item\">Copy/Move</button><hr class=\"menu-divider\"><button type=\"button\" class=\"menu-item theme-danger\">Unsubscribe</button><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div>"
       }
      ]
+    }
+   ]
+  },
+  {
+   "id": "sedcard",
+   "section": "organisms-area",
+   "title": "Sedcard",
+   "intro": "Organisms used only on the Sedcard (a profile’s summary page).",
+   "items": [
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Name size: the mapping note says 24px and its example shows 20px. The tokens are .fs-2xl (28–32px, the page title in typography.md) and .fs-xl (24–28px). The example uses .fs-xl. Which?"
+      }
+     ],
+     "unresolved": false,
+     "layout": "full",
+     "code": "CNT-18",
+     "name": "Profile header",
+     "classes": "picture + h1 + badge + meta + Accordion (CNT-5) + action stack",
+     "replaces": "caster-header .caster-header + .caster-picture + .caster-header--actions",
+     "note": "The top of a profile (Sedcard): picture, name, status, meta line, important information and the profile actions. Used on Sedcard (Summary view).",
+     "rules": [
+      "Picture on the left. With no picture, the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon, as in the <a href=\"#cnt-10\">Profile tile</a>. Under it, two icon-only buttons for the profile’s Videos and Pictures (<code>btn-text theme-secondary btn-xs btn-icon</code>, each with an <code>aria-label</code> and a tooltip).",
+      "The name is the page’s <code>h1</code>, weight 600, never in capitals. A status <a href=\"#msg-2\">Badge</a> follows it.",
+      "The meta line (ID, profile type) is <code>.fg-2</code>.",
+      "Important information sits in an <a href=\"#cnt-5\">Accordion</a>, the Important version.",
+      "Actions are stacked, full width: one primary (Add profile, with its menu), the rest Secondary (<code>btn-outline theme-secondary btn-sm</code>)."
+     ],
+     "examples": [
+      {
+       "label": "Profile header",
+       "html": "<div style=\"display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;width:100%;max-width:760px\"><div style=\"display:flex;flex-direction:column;align-items:center;gap:4px;width:72px\"><div style=\"width:72px;aspect-ratio:1;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center\"><i class=\"fa-solid fa-user fg-3\" aria-hidden=\"true\" style=\"font-size:1.5rem\"></i></div><div class=\"d-flex gap-1\"><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Videos\" data-bs-toggle=\"tooltip\" data-bs-title=\"Videos\"><i class=\"fa-solid fa-video\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Pictures\" data-bs-toggle=\"tooltip\" data-bs-title=\"Pictures\"><i class=\"fa-solid fa-images\" aria-hidden=\"true\"></i></button></div></div><div style=\"display:flex;flex-direction:column;gap:8px;flex:1;min-width:200px\"><div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap\"><h1 class=\"fs-xl fw-semibold m-0\">Helga Bellinghausen</h1><span class=\"badge theme-warning badge-subtle\"><i class=\"fa-solid fa-circle-question\" aria-hidden=\"true\"></i>In discussion</span></div><div class=\"fg-2\">ID: 1114 | (E) Professional Actor</div><div class=\"accordion accordion-sm\" style=\"max-width:420px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold fg-primary\">Important information<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\">Not available 12 to 14 November.</div></details></div></div><div style=\"display:flex;flex-direction:column;gap:6px;min-width:140px\"><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" style=\"justify-content:center\">Add profile<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" style=\"justify-content:center\">Send message</button></div></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "cnt-18"
     }
    ]
   },
