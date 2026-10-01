@@ -291,6 +291,23 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
  * ------------------------------------------------------------------------ */
 .nav-overflow-item { margin-inline-start: 0; }
 
+/* ---------------------------------------------------------------------------
+ * Star rating (CNT-19)
+ *
+ * A radio group built from Bootstrap's .btn-check toggle buttons, so the
+ * keyboard (arrow keys) and screen readers get one choice out of five. CSS
+ * fills every star up to the checked one (Font Awesome solid is weight 900,
+ * regular 400) and previews on hover. The checked star gets no background.
+ * ------------------------------------------------------------------------ */
+.fm-rating .btn-check { --bs-btn-active-bg: transparent; --bs-btn-active-color: var(--bs-btn-color); }
+.fm-rating .btn-check > i { font-weight: 400; }
+.fm-rating .btn-check:has(input:checked) > i,
+.fm-rating .btn-check:has(~ .btn-check > input:checked) > i { font-weight: 900; }
+.fm-rating:hover .btn-check > i { font-weight: 400; }
+.fm-rating .btn-check:hover > i,
+.fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
+.fm-rating:not(:has(input:checked)) [data-rating-clear] { display: none; }
+
 </style>
 </helmet>
 
@@ -753,8 +770,8 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 <div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
 <span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-19</span>
 <div><div>ajaxful-rating / rating stars</div><code style="font-size:12px;color:var(--bs-fg-3)">ul.ajaxful-rating, .fa-star</code></div>
-<div><div style="font-weight:600">Star rating</div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-secondary btn-xs btn-icon + fa-solid / fa-regular fa-star</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom. A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-19" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"> · 1 open question</span></div></div>
-<div style="min-width:0;overflow-x:auto"><div class="d-flex align-items-center gap-2" data-rating="4">Rating:<div role="group" aria-label="Rating" class="d-flex"><button type="button" class="btn-text theme-secondary btn-xs btn-icon" data-rate="1" aria-label="Rate 1 from 5" aria-pressed="true"><i class="fa-solid fa-star" aria-hidden="true"></i></button><button type="button" class="btn-text theme-secondary btn-xs btn-icon" data-rate="2" aria-label="Rate 2 from 5" aria-pressed="true"><i class="fa-solid fa-star" aria-hidden="true"></i></button><button type="button" class="btn-text theme-secondary btn-xs btn-icon" data-rate="3" aria-label="Rate 3 from 5" aria-pressed="true"><i class="fa-solid fa-star" aria-hidden="true"></i></button><button type="button" class="btn-text theme-secondary btn-xs btn-icon" data-rate="4" aria-label="Rate 4 from 5" aria-pressed="true"><i class="fa-solid fa-star" aria-hidden="true"></i></button><button type="button" class="btn-text theme-secondary btn-xs btn-icon" data-rate="5" aria-label="Rate 5 from 5" aria-pressed="false"><i class="fa-regular fa-star" aria-hidden="true"></i></button></div><button type="button" class="btn-text theme-secondary btn-sm" data-rating-clear>Clear rating</button></div></div>
+<div><div style="font-weight:600">Star rating</div><code style="font-size:12px;color:var(--bs-fg-3)">fieldset.fm-rating &gt; label.btn-check.btn-text.btn-icon &gt; input[type=radio] + fa-star</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom. A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-19" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><fieldset class="fm-rating d-flex align-items-center gap-2 m-0 p-0 border-0"><legend class="visually-hidden">Rating</legend><span aria-hidden="true">Rating:</span><div class="d-flex"><label class="btn-check btn-text theme-secondary btn-xs btn-icon" data-bs-toggle="tooltip" data-bs-title="1 from 5"><input type="radio" name="rating-demo" value="1" aria-label="1 from 5" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon" data-bs-toggle="tooltip" data-bs-title="2 from 5"><input type="radio" name="rating-demo" value="2" aria-label="2 from 5" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon" data-bs-toggle="tooltip" data-bs-title="3 from 5"><input type="radio" name="rating-demo" value="3" aria-label="3 from 5" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon" data-bs-toggle="tooltip" data-bs-title="4 from 5"><input type="radio" name="rating-demo" value="4" aria-label="4 from 5" autocomplete="off" checked="checked"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon" data-bs-toggle="tooltip" data-bs-title="5 from 5"><input type="radio" name="rating-demo" value="5" aria-label="5 from 5" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label></div><button type="button" class="btn-text theme-secondary btn-sm" data-rating-clear>Clear rating</button></fieldset></div>
 </div>
 </div>
 

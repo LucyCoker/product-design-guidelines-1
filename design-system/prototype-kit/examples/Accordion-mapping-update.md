@@ -43,6 +43,23 @@ At the end of the Library `<style>` block in the page’s `<helmet>` (the block 
  * The product keeps it right after the last visible tab.
  * ------------------------------------------------------------------------ */
 .nav-overflow-item { margin-inline-start: 0; }
+
+/* ---------------------------------------------------------------------------
+ * Star rating (CNT-19)
+ *
+ * A radio group built from Bootstrap's .btn-check toggle buttons, so the
+ * keyboard (arrow keys) and screen readers get one choice out of five. CSS
+ * fills every star up to the checked one (Font Awesome solid is weight 900,
+ * regular 400) and previews on hover. The checked star gets no background.
+ * ------------------------------------------------------------------------ */
+.fm-rating .btn-check { --bs-btn-active-bg: transparent; --bs-btn-active-color: var(--bs-btn-color); }
+.fm-rating .btn-check > i { font-weight: 400; }
+.fm-rating .btn-check:has(input:checked) > i,
+.fm-rating .btn-check:has(~ .btn-check > input:checked) > i { font-weight: 900; }
+.fm-rating:hover .btn-check > i { font-weight: 400; }
+.fm-rating .btn-check:hover > i,
+.fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
+.fm-rating:not(:has(input:checked)) [data-rating-clear] { display: none; }
 ```
 
 ## 2. Replace the CNT-5 row

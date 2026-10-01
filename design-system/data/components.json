@@ -1354,28 +1354,29 @@
      "docs": "",
      "flags": [
       {
-       "type": "ask",
-       "text": "Editable stars mark the chosen stars with aria-pressed, so screen readers hear five toggle buttons rather than one choice out of five. The common accessible pattern is a radio group (five radios shown as stars). Keep aria-pressed or switch to a radio group?"
+       "type": "info",
+       "text": "Changed from the mapping prototype: the stars were five toggle buttons with aria-pressed; they are now one radio group, the common accessible pattern. .fm-rating is a custom class; whether custom fm- classes are allowed is the open question on the Production list."
       }
      ],
      "unresolved": false,
      "layout": "row",
      "code": "CNT-19",
      "name": "Star rating",
-     "classes": "btn-text theme-secondary btn-xs btn-icon + fa-solid / fa-regular fa-star",
+     "classes": "fieldset.fm-rating > label.btn-check.btn-text.btn-icon > input[type=radio] + fa-star",
      "replaces": "ajaxful-rating / rating stars ul.ajaxful-rating, .fa-star",
      "note": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).",
      "rules": [
-      "Editable: one icon-only button per star (<code>btn-text theme-secondary btn-xs btn-icon</code>), each with <code>aria-label=\"Rate n from 5\"</code>, in a <code>role=\"group\"</code> with a label.",
-      "Clicking a star sets the rating to that star. When a rating is set, a <b>Clear rating</b> button follows the stars (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating.",
+      "Editable: a radio group built from Bootstrap’s toggle buttons. A <code>fieldset.fm-rating</code> with a visually hidden <code>legend</code>; five <code>label.btn-check.btn-text.theme-secondary.btn-xs.btn-icon</code>, each holding a <code>radio</code> with <code>aria-label=\"n from 5\"</code> and a star. Screen readers hear one choice out of five; arrow keys move and select, as in other leading rating components.",
+      "Every star up to the chosen one is filled, and hovering previews a rating before it is chosen. filmmakers.css does this with CSS only (<code>.fm-rating</code>), so the stars need no script.",
+      "When a rating is set, a <b>Clear rating</b> button follows the stars (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>). It hides when there is no rating. Clearing unchecks the radios, which needs a line of script.",
       "Read-only: star icons with a <code>title</code> and a visually hidden “Rating: n from 5”.",
       "A filled (<code>fa-solid</code>) or outline (<code>fa-regular</code>) star carries the value, never colour. Stars take the text colour."
      ],
      "examples": [
       {
        "label": "Editable",
-       "html": "<div class=\"d-flex align-items-center gap-2\" data-rating=\"4\">Rating:<div role=\"group\" aria-label=\"Rating\" class=\"d-flex\"><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"1\" aria-label=\"Rate 1 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"2\" aria-label=\"Rate 2 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"3\" aria-label=\"Rate 3 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"4\" aria-label=\"Rate 4 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"5\" aria-label=\"Rate 5 from 5\" aria-pressed=\"false\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"btn-text theme-secondary btn-sm\" data-rating-clear>Clear rating</button></div>",
-       "caption": "Click a star to change the rating; Clear rating removes it.",
+       "html": "<fieldset class=\"fm-rating d-flex align-items-center gap-2 m-0 p-0 border-0\"><legend class=\"visually-hidden\">Rating</legend><span aria-hidden=\"true\">Rating:</span><div class=\"d-flex\"><label class=\"btn-check btn-text theme-secondary btn-xs btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"1 from 5\"><input type=\"radio\" name=\"rating-demo\" value=\"1\" aria-label=\"1 from 5\" autocomplete=\"off\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></label><label class=\"btn-check btn-text theme-secondary btn-xs btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"2 from 5\"><input type=\"radio\" name=\"rating-demo\" value=\"2\" aria-label=\"2 from 5\" autocomplete=\"off\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></label><label class=\"btn-check btn-text theme-secondary btn-xs btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"3 from 5\"><input type=\"radio\" name=\"rating-demo\" value=\"3\" aria-label=\"3 from 5\" autocomplete=\"off\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></label><label class=\"btn-check btn-text theme-secondary btn-xs btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"4 from 5\"><input type=\"radio\" name=\"rating-demo\" value=\"4\" aria-label=\"4 from 5\" autocomplete=\"off\" checked><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></label><label class=\"btn-check btn-text theme-secondary btn-xs btn-icon\" data-bs-toggle=\"tooltip\" data-bs-title=\"5 from 5\"><input type=\"radio\" name=\"rating-demo\" value=\"5\" aria-label=\"5 from 5\" autocomplete=\"off\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></label></div><button type=\"button\" class=\"btn-text theme-secondary btn-sm\" data-rating-clear>Clear rating</button></fieldset>",
+       "caption": "Click a star, hover to preview, or use the arrow keys. Clear rating removes it.",
        "badge": "Default",
        "wide": false
       },
@@ -2399,41 +2400,6 @@
    ]
   },
   {
-   "id": "section-toggle-bar",
-   "section": "organisms",
-   "title": "Section toggle bar",
-   "intro": "Checkboxes that show and hide the sections of a page.",
-   "items": [
-    {
-     "status": "Custom",
-     "docs": "",
-     "flags": [],
-     "unresolved": false,
-     "layout": "full",
-     "code": "FRM-12",
-     "name": "Section toggle bar",
-     "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
-     "replaces": "profile-sections label > input[type=checkbox]",
-     "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
-     "rules": [
-      "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”).",
-      "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps.",
-      "Ticking or unticking applies straight away. No Save or Apply button."
-     ],
-     "examples": [
-      {
-       "label": "Section toggle bar",
-       "html": "<fieldset style=\"margin:0;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);background:var(--bs-bg-1);padding:10px 16px;width:100%;max-width:640px\"><legend class=\"visually-hidden\">Sections shown on this page</legend><div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px\"><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-1\" checked><label for=\"sec-1\">Contact</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-2\" checked><label for=\"sec-2\">Assignments</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-3\"><label for=\"sec-3\">Reviews</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-4\" checked><label for=\"sec-4\">Agencies</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-5\"><label for=\"sec-5\">History</label></div></div></fieldset>",
-       "caption": "",
-       "badge": "Default",
-       "wide": true
-      }
-     ],
-     "id": "frm-12"
-    }
-   ]
-  },
-  {
    "id": "actions",
    "section": "organisms",
    "title": "Actions",
@@ -2548,6 +2514,33 @@
       }
      ],
      "id": "cnt-18"
+    },
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [],
+     "unresolved": false,
+     "layout": "full",
+     "code": "FRM-12",
+     "name": "Section toggle bar",
+     "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
+     "replaces": "profile-sections label > input[type=checkbox]",
+     "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
+     "rules": [
+      "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”).",
+      "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps.",
+      "Ticking or unticking applies straight away. No Save or Apply button."
+     ],
+     "examples": [
+      {
+       "label": "Section toggle bar",
+       "html": "<fieldset style=\"margin:0;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);background:var(--bs-bg-1);padding:10px 16px;width:100%;max-width:640px\"><legend class=\"visually-hidden\">Sections shown on this page</legend><div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px\"><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-1\" checked><label for=\"sec-1\">Contact</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-2\" checked><label for=\"sec-2\">Assignments</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-3\"><label for=\"sec-3\">Reviews</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-4\" checked><label for=\"sec-4\">Agencies</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-5\"><label for=\"sec-5\">History</label></div></div></fieldset>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "frm-12"
     }
    ]
   },
