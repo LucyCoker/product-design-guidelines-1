@@ -43,7 +43,7 @@ Where a question needs more than a line, the full **Pattern** is in the Product 
 - **Modal** — one short decision, or a form of about six fields, finished in under 30 seconds.
 - **Side panel** — editing one record while the list behind it stays useful.
 - **Page** — anything with its own URL, longer than two screens, multi-step, or needing reference to other content.
-- If a modal needs scrolling at largest modal size, use a page.
+- If a form in a modal needs scrolling at the largest modal size, use a page. Long read-only content (terms, a summary to review) may scroll inside the modal body, with the header and footer fixed so the actions stay visible.
 - Modals never open modals, never stack, never appear unprompted.
 
 
