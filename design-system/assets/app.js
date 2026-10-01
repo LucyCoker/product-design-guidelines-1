@@ -349,6 +349,19 @@ function setupRatingDemo() {
   })
 }
 
+// Dialog (Bootstrap 6 alpha): .dialog stays visibility:hidden until its
+// open transition starts, so the browser cannot move focus in when it
+// opens. Once Bootstrap reports it shown, focus the autofocus control (Cancel
+// on a confirmation) or the first control.
+function setupDialogs() {
+  document.addEventListener('shown.bs.dialog', (e) => {
+    const dialog = e.target
+    if (dialog.contains(document.activeElement)) return
+    const target = dialog.querySelector('[autofocus]') || dialog.querySelector('input, select, textarea, button, [href]')
+    target?.focus()
+  })
+}
+
 // Nav overflow (NAV-11): the pages are drawn after Bootstrap loads, so start it here.
 function setupNavOverflow() {
   $$('[data-bs-toggle="nav-overflow"]').forEach((el) => bootstrap.NavOverflow.getOrCreateInstance(el))
@@ -649,6 +662,7 @@ async function start() {
   freeMenus()
   setupTooltips()
   setupNavOverflow()
+  setupDialogs()
   setupRatingDemo()
   setupUploadDemo()
   setupCopy()

@@ -1919,6 +1919,60 @@
    ]
   },
   {
+   "id": "dialog",
+   "section": "components",
+   "title": "Dialog",
+   "intro": "A short task or decision on top of the page.",
+   "items": [
+    {
+     "code": "",
+     "id": "dialog",
+     "name": "Dialog",
+     "status": "Replace",
+     "layout": "row",
+     "classes": "dialog.dialog > .dialog-header + .dialog-body + .dialog-footer",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/dialog/",
+     "replaces": "modal .modal / .modal-dialog",
+     "guide": "patterns/destructive-actions.md",
+     "note": "A short task or decision on top of the page: one decision, or a form of about six fields, finished in under 30 seconds. Bootstrap 6 Dialog, built on the native dialog element, which traps focus, closes on Esc and returns focus to the button that opened it.",
+     "rules": [
+      "Use Bootstrap’s Dialog: a <code>dialog.dialog</code> opened by <code>data-bs-toggle=\"dialog\"</code> and <code>data-bs-target</code>, closed by <code>data-bs-dismiss=\"dialog\"</code>. Label it with <code>aria-labelledby</code> pointing at the title.",
+      "Only for one short decision or a form of about six fields. Anything longer, multi-step, needing its own URL or needing to scroll at the largest size is a page. Dialogs never open dialogs, never stack and never appear unprompted.",
+      "Sizes: the default (500px) for most; <code>.dialog-lg</code> (800px) for a six-field form. No extra large or fullscreen dialogs: use a page.",
+      "Header: the title (<code>h2.dialog-title.fs-md.fw-semibold</code>) and Bootstrap’s close button (<code>.btn-close</code>, with <code>aria-label=\"Close\"</code>). Footer: Cancel (<a href=\"#btn-secondary\">Secondary</a>) then the action, which names the outcome (“Save name”, never “OK” or “Submit”). All buttons <code>btn-sm</code>.",
+      "Focus: the first field gets focus when a form opens (<code>autofocus</code>); a confirmation focuses Cancel. Focus is trapped inside while open and returns to the button that opened the dialog when it closes.",
+      "Forms: <code>data-bs-backdrop=\"static\"</code>, so a click outside does not throw away what was typed. A dialog with an invalid field stays open and keeps the input (see <a href=\"#frm-11\">Validation</a>).",
+      "Confirming an irreversible action (<a href=\"https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/\" target=\"_blank\" rel=\"noopener\">Destructive actions</a>): the title is a question naming the action and object (“Delete invoice INV-4021?”); the body says what is lost and that it cannot be undone; the action repeats the verb (“Delete invoice”, <code>btn-solid theme-danger</code>, with an icon so danger is not colour alone). Cancel and the action sit at opposite ends of the footer, and Cancel has focus when the dialog opens (<code>autofocus</code>). Esc cancels, never confirms.",
+      "Reversible actions never get a confirmation dialog: act at once and offer Undo in a <a href=\"#msg-10\">Toast</a>."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Typed confirmation (“type DELETE to confirm”) for irreversible actions that affect other users or billed data: do we use it, and where? (Open in Destructive actions.)"
+      },
+      {
+       "type": "info",
+       "text": "Bootstrap 6 alpha keeps .dialog at visibility:hidden until its open transition starts, so the browser cannot move focus in on open. The Library focuses the autofocus control (or the first control) on shown.bs.dialog; production needs the same few lines until Bootstrap fixes it."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Form",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-toggle=\"dialog\" data-bs-target=\"#dlg-rename\">Rename audition</button><dialog class=\"dialog\" id=\"dlg-rename\" aria-labelledby=\"dlg-rename-title\" data-bs-backdrop=\"static\"><form method=\"dialog\" novalidate><div class=\"dialog-header\"><h2 class=\"dialog-title fs-md fw-semibold\" id=\"dlg-rename-title\">Rename audition</h2><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"dialog\" aria-label=\"Close\"></button></div><div class=\"dialog-body\"><div class=\"form-field\"><label class=\"form-label fw-semibold\" for=\"dlg-rename-name\">Name</label><input class=\"form-control form-control-sm\" id=\"dlg-rename-name\" value=\"Audition: Round 1\" required autofocus></div></div><div class=\"dialog-footer\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-dismiss=\"dialog\">Cancel</button><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" data-bs-dismiss=\"dialog\">Save name</button></div></form></dialog>",
+       "caption": "Open it: one field, Cancel and Save name. A click outside does not close it.",
+       "badge": "Default"
+      },
+      {
+       "label": "Confirm an irreversible action",
+       "html": "<button type=\"button\" class=\"btn-text theme-danger btn-sm\" data-bs-toggle=\"dialog\" data-bs-target=\"#dlg-delete\"><i class=\"fa-solid fa-trash\" aria-hidden=\"true\"></i>Delete invoice</button><dialog class=\"dialog dialog-sm\" id=\"dlg-delete\" aria-labelledby=\"dlg-delete-title\" aria-describedby=\"dlg-delete-body\" style=\"--bs-dialog-width:420px\"><div class=\"dialog-header\"><h2 class=\"dialog-title fs-md fw-semibold\" id=\"dlg-delete-title\">Delete invoice INV-4021?</h2></div><div class=\"dialog-body\" id=\"dlg-delete-body\"><p class=\"m-0\">This permanently deletes the invoice and its payment history. It cannot be undone.</p></div><div class=\"dialog-footer\" style=\"justify-content:space-between\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-dismiss=\"dialog\" autofocus>Cancel</button><button type=\"button\" class=\"btn-solid theme-danger btn-sm\" data-bs-dismiss=\"dialog\"><i class=\"fa-solid fa-trash\" aria-hidden=\"true\"></i>Delete invoice</button></div></dialog>",
+       "caption": "Open it: Cancel has focus, Esc cancels, the action repeats the verb.",
+       "badge": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
    "id": "badges",
    "section": "components",
    "title": "Badges",
