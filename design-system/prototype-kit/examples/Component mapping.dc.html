@@ -197,11 +197,14 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 }
 
 /* ---------------------------------------------------------------------------
- * Action gutter (CNT-12, used by the Project card)
+ * Action gutter (CNT-12, used by the Project card and Production list)
  *
- * From 1024px up: a 180px column on the right, actions stacked. Below that:
- * a bar along the bottom of the card, actions in a row at the end.
+ * Sized by the card it sits in, not the window: when the card is 900px or
+ * wider, a 180px column on the right, actions stacked. Narrower: a bar
+ * along the bottom of the card, actions in a row at the end. So the gutter
+ * never wraps below the content while still styled as a column.
  * ------------------------------------------------------------------------ */
+.card:has(.fm-action-gutter) { container-type: inline-size; }
 .fm-action-gutter {
   flex: 1 1 100%;
   display: flex;
@@ -215,7 +218,7 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
   border-end-start-radius: inherit;
   border-end-end-radius: inherit;
 }
-@media (width >= 1024px) {
+@container (width >= 900px) {
   .fm-action-gutter {
     flex: 0 0 180px;
     flex-direction: column;
@@ -233,9 +236,9 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 /* ---------------------------------------------------------------------------
  * Production list row (CNT-2)
  *
- * From 1024px up: one grid per list (--fm-row-cols), columns aligned across
- * rows, the Action gutter as the last column. Below that the cells wrap and
- * the gutter becomes a bar along the bottom of the row.
+ * When the card is 900px or wider: one grid per list (--fm-row-cols),
+ * columns aligned across rows, the Action gutter as the last column.
+ * Narrower: the cells wrap and the gutter becomes a bar along the bottom.
  * ------------------------------------------------------------------------ */
 .fm-production-row {
   display: flex;
@@ -245,7 +248,7 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-production-row > * { flex: 1 1 220px; min-width: 0; }
 .fm-production-row > .fm-row-media { flex: 0 0 164px; }
 .fm-production-row > .fm-action-gutter { flex: 1 1 100%; }
-@media (width >= 1024px) {
+@container (width >= 900px) {
   .fm-production-row {
     display: grid;
     grid-template-columns: var(--fm-row-cols);
