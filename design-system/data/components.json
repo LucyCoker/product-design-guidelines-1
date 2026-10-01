@@ -233,6 +233,51 @@
      "guide": "products/filmmakers-system/components/buttons.md"
     },
     {
+     "code": "",
+     "id": "btn-icon-only",
+     "name": "Icon only",
+     "status": "Direct",
+     "layout": "row",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
+     "guide": "products/filmmakers-system/components/buttons.md",
+     "classes": "btn-text theme-secondary btn-icon",
+     "note": "A button that shows only an icon. For actions whose icon everyone knows: an overflow menu, close, and toolbar actions such as search and filter.",
+     "rules": [
+      "Use <code>btn-text theme-secondary btn-icon</code>. <code>.btn-icon</code> makes the button square.",
+      "Only for overflow menus (ellipsis), close controls (xmark) and toolbar actions with a well-known icon (search, filter, sort). Anything else gets a text label.",
+      "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip with the same words, on hover and keyboard focus. The icon is <code>aria-hidden</code>.",
+      "Never destructive, never primary or solid. Delete, Remove and the like go in a menu with a text label.",
+      "Size follows the place: <code>btn-sm</code> by default; <code>btn-xs</code> in dense rows; medium (no size class) where the button sits beside large content, such as under the Profile header picture.",
+      "Inside a <a href=\"#bg-icons\">Button group</a> or an <a href=\"#frm-3\">Input group</a>, icon-only buttons take the group’s style, <code>btn-outline theme-secondary</code>, so they join the other controls."
+     ],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Target size: buttons.md says the hit target MUST be at least 44×44px, but the Library uses 24px (btn-xs: Section heading, Star rating) and 32px (btn-sm) icon buttons, which meet the WCAG 2.2 AA minimum of 24×24px. Keep 44px (and enlarge the hit area of small buttons), or set the minimum at 24px?"
+      }
+     ],
+     "examples": [
+      {
+       "label": "Uses",
+       "html": "<div class=\"d-flex align-items-center gap-2\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Close\" data-bs-toggle=\"tooltip\" data-bs-title=\"Close\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Filter\" data-bs-toggle=\"tooltip\" data-bs-title=\"Filter\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Sort\" data-bs-toggle=\"tooltip\" data-bs-title=\"Sort\"><i class=\"fa-solid fa-arrow-down-wide-short\" aria-hidden=\"true\"></i></button></div>",
+       "caption": "Overflow, close, and well-known toolbar actions. Hover or focus for the tooltip.",
+       "badge": "Default"
+      },
+      {
+       "label": "Sizes",
+       "html": "<div class=\"d-flex align-items-end gap-4\"><div class=\"d-flex flex-column align-items-center gap-1\"><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><span class=\"fs-xs fg-3\">xs · 24px</span></div><div class=\"d-flex flex-column align-items-center gap-1\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><span class=\"fs-xs fg-3\">sm · 32px</span></div><div class=\"d-flex flex-column align-items-center gap-1\"><button type=\"button\" class=\"btn-text theme-secondary btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><span class=\"fs-xs fg-3\">medium · 38px</span></div></div>",
+       "caption": "btn-xs in dense rows, btn-sm by default, medium beside large content.",
+       "badge": ""
+      },
+      {
+       "label": "In a group",
+       "html": "<div class=\"d-flex align-items-center\"><div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"View\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Grid view\" data-bs-toggle=\"tooltip\" data-bs-title=\"Grid view\"><i class=\"fa-solid fa-table-cells-large\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"List view\" data-bs-toggle=\"tooltip\" data-bs-title=\"List view\"><i class=\"fa-solid fa-list\" aria-hidden=\"true\"></i></button></div><div class=\"input-group input-group-sm ms-3\" style=\"width:220px\"><input class=\"form-control form-control-sm\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div></div>",
+       "caption": "In a Button group or Input group, the group’s outline style.",
+       "badge": ""
+      }
+     ]
+    },
+    {
      "id": "btn-row-action",
      "name": "Row action",
      "code": "",
@@ -2551,10 +2596,10 @@
    ]
   },
   {
-   "id": "app-shell",
+   "id": "app-header",
    "section": "app-shell",
-   "title": "App shell",
-   "intro": "The elements that frame every page and never change: header, subheader band and footer. Pages and templates sit inside them.",
+   "title": "Header",
+   "intro": "The bar at the top of every page: logo, search, help, notifications and the account and language menus.",
    "items": [
     {
      "code": "NAV-1",
@@ -2612,7 +2657,15 @@
       }
      ],
      "guide": ""
-    },
+    }
+   ]
+  },
+  {
+   "id": "app-subheader",
+   "section": "app-shell",
+   "title": "Subheader band",
+   "intro": "The tinted band under the header: home, breadcrumb, tabs and the mode switch.",
+   "items": [
     {
      "code": "NAV-3",
      "name": "Subheader band",
@@ -2626,7 +2679,15 @@
      "layout": "full",
      "example": "<nav class=\"navbar border rounded theme-primary\" style=\"background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden\"><div class=\"container-fluid\" style=\"padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%\"><div style=\"display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)\"><a class=\"nav-link\" href=\"#\" aria-label=\"Home\" title=\"Home\" style=\"display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)\" style-hover=\"background:var(--bs-primary-bg);color:var(--bs-primary-contrast)\"><i class=\"fa-solid fa-house\"></i></a></div><div style=\"display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap\">Best Movie Ev...</div><div style=\"display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))\"><span aria-hidden=\"true\" style=\"flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)\"></span><nav class=\"nav nav-underline\" style=\"gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"padding:10px 10px;flex:0 0 auto\">Audition</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\">Selection</a></nav></div></div></nav>",
      "id": "shell-subheader"
-    },
+    }
+   ]
+  },
+  {
+   "id": "app-footer",
+   "section": "app-shell",
+   "title": "Footer",
+   "intro": "The strip at the bottom of every page.",
+   "items": [
     {
      "code": "",
      "id": "shell-footer",

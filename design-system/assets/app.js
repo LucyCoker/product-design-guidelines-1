@@ -129,12 +129,14 @@ function render(data) {
     }).join('')
   const areaSpecific = inSection('organisms-area')
   $('#organism-area-pages').outerHTML = areaSpecific.map((g) => pageHtml(g, { id: 'organisms-area', title: 'Organisms: Area specific' })).join('')
-  $('#shell-page').outerHTML = inSection('app-shell').map((g) => pageHtml(g, null)).join('')
+  const shell = inSection('app-shell')
+  $('#shell-pages').outerHTML = shell.map((g) => pageHtml(g, { id: 'app-shell', title: 'App shell' })).join('')
   $('#side-components').insertAdjacentHTML('beforeend', sideLinks(components))
   $('#side-forms').insertAdjacentHTML('beforeend', sideLinks(forms))
   $('#side-templates').insertAdjacentHTML('beforeend', sideLinks(templates))
   $('#side-organisms').insertAdjacentHTML('beforeend', sideLinks(organisms))
   $('#side-organisms-area').insertAdjacentHTML('beforeend', sideLinks(areaSpecific))
+  $('#side-app-shell').insertAdjacentHTML('beforeend', sideLinks(shell))
 
   $('#components-excluded').innerHTML =
     `<div class="lib-page-head"><h2 class="fs-lg">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>
