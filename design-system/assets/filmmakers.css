@@ -265,4 +265,4 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-rating:hover .btn-check > i { font-weight: 400; }
 .fm-rating .btn-check:hover > i,
 .fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
-.fm-rating:not(:has(input:checked)) [data-rating-clear] { display: none; }
+.fm-rating [data-rating-clear][hidden] { display: none; }

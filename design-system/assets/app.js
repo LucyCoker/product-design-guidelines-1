@@ -276,21 +276,35 @@ function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
 
-// Star rating (CNT-19): the stars are radios, filled by CSS. The value text
-// follows the checked radio; Clear rating unchecks them.
+// Star rating (CNT-19): the stars are radios, filled by CSS. Arrow keys step
+// one star without wrapping (Left at 1 goes to 0), Home is 0, End is 5. The
+// value text is a polite live region; Clear rating unchecks the radios.
 function setupRatingDemo() {
   $$('.fm-rating').forEach((root) => {
+    const radios = [...root.querySelectorAll('input[type="radio"]')]
     const value = root.querySelector('[data-rating-value]')
+    const current = () => Number(radios.find((r) => r.checked)?.value || 0)
     const show = () => {
-      const checked = root.querySelector('input[type="radio"]:checked')
-      if (value) value.hidden = !checked
-      if (value && checked) value.textContent = `${checked.value} from 5`
+      const n = current()
+      if (value) value.textContent = `${n} out of ${radios.length} stars`
+      const clear = root.querySelector('[data-rating-clear]')
+      if (clear) clear.hidden = n === 0
+    }
+    const set = (n) => {
+      radios.forEach((r) => { r.checked = Number(r.value) === n })
+      ;(radios[Math.max(n, 1) - 1]).focus()
+      show()
     }
     root.addEventListener('change', show)
-    root.querySelector('[data-rating-clear]')?.addEventListener('click', () => {
-      root.querySelectorAll('input[type="radio"]').forEach((r) => { r.checked = false })
-      show()
+    root.addEventListener('keydown', (e) => {
+      if (!e.target.matches('input[type="radio"]')) return
+      const n = current()
+      const keys = { ArrowRight: n + 1, ArrowUp: n + 1, ArrowLeft: n - 1, ArrowDown: n - 1, Home: 0, End: radios.length }
+      if (!(e.key in keys)) return
+      e.preventDefault()
+      set(Math.min(radios.length, Math.max(0, keys[e.key])))
     })
+    root.querySelector('[data-rating-clear]')?.addEventListener('click', () => set(0))
     show()
   })
 }
