@@ -983,12 +983,7 @@
      "status": "Direct",
      "layout": "row",
      "docs": "",
-     "flags": [
-      {
-       "type": "ask",
-       "text": "This rule conflicts with the Simple search and filter bar (SF-4): its filters and Sort by are Bootstrap menus with a checkmark on the chosen value (.menu-item-check). Decide: allow checkmark menus as an exception for the Simple bar's filters and Sort by, or switch the Simple bar to Combobox."
-      }
-     ],
+     "flags": [],
      "id": "menu-not-allowed",
      "name": "Not allowed",
      "classes": "",
@@ -996,7 +991,7 @@
      "rules": [
       "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items.",
       "An active or selected item in the primary colour.",
-      "A menu used to pick a value, where the chosen item stays marked with a checkmark or radio (for example a filter or a sort order). Use the <a href=\"#sf-3\">Combobox</a>, which shows the label and the chosen value on the trigger.",
+      "A plain Menu for a complex filter: a long list of values, or one that needs checkboxes, fields or sliders. Use the <a href=\"#sf-3\">Combobox</a>. A plain Menu with a checkmark on the chosen value is fine for a short list, as in the <a href=\"#sf-4\">Simple search and filter bar</a>.",
       "Icon-only menu items.",
       "Translucent menus, and dark menus on a light page. In dark mode, menus are dark with the rest of the page.",
       "Menus that open on hover."
@@ -1092,7 +1087,8 @@
       "One value: radio items, and the menu closes on pick. Several values: checkbox items, and the menu stays open.",
       "More than six options: a find field appears at the top, with a “No … matches” line when nothing matches.",
       "Filters apply on change. There is no Apply button. The menu closes on an outside click.",
-      "Use the Combobox for every filter and for Sort by. The native select is only for forms."
+      "Use the Combobox for every filter and for Sort by. The native select is only for forms.",
+      "Use it in complex searches, where a filter needs more than a short list: many values, checkboxes, radios, fields, sliders or whatever suits that filter. For a short list of options, a plain Menu is enough (see the <a href=\"#sf-4\">Simple</a> bar)."
      ],
      "examples": [
       {
@@ -1864,7 +1860,8 @@
       "Clear filters appears only when a search or filter is applied, and resets all of them.",
       "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Filters apply on change. No Apply button.",
-      "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. It is a slim grey band in 12px (<code>fs-xs fw-semibold</code>). The table footer repeats it beside the pagination."
+      "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. It is a slim grey band in 12px (<code>fs-xs fw-semibold</code>). The table footer repeats it beside the pagination.",
+      "Filters are plain Menus with a checkmark on the chosen value, because each has only a few options. When a filter needs a long list, checkboxes, fields or sliders, use the <a href=\"#sf-1\">Complex</a> bar and its <a href=\"#sf-3\">Combobox</a>."
      ],
      "flags": [],
      "examples": [
