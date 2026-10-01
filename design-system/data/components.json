@@ -1355,7 +1355,7 @@
      "flags": [
       {
        "type": "info",
-       "text": "Follows the Compound (Phoenix Group) star rating accessibility guidance: radiogroup with labelled radios, value in accessible text, aria-live announcements, arrow keys plus Home and End. .fm-rating is a custom class; whether custom fm- classes are allowed is the open question on the Production list."
+       "text": ".fm-rating is a custom class; whether custom fm- classes are allowed is the open question on the Production list."
       }
      ],
      "unresolved": false,
@@ -1370,7 +1370,7 @@
       "Keyboard: Tab moves into the group and out to the next field. Right and Up add one star, Left and Down remove one (down to 0), Home sets 0 and End sets 5. The rating applies as it changes; no confirm step. Bootstrap’s focus ring shows on the focused star.",
       "The current value shows as text after the stars (“4 stars”, “1 star”, “0 stars” when cleared; <code>.fg-2</code>) in an <code>aria-live=\"polite\"</code> region, so screen readers announce each change. The radios keep their full names (“4 out of 5 stars”), so the scale is still announced. No tooltips on the stars: each radio already has its name, and tooltips only appear on mouse hover.",
       "Fill shows the state: every star up to the chosen one is filled (<code>fa-solid</code>), the rest are outline (<code>fa-regular</code>), and hovering previews a rating. filmmakers.css does this with CSS only (<code>.fm-rating</code>). Never colour alone. Stars are <code>--bs-fg-body</code>, the body text colour (filmmakers.css sets it on <code>.fm-rating</code>), which passes 15:1 on white and grey.",
-      "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. The star icons are the body text size (14px), as in production, in both the editable and the read-only rating. (The 44px target in the reference applies to native apps.)",
+      "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. The star icons are the body text size (14px), as in production, in both the editable and the read-only rating.",
       "When a rating is set, <b>Clear rating</b> follows the value (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating.",
       "In a form: help text and errors are linked with <code>aria-describedby</code>, an error sets <code>aria-invalid=\"true\"</code>, and a required rating sets <code>aria-required=\"true\"</code> on the radiogroup (see <a href=\"#frm-11\">Validation</a>).",
       "Read-only: the label, then star icons in a <code>span.fg-3</code> (lighter than the editable stars, so a read-only rating does not look clickable; 5.2:1 or more on white and grey) with a <code>title</code> and a visually hidden “n out of 5 stars”. Two sizes: 14px (body text) by default, and 12px (<code>.fs-xs</code> on the whole rating, label included) in dense lists and tables. Keep it on one line (<code>.text-nowrap</code>)."
