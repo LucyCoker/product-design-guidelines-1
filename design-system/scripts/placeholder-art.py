@@ -52,3 +52,28 @@ def picture(i, w, h):
            f"<rect width='{w}' height='{h}' fill='url(#p)'/>"
            f"<g transform='translate({w/2} {h/2}) scale({scale:.2f})'>{motif(mot, ink, paper)}</g></svg>")
     return 'data:image/svg+xml;utf8,' + quote(svg, safe="/:='()., -")
+
+
+def headshot(w=160, h=160):
+    """An illustrated headshot (not a real person) for profile examples."""
+    svg = (f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {w} {h}'>"
+           "<defs><linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#cfe3f5'/><stop offset='1' stop-color='#9fc2e6'/></linearGradient></defs>"
+           f"<rect width='{w}' height='{h}' fill='url(#bg)'/>"
+           # Shoulders and top
+           "<path d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='#3d5a80'/>"
+           "<path d='M64 112 L80 132 L96 112 Z' fill='#f2d4c2'/>"
+           # Neck
+           "<rect x='69' y='92' width='22' height='26' rx='8' fill='#e8bfa6'/>"
+           # Hair behind
+           "<path d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='#5b3a29'/>"
+           # Face
+           "<ellipse cx='80' cy='66' rx='26' ry='31' fill='#f2d4c2'/>"
+           # Fringe
+           "<path d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='#5b3a29'/>"
+           # Eyes, brows, mouth
+           "<circle cx='70' cy='66' r='2.6' fill='#2b2d42'/><circle cx='90' cy='66' r='2.6' fill='#2b2d42'/>"
+           "<path d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='#5b3a29' stroke-width='2' fill='none' stroke-linecap='round'/>"
+           "<path d='M72 80 Q80 86 88 80' stroke='#b5655b' stroke-width='2.4' fill='none' stroke-linecap='round'/>"
+           "<ellipse cx='64' cy='76' rx='5' ry='3' fill='#f0a8a0' opacity='.45'/><ellipse cx='96' cy='76' rx='5' ry='3' fill='#f0a8a0' opacity='.45'/>"
+           "</svg>")
+    return 'data:image/svg+xml;utf8,' + quote(svg, safe="/:='()., -")
