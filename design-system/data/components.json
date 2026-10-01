@@ -1525,7 +1525,7 @@
    "id": "lists",
    "section": "components",
    "title": "Lists",
-   "intro": "Read-only lists of attributes and activity.",
+   "intro": "Read-only label and value pairs.",
    "items": [
     {
      "status": "Custom",
@@ -1534,35 +1534,7 @@
       {
        "type": "ask",
        "text": "Label colour: this list uses .fg-2 for labels; the Project card’s details (CNT-14) use .fg-3. Pick one for every label and value list."
-      }
-     ],
-     "unresolved": false,
-     "layout": "full",
-     "code": "CNT-15",
-     "name": "Definition list",
-     "classes": "dl grid: minmax(120px, 180px) minmax(0, 1fr)",
-     "replaces": "dl-horizontal .dl-horizontal",
-     "note": "Read-only attributes as label and value pairs, such as a profile’s eye colour, height and stature. Replaces CNT-8, which was removed in review. Used on Sedcard (Summary view).",
-     "rules": [
-      "A <code>dl</code> in a two-column grid: labels <code>minmax(120px, 180px)</code>, values <code>minmax(0, 1fr)</code>.",
-      "Labels (<code>dt</code>) are weight 400 in <code>.fg-2</code>; values (<code>dd</code>) are body text. Both are the same size: de-emphasis is colour only.",
-      "Show only fields that have a value."
-     ],
-     "examples": [
-      {
-       "label": "Definition list",
-       "html": "<dl class=\"m-0\" style=\"display:grid;grid-template-columns:minmax(100px,160px) minmax(0,1fr);gap:8px 16px;max-width:480px\"><dt class=\"fw-normal fg-2\">Eye color</dt><dd class=\"m-0\">blue-green</dd><dt class=\"fw-normal fg-2\">Height (cm)</dt><dd class=\"m-0\">167</dd><dt class=\"fw-normal fg-2\">Stature</dt><dd class=\"m-0\">slim</dd></dl>",
-       "caption": "",
-       "badge": "Default",
-       "wide": true
-      }
-     ],
-     "id": "cnt-15"
-    },
-    {
-     "status": "Custom",
-     "docs": "",
-     "flags": [
+      },
       {
        "type": "ask",
        "text": "The “Show N more events” toggle uses the Row action style (btn-text theme-primary btn-xs), which is for actions on one item in a list. A toggle for the whole list may be Tertiary instead (btn-text theme-secondary btn-sm). Which?"
@@ -1570,26 +1542,33 @@
      ],
      "unresolved": false,
      "layout": "full",
-     "code": "CNT-16",
-     "name": "Activity list",
-     "classes": "grid: timestamp column + text",
-     "replaces": "dl-horizontal (timeline) .dl-horizontal-double-width-label",
-     "note": "Audition history, events, notes and comments, newest first. Used on Sedcard (Summary view).",
+     "code": "CNT-15",
+     "name": "Definition list",
+     "classes": "dl grid: minmax(120px, 180px) minmax(0, 1fr)",
+     "replaces": "dl-horizontal .dl-horizontal, .dl-horizontal-double-width-label",
+     "note": "Label and value pairs in two columns: attributes, details, or a dated log of activity. Replaces CNT-8, which was removed in review, and the activity list (CNT-16). Used on Sedcard (Summary view).",
      "rules": [
-      "Each entry is a two-column grid: the timestamp and author on the left, the text on the right.",
-      "Timestamp and author are 12px <code>.fs-xs .fg-3</code> fine print (the caption size typography.md gives to timestamps).",
-      "Long lists show the first 5 entries and a toggle: “Show N more events” with a caret."
+      "A <code>dl</code> in a two-column grid: labels <code>minmax(120px, 180px)</code>, values <code>minmax(0, 1fr)</code>. Show only rows that have a value.",
+      "Labels (<code>dt</code>) are weight 400 in <code>.fg-2</code>; values (<code>dd</code>) are body text, the same size. De-emphasis is colour only.",
+      "For activity, the label is the timestamp and author in 12px <code>.fs-xs .fg-3</code>, newest first. Long lists show the first 5 and a “Show N more” toggle."
      ],
      "examples": [
       {
-       "label": "Activity list",
-       "html": "<div style=\"display:flex;flex-direction:column;gap:8px;max-width:560px\"><div style=\"display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:4px 16px\"><div class=\"fs-xs fg-3\"><div>26/04/2023, 12:26 CEST</div><div>by Constantine Coker</div></div><div>Added 5 star Rating</div></div><div style=\"display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:4px 16px\"><div class=\"fs-xs fg-3\"><div>26/04/2023, 12:26 CEST</div><div>by Constantine Coker</div></div><div>Rating removed</div></div><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\">Show 17 more events<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div></div>",
+       "label": "Attributes",
+       "html": "<dl class=\"m-0\" style=\"display:grid;grid-template-columns:minmax(120px,180px) minmax(0,1fr);gap:8px 16px;max-width:560px\"><dt class=\"fw-normal fg-2\">Eye color</dt><dd class=\"m-0\">blue-green</dd><dt class=\"fw-normal fg-2\">Height (cm)</dt><dd class=\"m-0\">167</dd><dt class=\"fw-normal fg-2\">Stature</dt><dd class=\"m-0\">slim</dd></dl>",
        "caption": "",
        "badge": "Default",
        "wide": true
+      },
+      {
+       "label": "Activity",
+       "html": "<div style=\"display:flex;flex-direction:column;gap:8px;max-width:560px\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:minmax(120px,180px) minmax(0,1fr);gap:8px 16px;max-width:560px\"><dt class=\"fw-normal fs-xs fg-3\">26/04/2023, 12:26 CEST<br>by Constantine Coker</dt><dd class=\"m-0\">Added 5 star Rating</dd><dt class=\"fw-normal fs-xs fg-3\">26/04/2023, 12:26 CEST<br>by Constantine Coker</dt><dd class=\"m-0\">Rating removed</dd></dl><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\">Show 17 more events<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div></div>",
+       "caption": "The timestamp and author as the label.",
+       "badge": "",
+       "wide": true
       }
      ],
-     "id": "cnt-16"
+     "id": "cnt-15"
     }
    ]
   },
@@ -2744,6 +2723,11 @@
    "code": "CNT-8",
    "name": "Definition list",
    "reason": "Removed in review."
+  },
+  {
+   "code": "CNT-16",
+   "name": "Activity list",
+   "reason": "Merged into the Definition list (CNT-15) as its Activity example: the same two-column list with the timestamp as the label."
   }
  ]
 }
