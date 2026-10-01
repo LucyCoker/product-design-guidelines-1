@@ -1,12 +1,23 @@
 # Component mapping: Accordion (CNT-5) update
 
-The Accordion row now uses Bootstrap 6’s default accordion (option A), flush inside cards (option C), with the product’s “Show” / “Hide” label before the chevron.
+The Accordion row uses Bootstrap 6’s accordion, small: a grey header while closed and white while open, flush inside cards, with the product’s “Show” / “Hide” label before the chevron. In rare cases the title takes the primary colour (`.fg-primary`) for important information.
 
-## 1. Add the CSS
+## 1. Add or replace the CSS
 
-Add this at the end of the Library `<style>` block in the page’s `<helmet>` (the block that starts “Filmmakers System Library theme layer”):
+At the end of the Library `<style>` block in the page’s `<helmet>` (the block that starts “Filmmakers System Library theme layer”), add this. If an “Accordion Show / Hide label” section is already there, replace it with this:
 
 ```css
+/* ---------------------------------------------------------------------------
+ * Accordion colours (CNT-5)
+ *
+ * Grey (bg-1) header while closed, white while open, through Bootstrap's own
+ * accordion variables.
+ * ------------------------------------------------------------------------ */
+.accordion {
+  --bs-accordion-btn-bg: var(--bs-bg-1);
+  --bs-accordion-active-bg: var(--bs-bg-body);
+}
+
 /* ---------------------------------------------------------------------------
  * Accordion Show / Hide label
  *
@@ -42,6 +53,7 @@ Find the row whose badge reads **CNT-5** (in the Content section) and replace th
 ## What changed
 
 - Bootstrap 6 accordion: `details.accordion-item` > `summary.accordion-header` + `.accordion-body`, small (`.accordion-sm`). No JavaScript.
-- Standalone (for example Statistics): Bootstrap’s default colours, the open header turns grey.
+- Grey header (`bg-1`) while closed, white while open, set through Bootstrap’s own variables.
 - Inside a card (for example Additional information): `.accordion-flush` with `.border-top`.
 - “Show” / “Hide” before the chevron, switched by the CSS above. Hidden from screen readers, which already announce open and closed.
+- Important, rarely: `.fg-primary` on the `summary`, for information that would get lost on a busy page. At most one per page.

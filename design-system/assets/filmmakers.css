@@ -214,6 +214,17 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 }
 
 /* ---------------------------------------------------------------------------
+ * Accordion colours (CNT-5)
+ *
+ * Grey (bg-1) header while closed, white while open, through Bootstrap's own
+ * accordion variables.
+ * ------------------------------------------------------------------------ */
+.accordion {
+  --bs-accordion-btn-bg: var(--bs-bg-1);
+  --bs-accordion-active-bg: var(--bs-bg-body);
+}
+
+/* ---------------------------------------------------------------------------
  * Accordion Show / Hide label
  *
  * Bootstrap's accordion (details/summary) with the product's "Show" or

@@ -1465,25 +1465,27 @@
      ],
      "layout": "full",
      "rules": [
-      "Use Bootstrap’s accordion markup: <code>.accordion.accordion-sm</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded. Bootstrap’s default colours: the open header turns grey (<code>bg-2</code>). No theme classes.",
+      "Use Bootstrap’s accordion markup: <code>.accordion.accordion-sm</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded.",
+      "The header is grey (<code>bg-1</code>) while closed and white while open. filmmakers.css sets this through Bootstrap’s own variables (<code>--bs-accordion-btn-bg</code>, <code>--bs-accordion-active-bg</code>), so no extra class is needed. No theme classes.",
       "<code>.accordion-sm</code> on every accordion, to match the 14px body text and small controls.",
       "The header is the title, weight 600, then “Show” or “Hide” and a chevron (<code>fa-chevron-down</code> with <code>.accordion-icon</code>) that turns when open. The label is <code>.fm-accordion-label</code> with both words inside; CSS shows the right one, so no script is needed. It is <code>aria-hidden</code>, because the browser already announces open and closed.",
       "Standalone, for example Statistics, use the accordion as it is. Inside a card, for example Additional information, use <code>.accordion-flush</code> with <code>.border-top</code>, so it runs edge to edge under the card’s content with a line above it.",
+      "Important, rarely: add <code>.fg-primary</code> to the <code>summary</code> so the title and chevron take the primary colour, for information that would get lost on a busy page (for example Important information). At most one per page, and never to decorate.",
       "Several accordions in a row that should open one at a time share a <code>name</code> on their <code>details</code>."
      ],
      "examples": [
       {
-       "label": "Standalone",
-       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\" open><summary class=\"accordion-header fw-semibold\">Statistics<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
-       "caption": "Bootstrap’s default accordion, small. The open header turns grey (bg-2).",
-       "badge": "Default",
+       "label": "Closed",
+       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold\">Statistics<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
+       "caption": "Closed: a grey header (bg-1), Show and a chevron pointing down.",
+       "badge": "",
        "wide": false
       },
       {
-       "label": "Closed",
-       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold\">Statistics<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
-       "caption": "Closed: the title, Show and a chevron pointing down.",
-       "badge": "",
+       "label": "Standalone",
+       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\" open><summary class=\"accordion-header fw-semibold\">Statistics<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
+       "caption": "Open: the header turns white.",
+       "badge": "Default",
        "wide": false
       },
       {
@@ -1492,6 +1494,13 @@
        "caption": "accordion-flush with border-top, as a section of a card. Open it to see Hide.",
        "badge": "Default",
        "wide": true
+      },
+      {
+       "label": "Important",
+       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold fg-primary\">Important information<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><p class=\"m-0\">Applicants must be available for all three shooting days, 12 to 14 November, in Berlin.</p></div></details></div>",
+       "caption": "Rare: fg-primary on the header, for information that would get lost on a busy page.",
+       "badge": "",
+       "wide": false
       }
      ]
     }
