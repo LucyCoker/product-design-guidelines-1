@@ -998,7 +998,7 @@
       "An active or selected item in the primary colour.",
       "A menu used to pick a value, where the chosen item stays marked with a checkmark or radio (for example a filter or a sort order). Use the <a href=\"#sf-3\">Combobox</a>, which shows the label and the chosen value on the trigger.",
       "Icon-only menu items.",
-      "Dark or translucent menus.",
+      "Translucent menus, and dark menus on a light page. In dark mode, menus are dark with the rest of the page.",
       "Menus that open on hover."
      ],
      "examples": []
