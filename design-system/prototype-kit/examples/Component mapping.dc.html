@@ -300,10 +300,10 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
  * regular 400) and previews on hover. The checked star gets no background
  * or border; the focus ring still shows for keyboard users.
  * ------------------------------------------------------------------------ */
-.fm-rating .btn-check { --bs-btn-active-bg: transparent; --bs-btn-active-border-color: transparent; --bs-btn-active-color: var(--bs-btn-color); }
-.fm-rating .btn-check > i { font-weight: 400; }
-.fm-rating .btn-check:has(input:checked) > i,
-.fm-rating .btn-check:has(~ .btn-check > input:checked) > i { font-weight: 900; }
+.fm-rating .btn-check { --bs-btn-color: var(--bs-fg-body); --bs-btn-hover-color: var(--bs-fg-body); --bs-btn-hover-bg: transparent; --bs-btn-active-bg: transparent; --bs-btn-active-border-color: transparent; --bs-btn-active-color: var(--bs-fg-body); }
+.fm-rating :where(.btn-check) > i { font-weight: 400; }
+/* :where() keeps the chosen fill weaker than the hover preview below. */
+.fm-rating :where(.btn-check:has(input:checked), .btn-check:has(~ .btn-check > input:checked)) > i { font-weight: 900; }
 .fm-rating:hover .btn-check > i { font-weight: 400; }
 .fm-rating .btn-check:hover > i,
 .fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
