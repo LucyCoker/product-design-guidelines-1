@@ -1050,33 +1050,6 @@
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>"
-    },
-    {
-     "status": "Custom",
-     "docs": "",
-     "flags": [],
-     "unresolved": false,
-     "layout": "full",
-     "code": "FRM-12",
-     "name": "Section toggle bar",
-     "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
-     "replaces": "profile-sections label > input[type=checkbox]",
-     "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
-     "rules": [
-      "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”).",
-      "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps.",
-      "Ticking or unticking applies straight away. No Save or Apply button."
-     ],
-     "examples": [
-      {
-       "label": "Section toggle bar",
-       "html": "<fieldset style=\"margin:0;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);background:var(--bs-bg-1);padding:10px 16px;width:100%;max-width:640px\"><legend class=\"visually-hidden\">Sections shown on this page</legend><div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px\"><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-1\" checked><label for=\"sec-1\">Contact</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-2\" checked><label for=\"sec-2\">Assignments</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-3\"><label for=\"sec-3\">Reviews</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-4\" checked><label for=\"sec-4\">Agencies</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-5\"><label for=\"sec-5\">History</label></div></div></fieldset>",
-       "caption": "",
-       "badge": "Default",
-       "wide": true
-      }
-     ],
-     "id": "frm-12"
     }
    ]
   },
@@ -2485,6 +2458,41 @@
       }
      ],
      "id": "cnt-18"
+    }
+   ]
+  },
+  {
+   "id": "section-toggle-bar",
+   "section": "organisms",
+   "title": "Section toggle bar",
+   "intro": "Checkboxes that show and hide the sections of a page.",
+   "items": [
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [],
+     "unresolved": false,
+     "layout": "full",
+     "code": "FRM-12",
+     "name": "Section toggle bar",
+     "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
+     "replaces": "profile-sections label > input[type=checkbox]",
+     "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
+     "rules": [
+      "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”).",
+      "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps.",
+      "Ticking or unticking applies straight away. No Save or Apply button."
+     ],
+     "examples": [
+      {
+       "label": "Section toggle bar",
+       "html": "<fieldset style=\"margin:0;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);background:var(--bs-bg-1);padding:10px 16px;width:100%;max-width:640px\"><legend class=\"visually-hidden\">Sections shown on this page</legend><div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px\"><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-1\" checked><label for=\"sec-1\">Contact</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-2\" checked><label for=\"sec-2\">Assignments</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-3\"><label for=\"sec-3\">Reviews</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-4\" checked><label for=\"sec-4\">Agencies</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-5\"><label for=\"sec-5\">History</label></div></div></fieldset>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "frm-12"
     }
    ]
   },
