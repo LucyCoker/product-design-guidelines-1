@@ -170,6 +170,44 @@ function pagerHtml(page, order) {
   return `<nav class="lib-pager" aria-label="Pages">${link(order[i - 1], 'prev')}${link(order[i + 1], 'next')}</nav>`
 }
 
+// Components in the sidebar: A–Z by default, or Related (the order of
+// components.json, which groups related components). The choice is kept per
+// viewer; the overview cards and the page pager follow it.
+function setupComponentSort() {
+  const side = $('#side-components')
+  if (!side) return
+  const links = $$('.lib-sub', side)
+  const cards = $$('[data-overview="components"] > .card')
+  const name = (el) => (el.querySelector('b') || el).childNodes[0].textContent.trim()
+  const related = new Map([...links, ...cards].map((el, i) => [el, i]))
+  side.querySelector('.lib-side-title').insertAdjacentHTML('afterend',
+    `<div class="lib-side-sort" role="radiogroup" aria-label="Sort components">
+      <label class="btn-check btn-text theme-secondary btn-xs"><input type="radio" name="side-sort" value="alpha" autocomplete="off">A–Z</label>
+      <label class="btn-check btn-text theme-secondary btn-xs"><input type="radio" name="side-sort" value="related" autocomplete="off">Related</label>
+    </div>`)
+  const sortInto = (parent, els, mode) => {
+    const sorted = [...els].sort((a, b) => mode === 'alpha' ? name(a).localeCompare(name(b)) : related.get(a) - related.get(b))
+    sorted.forEach((el) => parent.append(el))
+  }
+  const apply = (mode) => {
+    sortInto(side, links, mode)
+    if (cards.length) sortInto(cards[0].parentElement, cards, mode)
+    side.querySelector(`input[value="${mode}"]`).checked = true
+    // The pager follows the sidebar order.
+    $$('.lib-pager').forEach((n) => n.remove())
+    const order = $$('.lib-side a').map((a) => a.hash.slice(1))
+    for (const page of $$('.lib-page')) page.insertAdjacentHTML('beforeend', pagerHtml(page, order))
+  }
+  let mode = 'alpha'
+  try { mode = localStorage.getItem('lib-component-sort') || 'alpha' } catch {}
+  side.addEventListener('change', (e) => {
+    if (!e.target.matches('input[name="side-sort"]')) return
+    try { localStorage.setItem('lib-component-sort', e.target.value) } catch {}
+    apply(e.target.value)
+  })
+  apply(mode)
+}
+
 function setupPages() {
   const order = $$('.lib-side a').map((a) => a.hash.slice(1))
   for (const page of $$('.lib-page')) page.insertAdjacentHTML('beforeend', pagerHtml(page, order))
@@ -615,6 +653,7 @@ async function start() {
   setupUploadDemo()
   setupCopy()
   setupPages()
+  setupComponentSort()
   setupSearch()
   setupKit()
 }
