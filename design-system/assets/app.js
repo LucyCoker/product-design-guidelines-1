@@ -276,12 +276,23 @@ function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
 
-// Star rating (CNT-19): the stars are radios, filled by CSS. Clear rating
-// unchecks them.
+// Star rating (CNT-19): the stars are radios, filled by CSS. The value text
+// follows the checked radio; Clear rating unchecks them.
 function setupRatingDemo() {
-  $$('.fm-rating [data-rating-clear]').forEach((btn) => btn.addEventListener('click', () => {
-    btn.closest('.fm-rating').querySelectorAll('input[type="radio"]').forEach((r) => { r.checked = false })
-  }))
+  $$('.fm-rating').forEach((root) => {
+    const value = root.querySelector('[data-rating-value]')
+    const show = () => {
+      const checked = root.querySelector('input[type="radio"]:checked')
+      if (value) value.hidden = !checked
+      if (value && checked) value.textContent = `${checked.value} from 5`
+    }
+    root.addEventListener('change', show)
+    root.querySelector('[data-rating-clear]')?.addEventListener('click', () => {
+      root.querySelectorAll('input[type="radio"]').forEach((r) => { r.checked = false })
+      show()
+    })
+    show()
+  })
 }
 
 // Nav overflow (NAV-11): the pages are drawn after Bootstrap loads, so start it here.
