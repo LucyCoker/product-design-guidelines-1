@@ -62,7 +62,7 @@ const PROFILES = [
   first, last, role: ROLES[role], language, age, location, agency, showreel, photo,
   applied: `2026-09-${String(28 - i * 2).padStart(2, '0')}`
 }))
-const PHOTO = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236b5b4b'/%3E%3Cstop offset='1' stop-color='%23c9b8a3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='3' height='4' fill='url(%23g)'/%3E%3C/svg%3E"
+const PHOTO = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 160'%3E%3Cdefs%3E%3Cpattern id='p' width='16' height='16' patternUnits='userSpaceOnUse'%3E%3Crect width='16' height='16' fill='%239bb7ff'/%3E%3Crect width='8' height='8' fill='%2382a3f7'/%3E%3Crect x='8' y='8' width='8' height='8' fill='%2382a3f7'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='120' height='160' fill='url(%23p)'/%3E%3Cg transform='translate(60.0 80.0) scale(1.33)'%3E%3Cg%3E%3Ccircle cx='-14' cy='-16' r='7' fill='%23fff8e7'/%3E%3Ccircle cx='-4' cy='-22' r='7' fill='%23fff8e7'/%3E%3Ccircle cx='8' cy='-20' r='7' fill='%23fff8e7'/%3E%3Ccircle cx='16' cy='-12' r='7' fill='%23fff8e7'/%3E%3Ccircle cx='-18' cy='-6' r='7' fill='%23fff8e7'/%3E%3Ccircle cx='2' cy='-12' r='7' fill='%23fff8e7'/%3E%3Cpath d='M-22 -8 L22 -8 L16 30 L-16 30 Z' fill='%23e63946'/%3E%3Cpath d='M-11 -8 L-8 30 L-2 30 L-4 -8 Z M4 -8 L2 30 L8 30 L11 -8 Z' fill='%23fff8e7'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"
 // One Profile tile (CNT-10), the same markup as the library examples.
 const tile = (p) => {
   const name = `${p.first} ${p.last}`
