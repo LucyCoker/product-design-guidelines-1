@@ -286,7 +286,7 @@ function setupRatingDemo() {
     const current = () => Number(radios.find((r) => r.checked)?.value || 0)
     const show = () => {
       const n = current()
-      if (value) value.textContent = `${n} out of ${radios.length} stars`
+      if (value) value.textContent = `${n} ${n === 1 ? 'star' : 'stars'}`
       const clear = root.querySelector('[data-rating-clear]')
       if (clear) clear.hidden = n === 0
     }

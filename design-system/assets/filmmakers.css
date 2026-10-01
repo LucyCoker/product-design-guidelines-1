@@ -256,9 +256,10 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
  * A radio group built from Bootstrap's .btn-check toggle buttons, so the
  * keyboard (arrow keys) and screen readers get one choice out of five. CSS
  * fills every star up to the checked one (Font Awesome solid is weight 900,
- * regular 400) and previews on hover. The checked star gets no background.
+ * regular 400) and previews on hover. The checked star gets no background
+ * or border; the focus ring still shows for keyboard users.
  * ------------------------------------------------------------------------ */
-.fm-rating .btn-check { --bs-btn-active-bg: transparent; --bs-btn-active-color: var(--bs-btn-color); }
+.fm-rating .btn-check { --bs-btn-active-bg: transparent; --bs-btn-active-border-color: transparent; --bs-btn-active-color: var(--bs-btn-color); }
 .fm-rating .btn-check > i { font-weight: 400; }
 .fm-rating .btn-check:has(input:checked) > i,
 .fm-rating .btn-check:has(~ .btn-check > input:checked) > i { font-weight: 900; }
