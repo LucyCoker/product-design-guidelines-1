@@ -243,7 +243,7 @@
      "classes": "btn-text theme-secondary btn-icon",
      "note": "A button that shows only an icon. For actions whose icon everyone knows: an overflow menu, close, and toolbar actions such as search and filter.",
      "rules": [
-      "Use <code>btn-text theme-secondary btn-icon</code>. <code>.btn-icon</code> makes the button square.",
+      "Use <code>btn-text theme-secondary btn-icon</code> by default. <code>.btn-icon</code> makes the button square. Use <code>btn-outline theme-secondary btn-icon</code> when the button stands on its own and needs a visible edge, for example on a grey or busy surface.",
       "Only for overflow menus (ellipsis), close controls (xmark) and toolbar actions with a well-known icon (search, filter, sort). Anything else gets a text label.",
       "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip with the same words, on hover and keyboard focus. The icon is <code>aria-hidden</code>.",
       "Never destructive, never primary or solid. Delete, Remove and the like go in a menu with a text label.",
@@ -262,6 +262,12 @@
        "html": "<div class=\"d-flex align-items-center gap-2\"><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Close\" data-bs-toggle=\"tooltip\" data-bs-title=\"Close\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Filter\" data-bs-toggle=\"tooltip\" data-bs-title=\"Filter\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Sort\" data-bs-toggle=\"tooltip\" data-bs-title=\"Sort\"><i class=\"fa-solid fa-arrow-down-wide-short\" aria-hidden=\"true\"></i></button></div>",
        "caption": "Overflow, close, and well-known toolbar actions. Hover or focus for the tooltip.",
        "badge": "Default"
+      },
+      {
+       "label": "Outline",
+       "html": "<div class=\"d-flex align-items-center gap-2\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"More actions\" data-bs-toggle=\"tooltip\" data-bs-title=\"More actions\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Close\" data-bs-toggle=\"tooltip\" data-bs-title=\"Close\"><i class=\"fa-solid fa-xmark\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Filter\" data-bs-toggle=\"tooltip\" data-bs-title=\"Filter\"><i class=\"fa-solid fa-filter\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Sort\" data-bs-toggle=\"tooltip\" data-bs-title=\"Sort\"><i class=\"fa-solid fa-arrow-down-wide-short\" aria-hidden=\"true\"></i></button></div>",
+       "caption": "btn-outline theme-secondary: when the button stands on its own and needs a visible edge, for example on a grey or busy surface.",
+       "badge": ""
       },
       {
        "label": "Sizes",

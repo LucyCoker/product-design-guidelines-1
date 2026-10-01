@@ -86,7 +86,7 @@ It signals that the user is in a client zone — an area where clients or other 
 
 ## Icon-only buttons
 
-- Icon-only buttons MUST use `btn-text theme-secondary`.
+- Icon-only buttons MUST use `btn-text theme-secondary` by default. They MAY use `btn-outline theme-secondary` when the button stands on its own and needs a visible edge (for example on a grey or busy surface), and they take the outline style inside a button group or input group.
 - They are permitted only for: overflow menus, close controls, and toolbar actions whose icon is universally understood (search, filter).
 - Every icon-only button MUST have an accessible name and a tooltip shown on hover *and* keyboard focus.
 - The hit target MUST be at least 44×44px regardless of icon size.
