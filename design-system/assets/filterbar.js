@@ -229,9 +229,12 @@ export function initFilterBar(root) {
     if (chips) bar = bar.replace('padding:12px 16px;', 'padding:12px 16px 6px;')
     // Tooltips belong to the old rows: remove them before redrawing.
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getInstance(el)?.dispose())
+    // data-results="none" leaves the results area blank: the bar, chips and
+    // count only, for when the results are shown elsewhere.
+    const results = root.dataset.results === 'none' ? '' : table
     root.innerHTML = barOnly
       ? `<div class="card" style="overflow:visible;width:100%">${bar}${count}</div>`
-      : `<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${table}</div>`
+      : `<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${results}</div>`
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
     if (focusKey) {
       const el = root.querySelector(focusKey)
