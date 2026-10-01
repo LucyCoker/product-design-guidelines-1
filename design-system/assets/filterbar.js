@@ -121,6 +121,9 @@ export function initFilterBar(root) {
     `<span class="combobox-value" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(text)}</span>` +
     '<i class="fa-solid fa-caret-down combobox-caret" aria-hidden="true"></i></button>'
 
+  const single = (on, attrs, text) =>
+    `<button type="button" class="menu-item${on ? ' selected' : ''}" ${attrs}${on ? ' aria-current="true"' : ''}>${esc(text)}<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button>`
+
   const menu = (d, full) => {
     const options = d.multi ? d.options : [ALL, ...d.options]
     const searchable = options.length > 6
@@ -129,7 +132,10 @@ export function initFilterBar(root) {
     const v = state.values[d.key]
     const items = shown.map((o) => {
       const checked = d.multi ? v.includes(o) : v === o
-      return `<label class="menu-item" style="cursor:pointer"><span class="menu-item-icon"><input class="${d.multi ? 'check check-sm' : 'radio radio-sm'}" type="${d.multi ? 'checkbox' : 'radio'}" name="${id}-${d.key}" data-pick="${d.key}" value="${esc(o)}"${checked ? ' checked' : ''} aria-label="${esc(o)}" ${RESET}></span><span class="menu-item-content">${esc(o)}</span></label>`
+      // One value: a plain item, no radio. .selected and the check mark the
+      // current value, as in the Simple bar.
+      if (!d.multi) return single(checked, `data-pick="${d.key}" data-value="${esc(o)}"`, o)
+      return `<label class="menu-item" style="cursor:pointer"><span class="menu-item-icon"><input class="check check-sm" type="checkbox" name="${id}-${d.key}" data-pick="${d.key}" value="${esc(o)}"${checked ? ' checked' : ''} aria-label="${esc(o)}" ${RESET}></span><span class="menu-item-content">${esc(o)}</span></label>`
     }).join('')
     const find = searchable ? `<div class="combobox-search"><input class="form-control form-control-sm combobox-search-input" type="search" data-find placeholder="Find ${d.label.toLowerCase()}" aria-label="Find ${d.label.toLowerCase()}" value="${esc(state.find)}"></div>` : ''
     const none = searchable && shown.length === 0 ? `<div class="combobox-no-results">No ${d.label.toLowerCase()} matches</div>` : ''
@@ -167,7 +173,7 @@ export function initFilterBar(root) {
     const moreCount = overflow.filter(isApplied).length
     const list = rows()
     const sortMenu = state.open === 'sort'
-      ? `<div class="menu show" style="position:absolute;inset-inline-end:0;top:calc(100% + 4px);z-index:1060;display:block;min-width:200px">${SORTS.map((s, i) => `<label class="menu-item" style="cursor:pointer"><span class="menu-item-icon"><input class="radio radio-sm" type="radio" name="${id}-sort" data-sort="${i}"${state.sort === i ? ' checked' : ''} aria-label="${s.label}" ${RESET}></span><span class="menu-item-content">${s.label}</span></label>`).join('')}</div>`
+      ? `<div class="menu show" style="position:absolute;inset-inline-end:0;top:calc(100% + 4px);z-index:1060;display:block;min-width:200px">${SORTS.map((s, i) => single(state.sort === i, `data-sort="${i}"`, s.label)).join('')}</div>`
       : ''
     const moreOpen = state.more
     const panelId = `${id}-more`
@@ -295,6 +301,22 @@ export function initFilterBar(root) {
       render()
       return
     }
+    const one = e.target.closest('button[data-pick]')
+    if (one) {
+      state.values[one.dataset.pick] = one.dataset.value
+      state.open = null
+      render()
+      root.querySelector(`[data-toggle="${one.dataset.pick}"]`)?.focus()
+      return
+    }
+    const sortItem = e.target.closest('button[data-sort]')
+    if (sortItem) {
+      state.sort = Number(sortItem.dataset.sort)
+      state.open = null
+      render()
+      root.querySelector('[data-toggle="sort"]')?.focus()
+      return
+    }
     const chip = e.target.closest('[data-chip]')
     if (chip) {
       const c = chipsState[Number(chip.dataset.chip)].clear
@@ -329,18 +351,11 @@ export function initFilterBar(root) {
     const pick = e.target.closest('[data-pick]')
     if (pick) {
       const d = DEFS.find((x) => x.key === pick.dataset.pick)
-      if (d.multi) {
-        const v = state.values[d.key]
-        state.values[d.key] = pick.checked ? [...v, pick.value] : v.filter((x) => x !== pick.value)
-      } else {
-        state.values[d.key] = pick.value
-        state.open = null
-      }
+      const v = state.values[d.key]
+      state.values[d.key] = pick.checked ? [...v, pick.value] : v.filter((x) => x !== pick.value)
       render()
       return
     }
-    const sort = e.target.closest('[data-sort]')
-    if (sort) { state.sort = Number(sort.dataset.sort); state.open = null; render() }
   })
   root.addEventListener('input', (e) => {
     if (e.target.matches('[data-query]')) { state.query = e.target.value; render() }
