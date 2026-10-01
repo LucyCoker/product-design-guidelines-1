@@ -140,6 +140,23 @@ export function initFilterBar(root) {
   const filter = (d, full) =>
     `<div style="position:relative;display:flex;align-items:center${full ? ';width:100%' : ''}">${toggle(d.key, `${d.label}: ${valueLabel(d)}`, d.width, isApplied(d), full)}${state.open === d.key ? menu(d, full) : ''}</div>`
 
+  // Applied filters dialog for compact widths. Drawn once beside the card so
+  // re-rendering the bar does not close it.
+  root.innerHTML = '<div data-fb-card></div>' +
+    `<dialog class="dialog" id="${id}-applied" aria-labelledby="${id}-applied-title"><div class="dialog-header"><h2 class="dialog-title fs-md fw-semibold" id="${id}-applied-title">Applied filters</h2><button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close"></button></div>` +
+    '<div class="dialog-body"></div>' +
+    '<div class="dialog-footer" style="justify-content:space-between"><button type="button" class="btn-text theme-primary btn-sm" data-clear data-dialog-clear><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button><button type="button" class="btn-solid theme-primary btn-sm" data-bs-dismiss="dialog">View results</button></div></dialog>'
+  const card = root.querySelector('[data-fb-card]')
+  const dialog = root.querySelector('dialog')
+  const dialogBody = dialog.querySelector('.dialog-body')
+  // The button that opened the dialog is redrawn, so return focus to the
+  // current one, or to search once nothing is applied.
+  dialog.addEventListener('hidden.bs.dialog', () => {
+    if (!root.contains(document.activeElement) || document.activeElement === document.body || dialog.contains(document.activeElement)) {
+      ;(root.querySelector('[data-applied]') || root.querySelector('[data-query]'))?.focus()
+    }
+  })
+
   let inlineCount = MAX_INLINE
   let chipsState = []
 
@@ -163,7 +180,8 @@ export function initFilterBar(root) {
     let bar
     if (compact) {
       const applied = DEFS.filter(isApplied).length
-      const moreName = applied ? `More filters, ${applied} applied` : 'More filters'
+      // The accessible name starts with the visible text, then the count.
+      const moreName = applied ? `Add filters, ${applied} applied` : 'Add filters'
       const sortPop = sortMenu
         .replace('inset-inline-end:0;top:calc(100% + 4px)', 'inset-inline:8px;top:calc(100% - 4px)')
         .replace('min-width:200px', 'min-width:0')
@@ -174,7 +192,7 @@ export function initFilterBar(root) {
         // group, so their borders overlap by 1px; the group is static so the
         // Sort by menu anchors to the whole bar.
         '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="position:static;margin-inline-start:auto;flex:0 0 auto">' +
-        `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" aria-label="${moreName}" title="${moreName}"><i class="fa-solid fa-filter" aria-hidden="true"></i></button>` +
+        `<button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" aria-label="${moreName}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>Add filters</button>` +
         `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortPop}` +
         '</div>' +
         '</div>'
@@ -213,11 +231,18 @@ export function initFilterBar(root) {
       else chipList.push({ label: `${d.label}: ${v}`, remove: `Remove the ${d.label} filter`, clear: { key: d.key } })
     }
     chipsState = chipList
-    const chips = chipList.length
+    const chipHtml = (c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`
+    const appliedName = `${chipList.length} ${chipList.length === 1 ? 'filter' : 'filters'} applied`
+    // Compact: one button, “3 filters applied”, opens the Applied filters
+    // dialog instead of a row of chips that would fill the screen.
+    const chips = chipList.length && compact
+      ? '<div style="display:flex;align-items:center;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
+        `<button type="button" class="btn-text theme-primary btn-sm" data-applied data-bs-toggle="dialog" data-bs-target="#${id}-applied" aria-haspopup="dialog">${appliedName}</button></div>`
+      : chipList.length
       ? // Compact row: 24px chips on the primary muted tone (--bs-primary-bg-muted,
       // one step darker than bg-subtle), with body text.
       '<div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
-        chipList.map((c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') +
+        chipList.map(chipHtml).join('') +
         // Clear filters follows the last chip.
         clearBtn + '</div>'
       : ''
@@ -241,7 +266,16 @@ export function initFilterBar(root) {
     // count only, for when the results are shown elsewhere. The bar-only
     // widths leave it out too.
     const results = root.dataset.results === 'none' || root.dataset.variant === 'bar' ? '' : table
-    root.innerHTML = `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${chips}${count}${results}</div>`
+    // The dialog body is redrawn in place, so an open dialog stays open.
+    const inDialog = active && dialog.contains(active) ? [...dialog.querySelectorAll('[data-chip]')].indexOf(active) : -1
+    dialogBody.innerHTML = `<div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">${chipList.map(chipHtml).join('')}</div>`
+    dialog.querySelector('[data-dialog-clear]').hidden = !chipList.length
+    if (inDialog >= 0) {
+      const left = dialog.querySelectorAll('[data-chip]')
+      ;(left[Math.min(inDialog, left.length - 1)] || dialog.querySelector('.btn-close')).focus()
+    }
+    if (!chipList.length && dialog.open) bootstrap.Dialog.getInstance(dialog)?.hide()
+    card.innerHTML = `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${chips}${count}${results}</div>`
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
     if (focusKey) {
       const el = root.querySelector(focusKey)

@@ -2092,14 +2092,14 @@
      "rules": [
       "Order: search, inline filters (up to three), More filters, then Sort by at the far end.",
       "Every filter is a <a href=\"#sf-3\">Combobox</a> reading <b>label: value</b>. Applied filters are weight 600, and More filters shows how many of its filters are applied.",
-      "Clear filters appears only when a search or filter is applied, and resets all of them. It sits right after the last chip, in the chips row, at every width.",
+      "Clear filters appears only when a search or filter is applied, and resets all of them. It sits right after the last chip, in the chips row; on compact widths it is in the Applied filters dialog.",
       "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
-      "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter.",
+      "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter. On compact widths the chips row is one button instead, “3 filters applied” (<code>btn-text theme-primary btn-sm</code>), which opens an <b>Applied filters</b> <a href=\"#dialog\">Dialog</a>: the chips, then Clear filters and View results in the footer. Removing the last filter closes it, and focus returns to search.",
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>).",
       "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. The button has <code>aria-expanded</code> and <code>aria-controls</code>, and its caret points up while the row is open.",
       "On compact widths the More filters row ends with a full-width <b>View results</b> button (<code>btn-solid theme-primary btn-sm</code>). It closes the row and moves focus to the count row, so people see the results. Filters still apply on change: View results only closes the row.",
-      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip). The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths each filter in the row, and its menu, fills the bar’s width.",
+      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both go into one Button group (<code>btn-outline theme-secondary</code> as every Button group is): <b>Add filters</b> with the filter icon, then a sort icon button with an accessible name and tooltip. Add filters shows no count; the applied count is in its accessible name (“Add filters, 2 applied”), after the visible text. On these widths each filter in the row, and its menu, fills the bar’s width.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
      "examples": [
@@ -2171,7 +2171,7 @@
      "classes": "",
      "docs": "",
      "replaces": "(none)",
-     "note": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, both become an icon Button group, and each filter in the More filters row takes the full width. Clear filters stays after the chips.",
+     "note": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, they become one Button group (Add filters and a sort icon), each filter in the row takes the full width, and the chips become one button that opens the Applied filters dialog.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -2180,8 +2180,8 @@
        "label": "Four widths",
        "badge": "",
        "wide": true,
-       "caption": "1240, 1040, 760 and 440px, each with two languages applied, so the chips and Clear filters show.",
-       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">760px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:760px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become one icon Button group</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
+       "caption": "1240, 1040, 760 and 440px, each with two languages applied, so the chips (or, at 440px, the applied filters button) show.",
+       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">760px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:760px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: Add filters and Sort by in one Button group; chips become “2 filters applied”</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
       }
      ]
     }
