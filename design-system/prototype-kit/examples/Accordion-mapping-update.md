@@ -35,6 +35,14 @@ At the end of the Library `<style>` block in the page’s `<helmet>` (the block 
 .accordion-header .fm-accordion-label + .accordion-icon { margin-inline-start: 0; }
 .accordion-item[open] > .accordion-header .fm-accordion-show,
 .accordion-item:not([open]) > .accordion-header .fm-accordion-hide { display: none; }
+
+/* ---------------------------------------------------------------------------
+ * Overflow tabs (NAV-11)
+ *
+ * Bootstrap pushes the More item to the far end (margin-inline-start: auto).
+ * The product keeps it right after the last visible tab.
+ * ------------------------------------------------------------------------ */
+.nav-overflow-item { margin-inline-start: 0; }
 ```
 
 ## 2. Replace the CNT-5 row

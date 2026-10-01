@@ -273,6 +273,11 @@ function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
 
+// Nav overflow (NAV-11): the pages are drawn after Bootstrap loads, so start it here.
+function setupNavOverflow() {
+  $$('[data-bs-toggle="nav-overflow"]').forEach((el) => bootstrap.NavOverflow.getOrCreateInstance(el))
+}
+
 function setupTooltips() {
   $$('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
 }
@@ -567,6 +572,7 @@ async function start() {
   quietExampleLinks()
   freeMenus()
   setupTooltips()
+  setupNavOverflow()
   setupUploadDemo()
   setupCopy()
   setupPages()

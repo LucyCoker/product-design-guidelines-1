@@ -732,6 +732,38 @@
      "flags": [],
      "layout": "row",
      "example": "<nav aria-label=\"Pagination\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous page\"><i class=\"fa-solid fa-chevron-left\"></i></a></li><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next page\"><i class=\"fa-solid fa-chevron-right\"></i></a></li></ul></nav>"
+    },
+    {
+     "status": "Added",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/nav-overflow/",
+     "flags": [
+      {
+       "type": "info",
+       "text": "The mapping prototype set margin-inline-start:0 on .nav-overflow-item with script after init. The Library does it in filmmakers.css instead."
+      }
+     ],
+     "unresolved": false,
+     "layout": "full",
+     "code": "NAV-11",
+     "name": "Overflow tabs",
+     "classes": ".nav-overflow[data-bs-toggle=\"nav-overflow\"] > .nav.nav-tabs > .nav-item",
+     "replaces": "Scrolling tabs .scrtabs-tab-container + .nav-tabs.nav-justified",
+     "note": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways. Bootstrap 6 Nav overflow; it watches the width of its wrapper, not the window. Used on Sedcard (Summary view).",
+     "rules": [
+      "Wrap the <code>.nav.nav-tabs</code> in <code>.nav-overflow</code> with <code>data-bs-toggle=\"nav-overflow\"</code>. Bootstrap moves the tabs that do not fit into a More menu (<a href=\"#menu-basic\">Menu</a>) and keeps the active tab’s state.",
+      "The toggle reads “More” with the ellipsis after the text: <code>data-bs-icon-placement=\"end\"</code> and an <code>&lt;i class=\"fa-solid fa-ellipsis\" data-bs-overflow-icon&gt;</code> in the wrapper.",
+      "More sits right after the last visible tab, not at the far end. filmmakers.css sets <code>.nav-overflow-item { margin-inline-start: 0 }</code>, overriding Bootstrap’s <code>auto</code>, so no script is needed after init."
+     ],
+     "examples": [
+      {
+       "label": "Overflow tabs",
+       "html": "<div class=\"nav-overflow\" data-bs-toggle=\"nav-overflow\" data-bs-icon-placement=\"end\" style=\"max-width:420px\"><i class=\"fa-solid fa-ellipsis\" data-bs-overflow-icon aria-hidden=\"true\"></i><ul class=\"nav nav-tabs\"><li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\" aria-current=\"page\">Summary</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Input</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Media</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Agencies</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Assignments</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Reviews</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">History</a></li></ul></div>",
+       "caption": "Seven tabs in 420px: the ones that do not fit are in More. Narrow the window to see more move.",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "nav-11"
     }
    ]
   },
@@ -1018,6 +1050,33 @@
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>"
+    },
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [],
+     "unresolved": false,
+     "layout": "full",
+     "code": "FRM-12",
+     "name": "Section toggle bar",
+     "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
+     "replaces": "profile-sections label > input[type=checkbox]",
+     "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
+     "rules": [
+      "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”).",
+      "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps.",
+      "Ticking or unticking applies straight away. No Save or Apply button."
+     ],
+     "examples": [
+      {
+       "label": "Section toggle bar",
+       "html": "<fieldset style=\"margin:0;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);background:var(--bs-bg-1);padding:10px 16px;width:100%;max-width:640px\"><legend class=\"visually-hidden\">Sections shown on this page</legend><div style=\"display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px\"><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-1\" checked><label for=\"sec-1\">Contact</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-2\" checked><label for=\"sec-2\">Assignments</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-3\"><label for=\"sec-3\">Reviews</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-4\" checked><label for=\"sec-4\">Agencies</label></div><div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"sec-5\"><label for=\"sec-5\">History</label></div></div></fieldset>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "frm-12"
     }
    ]
   },
@@ -1312,6 +1371,53 @@
    ]
   },
   {
+   "id": "rating",
+   "section": "forms",
+   "title": "Rating",
+   "intro": "Star ratings on profiles.",
+   "items": [
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Editable stars mark the chosen stars with aria-pressed, so screen readers hear five toggle buttons rather than one choice out of five. The common accessible pattern is a radio group (five radios shown as stars). Keep aria-pressed or switch to a radio group?"
+      }
+     ],
+     "unresolved": false,
+     "layout": "row",
+     "code": "CNT-19",
+     "name": "Star rating",
+     "classes": "btn-text theme-secondary btn-xs btn-icon + fa-solid / fa-regular fa-star",
+     "replaces": "ajaxful-rating / rating stars ul.ajaxful-rating, .fa-star",
+     "note": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).",
+     "rules": [
+      "Editable: one icon-only button per star (<code>btn-text theme-secondary btn-xs btn-icon</code>), each with <code>aria-label=\"Rate n from 5\"</code>, in a <code>role=\"group\"</code> with a label.",
+      "Read-only: star icons with a <code>title</code> and a visually hidden “Rating: n from 5”.",
+      "A filled (<code>fa-solid</code>) or outline (<code>fa-regular</code>) star carries the value, never colour. Stars take the text colour."
+     ],
+     "examples": [
+      {
+       "label": "Editable",
+       "html": "<div class=\"d-flex align-items-center gap-2\">Rating:<div role=\"group\" aria-label=\"Rating\" class=\"d-flex\"><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 1 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 2 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 3 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 4 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 5 from 5\" aria-pressed=\"false\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></button></div></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": false
+      },
+      {
+       "label": "Read-only",
+       "html": "<span class=\"d-inline-flex align-items-center gap-2\">Text fluency:<span title=\"Rating: 3 from 5\" style=\"display:inline-flex;gap:1px;font-size:12px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">Rating: 3 from 5</span></span>",
+       "caption": "",
+       "badge": "",
+       "wide": false
+      }
+     ],
+     "id": "cnt-19"
+    }
+   ]
+  },
+  {
    "id": "switch",
    "section": "forms",
    "title": "Switch",
@@ -1439,6 +1545,78 @@
      "flags": [],
      "layout": "row",
      "example": "<div class=\"card\"><div class=\"card-header\" style=\"font-weight:600\">Roles</div><div class=\"card-body\" style=\"font-size:14px;color:var(--bs-fg-2)\">2 roles in this audition</div></div>"
+    }
+   ]
+  },
+  {
+   "id": "lists",
+   "section": "components",
+   "title": "Lists",
+   "intro": "Read-only lists of attributes and activity.",
+   "items": [
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Label colour: this list uses .fg-2 for labels; the Project card’s details (CNT-14) use .fg-3. Pick one for every label and value list."
+      }
+     ],
+     "unresolved": false,
+     "layout": "full",
+     "code": "CNT-15",
+     "name": "Definition list",
+     "classes": "dl grid: minmax(120px, 180px) minmax(0, 1fr)",
+     "replaces": "dl-horizontal .dl-horizontal",
+     "note": "Read-only attributes as label and value pairs, such as a profile’s eye colour, height and stature. Replaces CNT-8, which was removed in review. Used on Sedcard (Summary view).",
+     "rules": [
+      "A <code>dl</code> in a two-column grid: labels <code>minmax(120px, 180px)</code>, values <code>minmax(0, 1fr)</code>.",
+      "Labels (<code>dt</code>) are weight 400 in <code>.fg-2</code>; values (<code>dd</code>) are body text. Both are the same size: de-emphasis is colour only.",
+      "Show only fields that have a value."
+     ],
+     "examples": [
+      {
+       "label": "Definition list",
+       "html": "<dl class=\"m-0\" style=\"display:grid;grid-template-columns:minmax(100px,160px) minmax(0,1fr);gap:8px 16px;max-width:480px\"><dt class=\"fw-normal fg-2\">Eye color</dt><dd class=\"m-0\">blue-green</dd><dt class=\"fw-normal fg-2\">Height (cm)</dt><dd class=\"m-0\">167</dd><dt class=\"fw-normal fg-2\">Stature</dt><dd class=\"m-0\">slim</dd></dl>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "cnt-15"
+    },
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The “Show N more events” toggle uses the Row action style (btn-text theme-primary btn-xs), which is for actions on one item in a list. A toggle for the whole list may be Tertiary instead (btn-text theme-secondary btn-sm). Which?"
+      }
+     ],
+     "unresolved": false,
+     "layout": "full",
+     "code": "CNT-16",
+     "name": "Activity list",
+     "classes": "grid: timestamp column + text",
+     "replaces": "dl-horizontal (timeline) .dl-horizontal-double-width-label",
+     "note": "Audition history, events, notes and comments, newest first. Used on Sedcard (Summary view).",
+     "rules": [
+      "Each entry is a two-column grid: the timestamp and author on the left, the text on the right.",
+      "Timestamp and author are 12px <code>.fs-xs .fg-3</code> fine print (the caption size typography.md gives to timestamps).",
+      "Long lists show the first 5 entries and a toggle: “Show N more events” with a caret."
+     ],
+     "examples": [
+      {
+       "label": "Activity list",
+       "html": "<div style=\"display:flex;flex-direction:column;gap:8px;max-width:560px\"><div style=\"display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:4px 16px\"><div class=\"fs-xs fg-3\"><div>26/04/2023, 12:26 CEST</div><div>by Constantine Coker</div></div><div>Added 5 star Rating</div></div><div style=\"display:grid;grid-template-columns:minmax(120px,160px) minmax(0,1fr);gap:4px 16px\"><div class=\"fs-xs fg-3\"><div>26/04/2023, 12:26 CEST</div><div>by Constantine Coker</div></div><div>Rating removed</div></div><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\">Show 17 more events<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button></div></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "cnt-16"
     }
    ]
   },
@@ -2234,6 +2412,79 @@
        "icon": "fa-magnifying-glass"
       }
      ]
+    }
+   ]
+  },
+  {
+   "id": "page-sections",
+   "section": "organisms",
+   "title": "Page sections",
+   "intro": "Headings and headers that open a section or a page.",
+   "items": [
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Size: this heading is 16px (.fs-md), which typography.md gives to card and group headings. Section headings there are .fs-lg (18–20px). Is this a section heading (.fs-lg) or a group heading (.fs-md)?"
+      }
+     ],
+     "unresolved": false,
+     "layout": "full",
+     "code": "CNT-17",
+     "name": "Section heading",
+     "classes": "h2 + border-bottom",
+     "replaces": "h3 section heading h3",
+     "note": "One heading per page section, with an optional action on the same line. Used on Sedcard (Summary view).",
+     "rules": [
+      "An <code>h2</code>, weight 600, with a 1px <code>--bs-border-color</code> line under the row.",
+      "A trailing icon action (<a href=\"#btn-tertiary\">Tertiary</a>, icon only, with a tooltip) or a filter (<a href=\"#sf-4\">Simple</a> bar) sits on the same line, right aligned."
+     ],
+     "examples": [
+      {
+       "label": "Section heading",
+       "html": "<div style=\"display:flex;align-items:center;gap:8px;padding-bottom:4px;border-bottom:1px solid var(--bs-border-color);width:100%;max-width:640px\"><h2 class=\"fs-md fw-semibold m-0\" style=\"flex:1\">Agencies</h2><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Add agency\" data-bs-toggle=\"tooltip\" data-bs-title=\"Add agency\"><i class=\"fa-solid fa-plus\" aria-hidden=\"true\"></i></button></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "cnt-17"
+    },
+    {
+     "status": "Custom",
+     "docs": "",
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Name size: the mapping note says 24px and its example shows 20px. The tokens are .fs-2xl (28–32px, the page title in typography.md) and .fs-xl (24–28px). The example uses .fs-xl. Which?"
+      }
+     ],
+     "unresolved": false,
+     "layout": "full",
+     "code": "CNT-18",
+     "name": "Profile header",
+     "classes": "picture + h1 + badge + meta + Accordion (CNT-5) + action stack",
+     "replaces": "caster-header .caster-header + .caster-picture + .caster-header--actions",
+     "note": "The top of a profile (Sedcard): picture, name, status, meta line, important information and the profile actions. Used on Sedcard (Summary view).",
+     "rules": [
+      "Picture on the left. With no picture, the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon, as in the <a href=\"#cnt-10\">Profile tile</a>.",
+      "The name is the page’s <code>h1</code>, weight 600, never in capitals. A status <a href=\"#msg-2\">Badge</a> follows it.",
+      "The meta line (ID, profile type) is <code>.fg-2</code>.",
+      "Important information sits in an <a href=\"#cnt-5\">Accordion</a>, the Important version.",
+      "Actions are stacked, full width: one primary (Add profile, with its menu), the rest Secondary (<code>btn-outline theme-secondary btn-sm</code>)."
+     ],
+     "examples": [
+      {
+       "label": "Profile header",
+       "html": "<div style=\"display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;width:100%;max-width:760px\"><div style=\"width:72px;aspect-ratio:1;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);display:flex;align-items:center;justify-content:center\"><i class=\"fa-solid fa-user fg-3\" aria-hidden=\"true\" style=\"font-size:1.5rem\"></i></div><div style=\"display:flex;flex-direction:column;gap:8px;flex:1;min-width:200px\"><div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap\"><h1 class=\"fs-xl fw-semibold m-0\">Helga Bellinghausen</h1><span class=\"badge theme-warning badge-subtle\"><i class=\"fa-solid fa-circle-question\" aria-hidden=\"true\"></i>In discussion</span></div><div class=\"fg-2\">ID: 1114 | (E) Professional Actor</div><div class=\"accordion accordion-sm\" style=\"max-width:420px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold fg-primary\">Important information<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\">Not available 12 to 14 November.</div></details></div></div><div style=\"display:flex;flex-direction:column;gap:6px;min-width:140px\"><button type=\"button\" class=\"btn-solid theme-primary btn-sm\" style=\"justify-content:center\">Add profile<i class=\"fa-solid fa-caret-down\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" style=\"justify-content:center\">Send message</button></div></div>",
+       "caption": "",
+       "badge": "Default",
+       "wide": true
+      }
+     ],
+     "id": "cnt-18"
     }
    ]
   },

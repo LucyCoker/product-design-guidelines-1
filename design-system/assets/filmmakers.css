@@ -241,3 +241,11 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .accordion-header .fm-accordion-label + .accordion-icon { margin-inline-start: 0; }
 .accordion-item[open] > .accordion-header .fm-accordion-show,
 .accordion-item:not([open]) > .accordion-header .fm-accordion-hide { display: none; }
+
+/* ---------------------------------------------------------------------------
+ * Overflow tabs (NAV-11)
+ *
+ * Bootstrap pushes the More item to the far end (margin-inline-start: auto).
+ * The product keeps it right after the last visible tab.
+ * ------------------------------------------------------------------------ */
+.nav-overflow-item { margin-inline-start: 0; }
