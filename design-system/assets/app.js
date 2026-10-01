@@ -47,7 +47,9 @@ function itemHtml(item) {
   const chips = [
     item.code ? `<span class="badge theme-secondary badge-subtle">${item.code}</span>` : '',
     item.status === 'Custom' ? '<span class="badge theme-secondary">Custom</span>' : '',
-    item.unresolved ? '<span class="badge theme-warning badge-subtle">Unresolved</span>' : ''
+    item.unresolved ? '<span class="badge theme-warning badge-subtle">Unresolved</span>' : '',
+    // Work in progress, for example “Needs review · Not finished”.
+    item.review ? `<span class="badge theme-warning badge-subtle">${escapeHtml(item.review)}</span>` : ''
   ].join('')
   const meta = [
     item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',

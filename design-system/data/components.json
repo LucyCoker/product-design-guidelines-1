@@ -2073,6 +2073,7 @@
      "code": "SF-1",
      "name": "Complex",
      "status": "Custom",
+     "review": "Needs review · Not finished",
      "classes": "input-group + combobox-toggle + chip",
      "docs": "",
      "replaces": "filter bar inline labels + selects",
