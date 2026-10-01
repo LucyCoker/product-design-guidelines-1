@@ -1532,12 +1532,7 @@
     {
      "status": "Custom",
      "docs": "",
-     "flags": [
-      {
-       "type": "ask",
-       "text": "The “Show N more events” toggle uses the Row action style (btn-text theme-primary btn-xs), which is for actions on one item in a list. A toggle for the whole list may be Tertiary instead (btn-text theme-secondary btn-sm). Which?"
-      }
-     ],
+     "flags": [],
      "unresolved": false,
      "layout": "full",
      "code": "CNT-15",
@@ -1548,7 +1543,7 @@
      "rules": [
       "A <code>dl</code> in a two-column grid: labels <code>minmax(120px, 180px)</code>, values <code>minmax(0, 1fr)</code>. Show only rows that have a value.",
       "Labels (<code>dt</code>) are weight 400 in <code>.fg-2</code>; values (<code>dd</code>) are body text, the same size. De-emphasis is colour only. <code>.fg-2</code> is for every label and value list, because it keeps AAA contrast on grey backgrounds too (7.9:1 on <code>bg-2</code>).",
-      "For activity, the label is the timestamp and author in 12px <code>.fs-xs .fg-3</code>, newest first. Long lists show the first 5 and a “Show N more” toggle."
+      "For activity, the label is the timestamp and author in 12px <code>.fs-xs .fg-3</code>, newest first. Long lists show the first 5 and a “Show N more” toggle in the <a href=\"#btn-row-action\">Row action</a> style (<code>btn-text theme-primary btn-xs</code>) with a caret."
      ],
      "examples": [
       {
