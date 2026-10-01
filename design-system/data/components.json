@@ -1370,7 +1370,7 @@
       "Keyboard: Tab moves into the group and out to the next field. Right and Up add one star, Left and Down remove one (down to 0), Home sets 0 and End sets 5. The rating applies as it changes; no confirm step. Bootstrap’s focus ring shows on the focused star.",
       "The current value shows as text after the stars (“4 stars”, “1 star”, “0 stars” when cleared; <code>.fg-2</code>) in an <code>aria-live=\"polite\"</code> region, so screen readers announce each change. The radios keep their full names (“4 out of 5 stars”), so the scale is still announced. No tooltips on the stars: each radio already has its name, and tooltips only appear on mouse hover.",
       "Fill shows the state: every star up to the chosen one is filled (<code>fa-solid</code>), the rest are outline (<code>fa-regular</code>), and hovering previews a rating. filmmakers.css does this with CSS only (<code>.fm-rating</code>). Never colour alone. Stars are <code>--bs-fg-body</code>, the body text colour (filmmakers.css sets it on <code>.fm-rating</code>), which passes 15:1 on white and grey.",
-      "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. (The 44px target in the reference applies to native apps.)",
+      "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. The star icons are the body text size (14px), as in production, in both the editable and the read-only rating. (The 44px target in the reference applies to native apps.)",
       "When a rating is set, <b>Clear rating</b> follows the value (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating.",
       "In a form: help text and errors are linked with <code>aria-describedby</code>, an error sets <code>aria-invalid=\"true\"</code>, and a required rating sets <code>aria-required=\"true\"</code> on the radiogroup (see <a href=\"#frm-11\">Validation</a>).",
       "Read-only: star icons with a <code>title</code> and a visually hidden “n out of 5 stars”."
@@ -1385,7 +1385,7 @@
       },
       {
        "label": "Read-only",
-       "html": "<span class=\"d-inline-flex align-items-center gap-2\">Text fluency:<span title=\"3 out of 5 stars\" style=\"display:inline-flex;gap:1px;font-size:12px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">3 out of 5 stars</span></span>",
+       "html": "<span class=\"d-inline-flex align-items-center gap-2\">Text fluency:<span title=\"3 out of 5 stars\" style=\"display:inline-flex;gap:2px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">3 out of 5 stars</span></span>",
        "caption": "",
        "badge": "",
        "wide": false
