@@ -2098,6 +2098,7 @@
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>).",
       "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. The button has <code>aria-expanded</code> and <code>aria-controls</code>, and its caret points up while the row is open.",
+      "On compact widths the More filters row ends with a full-width <b>View results</b> button (<code>btn-solid theme-primary btn-sm</code>). It closes the row and moves focus to the count row, so people see the results. Filters still apply on change: View results only closes the row.",
       "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip). The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths each filter in the row, and its menu, fills the bar’s width.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
@@ -2176,11 +2177,11 @@
      "layout": "row",
      "examples": [
       {
-       "label": "Five widths",
+       "label": "Four widths",
        "badge": "",
        "wide": true,
-       "caption": "1240, 1040, 860, 700 and 440px. Chips are left out here to keep the bars comparable.",
-       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Three inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">860px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:860px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">700px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:700px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become one icon Button group</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
+       "caption": "1240, 1040, 760 and 440px, each with two languages applied, so the chips and Clear filters show.",
+       "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">760px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:760px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by become one icon Button group</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
       }
      ]
     }

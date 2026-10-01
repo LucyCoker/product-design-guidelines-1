@@ -89,6 +89,9 @@ export function initFilterBar(root) {
   const id = 'fb' + (++uid)
   const defaults = () => Object.fromEntries(DEFS.map((d) => [d.key, d.multi ? [] : (d.default ?? ALL)]))
   const state = { query: '', values: defaults(), sort: 0, open: null, find: '', more: false }
+  // The bar-only widths start with two languages applied, so each width shows
+  // its chips and Clear filters.
+  if (root.dataset.variant === 'bar') state.values.language = ['English', 'German']
 
   const isApplied = (d) => {
     const v = state.values[d.key]
@@ -194,6 +197,10 @@ export function initFilterBar(root) {
     let panel = moreOpen
       ? `<div id="${panelId}" role="group" aria-label="More filters"><div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:0 16px 12px;background:var(--bs-bg-1)">` +
         overflow.map((d) => filter(d, compact)).join('') +
+        // On compact widths the row can fill the screen, so View results
+        // closes it and takes the person to the results. Filters still apply
+        // on change; this button only closes the row.
+        (compact ? '<button type="button" class="btn-solid theme-primary btn-sm" data-view-results style="width:100%">View results</button>' : '') +
         '</div></div>'
       : ''
     // Applied chips: one per search term and per applied value. Always shown.
@@ -214,7 +221,7 @@ export function initFilterBar(root) {
         // Clear filters follows the last chip.
         clearBtn + '</div>'
       : ''
-    const count = `<div style="display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px" class="fs-xs fw-semibold">${list.length} of ${PROFILES.length} profiles</div>`
+    const count = `<div style="display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px" class="fs-xs fw-semibold" data-count tabindex="-1">${list.length} of ${PROFILES.length} profiles</div>`
     const table = list.length
       ? `<div role="list" aria-label="Profiles" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;padding:16px">${list.map(tile).join('')}</div>`
       : '<div style="padding:48px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center"><h3 class="fs-md fw-semibold m-0">No matches found</h3><p class="fg-2 m-0" style="max-width:52ch">We couldn\'t find anything matching your search. Try adjusting your keywords, filters, or check for typos.</p></div>'
@@ -223,7 +230,6 @@ export function initFilterBar(root) {
     const active = document.activeElement
     const focusKey = active && root.contains(active) ? (active.matches('[data-query]') ? '[data-query]' : active.matches('[data-find]') ? '[data-find]' : active.dataset.toggle ? `[data-toggle="${active.dataset.toggle}"]` : null) : null
     const caret = focusKey && active.matches('input') ? active.selectionStart : null
-    const barOnly = root.dataset.variant === 'bar'
     // With chips showing, the bar and the chips row read as one block.
     if (chips) {
       if (panel) panel = panel.replace('padding:0 16px 12px;', 'padding:0 16px 6px;')
@@ -232,11 +238,10 @@ export function initFilterBar(root) {
     // Tooltips belong to the old rows: remove them before redrawing.
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getInstance(el)?.dispose())
     // data-results="none" leaves the results area blank: the bar, chips and
-    // count only, for when the results are shown elsewhere.
-    const results = root.dataset.results === 'none' ? '' : table
-    root.innerHTML = barOnly
-      ? `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${count}</div>`
-      : `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${chips}${count}${results}</div>`
+    // count only, for when the results are shown elsewhere. The bar-only
+    // widths leave it out too.
+    const results = root.dataset.results === 'none' || root.dataset.variant === 'bar' ? '' : table
+    root.innerHTML = `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${chips}${count}${results}</div>`
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
     if (focusKey) {
       const el = root.querySelector(focusKey)
@@ -262,6 +267,16 @@ export function initFilterBar(root) {
         state.values[d.key] = d.multi ? state.values[d.key].filter((x) => x !== c.item) : (d.default ?? ALL)
       }
       render()
+      return
+    }
+    if (e.target.closest('[data-view-results]')) {
+      state.more = false
+      state.open = null
+      render()
+      // Focus the count so screen readers hear how many results there are.
+      const c = root.querySelector('[data-count]')
+      c.focus({ preventScroll: true })
+      c.scrollIntoView({ block: 'start', behavior: 'smooth' })
       return
     }
     if (e.target.closest('[data-clear]')) {
