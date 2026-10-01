@@ -1373,7 +1373,7 @@
       "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. The star icons are the body text size (14px), as in production, in both the editable and the read-only rating. (The 44px target in the reference applies to native apps.)",
       "When a rating is set, <b>Clear rating</b> follows the value (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating.",
       "In a form: help text and errors are linked with <code>aria-describedby</code>, an error sets <code>aria-invalid=\"true\"</code>, and a required rating sets <code>aria-required=\"true\"</code> on the radiogroup (see <a href=\"#frm-11\">Validation</a>).",
-      "Read-only: the label, then star icons in a <code>span</code> with a <code>title</code> and a visually hidden “n out of 5 stars”. Two sizes: 14px (body text) by default, and 12px (<code>.fs-xs</code> on the whole rating, label included) in dense lists and tables. Keep it on one line (<code>.text-nowrap</code>)."
+      "Read-only: the label, then star icons in a <code>span.fg-3</code> (lighter than the editable stars, so a read-only rating does not look clickable; 5.2:1 or more on white and grey) with a <code>title</code> and a visually hidden “n out of 5 stars”. Two sizes: 14px (body text) by default, and 12px (<code>.fs-xs</code> on the whole rating, label included) in dense lists and tables. Keep it on one line (<code>.text-nowrap</code>)."
      ],
      "examples": [
       {
@@ -1385,14 +1385,14 @@
       },
       {
        "label": "Read-only",
-       "html": "<span class=\"d-inline-flex align-items-center gap-2 text-nowrap\">Briefing aptitude:<span title=\"4 out of 5 stars\" style=\"display:inline-flex;gap:2px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">4 out of 5 stars</span></span>",
+       "html": "<span class=\"d-inline-flex align-items-center gap-2 text-nowrap\">Briefing aptitude:<span class=\"fg-3\" title=\"4 out of 5 stars\" style=\"display:inline-flex;gap:2px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">4 out of 5 stars</span></span>",
        "caption": "14px, the body text size. On profiles and in summaries.",
        "badge": "",
        "wide": false
       },
       {
        "label": "Read-only, small",
-       "html": "<span class=\"d-inline-flex align-items-center gap-2 text-nowrap fs-xs\">Briefing aptitude:<span title=\"4 out of 5 stars\" style=\"display:inline-flex;gap:2px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">4 out of 5 stars</span></span>",
+       "html": "<span class=\"d-inline-flex align-items-center gap-2 text-nowrap fs-xs\">Briefing aptitude:<span class=\"fg-3\" title=\"4 out of 5 stars\" style=\"display:inline-flex;gap:2px\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></span><span class=\"visually-hidden\">4 out of 5 stars</span></span>",
        "caption": "12px (.fs-xs), the label and stars together. In dense lists and tables.",
        "badge": "",
        "wide": false
