@@ -2373,12 +2373,7 @@
     {
      "status": "Custom",
      "docs": "",
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Size: this heading is 16px (.fs-md), which typography.md gives to card and group headings. Section headings there are .fs-lg (18–20px). Is this a section heading (.fs-lg) or a group heading (.fs-md)?"
-      }
-     ],
+     "flags": [],
      "unresolved": false,
      "layout": "full",
      "code": "CNT-17",
@@ -2387,7 +2382,7 @@
      "replaces": "h3 section heading h3",
      "note": "One heading per page section, with an optional action on the same line. Used on Sedcard (Summary view).",
      "rules": [
-      "An <code>h2</code>, weight 600, with a 1px <code>--bs-border-color</code> line under the row.",
+      "An <code>h2</code> at 16px (<code>.fs-md</code>), weight 600, with a 1px <code>--bs-border-color</code> line under the row. 16px is enough above 14px content. Other sizes can be added as separate Section heading versions if a page needs them.",
       "A trailing icon action (<a href=\"#btn-tertiary\">Tertiary</a>, icon only, with a tooltip) or a filter (<a href=\"#sf-4\">Simple</a> bar) sits on the same line, right aligned."
      ],
      "examples": [
