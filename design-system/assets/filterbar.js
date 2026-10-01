@@ -24,13 +24,13 @@ const MAX_INLINE = 3
 const GAP = 12
 const SEARCH_W = 240
 const MORE_W = 170
-const CLEAR_W = 128
 const SORT_W = 202
 
-// How many filters fit beside search, Clear filters and Sort by. While any
-// filter is left over, the More filters button must fit too.
-function fitCount(avail, anyApplied) {
-  let used = SEARCH_W + GAP + SORT_W + (anyApplied ? GAP + CLEAR_W : 0)
+// How many filters fit beside search and Sort by. While any filter is left
+// over, the More filters button must fit too. Clear filters sits in the chips
+// row, so it never takes bar space.
+function fitCount(avail) {
+  let used = SEARCH_W + GAP + SORT_W
   let n = 0
   for (let i = 0; i < DEFS.length && i < MAX_INLINE; i++) {
     const withThis = used + GAP + DEFS[i].width
@@ -141,8 +141,7 @@ export function initFilterBar(root) {
   let chipsState = []
 
   function render() {
-    const anyApplied = state.query.trim() !== '' || DEFS.some(isApplied)
-    inlineCount = fitCount(root.clientWidth - 32, anyApplied)
+    inlineCount = fitCount(root.clientWidth - 32)
     const inline = DEFS.slice(0, inlineCount)
     const overflow = DEFS.slice(inlineCount)
     const moreCount = overflow.filter(isApplied).length
@@ -153,10 +152,9 @@ export function initFilterBar(root) {
     const moreOpen = state.more
     const panelId = `${id}-more`
     // Compact: once More filters and Sort by no longer fit beside search as
-    // text buttons, both become icon buttons in one Button group, and Clear filters
-    // moves to the end of the More filters row.
+    // text buttons, both become icon buttons in one Button group.
     const compact = inlineCount === 0 &&
-      root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + (anyApplied ? GAP + CLEAR_W : 0) + GAP + SORT_W
+      root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + GAP + SORT_W
     const clearBtn = '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>'
     const search = `<div class="input-group input-group-sm" style="${compact ? 'flex:1 1 auto;min-width:0;max-width:240px' : 'flex:0 0 auto;width:min(240px,100%)'}"><input class="form-control form-control-sm" type="search" data-query placeholder="Search name" aria-label="Search profiles by name" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>`
     let bar
@@ -184,7 +182,6 @@ export function initFilterBar(root) {
         search +
         inline.map((d) => filter(d)).join('') +
         `<button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters${moreCount ? `<span style="font-variant-numeric:tabular-nums"> (${moreCount})</span>` : ''}<i class="fa-solid fa-caret-${moreOpen ? 'up' : 'down'}" aria-hidden="true"></i></button>` +
-        (anyApplied ? clearBtn : '') +
         '</div>' +
         `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto">${toggle('sort', `Sort by: ${SORTS[state.sort].label}`, 190, false)}${sortMenu}</div>` +
         '</div>'
@@ -197,7 +194,6 @@ export function initFilterBar(root) {
     let panel = moreOpen
       ? `<div id="${panelId}" role="group" aria-label="More filters"><div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:0 16px 12px;background:var(--bs-bg-1)">` +
         overflow.map((d) => filter(d, compact)).join('') +
-        (compact && anyApplied ? clearBtn : '') +
         '</div></div>'
       : ''
     // Applied chips: one per search term and per applied value. Always shown.
@@ -214,7 +210,9 @@ export function initFilterBar(root) {
       ? // Compact row: 24px chips on the primary muted tone (--bs-primary-bg-muted,
       // one step darker than bg-subtle), with body text.
       '<div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
-        chipList.map((c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') + '</div>'
+        chipList.map((c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`).join('') +
+        // Clear filters follows the last chip.
+        clearBtn + '</div>'
       : ''
     const count = `<div style="display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px" class="fs-xs fw-semibold">${list.length} of ${PROFILES.length} profiles</div>`
     const table = list.length
