@@ -1367,14 +1367,15 @@
      "note": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).",
      "rules": [
       "Editable: one icon-only button per star (<code>btn-text theme-secondary btn-xs btn-icon</code>), each with <code>aria-label=\"Rate n from 5\"</code>, in a <code>role=\"group\"</code> with a label.",
+      "Clicking a star sets the rating to that star. When a rating is set, a <b>Clear rating</b> button follows the stars (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating.",
       "Read-only: star icons with a <code>title</code> and a visually hidden “Rating: n from 5”.",
       "A filled (<code>fa-solid</code>) or outline (<code>fa-regular</code>) star carries the value, never colour. Stars take the text colour."
      ],
      "examples": [
       {
        "label": "Editable",
-       "html": "<div class=\"d-flex align-items-center gap-2\">Rating:<div role=\"group\" aria-label=\"Rating\" class=\"d-flex\"><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 1 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 2 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 3 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 4 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" aria-label=\"Rate 5 from 5\" aria-pressed=\"false\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></button></div></div>",
-       "caption": "",
+       "html": "<div class=\"d-flex align-items-center gap-2\" data-rating=\"4\">Rating:<div role=\"group\" aria-label=\"Rating\" class=\"d-flex\"><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"1\" aria-label=\"Rate 1 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"2\" aria-label=\"Rate 2 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"3\" aria-label=\"Rate 3 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"4\" aria-label=\"Rate 4 from 5\" aria-pressed=\"true\"><i class=\"fa-solid fa-star\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon\" data-rate=\"5\" aria-label=\"Rate 5 from 5\" aria-pressed=\"false\"><i class=\"fa-regular fa-star\" aria-hidden=\"true\"></i></button></div><button type=\"button\" class=\"btn-text theme-secondary btn-sm\" data-rating-clear>Clear rating</button></div>",
+       "caption": "Click a star to change the rating; Clear rating removes it.",
        "badge": "Default",
        "wide": false
       },

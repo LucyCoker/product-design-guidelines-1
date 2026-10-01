@@ -273,6 +273,28 @@ function freeMenus() {
   $$('.lib-examples [data-bs-toggle="menu"], .lib-preview [data-bs-toggle="menu"]').forEach((el) => el.setAttribute('data-bs-strategy', 'fixed'))
 }
 
+// Star rating (CNT-19): a star sets the rating to it; Clear rating removes it.
+function setupRatingDemo() {
+  $$('[data-rating]').forEach((root) => {
+    const draw = (value) => {
+      root.dataset.rating = value
+      root.querySelectorAll('[data-rate]').forEach((star) => {
+        const on = Number(star.dataset.rate) <= value
+        star.setAttribute('aria-pressed', String(on))
+        star.querySelector('i').className = `fa-${on ? 'solid' : 'regular'} fa-star`
+      })
+      const clear = root.querySelector('[data-rating-clear]')
+      if (clear) clear.hidden = value === 0
+    }
+    root.addEventListener('click', (e) => {
+      const star = e.target.closest('[data-rate]')
+      if (star) draw(Number(star.dataset.rate))
+      else if (e.target.closest('[data-rating-clear]')) draw(0)
+    })
+    draw(Number(root.dataset.rating) || 0)
+  })
+}
+
 // Nav overflow (NAV-11): the pages are drawn after Bootstrap loads, so start it here.
 function setupNavOverflow() {
   $$('[data-bs-toggle="nav-overflow"]').forEach((el) => bootstrap.NavOverflow.getOrCreateInstance(el))
@@ -573,6 +595,7 @@ async function start() {
   freeMenus()
   setupTooltips()
   setupNavOverflow()
+  setupRatingDemo()
   setupUploadDemo()
   setupCopy()
   setupPages()
