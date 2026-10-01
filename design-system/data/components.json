@@ -1452,53 +1452,46 @@
      "code": "CNT-5",
      "name": "Accordion",
      "status": "Replace",
-     "classes": "details.accordion-item > summary.accordion-header + .accordion-body",
+     "classes": "details.accordion-item > summary.accordion-header + .fm-accordion-label + .accordion-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/accordion/",
      "replaces": "expander .collapse / .in",
      "note": "Hides secondary content behind a header people can open, such as Statistics or Additional information. Bootstrap 6 builds it from native details and summary, so it needs no JavaScript and the open state is announced without ARIA.",
      "unresolved": false,
      "flags": [
       {
-       "type": "ask",
-       "text": "Which header style: A, Bootstrap’s default (grey header when open); B, theme-primary (primary tint and text when open, closest to the current product); or C, A or B made flush inside a card. B uses primary on the open header, which the colour rules reserve for actions, so B needs a decided exception."
+       "type": "info",
+       "text": "The Show / Hide label uses three custom classes in filmmakers.css (.fm-accordion-label, .fm-accordion-show, .fm-accordion-hide). They are CSS only and follow the native open state. Whether custom fm- classes are allowed is the open question on the Production list."
       }
      ],
      "layout": "full",
      "rules": [
-      "Use Bootstrap’s accordion markup: <code>.accordion</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded.",
+      "Use Bootstrap’s accordion markup: <code>.accordion.accordion-sm</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded. Bootstrap’s default colours: the open header turns grey (<code>bg-2</code>). No theme classes.",
       "<code>.accordion-sm</code> on every accordion, to match the 14px body text and small controls.",
-      "The header is the title only, weight 600, with a chevron (<code>fa-chevron-down</code> with <code>.accordion-icon</code>) that turns when open. No “show” or “hide” label: the chevron and the native element already say whether it is open.",
-      "Inside a card, use <code>.accordion-flush</code> with <code>.border-top</code>, so the accordion runs edge to edge under the card’s content with a line above it.",
+      "The header is the title, weight 600, then “Show” or “Hide” and a chevron (<code>fa-chevron-down</code> with <code>.accordion-icon</code>) that turns when open. The label is <code>.fm-accordion-label</code> with both words inside; CSS shows the right one, so no script is needed. It is <code>aria-hidden</code>, because the browser already announces open and closed.",
+      "Standalone, for example Statistics, use the accordion as it is. Inside a card, for example Additional information, use <code>.accordion-flush</code> with <code>.border-top</code>, so it runs edge to edge under the card’s content with a line above it.",
       "Several accordions in a row that should open one at a time share a <code>name</code> on their <code>details</code>."
      ],
      "examples": [
       {
-       "label": "Option A: Default",
-       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\" open><summary class=\"accordion-header fw-semibold\">Statistics<i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
-       "caption": "Bootstrap’s default, small. The open header turns grey (bg-2).",
-       "badge": "ASK",
+       "label": "Standalone",
+       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\" open><summary class=\"accordion-header fw-semibold\">Statistics<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
+       "caption": "Bootstrap’s default accordion, small. The open header turns grey (bg-2).",
+       "badge": "Default",
        "wide": false
-      },
-      {
-       "label": "Option B: Primary",
-       "html": "<div class=\"accordion accordion-sm theme-primary\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\" open><summary class=\"accordion-header fw-semibold\">Statistics<i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
-       "caption": "theme-primary: the open header takes the primary tint and text, like the current tinted bar.",
-       "badge": "ASK",
-       "wide": false
-      },
-      {
-       "label": "Option C: Flush in a card",
-       "html": "<div class=\"card\" style=\"width:100%;max-width:640px;overflow:hidden\"><div class=\"card-body\"><div class=\"fs-md fw-semibold\">Audition: Round 1</div><div class=\"fg-3\">Self-tape · Invitation only · Deadline 21/10/2023</div></div><div class=\"accordion accordion-sm accordion-flush border-top\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold\">Additional information<i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><div class=\"fw-semibold mb-1\">Upload requirements</div><ul class=\"mb-3 ps-3\"><li>Picture: Face, Profile (required)</li><li>Video: no requirements</li></ul><div class=\"fw-semibold mb-1\">Description of the Audition</div><p class=\"m-0 fg-2\">Production company: Gorilla Guts · Direction: Sam Johnson · Genre: Horror</p></div></details></div></div>",
-       "caption": "accordion-flush as a section of a card, for Additional information. Works with A or B.",
-       "badge": "ASK",
-       "wide": true
       },
       {
        "label": "Closed",
-       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold\">Statistics<i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
-       "caption": "Closed: the title and a chevron pointing down.",
+       "html": "<div class=\"accordion accordion-sm\" style=\"width:100%;max-width:360px\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold\">Statistics<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><dl class=\"m-0\" style=\"display:grid;grid-template-columns:1fr auto;gap:4px 16px\"><dt class=\"fw-normal\">Profiles</dt><dd class=\"m-0 text-end\">33,622</dd><dt class=\"fw-normal\">Agency</dt><dd class=\"m-0 text-end\">519</dd><dt class=\"fw-normal\">Locations</dt><dd class=\"m-0 text-end\">2,935</dd><dt class=\"fw-normal\">Crew profiles</dt><dd class=\"m-0 text-end\">319</dd><dt class=\"fw-normal\">Companies</dt><dd class=\"m-0 text-end\">29</dd></dl></div></details></div>",
+       "caption": "Closed: the title, Show and a chevron pointing down.",
        "badge": "",
        "wide": false
+      },
+      {
+       "label": "Inside a card",
+       "html": "<div class=\"card\" style=\"width:100%;max-width:640px;overflow:hidden\"><div class=\"card-body\"><div class=\"fs-md fw-semibold\">Audition: Round 1</div><div class=\"fg-3\">Self-tape · Invitation only · Deadline 21/10/2023</div></div><div class=\"accordion accordion-sm accordion-flush border-top\"><details class=\"accordion-item\"><summary class=\"accordion-header fw-semibold\">Additional information<span class=\"fm-accordion-label\" aria-hidden=\"true\"><span class=\"fm-accordion-show\">Show</span><span class=\"fm-accordion-hide\">Hide</span></span><i class=\"fa-solid fa-chevron-down accordion-icon\" aria-hidden=\"true\"></i></summary><div class=\"accordion-body\"><div class=\"fw-semibold mb-1\">Upload requirements</div><ul class=\"mb-3 ps-3\"><li>Picture: Face, Profile (required)</li><li>Video: no requirements</li></ul><div class=\"fw-semibold mb-1\">Description of the Audition</div><p class=\"m-0 fg-2\">Production company: Gorilla Guts · Direction: Sam Johnson · Genre: Horror</p></div></details></div></div>",
+       "caption": "accordion-flush with border-top, as a section of a card. Open it to see Hide.",
+       "badge": "Default",
+       "wide": true
       }
      ]
     }
