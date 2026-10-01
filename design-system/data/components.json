@@ -983,7 +983,12 @@
      "status": "Direct",
      "layout": "row",
      "docs": "",
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "This rule conflicts with the Simple search and filter bar (SF-4): its filters and Sort by are Bootstrap menus with a checkmark on the chosen value (.menu-item-check). Decide: allow checkmark menus as an exception for the Simple bar's filters and Sort by, or switch the Simple bar to Combobox."
+      }
+     ],
      "id": "menu-not-allowed",
      "name": "Not allowed",
      "classes": "",
@@ -991,7 +996,7 @@
      "rules": [
       "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items.",
       "An active or selected item in the primary colour.",
-      "Menus of checkmarks or radios for choosing a value. Use the <a href=\"#sf-3\">Combobox</a>.",
+      "A menu used to pick a value, where the chosen item stays marked with a checkmark or radio (for example a filter or a sort order). Use the <a href=\"#sf-3\">Combobox</a>, which shows the label and the chosen value on the trigger.",
       "Icon-only menu items.",
       "Dark or translucent menus.",
       "Menus that open on hover."
