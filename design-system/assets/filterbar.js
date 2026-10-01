@@ -233,11 +233,14 @@ export function initFilterBar(root) {
     chipsState = chipList
     const chipHtml = (c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`
     const appliedName = `${chipList.length} ${chipList.length === 1 ? 'filter' : 'filters'} applied`
-    // Compact: one button, “3 filters applied”, opens the Applied filters
+    // Compact: one chip, “3 filters applied”, opens the Applied filters
     // dialog instead of a row of chips that would fill the screen.
     const chips = chipList.length && compact
       ? '<div style="display:flex;align-items:center;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)">' +
-        `<button type="button" class="btn-text theme-primary btn-sm" data-applied data-bs-toggle="dialog" data-bs-target="#${id}-applied" aria-haspopup="dialog">${appliedName}</button></div>`
+        // One chip: its text opens the dialog, its x clears every filter.
+        `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem">` +
+        `<button type="button" data-applied data-bs-toggle="dialog" data-bs-target="#${id}-applied" aria-haspopup="dialog" style="background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer">${appliedName}</button>` +
+        '<button type="button" class="chip-dismiss" data-clear aria-label="Clear filters" title="Clear filters"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span></div>'
       : chipList.length
       ? // Compact row: 24px chips on the primary muted tone (--bs-primary-bg-muted,
       // one step darker than bg-subtle), with body text.
@@ -318,6 +321,8 @@ export function initFilterBar(root) {
       state.values = defaults()
       state.open = null
       render()
+      // The button pressed is gone now, so focus search.
+      if (!root.contains(document.activeElement)) root.querySelector('[data-query]')?.focus()
     }
   })
   root.addEventListener('change', (e) => {
