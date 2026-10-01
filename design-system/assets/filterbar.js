@@ -2,7 +2,9 @@
 // Search and filter prototype (FilterBar.dc.html). It renders the same Bootstrap 6
 // markup as the static examples, so it doubles as a reference for behaviour:
 // search, three inline filters, More filters, Clear filters, Sort by, and a
-// count row, all applied on change. The results are Profile tiles (CNT-10).
+// count row, all applied on change. More filters expands a row of filters
+// inside the card, as the production actor search does, not a popover.
+// The results are Profile tiles (CNT-10).
 
 import * as bootstrap from './bootstrap.bundle.min.js'
 
@@ -86,7 +88,7 @@ let uid = 0
 export function initFilterBar(root) {
   const id = 'fb' + (++uid)
   const defaults = () => Object.fromEntries(DEFS.map((d) => [d.key, d.multi ? [] : (d.default ?? ALL)]))
-  const state = { query: '', values: defaults(), sort: 0, open: null, find: '' }
+  const state = { query: '', values: defaults(), sort: 0, open: null, find: '', more: false }
 
   const isApplied = (d) => {
     const v = state.values[d.key]
@@ -116,7 +118,7 @@ export function initFilterBar(root) {
     `<span class="combobox-value" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(text)}</span>` +
     '<i class="fa-solid fa-caret-down combobox-caret" aria-hidden="true"></i></button>'
 
-  const menu = (d, end) => {
+  const menu = (d, full) => {
     const options = d.multi ? d.options : [ALL, ...d.options]
     const searchable = options.length > 6
     const q = state.find.trim().toLowerCase()
@@ -128,16 +130,15 @@ export function initFilterBar(root) {
     }).join('')
     const find = searchable ? `<div class="combobox-search"><input class="form-control form-control-sm combobox-search-input" type="search" data-find placeholder="Find ${d.label.toLowerCase()}" aria-label="Find ${d.label.toLowerCase()}" value="${esc(state.find)}"></div>` : ''
     const none = searchable && shown.length === 0 ? `<div class="combobox-no-results">No ${d.label.toLowerCase()} matches</div>` : ''
-    const side = end ? 'inset-inline-end:0' : 'inset-inline-start:0'
-    return `<div class="menu show" style="position:absolute;${side};top:calc(100% + 4px);z-index:1060;display:block;min-width:220px">${find}${items}${none}</div>`
+    const side = full ? 'inset-inline:0;min-width:0' : 'inset-inline-start:0;min-width:220px'
+    return `<div class="menu show" style="position:absolute;${side};top:calc(100% + 4px);z-index:1060;display:block">${find}${items}${none}</div>`
   }
 
   const filter = (d, full) =>
-    `<div style="position:relative;display:flex;align-items:center${full ? ';width:100%' : ''}">${toggle(d.key, `${d.label}: ${valueLabel(d)}`, d.width, isApplied(d), full)}${state.open === d.key ? menu(d) : ''}</div>`
+    `<div style="position:relative;display:flex;align-items:center${full ? ';width:100%' : ''}">${toggle(d.key, `${d.label}: ${valueLabel(d)}`, d.width, isApplied(d), full)}${state.open === d.key ? menu(d, full) : ''}</div>`
 
   let inlineCount = MAX_INLINE
   let chipsState = []
-  const inPopover = (key) => DEFS.slice(inlineCount).some((d) => d.key === key)
 
   function render() {
     const anyApplied = state.query.trim() !== '' || DEFS.some(isApplied)
@@ -149,13 +150,11 @@ export function initFilterBar(root) {
     const sortMenu = state.open === 'sort'
       ? `<div class="menu show" style="position:absolute;inset-inline-end:0;top:calc(100% + 4px);z-index:1060;display:block;min-width:200px">${SORTS.map((s, i) => `<label class="menu-item" style="cursor:pointer"><span class="menu-item-icon"><input class="radio radio-sm" type="radio" name="${id}-sort" data-sort="${i}"${state.sort === i ? ' checked' : ''} aria-label="${s.label}" ${RESET}></span><span class="menu-item-content">${s.label}</span></label>`).join('')}</div>`
       : ''
-    const popover = state.open === 'more' || overflow.some((d) => state.open === d.key)
-      ? `<div class="popover bs-popover-bottom show" role="dialog" aria-label="More filters" style="position:absolute;inset-inline-start:0;top:calc(100% + 6px);z-index:1050;display:block;max-width:none;width:300px"><div class="popover-body" style="display:flex;flex-direction:column;gap:10px">${overflow.map((d) => filter(d, true)).join('')}</div></div>`
-      : ''
-    const moreOpen = !!popover
+    const moreOpen = state.more
+    const panelId = `${id}-more`
     // Compact: once More filters and Sort by no longer fit beside search as
     // text buttons, both become icon buttons in one Button group, and Clear filters
-    // moves to the bottom of the More filters popover.
+    // moves to the end of the More filters row.
     const compact = inlineCount === 0 &&
       root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + (anyApplied ? GAP + CLEAR_W : 0) + GAP + SORT_W
     const clearBtn = '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>'
@@ -164,15 +163,6 @@ export function initFilterBar(root) {
     if (compact) {
       const applied = DEFS.filter(isApplied).length
       const moreName = applied ? `More filters, ${applied} applied` : 'More filters'
-      // On small screens the popover and menus fill the bar's width, and each
-      // filter's menu fills the popover.
-      const pop = moreOpen
-        ? popover
-          .replace('inset-inline-start:0;top:calc(100% + 6px)', 'inset-inline:8px;top:calc(100% - 4px)')
-          .replace('width:300px', 'width:auto')
-          .replaceAll('min-width:220px', 'min-width:0;inset-inline-end:0')
-          .replace(/<\/div><\/div>$/, `${anyApplied ? `<div>${clearBtn}</div>` : ''}</div></div>`)
-        : ''
       const sortPop = sortMenu
         .replace('inset-inline-end:0;top:calc(100% + 4px)', 'inset-inline:8px;top:calc(100% - 4px)')
         .replace('min-width:200px', 'min-width:0')
@@ -181,9 +171,9 @@ export function initFilterBar(root) {
         search +
         // One Button group (icon buttons). The buttons sit directly in the
         // group, so their borders overlap by 1px; the group is static so the
-        // popover and menu anchor to the whole bar.
+        // Sort by menu anchors to the whole bar.
         '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="position:static;margin-inline-start:auto;flex:0 0 auto">' +
-        `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-label="${moreName}" title="${moreName}"><i class="fa-solid fa-filter" aria-hidden="true"></i></button>${pop}` +
+        `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" aria-label="${moreName}" title="${moreName}"><i class="fa-solid fa-filter" aria-hidden="true"></i></button>` +
         `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortPop}` +
         '</div>' +
         '</div>'
@@ -193,12 +183,23 @@ export function initFilterBar(root) {
         '<div style="display:flex;align-items:center;gap:12px;flex-wrap:nowrap;flex:1 0 auto">' +
         search +
         inline.map((d) => filter(d)).join('') +
-        `<div style="position:relative"><button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters${moreCount ? `<span style="font-variant-numeric:tabular-nums"> (${moreCount})</span>` : ''}<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button>${popover}</div>` +
+        `<button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters${moreCount ? `<span style="font-variant-numeric:tabular-nums"> (${moreCount})</span>` : ''}<i class="fa-solid fa-caret-${moreOpen ? 'up' : 'down'}" aria-hidden="true"></i></button>` +
         (anyApplied ? clearBtn : '') +
         '</div>' +
         `<div style="position:relative;margin-inline-start:auto;flex:0 0 auto">${toggle('sort', `Sort by: ${SORTS[state.sort].label}`, 190, false)}${sortMenu}</div>` +
         '</div>'
     }
+    // More filters: a row inside the card, below the bar, that wraps like the
+    // production search criteria. It stays open until More filters is pressed
+    // again. On compact widths each filter takes the full width. Not .collapse:
+    // this Bootstrap build clips it (overflow-y: clip), which would cut off the
+    // filter menus.
+    let panel = moreOpen
+      ? `<div id="${panelId}" role="group" aria-label="More filters"><div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;padding:0 16px 12px;background:var(--bs-bg-1)">` +
+        overflow.map((d) => filter(d, compact)).join('') +
+        (compact && anyApplied ? clearBtn : '') +
+        '</div></div>'
+      : ''
     // Applied chips: one per search term and per applied value. Always shown.
     const chipList = []
     if (state.query.trim()) chipList.push({ label: `Search: “${state.query.trim()}”`, remove: 'Remove the search term', clear: { query: true } })
@@ -222,23 +223,26 @@ export function initFilterBar(root) {
 
     // Keep focus and caret in the field being typed in across re-renders.
     const active = document.activeElement
-    const focusKey = active && root.contains(active) ? (active.matches('[data-query]') ? '[data-query]' : active.matches('[data-find]') ? '[data-find]' : null) : null
-    const caret = focusKey ? active.selectionStart : null
+    const focusKey = active && root.contains(active) ? (active.matches('[data-query]') ? '[data-query]' : active.matches('[data-find]') ? '[data-find]' : active.dataset.toggle ? `[data-toggle="${active.dataset.toggle}"]` : null) : null
+    const caret = focusKey && active.matches('input') ? active.selectionStart : null
     const barOnly = root.dataset.variant === 'bar'
     // With chips showing, the bar and the chips row read as one block.
-    if (chips) bar = bar.replace('padding:12px 16px;', 'padding:12px 16px 6px;')
+    if (chips) {
+      if (panel) panel = panel.replace('padding:0 16px 12px;', 'padding:0 16px 6px;')
+      else bar = bar.replace('padding:12px 16px;', 'padding:12px 16px 6px;')
+    }
     // Tooltips belong to the old rows: remove them before redrawing.
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getInstance(el)?.dispose())
     // data-results="none" leaves the results area blank: the bar, chips and
     // count only, for when the results are shown elsewhere.
     const results = root.dataset.results === 'none' ? '' : table
     root.innerHTML = barOnly
-      ? `<div class="card" style="overflow:visible;width:100%">${bar}${count}</div>`
-      : `<div class="card" style="overflow:visible;width:100%">${bar}${chips}${count}${results}</div>`
+      ? `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${count}</div>`
+      : `<div class="card" style="overflow:visible;width:100%">${bar}${panel}${chips}${count}${results}</div>`
     root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
     if (focusKey) {
       const el = root.querySelector(focusKey)
-      if (el) { el.focus(); try { el.setSelectionRange(caret, caret) } catch {} }
+      if (el) { el.focus(); if (caret !== null) try { el.setSelectionRange(caret, caret) } catch {} }
     }
   }
 
@@ -246,8 +250,7 @@ export function initFilterBar(root) {
     const t = e.target.closest('[data-toggle]')
     if (t) {
       const key = t.dataset.toggle
-      // Opening a filter inside More filters keeps the popover open.
-      state.open = state.open === key ? (inPopover(key) ? 'more' : null) : key
+      if (key === 'more') { state.more = !state.more; state.open = null } else state.open = state.open === key ? null : key
       state.find = ''
       render()
       return
@@ -279,7 +282,7 @@ export function initFilterBar(root) {
         state.values[d.key] = pick.checked ? [...v, pick.value] : v.filter((x) => x !== pick.value)
       } else {
         state.values[d.key] = pick.value
-        state.open = inPopover(d.key) ? 'more' : null
+        state.open = null
       }
       render()
       return

@@ -1897,23 +1897,16 @@
      "layout": "row",
      "examples": [
       {
-       "label": "Form controls",
-       "html": "<div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"More filters\" style=\"position:relative;display:block;max-width:none;width:260px\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">2FA: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"width:100%\"><span class=\"combobox-value\">Profile access: All</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button></div></div>",
-       "caption": "e.g. More filters in Complex search and filter.",
-       "badge": "Default"
-      },
-      {
        "label": "List",
        "html": "<div class=\"popover bs-popover-bottom show\" role=\"dialog\" aria-label=\"Notifications\" style=\"position:relative;display:block;max-width:none;width:300px\"><div class=\"popover-body\" style=\"display:flex;flex-direction:column;gap:10px\"><div style=\"display:grid;gap:2px\"><span>Jo Becker accepted the invitation.</span><small class=\"fs-xs fg-3\">2 hours ago</small></div><hr class=\"m-0\"><div style=\"display:grid;gap:2px\"><span>Selection “Season 14” was shared with you.</span><small class=\"fs-xs fg-3\">Yesterday</small></div></div></div>",
        "caption": "e.g. the notifications list opened from the bell.",
-       "badge": ""
+       "badge": "Default"
       }
      ],
      "rules": [
       "Opened by a click, never by hover. The trigger has <code>aria-expanded</code>.",
       "No <code>.popover-header</code>: the button that opens it already names it.",
-      "Holds controls or a short list only. Anything longer, or anything that needs a Save button, is a dialog.",
-      "Filters inside a popover apply on change, like the bar they come from."
+      "Holds controls or a short list only. Anything longer, or anything that needs a Save button, is a dialog."
      ]
     }
    ]
@@ -2080,7 +2073,7 @@
      "code": "SF-1",
      "name": "Complex",
      "status": "Custom",
-     "classes": "input-group + combobox-toggle + popover + chip",
+     "classes": "input-group + combobox-toggle + chip",
      "docs": "",
      "replaces": "filter bar inline labels + selects",
      "note": "Use it to find the right records in large sets of data, such as actors, locations or crew. People search and combine several filters to narrow the pool, so every applied filter shows as a chip they can remove on its own.",
@@ -2088,7 +2081,7 @@
      "flags": [
       {
        "type": "ask",
-       "text": "To review: how filters inside More filters apply. Today each one applies on change, like the inline filters. Options: keep that; add an Apply filters button to the popover (a batch filter, which Carbon suggests when people set several filters at once or results are slow to load); or apply on close. Decide which one."
+       "text": "To review: how filters inside More filters apply. Today each one applies on change, like the inline filters, and so does the production actor search. Options: keep that; add an Apply filters button to the end of the More filters row (a batch filter, which Carbon suggests when people set several filters at once or results are slow to load); or apply when the row is closed. Decide which one."
       },
       {
        "type": "info",
@@ -2104,7 +2097,8 @@
       "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter.",
       "Filters apply on change. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>).",
-      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip), and Clear filters moves to the bottom of the More filters popover. The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths the popover and menus fill the bar’s width.",
+      "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. The button has <code>aria-expanded</code> and <code>aria-controls</code>, and its caret points up while the row is open.",
+      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both become icon buttons in one Button group (filter and sort icons, <code>btn-outline theme-secondary</code> as every Button group is, each with an accessible name and tooltip), and Clear filters moves to the end of the More filters row. The icon buttons never change size and show no count; the applied count is in the filter button’s accessible name. On these widths each filter in the row, and its menu, fills the bar’s width.",
       "The bar sits on the bg-1 surface at the top of the card that holds the list."
      ],
      "examples": [
@@ -2176,7 +2170,7 @@
      "classes": "",
      "docs": "",
      "replaces": "(none)",
-     "note": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, both become an icon Button group and Clear filters moves into the More filters popover.",
+     "note": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, both become an icon Button group, and Clear filters moves to the end of the More filters row, where each filter takes the full width.",
      "unresolved": false,
      "flags": [],
      "layout": "row",
