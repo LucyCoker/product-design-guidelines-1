@@ -1013,7 +1013,7 @@
      "classes": ".check.check-sm + label",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
      "replaces": "checkbox .checkbox > label > input",
-     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (FRM-11): the input is nested in the label so the whole row is the hit target, and it drops .check-sm. UNRESOLVED - whether the nested form is permitted or the menu item should carry for/id like every other checkbox.",
+     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label so the whole row is the hit target, and it drops .check-sm. UNRESOLVED - whether the nested form is permitted or the menu item should carry for/id like every other checkbox.",
      "unresolved": true,
      "flags": [],
      "layout": "stack",
