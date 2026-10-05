@@ -1,0 +1,521 @@
+<title>The Library on Set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Courier+Prime:wght@400;700&display=swap">
+<style>
+/* Layout: a call sheet. Slate header, one working column (the Buttons page) beside a teammate rail. Boldness lives only in the slate. */
+:root {
+  --canvas: #f3f5f4;
+  --surface: #ffffff;
+  --surface-2: #e9eeec;
+  --ink: #151a19;
+  --muted: #56605d;
+  --line: #d3dad7;
+  --line-strong: #a9b5b0;
+  --accent: #195f50;
+  --accent-ink: #ffffff;
+  --accent-soft: #dfeee8;
+  --slate: #121514;
+  --slate-ink: #f3f5f4;
+  --ok: #1d6a3a; --ok-soft: #e1f2e6;
+  --warn: #7a5410; --warn-soft: #fff3d4;
+  --danger: #a3242b; --danger-soft: #fce7e7;
+  --mock-primary: #0a58ca; --mock-primary-ink: #ffffff;
+  --zone: #c2410c; --credit-missing: #ffb4b8;
+  --focus: #195f50;
+
+  --f-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --f-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --f-script: "Courier Prime", "Courier New", Courier, monospace;
+  --r: 0.375rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --canvas: #0f1312; --surface: #171d1b; --surface-2: #1f2725; --ink: #e7eeeb; --muted: #a2aeaa;
+  --line: #2d3633; --line-strong: #4a5652; --accent: #74c6ae; --accent-ink: #0b1714; --accent-soft: #163029;
+  --slate: #050707; --slate-ink: #eef2f0;
+  --ok: #7fd49b; --ok-soft: #14301e; --warn: #f0c46b; --warn-soft: #33270c; --danger: #ff9a9f; --danger-soft: #3a1618;
+  --focus: #74c6ae; --zone: #fb923c; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --canvas: #0f1312; --surface: #171d1b; --surface-2: #1f2725; --ink: #e7eeeb; --muted: #a2aeaa;
+  --line: #2d3633; --line-strong: #4a5652; --accent: #74c6ae; --accent-ink: #0b1714; --accent-soft: #163029;
+  --slate: #050707; --slate-ink: #eef2f0;
+  --ok: #7fd49b; --ok-soft: #14301e; --warn: #f0c46b; --warn-soft: #33270c; --danger: #ff9a9f; --danger-soft: #3a1618;
+  --focus: #74c6ae; --zone: #fb923c; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--canvas); color: var(--ink); font-family: var(--f-body); font-size: 0.875rem; line-height: 1.6; margin: 0; }
+a { color: var(--accent); text-underline-offset: 0.18em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 0.2rem; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h2 { font-size: 1.125rem; font-weight: 600; }
+h3 { font-size: 1rem; font-weight: 600; }
+p { margin: 0; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8125rem; background: var(--surface-2); padding: 0.05rem 0.3rem; border-radius: 0.25rem; overflow-wrap: anywhere; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.mockbar { background: var(--warn-soft); color: var(--warn); border-bottom: 1px solid var(--line); padding-block: 0.5rem; }
+.wrap { max-width: 78rem; margin: 0 auto; padding-inline: 1rem; }
+.mockbar .wrap { display: flex; gap: 0.5rem 1rem; flex-wrap: wrap; align-items: baseline; }
+.mockbar strong { font-weight: 600; }
+
+/* Slate header: the one bold move */
+.slate { background: var(--slate); color: var(--slate-ink); }
+.clapper { height: 14px; background: repeating-linear-gradient(-45deg, var(--slate-ink) 0 14px, var(--slate) 14px 28px); transform-origin: left bottom; }
+@media (prefers-reduced-motion: no-preference) {
+  .clapper { animation: clap 700ms cubic-bezier(.3,.0,.2,1) 200ms both; }
+  @keyframes clap { 0% { transform: rotate(-7deg); } 60% { transform: rotate(0); } 75% { transform: rotate(-1.2deg); } 100% { transform: rotate(0); } }
+}
+.slate-inner { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: end; padding-block: 1.25rem 1rem; }
+.brand { font-family: var(--f-display); font-weight: 800; font-size: clamp(2rem, 6vw, 3.25rem); line-height: 0.95; letter-spacing: 0.01em; text-transform: uppercase; }
+.brand small { display: block; font-family: var(--f-script); font-weight: 400; text-transform: none; font-size: 0.875rem; letter-spacing: 0; opacity: 0.85; margin-top: 0.4rem; }
+.slate-grid { display: grid; grid-template-columns: repeat(4, auto); border: 1px solid color-mix(in srgb, var(--slate-ink) 40%, transparent); font-family: var(--f-script); }
+.slate-grid div { padding: 0.35rem 0.75rem; border-left: 1px solid color-mix(in srgb, var(--slate-ink) 40%, transparent); }
+.slate-grid div:first-child { border-left: 0; }
+.slate-grid span { display: block; font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+.slate-grid b { font-size: 1rem; }
+.ask-trigger { margin-top: 0.5rem; display: flex; gap: 0.5rem; }
+@media (max-width: 760px) { .slate-inner { grid-template-columns: 1fr; } .slate-grid { grid-template-columns: repeat(2, 1fr); } .slate-grid div:nth-child(3) { border-left: 0; } .slate-grid div:nth-child(n+3) { border-top: 1px solid color-mix(in srgb, var(--slate-ink) 40%, transparent); } }
+
+/* Call sheet strip */
+.callsheet { background: var(--surface); border-bottom: 1px solid var(--line); }
+.callsheet .wrap { display: grid; grid-template-columns: auto 1fr 1fr 1fr; gap: 0; }
+.cs-label { font-family: var(--f-script); font-weight: 700; padding: 0.9rem 1rem 0.9rem 0; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8125rem; align-self: center; }
+.cs-item { border-left: 1px solid var(--line); padding: 0.75rem 1rem; min-width: 0; display: grid; gap: 0.15rem; }
+.cs-item .k { color: var(--muted); font-size: 0.75rem; }
+.cs-item .v { font-weight: 600; }
+.cs-item a { font-size: 0.8125rem; }
+@media (max-width: 900px) { .callsheet .wrap { grid-template-columns: 1fr; } .cs-item { border-left: 0; border-top: 1px solid var(--line); padding-inline: 0; } }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 2rem; padding-block: 1.75rem 3rem; }
+@media (max-width: 1000px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+main, aside { min-width: 0; display: grid; gap: 1.75rem; align-content: start; }
+
+.slug { font-family: var(--f-script); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8125rem; color: var(--muted); }
+.page-head { display: grid; gap: 0.6rem; }
+.page-head h1 { font-size: 1.875rem; font-weight: 600; line-height: 1.2; }
+.meta { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.badge { display: inline-flex; align-items: center; gap: 0.35rem; border: 1px solid var(--line-strong); border-radius: 999px; padding: 0.1rem 0.6rem; font-size: 0.75rem; font-weight: 600; background: var(--surface); }
+.badge svg { width: 0.85rem; height: 0.85rem; }
+.badge.draft { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.badge.missing { background: var(--danger-soft); color: var(--danger); border-color: transparent; }
+.badge.ok { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.lede { max-width: 65ch; font-size: 1rem; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 1.25rem; display: grid; gap: 0.9rem; min-width: 0; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; flex-wrap: wrap; }
+.idea-tag { font-family: var(--f-script); font-size: 0.75rem; color: var(--accent); border: 1px dashed var(--accent); border-radius: 0.25rem; padding: 0 0.4rem; white-space: nowrap; }
+.help { color: var(--muted); max-width: 65ch; }
+
+/* Mock Bootstrap-ish buttons */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.75rem; }
+.swatch { border: 1px solid var(--line); border-radius: var(--r); padding: 0.85rem; display: grid; gap: 0.6rem; align-content: start; }
+.swatch .stage { display: flex; align-items: center; min-height: 2.5rem; }
+.swatch .stage.dark { background: var(--slate); border-radius: 0.25rem; padding: 0.5rem; }
+.swatch p { color: var(--muted); font-size: 0.8125rem; }
+.mbtn { font: inherit; font-size: 0.8125rem; font-weight: 600; border-radius: 0.375rem; padding: 0.3rem 0.75rem; border: 1px solid transparent; cursor: pointer; display: inline-flex; gap: 0.35rem; align-items: center; }
+.mbtn.solid-primary { background: var(--mock-primary); color: var(--mock-primary-ink); }
+.mbtn.outline-secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.mbtn.text-secondary { background: transparent; color: var(--ink); }
+.mbtn.solid-danger { background: var(--danger); color: var(--surface); }
+.mbtn.text-danger { background: transparent; color: var(--danger); }
+.mbtn.solid-inverse { background: var(--slate-ink); color: var(--slate); }
+.mbtn .zone { width: 0.8rem; height: 0.8rem; color: var(--zone); }
+.copy { font: inherit; font-size: 0.75rem; color: var(--accent); background: none; border: 0; padding: 0.15rem 0; cursor: pointer; text-align: left; text-decoration: underline; text-underline-offset: 0.18em; justify-self: start; min-height: 24px; }
+
+/* Forms */
+label { font-weight: 600; }
+input[type="text"], textarea { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r); padding: 0.5rem 0.65rem; width: 100%; }
+textarea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8125rem; min-height: 9.5rem; resize: vertical; }
+.row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+.btn { font: inherit; font-weight: 600; font-size: 0.8125rem; border-radius: var(--r); padding: 0.45rem 0.9rem; cursor: pointer; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); min-height: 2.25rem; }
+.btn.go { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.chip { font: inherit; font-size: 0.8125rem; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 999px; padding: 0.2rem 0.7rem; cursor: pointer; min-height: 2rem; }
+
+.results { display: grid; gap: 0.5rem; }
+.res { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: 0.5rem; padding: 0.6rem 0.75rem; border-radius: var(--r); border: 1px solid var(--line); }
+.res svg { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; }
+.res.ok { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.res.bad { background: var(--danger-soft); color: var(--danger); border-color: transparent; }
+.res.ask { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.res .body { color: var(--ink); display: grid; gap: 0.2rem; }
+.res .body b { font-weight: 600; }
+.res .src { font-size: 0.75rem; color: var(--muted); }
+
+.screen { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+@media (max-width: 640px) { .screen { grid-template-columns: 1fr; } }
+.pick { display: grid; gap: 0.5rem; }
+.pick input[type="color"] { width: 3rem; height: 2.25rem; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--surface); padding: 0.15rem; }
+.ratio { font-family: var(--f-display); font-size: 2.5rem; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* Rail */
+.rail-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); display: grid; min-width: 0; }
+.rail-card > header { padding: 0.9rem 1rem 0.5rem; display: grid; gap: 0.2rem; }
+.rail-card > header .slug { font-size: 0.75rem; }
+.rail-list { list-style: none; margin: 0; padding: 0; }
+.rail-list li { border-top: 1px solid var(--line); padding: 0.65rem 1rem; display: grid; gap: 0.25rem; }
+.rail-list .t { font-weight: 600; }
+.rail-list .s { color: var(--muted); font-size: 0.8125rem; }
+.rail-list .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.rail-foot { border-top: 1px solid var(--line); padding: 0.65rem 1rem; display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; font-size: 0.8125rem; }
+.filter { display: flex; gap: 0.35rem; flex-wrap: wrap; padding: 0 1rem 0.65rem; }
+.filter button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.daily time { font-family: var(--f-script); font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Credits roll */
+.credits { background: var(--slate); color: var(--slate-ink); border-radius: var(--r); padding: 1.5rem 1.25rem; text-align: center; display: grid; gap: 0.9rem; font-family: var(--f-script); }
+.credits h2 { font-family: var(--f-display); font-size: 1.5rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.credits dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; margin: 0; max-width: 30rem; justify-self: center; width: 100%; }
+.credits dt { text-align: right; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em; opacity: 0.8; align-self: center; }
+.credits dd { text-align: left; margin: 0; font-weight: 700; }
+.credits .missing-credit { color: var(--credit-missing); }
+
+/* Ranking */
+.matrix { display: grid; grid-template-columns: 1.5rem 1fr 1fr; grid-template-rows: auto auto 1.5rem; gap: 0.5rem; }
+.axis-y { grid-row: 1 / 3; writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; font-family: var(--f-script); font-size: 0.75rem; color: var(--muted); }
+.axis-x { grid-column: 2 / 4; text-align: center; font-family: var(--f-script); font-size: 0.75rem; color: var(--muted); }
+.quad { border: 1px solid var(--line); border-radius: var(--r); padding: 0.75rem; display: grid; gap: 0.4rem; align-content: start; min-width: 0; }
+.quad.win { background: var(--accent-soft); border-color: transparent; }
+.quad h3 { font-size: 0.875rem; }
+.quad ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.2rem; }
+.quad li span { color: var(--muted); }
+@media (max-width: 640px) { .matrix { grid-template-columns: 1fr; grid-template-rows: none; } .axis-y, .axis-x { display: none; } }
+
+.asks { display: grid; gap: 0.6rem; }
+.asks li { list-style: none; }
+.asks ol { padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+footer.page { color: var(--muted); padding-block: 0 2rem; font-size: 0.8125rem; }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-ok" viewBox="0 0 20 20"><path fill="currentColor" d="M8.2 13.6 4.6 10l-1.4 1.4 5 5 9-9-1.4-1.4z"/></symbol>
+  <symbol id="i-bad" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm3.5 10.1-1.4 1.4L10 11.4l-2.1 2.1-1.4-1.4L8.6 10 6.5 7.9l1.4-1.4L10 8.6l2.1-2.1 1.4 1.4-2.1 2.1z"/></symbol>
+  <symbol id="i-ask" viewBox="0 0 20 20"><path fill="currentColor" d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1 13H9v-2h2v2Zm1.6-6.2c-.4.6-1 .9-1.4 1.3-.3.3-.2.6-.2 1.1H9c0-1 .1-1.5.7-2 .5-.4 1-.7 1.2-1 .4-.7-.1-1.5-.9-1.5-.7 0-1.1.5-1.2 1.1L7 7.4C7.3 6 8.5 5 10 5c2.1 0 3.4 2.1 2.6 3.8z"/></symbol>
+  <symbol id="i-draft" viewBox="0 0 20 20"><path fill="currentColor" d="M3 14.3V17h2.7l8-8-2.7-2.7-8 8ZM16.7 6a.7.7 0 0 0 0-1l-1.7-1.7a.7.7 0 0 0-1 0L12.7 4.6l2.7 2.7z"/></symbol>
+  <symbol id="i-zone" viewBox="0 0 20 20"><path fill="currentColor" d="M10 4C5 4 1.7 8.4 1 10c.7 1.6 4 6 9 6s8.3-4.4 9-6c-.7-1.6-4-6-9-6Zm0 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm0-6a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></symbol>
+</svg>
+
+<div class="mockbar" role="note">
+  <div class="wrap"><strong>Prototype for discussion.</strong> <span>Buttons and colour rules are real, taken from this repository on 5 October 2026. Buttons are drawn with mock CSS, not production Bootstrap 6. Nothing here is decided.</span></div>
+</div>
+
+<header class="slate">
+  <div class="clapper" aria-hidden="true"></div>
+  <div class="wrap slate-inner">
+    <div>
+      <p class="brand">The Library<small>Filmmakers System design guidelines · Bootstrap 6</small></p>
+      <div class="ask-trigger"><a href="#ask" style="color:var(--slate-ink)">Ask the Library</a><span aria-hidden="true">·</span><a href="#decisions" style="color:var(--slate-ink)">Open decisions</a><span aria-hidden="true">·</span><a href="#dailies" style="color:var(--slate-ink)">Dailies</a></div>
+    </div>
+    <div class="slate-grid" aria-label="Library status">
+      <div><span>Guideline pages</span><b>8</b></div>
+      <div><span>Open decisions</span><b>11</b></div>
+      <div><span>With review date</span><b>0</b></div>
+      <div><span>Last change</span><b>27 Sep</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="callsheet" aria-labelledby="cs-title">
+  <div class="wrap">
+    <h2 class="cs-label" id="cs-title">Call sheet · Mon 5 Oct</h2>
+    <div class="cs-item"><span class="k">Changed since 22 Sep</span><span class="v">Button groups is new; primary is now blue-600</span><a href="#dailies">See the dailies</a></div>
+    <div class="cs-item"><span class="k">Waiting on the team</span><span class="v">11 open decisions, none with a review date</span><a href="#decisions">Pick one up</a></div>
+    <div class="cs-item"><span class="k">Rule of the day</span><span class="v">Express de-emphasis with colour, not size or weight.</span><a href="#ask" data-q="secondary text smaller">Why?</a></div>
+  </div>
+</section>
+
+<div class="wrap layout">
+  <main>
+    <div class="page-head">
+      <p class="slug">INT. COMPONENTS — BUTTONS</p>
+      <h1>Buttons</h1>
+      <div class="meta">
+        <span class="badge draft"><svg aria-hidden="true"><use href="#i-draft"/></svg>Status: Draft</span>
+        <span class="badge missing"><svg aria-hidden="true"><use href="#i-ask"/></svg>Owner: not assigned</span>
+        <span class="badge">4 open decisions</span>
+        <span class="badge">Last edited 26 Aug</span>
+      </div>
+      <p class="lede">Variant sets <b>how loud</b>. Theme sets <b>what it means</b>. Never use theme to create emphasis.</p>
+    </div>
+
+    <section class="panel" aria-labelledby="perm-title">
+      <div class="panel-head"><h2 id="perm-title">Permitted combinations</h2><span class="idea-tag">idea: copy-ready examples</span></div>
+      <p class="help">Each example uses the per-user primary from the screen test below. Copy the classes, not the look.</p>
+      <div class="swatches" id="swatches"></div>
+    </section>
+
+    <section class="panel" id="screen" aria-labelledby="screen-title">
+      <div class="panel-head"><h2 id="screen-title">Screen test: any user's primary</h2><span class="idea-tag">idea: screen test</span></div>
+      <p class="help">Primary is set per user, so contrast has to hold for every value. Pick one and every primary example on this page follows it.</p>
+      <div class="screen">
+        <div class="pick">
+          <label for="pc">User primary</label>
+          <div class="row"><input type="color" id="pc" value="#0a58ca"><input type="text" id="pc-hex" value="#0a58ca" aria-label="Primary as hex" style="max-width:8rem"></div>
+          <div class="row" aria-label="Sample primaries">
+            <button class="chip" data-c="#0a58ca">Blue</button><button class="chip" data-c="#d63384">Pink</button><button class="chip" data-c="#fd7e14">Orange</button><button class="chip" data-c="#20c997">Teal</button><button class="chip" data-c="#dc3545">Red</button>
+          </div>
+        </div>
+        <div class="pick" aria-live="polite">
+          <span class="slug">White label on primary</span>
+          <span class="ratio" id="ratio">–</span>
+          <div id="ratio-res"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="continuity" aria-labelledby="cc-title">
+      <div class="panel-head"><h2 id="cc-title">Continuity check</h2><span class="idea-tag">idea: continuity check</span></div>
+      <p class="help">Paste button classes from a prototype or a Claude Design export, one button per line. Every verdict quotes the rule it comes from. Anything the Library doesn't cover comes back as ASK, not as a guess.</p>
+      <label for="cc-in">Button classes</label>
+      <textarea id="cc-in" spellcheck="false">btn btn-solid theme-primary
+btn btn-solid theme-secondary
+btn btn-outline theme-primary
+btn btn-text theme-danger
+btn btn-solid theme-success
+btn btn-ghost theme-secondary</textarea>
+      <div class="row"><button class="btn go" id="cc-run">Check classes</button><span class="help" id="cc-sum" aria-live="polite"></span></div>
+      <div class="results" id="cc-out"></div>
+    </section>
+
+    <section class="panel" id="ask" aria-labelledby="ask-title">
+      <div class="panel-head"><h2 id="ask-title">Ask the Library</h2><span class="idea-tag">idea: answers with sources</span></div>
+      <p class="help">Answers are quotes from the guidelines with a link to the page, never paraphrased into new rules. Open decisions are reported as open. This mock matches keywords; a real version could use Claude restricted to the repository.</p>
+      <form id="ask-form" class="row">
+        <label for="ask-in" class="sr-only">Your question</label>
+        <input type="text" id="ask-in" placeholder="e.g. Can I make Publish green?" style="flex:1 1 16rem">
+        <button class="btn go" type="submit">Ask</button>
+      </form>
+      <div class="row" aria-label="Example questions">
+        <button class="chip" data-q="Can I make Publish green?">Can I make Publish green?</button>
+        <button class="chip" data-q="Should we use typed confirmation to delete?">Typed confirmation?</button>
+        <button class="chip" data-q="Can I use font-weight 500?">Weight 500?</button>
+        <button class="chip" data-q="What colour for a date picker?">Date picker?</button>
+      </div>
+      <div class="results" id="ask-out" aria-live="polite"></div>
+    </section>
+
+    <section class="credits" aria-labelledby="cr-title">
+      <h2 id="cr-title">Credits</h2>
+      <dl>
+        <dt>Page owner</dt><dd class="missing-credit">Open role</dd>
+        <dt>Written by</dt><dd>Andreas Venturini</dd>
+        <dt>Button groups</dt><dd>Lucy Coker</dd>
+        <dt>Reviewed by</dt><dd class="missing-credit">Open role</dd>
+      </dl>
+      <p>Names come from the git history. Claim an open role from the page header.</p>
+    </section>
+
+    <section class="panel" id="ideas" aria-labelledby="rank-title">
+      <div class="panel-head"><h2 id="rank-title">All ideas, ranked by impact against effort</h2></div>
+      <div class="matrix">
+        <div class="axis-y">Impact →</div>
+        <div class="quad win"><h3>Do first: high impact, low effort</h3><ol>
+          <li>Open decisions board, with nudges <span>(shown)</span></li>
+          <li>Dailies: what changed, from git <span>(shown)</span></li>
+          <li>Ownership and review dates on every page <span>(shown)</span></li>
+          <li>Voice guide for the Library</li>
+          <li>Copy-ready class examples <span>(shown)</span></li>
+        </ol></div>
+        <div class="quad"><h3>Plan: high impact, more effort</h3><ol>
+          <li>Continuity check for prototypes <span>(shown)</span></li>
+          <li>Screen test for per-user primary <span>(shown)</span></li>
+          <li>Ask the Library, with sources <span>(shown)</span></li>
+          <li>Weekly call sheet in Slack or email</li>
+          <li>Pitch a change: guided proposal</li>
+        </ol></div>
+        <div class="quad"><h3>Nice touches: low impact, low effort</h3><ol>
+          <li>Slate header and script slug lines <span>(shown)</span></li>
+          <li>Credits roll per page <span>(shown)</span></li>
+          <li>Film-language 404 and empty states</li>
+          <li>Keyboard shortcut to Ask</li>
+        </ol></div>
+        <div class="quad"><h3>Skip for now: low impact, high effort</h3><ol>
+          <li>Points, streaks and leaderboards</li>
+          <li>Animated mascot</li>
+          <li>Personalised home per role</li>
+        </ol></div>
+        <div class="axis-x">Effort →</div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="asks-title">
+      <div class="panel-head"><h2 id="asks-title">Unresolved for this prototype</h2><span class="badge draft"><svg aria-hidden="true"><use href="#i-ask"/></svg>ASK</span></div>
+      <ol class="asks">
+        <li><b>Brand colours on the Library.</b> The colour page bans brand persona colours in Filmmakers System. Is the Library part of the product, or a Filmmakers surface where personas are allowed? This mock uses neutrals and the existing site green.</li>
+        <li><b>WCAG version.</b> You asked for 2.2 AA. The colour page says 2.1 AA. Which one should the Library and the product state?</li>
+        <li><b>How playful.</b> The mock keeps film language in the chrome (slate, call sheet, credits) and plain language in every rule. Is that the right line?</li>
+        <li><b>Where nudges go.</b> On the site only, or also in Slack or email?</li>
+      </ol>
+    </section>
+  </main>
+
+  <aside aria-label="Teammate">
+    <section class="rail-card" id="decisions" aria-labelledby="dec-title">
+      <header><p class="slug">On hold</p><h2 id="dec-title">Open decisions</h2><p class="help">From every page's Unresolved section. Each needs an owner and a review date.</p></header>
+      <div class="filter" role="group" aria-label="Filter decisions">
+        <button class="chip" aria-pressed="true" data-f="all">All</button>
+        <button class="chip" aria-pressed="false" data-f="Buttons">Buttons</button>
+        <button class="chip" aria-pressed="false" data-f="Patterns">Patterns</button>
+      </div>
+      <ul class="rail-list" id="dec-list"></ul>
+      <div class="rail-foot"><span id="dec-count"></span><a href="#decisions">Add a review date</a></div>
+    </section>
+
+    <section class="rail-card" id="dailies" aria-labelledby="daily-title">
+      <header><p class="slug">Dailies</p><h2 id="daily-title">What changed</h2><p class="help">From commit history. Plain summaries, newest first.</p></header>
+      <ul class="rail-list daily">
+        <li><time datetime="2026-09-22">22 SEP</time><span class="t">New pattern: Button groups</span><span class="s">Three open decisions on segmented controls, selected state and toolbars.</span></li>
+        <li><time datetime="2026-09-22">22 SEP</time><span class="t">New: Patterns overview</span><span class="s">One-line answers for prototypes, linking to full patterns.</span></li>
+        <li><time datetime="2026-09-17">17 SEP</time><span class="t">Default primary is now blue-600</span><span class="s">To meet 4.5:1. Affects every <code>theme-primary</code> example.</span></li>
+        <li><time datetime="2026-09-08">08 SEP</time><span class="t">Heading roles defined</span><span class="s">Page title, section and card headings mapped to size utilities.</span></li>
+        <li><time datetime="2026-09-08">08 SEP</time><span class="t">Decided: body small removed</span><span class="s">Open question resolved and closed.</span></li>
+      </ul>
+      <div class="rail-foot"><span>Follow a page to get its changes</span></div>
+    </section>
+  </aside>
+</div>
+
+<footer class="page wrap">Mock built for the Filmmakers System Library. Content source: the product-design-guidelines repository.</footer>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const icon = id => `<svg aria-hidden="true"><use href="#i-${id}"/></svg>`;
+  const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const SRC = {
+    buttons: 'Buttons', colour: 'Colour', type: 'Typography', destr: 'Destructive actions', groups: 'Button groups', hier: 'Button hierarchy'
+  };
+
+  /* Permitted combinations, from components/buttons.md */
+  const PERMITTED = [
+    { cls: 'btn-solid theme-primary', label: 'Publish', mock: 'solid-primary', note: 'The one primary action. Max one per screen.' },
+    { cls: 'btn-outline theme-secondary', label: 'Save draft', mock: 'outline-secondary', note: 'Secondary action: Cancel, Export, Save draft.' },
+    { cls: 'btn-text theme-secondary', label: 'Discard', mock: 'text-secondary', note: 'Tertiary, inline, in-menu and icon-only actions.' },
+    { cls: 'btn-solid theme-danger', label: 'Delete project', mock: 'solid-danger', note: 'Confirming a destructive action. Confirmation dialogs only.' },
+    { cls: 'btn-text theme-danger', label: 'Remove', mock: 'text-danger', note: 'Destructive in an overflow menu or standalone on a detail page. Never bare in a table row.' },
+    { cls: 'btn-solid theme-inverse', label: 'Continue', mock: 'solid-inverse', dark: true, note: 'Any action on a dark or brand-coloured surface.' },
+    { cls: 'btn-outline theme-secondary has-client-zone-icon', label: 'Share selection', mock: 'outline-secondary', zone: true, note: 'Client zone signal. Inside client zones only. Class name is still an open decision.' }
+  ];
+  $('#swatches').innerHTML = PERMITTED.map((p, i) => `
+    <div class="swatch">
+      <div class="stage${p.dark ? ' dark' : ''}"><button type="button" class="mbtn ${p.mock}" tabindex="-1" aria-hidden="true">${p.zone ? `<svg class="zone"><use href="#i-zone"/></svg>` : ''}${p.label}</button></div>
+      <code>${p.cls}</code>
+      <p>${p.note}</p>
+      <button class="copy" data-copy="${p.cls}" id="copy-${i}">Copy classes</button>
+    </div>`).join('');
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-copy]'); if (!b) return;
+    const done = () => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy classes', 1600); };
+    try { navigator.clipboard.writeText(b.dataset.copy).then(done, () => { b.textContent = 'Select the text above to copy'; }); }
+    catch { b.textContent = 'Select the text above to copy'; }
+  });
+
+  /* Screen test */
+  const lum = hex => { const n = hex.replace('#',''); const c = [0,2,4].map(i => parseInt(n.substr(i,2),16)/255).map(v => v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4)); return 0.2126*c[0] + 0.7152*c[1] + 0.0722*c[2]; };
+  const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  const nearDanger = hex => { const n = hex.replace('#',''); const [r,g,b] = [0,2,4].map(i => parseInt(n.substr(i,2),16)); return r > 150 && r > g * 1.4 && r > b * 1.4; };
+  function setPrimary(hex) {
+    if (!/^#[0-9a-f]{6}$/i.test(hex)) return;
+    $('#pc').value = hex; $('#pc-hex').value = hex;
+    document.documentElement.style.setProperty('--mock-primary', hex);
+    const r = ratio(hex, '#ffffff');
+    $('#ratio').textContent = r.toFixed(2) + ':1';
+    let html;
+    if (r >= 4.5) html = `<div class="res ok">${icon('ok')}<div class="body"><b>Passes 4.5:1 for button text.</b><span class="src">Colour · Contrast</span></div></div>`;
+    else html = `<div class="res ask">${icon('ask')}<div class="body"><b>Fails 4.5:1. ASK.</b><span>“A primary that fails contrast as a button background MUST NOT be used as-is. The fix is a decision, not an automatic substitution.”</span><span class="src">Colour · Contrast</span></div></div>`;
+    if (nearDanger(hex)) html += `<div class="res ask">${icon('ask')}<div class="body"><b>This primary sits close to danger.</b><span>“Danger and warning MUST carry a second signal (icon, weight, or placement), not hue alone.”</span><span class="src">Colour · The per-user primary</span></div></div>`;
+    $('#ratio-res').innerHTML = html;
+  }
+  $('#pc').addEventListener('input', e => setPrimary(e.target.value));
+  $('#pc-hex').addEventListener('input', e => setPrimary(e.target.value.trim()));
+  document.querySelectorAll('[data-c]').forEach(b => b.addEventListener('click', () => setPrimary(b.dataset.c)));
+  setPrimary('#0a58ca');
+
+  /* Continuity check */
+  const VARIANTS = ['btn-solid', 'btn-outline', 'btn-text', 'btn-subtle'];
+  function checkLine(line) {
+    const parts = line.split(/\s+/).filter(Boolean);
+    const v = parts.find(p => /^btn-/.test(p) && p !== 'btn');
+    const t = parts.find(p => /^theme-/.test(p));
+    const key = [v, t].filter(Boolean).join(' ') + (parts.includes('has-client-zone-icon') ? ' has-client-zone-icon' : '');
+    if (/theme-(success|warning|info)/.test(line)) return ['bad', 'Banned theme on a button.', '“Success is a state, not an action. Warning duplicates danger. Info is indistinguishable from secondary.”', 'Buttons · Banned combinations'];
+    if (v === 'btn-subtle') return ['bad', 'btn-subtle is not in use.', '“Deliberately not in use.” Adding a fourth emphasis tier is an open decision.', 'Buttons · Banned combinations'];
+    if (v === 'btn-solid' && t === 'theme-secondary') return ['bad', 'Solid is reserved.', '“Primary emphasis without primary meaning.” Use btn-outline theme-secondary.', 'Buttons · Banned combinations'];
+    if (v === 'btn-outline' && t === 'theme-primary') return ['bad', 'Becomes a second primary.', '“If an action needs more than secondary but is not the primary, the hierarchy is wrong.”', 'Buttons · Banned combinations'];
+    if (v && !VARIANTS.includes(v)) return ['ask', `${v} is not a variant in the guidelines.`, '“Never invent a class name. If it isn’t in the permitted table, ASK.”', 'Patterns overview'];
+    const hit = PERMITTED.find(p => p.cls === key);
+    if (hit) return ['ok', 'Permitted.', hit.note, 'Buttons · Permitted combinations'];
+    return ['ask', 'Not in the permitted table.', '“Anything outside this table is a deviation and MUST be proposed, not improvised.”', 'Buttons · Permitted combinations'];
+  }
+  function runCheck() {
+    const lines = $('#cc-in').value.split('\n').map(s => s.trim()).filter(Boolean);
+    const rs = lines.map(l => [l, ...checkLine(l)]);
+    let solidPrimary = rs.filter(r => /btn-solid/.test(r[0]) && /theme-primary/.test(r[0])).length;
+    let out = rs.map(([l, k, h, q, s]) => `<div class="res ${k}">${icon(k)}<div class="body"><code>${esc(l)}</code><b>${k === 'ask' ? 'ASK: ' : ''}${esc(h)}</b><span>${esc(q)}</span><span class="src">${s}</span></div></div>`).join('');
+    if (solidPrimary > 1) out = `<div class="res bad">${icon('bad')}<div class="body"><b>${solidPrimary} primary actions on one screen.</b><span>“A screen MUST have at most one primary-emphasis action.”</span><span class="src">Colour · Primary</span></div></div>` + out;
+    $('#cc-out').innerHTML = out;
+    const c = k => rs.filter(r => r[1] === k).length;
+    $('#cc-sum').textContent = `${c('ok')} permitted, ${c('bad')} banned, ${c('ask')} to ask about.`;
+  }
+  $('#cc-run').addEventListener('click', runCheck);
+  runCheck();
+
+  /* Ask the Library: keyword match over real rules */
+  const KB = [
+    { k: ['green','success','publish','positive'], kind: 'rule', a: 'No. Publish is btn-solid theme-primary.', q: 'Green means “this is in a good state”. Publish is an important, non-destructive action, so it takes emphasis from the variant and keeps a neutral meaning.', s: SRC.buttons + ' · Variant and theme' },
+    { k: ['500','medium','fw-medium','weight'], kind: 'rule', a: 'No. Use 600.', q: 'MUST NOT use .fw-medium / font-weight: 500. Segoe UI on Windows 10 ships no Medium face, so 500 falls back to Regular.', s: SRC.type + ' · Weights' },
+    { k: ['smaller','small','secondary','de-emphasis','less','important','12px'], kind: 'rule', a: 'Use colour, not size.', q: 'Dropping from 14px to 12px to signal “less important” is the most common way this scale gets broken. Use --bs-secondary-color at the same size instead.', s: SRC.type + ' · Scale' },
+    { k: ['typed','confirmation','type','delete'], kind: 'open', a: 'Open decision. Not decided yet.', q: 'Typed confirmation: whether we use it at all, and if so which actions qualify. No owner, no review date.', s: SRC.destr + ' · Unresolved' },
+    { k: ['toast','position'], kind: 'open', a: 'Open decision. Not decided yet.', q: 'Toast position: where should Toast be positioned, and should it depend on the action?', s: SRC.destr + ' · Unresolved' },
+    { k: ['segmented','segment','toggle'], kind: 'open', a: 'Open decision. Not decided yet.', q: 'Segmented controls: whether we use them at all. Most current uses are tabs, switches or checkboxes.', s: SRC.groups + ' · Unresolved' },
+    { k: ['two','primary','primaries','both'], kind: 'rule', a: 'At most one primary per screen.', q: 'Where two compete, either pick the one most users take, or make both secondary.', s: SRC.colour + ' · Primary' },
+    { k: ['icon','icon-only','tooltip','aria-label'], kind: 'rule', a: 'btn-text theme-secondary, with a name and tooltip.', q: 'Every icon-only button MUST have an accessible name and a tooltip shown on hover and keyboard focus. Hit target at least 44×44px.', s: SRC.buttons + ' · Icon-only buttons' },
+    { k: ['row','table','bin','trash','remove'], kind: 'rule', a: 'Destructive actions go in the overflow menu, with a text label.', q: 'Icon-only buttons MUST NOT be used for destructive actions.', s: SRC.buttons + ' · Icon action sets in rows' },
+    { k: ['italic','italics','emphasis'], kind: 'rule', a: 'No italics for emphasis. Use weight 600.', q: 'MUST NOT use italics for emphasis; use weight 600.', s: SRC.type + ' · Scale' },
+    { k: ['orange','client','zone','accent'], kind: 'rule', a: 'Orange marks the client zone. Chrome and context, never actions.', q: 'Accent MUST NOT be applied to actions. Buttons inside an accented area follow the normal roles.', s: SRC.colour + ' · Accent' },
+    { k: ['subtle','btn-subtle'], kind: 'open', a: 'Not in use, and adding it is an open decision.', q: 'Adding a fourth emphasis tier requires evidence that outline and text cannot cover the case.', s: SRC.buttons + ' · Unresolved' }
+  ];
+  const STOP = new Set(['can','i','a','the','to','for','use','we','should','what','how','do','is','my','on','of','it','make','in','an','be']);
+  function answer(qText) {
+    const words = qText.toLowerCase().replace(/[^a-z0-9\- ]/g, ' ').split(/\s+/).filter(w => w && !STOP.has(w));
+    const scored = KB.map(e => ({ e, n: words.filter(w => e.k.includes(w)).length })).filter(x => x.n > 0).sort((a, b) => b.n - a.n);
+    let html = `<p class="help">You asked: “${esc(qText)}”</p>`;
+    if (!scored.length) {
+      html += `<div class="res ask">${icon('ask')}<div class="body"><b>The guidelines don't cover this yet. ASK.</b><span>I won't guess. Bootstrap 6 defaults are the fallback only where these guidelines are silent, and inventing a component is not allowed.</span><span class="src">AGENTS.md · Source precedence</span><a class="copy" href="https://github.com/denkungsart/product-design-guidelines/issues/new">Raise it as a question on GitHub</a></div></div>`;
+    } else {
+      const top = scored.filter(x => x.n === scored[0].n).slice(0, 2);
+      html += top.map(({ e }) => { const k = e.kind === 'open' ? 'ask' : 'ok'; return `<div class="res ${k}">${icon(k)}<div class="body"><b>${esc(e.a)}</b><span>“${esc(e.q)}”</span><span class="src">${esc(e.s)}</span>${e.kind === 'open' ? '<a class=\"copy\" href=\"https://github.com/denkungsart/product-design-guidelines/issues/new\">Add your view on GitHub</a>' : ''}</div></div>`; }).join('');
+    }
+    $('#ask-out').innerHTML = html;
+  }
+  $('#ask-form').addEventListener('submit', e => { e.preventDefault(); const v = $('#ask-in').value.trim(); if (v) answer(v); });
+  document.querySelectorAll('[data-q]').forEach(b => b.addEventListener('click', () => { $('#ask-in').value = b.dataset.q; answer(b.dataset.q); }));
+  answer('Can I make Publish green?');
+
+  /* Open decisions, from each page's Unresolved section */
+  const DEC = [
+    ['Buttons', 'Sizes', 'Research how sizes are used; maybe stricter rules.'],
+    ['Buttons', 'Other button types', 'Toggle and loading buttons not covered.'],
+    ['Buttons', 'has-client-zone-icon naming', 'Class name and scope beyond buttons.'],
+    ['Buttons', 'btn-subtle', 'Fourth emphasis tier, deliberately not in use.'],
+    ['Patterns', 'Segmented controls', 'Whether we use them at all.'],
+    ['Patterns', 'Selected state', 'Only if segmented controls are adopted.'],
+    ['Patterns', 'Toolbars', 'Several button groups in one toolbar.'],
+    ['Patterns', 'Action placement per page type', 'Positions not yet defined.'],
+    ['Patterns', 'Typed confirmation', 'Whether we use it, and for which actions.'],
+    ['Patterns', 'Toast position', 'Where, and whether it depends on the action.'],
+    ['Patterns', 'Four or more peer actions', 'Flagged as ASK inside Button hierarchy.']
+  ];
+  function renderDec(f) {
+    const rows = DEC.filter(d => f === 'all' || d[0] === f);
+    $('#dec-list').innerHTML = rows.map(([p, t, s]) => `<li><span class="t">${t}</span><span class="s">${p} · ${s}</span><span class="tags"><span class="badge missing">${icon('ask')}No review date</span><span class="badge">No owner</span></span></li>`).join('');
+    $('#dec-count').textContent = `${rows.length} open · 0 dated`;
+  }
+  document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-f]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderDec(b.dataset.f);
+  }));
+  renderDec('all');
+})();
+</script>
