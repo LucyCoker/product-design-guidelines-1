@@ -391,13 +391,11 @@ body {
 [data-bs-theme="dark"] .lib-top .lib-logo img { filter: invert(1); }
 .lib-mode .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
 
-/* Colour page: every swatch shows its light and its dark value. */
-.lib-swatch-pair { display: grid; grid-template-columns: 1fr 1fr; block-size: 56px; border-radius: var(--bs-radius-4, 6px); overflow: hidden; border: 1px solid var(--bs-border-subtle); }
-.lib-swatch-pair > span { display: flex; align-items: flex-end; padding: 4px 6px; font-size: 10px; }
-.lib-swatch-pair > span:first-child { color-scheme: light; }
-.lib-swatch-pair > span:last-child { color-scheme: dark; }
-.lib-swatch-item .lib-swatch-pair > span { border: 0; border-radius: 0; block-size: auto; }
+/* Colour page: token table chips show the light and the dark value. */
 .lib-token-table td:nth-child(n+3) { white-space: nowrap; }
 .lib-token-chip { display: inline-block; inline-size: 14px; block-size: 14px; border-radius: 3px; border: 1px solid var(--bs-border-color); vertical-align: -2px; margin-inline-end: 6px; }
 .lib-token-chip.is-light { color-scheme: light; }
 .lib-token-chip.is-dark { color-scheme: dark; }
+/* Colour page: one panel per mode, each on its own body colour. */
+.lib-mode-panel { padding: 20px; border: 1px solid var(--bs-border-color); border-radius: var(--bs-radius-5, 8px); background: var(--bs-bg-body); color: var(--bs-fg-body); }
+.lib-mode-panel > h3 { color: var(--bs-fg-body); }

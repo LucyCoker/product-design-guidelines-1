@@ -405,23 +405,56 @@ function setupTooltips() {
   $$('[data-bs-toggle="tooltip"]').forEach((el) => bootstrap.Tooltip.getOrCreateInstance(el))
 }
 
-// Progress example: simulate an upload.
+// Progress example: a real page. Upload adds a file row with a progress bar,
+// its percentage and Cancel; at 100% the row becomes a normal file row.
 function setupUploadDemo() {
+  const FILES = [['Showreel-2026.mp4', '48 MB', 'fa-file-video'], ['Self-tape-Round-1.mov', '112 MB', 'fa-file-video'], ['Headshots.zip', '9.4 MB', 'fa-file-zipper']]
+  let n = 0
+  const fileRow = (name, size, icon) =>
+    `<i class="fa-regular ${icon} fg-3" aria-hidden="true" style="font-size:20px"></i><div class="vstack min-w-0"><span>${name}</span><span class="fs-xs fg-3">${size}</span></div>` +
+    `<button type="button" class="btn-text theme-secondary btn-xs btn-icon ms-auto" aria-label="Remove ${name}" data-demo-remove><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>`
   document.addEventListener('click', (e) => {
+    const remove = e.target.closest('[data-demo-upload-page] [data-demo-remove]')
+    if (remove) { remove.closest('li').remove(); return }
     const button = e.target.closest('[data-demo-upload]')
     if (!button) return
-    const box = button.closest('.lib-preview')
-    const bar = $('.progress', box)
-    const label = $('[data-demo-label]', box)
+    const page = button.closest('[data-demo-upload-page]')
+    const list = $('[data-upload-list]', page)
+    const status = $('[data-upload-status]', page)
+    const [name, size, icon] = FILES[n++ % FILES.length]
+    const row = document.createElement('li')
+    row.className = 'd-flex align-items-center gap-3'
+    row.innerHTML = `<i class="fa-regular ${icon} fg-3" aria-hidden="true" style="font-size:20px"></i>` +
+      `<div class="vstack gap-1 flex-grow-1 min-w-0"><div class="d-flex justify-content-between gap-2 fs-xs"><span class="text-truncate">${name}</span><span class="fg-3" data-pct>0%</span></div>` +
+      `<div class="progress" role="progressbar" aria-label="Upload progress, ${name}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" style="width:0%"></div></div></div>` +
+      '<button type="button" class="btn-text theme-secondary btn-xs" data-demo-cancel>Cancel</button>'
+    list.append(row)
+    status.textContent = `Uploading ${name}`
     let pct = 0
-    button.disabled = true
     const timer = setInterval(() => {
-      pct = Math.min(pct + 12, 100)
-      bar.setAttribute('aria-valuenow', pct)
-      $('.progress-bar', bar).style.width = pct + '%'
-      label.textContent = pct + '%'
-      if (pct === 100) { clearInterval(timer); button.disabled = false }
-    }, 180)
+      pct = Math.min(pct + 4 + Math.round(Math.random() * 6), 100)
+      $('.progress', row).setAttribute('aria-valuenow', pct)
+      $('.progress-bar', row).style.width = pct + '%'
+      $('[data-pct]', row).textContent = pct + '%'
+      if (pct === 100) {
+        clearInterval(timer)
+        setTimeout(() => { row.innerHTML = fileRow(name, size, icon); status.textContent = `${name} uploaded` }, 300)
+      }
+    }, 120)
+    $('[data-demo-cancel]', row).addEventListener('click', () => { clearInterval(timer); row.remove(); status.textContent = `Upload of ${name} cancelled`; button.focus() })
+  })
+}
+
+// Toast examples: the live toast, and the placement picker.
+function setupToastExtras() {
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-demo-toast-live]')) bootstrap.Toast.getOrCreateInstance(document.getElementById('lib-live-toast')).show()
+  })
+  document.addEventListener('change', (e) => {
+    const select = e.target.closest('[data-demo-toast-place] select')
+    if (!select) return
+    const box = select.closest('[data-demo-toast-place]').querySelector('[data-place]')
+    box.className = 'toast-container position-absolute p-3 ' + select.value
   })
 }
 
@@ -700,6 +733,7 @@ async function start() {
   setupDialogs()
   setupRatingDemo()
   setupUploadDemo()
+  setupToastExtras()
   setupCopy()
   setupPages()
   setupComponentSort()
