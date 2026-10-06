@@ -64,6 +64,9 @@ function itemHtml(item) {
 
   let preview = ''
   let markup = item.example || ''
+  // A snippet, when given, is what the Code box copies: the component's real
+  // markup per state, for live examples whose starting markup is replaced.
+  const snippet = item.snippet && item.snippet.map((part) => part.startsWith('<!--') ? part : formatMarkup(part)).join('\n\n')
   if (item.examples) {
     markup = item.examples.map((e) => `<!-- ${e.label} -->\n${formatMarkup(e.html)}`).join('\n\n')
     preview = item.examples.length ? `<div class="lib-examples">${item.examples.map(exampleHtml).join('')}</div>` : ''
@@ -73,6 +76,7 @@ function itemHtml(item) {
   } else {
     preview = '<div class="lib-preview-missing"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Example not shared yet.</span></div>'
   }
+  if (snippet) markup = snippet
   const code = markup
     ? `<details class="lib-code"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code</summary>
         <div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code>${escapeHtml(markup)}</code></pre></div></details>`
