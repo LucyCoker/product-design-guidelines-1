@@ -408,7 +408,7 @@
       "<code>theme-success</code>, <code>theme-warning</code> or <code>theme-info</code> on any button. Success is a state, not an action.",
       "<code>btn-solid theme-secondary</code>. Primary emphasis without primary meaning.",
       "<code>btn-outline theme-primary</code> or <code>btn-subtle theme-primary</code>. It becomes a second primary.",
-      "<code>btn-subtle</code> in any theme. Not in use yet.",
+      "<code>btn-subtle</code> in any theme, except the filter and Sort by buttons of the <a href=\"#sf-4\">Simple search and filter</a> bar (<code>btn-subtle theme-secondary</code>).",
       "The styled button style (<code>btn-styled</code>). Use the default rounded corners."
      ],
      "examples": [],

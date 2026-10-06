@@ -19,6 +19,8 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - MUST NOT use Tailwind, shadcn, Material or any other UI kit, and MUST NOT write CSS for colours, fonts, spacing or components.
 - MUST NOT use hex, rgb or named colours. Colour comes from theme classes (`theme-primary`, `theme-secondary`, `theme-danger`…) and tokens (`var(--bs-…)`).
 - To preview a customer's colour, set `:root { --fm-primary: #hex; }`. Nothing else.
+- Light mode is the default: keep `data-bs-theme="light"` on `<html>`. Every token has a dark value too (`data-bs-theme="dark"` switches them), so colour that comes from tokens works in both. Do not add a dark mode switch to the product: whether it ships is an open decision.
+- Pictures of people are illustrations or placeholders, never real photos.
 - Icons are Font Awesome 7: `<i class="fa-solid fa-…">` or `fa-regular`.
 
 ## Rules
@@ -27,9 +29,9 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - At most one `btn-solid theme-primary` per screen. Everything else is secondary.
 - Secondary `btn-outline theme-secondary` · Tertiary `btn-text theme-secondary` · Row action on a list item `btn-text theme-primary btn-xs` · Destructive `btn-text theme-danger`, or `btn-solid theme-danger` only in a confirmation dialog.
 - Small (`btn-sm`) is the default size; `btn-xs` in table rows.
-- Never `btn-solid theme-secondary`, `btn-outline theme-primary`, `btn-subtle`, or `theme-success` / `theme-warning` / `theme-info` on a button.
-- Icon-only buttons are `btn-text theme-secondary btn-icon` with `aria-label` and a tooltip.
-- Four or more actions on one item: show up to three, then a **More** row action that opens a menu. Destructive items go last in the menu, after a divider.
+- Never `btn-solid theme-secondary`, `btn-outline theme-primary`, or `theme-success` / `theme-warning` / `theme-info` on a button. `btn-subtle theme-secondary` only for the filter and Sort by buttons of the Simple search and filter bar.
+- Icon-only buttons are `btn-text theme-secondary btn-icon`, or `btn-outline theme-secondary btn-icon` when they stand alone or sit in a Button group. Each has `aria-label` and a tooltip, and a target of at least 24×24px. Only for overflow (ellipsis), close and well-known toolbar icons; never destructive.
+- Row actions always have a text label and are the same set, in the same order, on every row. Four or more actions on one item: show up to three, then a **More** row action that opens a menu. Destructive items go last in the menu, after a divider.
 - Buttons name the outcome: "Save changes", never "Submit" or "OK".
 
 **Colour**
@@ -42,13 +44,23 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - Weights 400 and 600 only. Never `fw-medium`, never italics for emphasis. De-emphasise with `.fg-2` / `.fg-3`. 12px (`.fs-xs`) is the floor.
 
 **Layout and messages**
-- Modal: one short decision or about six fields. Anything longer, or multi-step, is a page.
-- Toast for events, banner (`alert`) for conditions that are still true. No "successfully", no exclamation marks.
+- Dialogs are Bootstrap 6's `dialog.dialog` (`data-bs-toggle="dialog"`, `data-bs-dismiss="dialog"`), not modals: one short decision or about six fields. They may scroll: add `.dialog-scrollable` so the header and footer stay put. Multi-step, or anything that needs its own URL, is a page.
+- Toast for events, banner (`alert`) for conditions that are still true. A toast takes the status theme of the outcome with an icon. No "successfully", no exclamation marks.
 - Reversible destructive actions act at once and offer Undo. Irreversible ones confirm, naming the object.
 
-## Open decisions
+**Search and filter**
+- Large sets (actors, crew, locations): the Complex bar. Search, up to three filters, More filters (opens a row of extra filters in the bar), then Sort by. Applied filters show as chips with Clear filters after the last one.
+- Short, familiar lists (coworkers, projects): the Simple bar. A few subtle filter buttons, each showing its value.
+- Filters are a Combobox reading "Label: value". One value: plain menu items, the current one `.selected` with a check. Several values: checkboxes. Filters apply on change.
+- Profile search results use the selectable Profile tile, with the view switcher (Small tiles, Large tiles, List view) as one Button group.
 
-Where the guidelines say **ASK**, the decision has not been made. Do not choose. Leave it visibly unresolved in the prototype, and say so.
+## Open decisions and flags
+
+Each entry in `components.json` can carry flags:
+
+- **ask**: the decision has not been made. Do not choose. Leave it visibly unresolved in the prototype, and say so.
+- **exception**: a decided break from the guidelines, kept to match production (for example the Profile tile's name over the photo). Build it as the entry says.
+- **review** (a field, shown as a badge such as “Needs review · Not finished”): the entry is not finished. Use it, but say in the prototype that it may change.
 
 ## Sources
 
