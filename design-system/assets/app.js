@@ -24,9 +24,12 @@ function formatMarkup(html) {
 }
 
 function flagHtml(flag) {
+  // exception: a decided break from the guidelines, kept to match production.
   const badge = flag.type === 'ask'
     ? '<span class="badge theme-warning badge-subtle">ASK</span>'
-    : '<i class="fa-solid fa-circle-info fg-3" aria-hidden="true"></i>'
+    : flag.type === 'exception'
+      ? '<span class="badge theme-danger badge-subtle">Exception</span>'
+      : '<i class="fa-solid fa-circle-info fg-3" aria-hidden="true"></i>'
   return `<p class="lib-flag">${badge}<span>${escapeHtml(flag.text)}</span></p>`
 }
 

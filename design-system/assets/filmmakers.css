@@ -271,12 +271,37 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
 .fm-rating [data-rating-clear][hidden] { display: none; }
 
-/* Profile tile, selectable (CNT-20): the checkbox sits top left on the photo on
-   a body-coloured pad, so it reads on any photo, with a 24px target. A selected
-   tile gets a 2px primary outline, so selection is not shown by the box alone. */
-.fm-tile-check { position: absolute; top: 8px; inset-inline-start: 8px; display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; border-radius: var(--bs-border-radius-sm); background: var(--bs-bg-body); cursor: pointer; }
-.fm-tile:has(.fm-tile-check input:checked) { outline: 2px solid var(--bs-primary-bg); outline-offset: -1px; }
+/* Profile tile, selectable (CNT-20), matching production search results.
+   The name sits over the photo on a translucent band (black 60%, so white
+   text keeps at least 4.5:1 over any photo); the band turns white with a
+   link-coloured name on hover. The checkbox sits top right and shows on
+   hover, on keyboard focus, when ticked, and always on touch screens.
+   A selected tile gets a 2px primary outline. */
+.fm-tile { position: relative; overflow: hidden; border: 0; }
+.fm-tile-photo { display: block; inline-size: 100%; aspect-ratio: var(--fm-tile-ratio, 1 / 1); object-fit: cover; }
+.fm-tile-band { position: absolute; inset-inline: 0; inset-block-end: 0; display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: color-mix(in oklch, var(--bs-black) 60%, transparent); color: var(--bs-white); }
+.fm-tile-band .fm-tile-name { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit; text-decoration: none; font-weight: var(--bs-font-weight-semibold); }
+.fm-tile-band .fm-tile-name::after { content: ""; position: absolute; inset: 0; }
+.fm-tile-band:hover, .fm-tile-band:focus-within { background: color-mix(in oklch, var(--bs-white) 92%, transparent); }
+.fm-tile-band:hover .fm-tile-name, .fm-tile-band:focus-within .fm-tile-name { color: var(--bs-link-color); }
+.fm-tile-check { position: absolute; z-index: 1; inset-block-start: 8px; inset-inline-end: 8px; display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; border-radius: var(--bs-border-radius-sm); background: var(--bs-bg-body); cursor: pointer; opacity: 0; }
+.fm-tile:hover .fm-tile-check, .fm-tile:focus-within .fm-tile-check, .fm-tile-check:has(input:checked) { opacity: 1; }
+@media (hover: none) { .fm-tile-check { opacity: 1; } }
+.fm-tile:has(.fm-tile-check input:checked) { outline: 2px solid var(--bs-primary-bg); outline-offset: -2px; }
+
+/* Assignment status icon (production colours: In discussion is yellow).
+   Light shades on the dark band, darker ones on white. */
+.fm-status { flex: 0 0 auto; }
+.fm-status-available { color: var(--bs-green-400); }
+.fm-status-discussion { color: var(--bs-yellow-400); }
+.fm-status-blocked { color: var(--bs-red-400); }
+.fm-status-booked { color: var(--bs-blue-300); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-available { color: var(--bs-green-700); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-discussion { color: var(--bs-yellow-700); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: var(--bs-red-600); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: var(--bs-blue-600); }
+
 /* List view row: the same checkbox with a 24px target; a selected row gets
    the subtle primary background. */
 .fm-row-check { display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; cursor: pointer; }
-.fm-tile:has(.fm-row-check input:checked) { background: var(--bs-primary-bg-subtle); }
+.fm-row:has(.fm-row-check input:checked) { background: var(--bs-primary-bg-subtle); }
