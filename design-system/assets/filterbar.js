@@ -187,7 +187,7 @@ export function initFilterBar(root) {
     if (compact) {
       const applied = DEFS.filter(isApplied).length
       // The accessible name starts with the visible text, then the count.
-      const moreName = applied ? `Add filters, ${applied} applied` : 'Add filters'
+      const moreName = applied ? `More filters, ${applied} applied` : 'More filters'
       const sortPop = sortMenu
         .replace('inset-inline-end:0;top:calc(100% + 4px)', 'inset-inline:8px;top:calc(100% - 4px)')
         .replace('min-width:200px', 'min-width:0')
@@ -198,7 +198,7 @@ export function initFilterBar(root) {
         // group, so their borders overlap by 1px; the group is static so the
         // Sort by menu anchors to the whole bar.
         '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="position:static;margin-inline-start:auto;flex:0 0 auto">' +
-        `<button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" aria-label="${moreName}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>Add filters</button>` +
+        `<button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" aria-label="${moreName}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters</button>` +
         `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortPop}` +
         '</div>' +
         '</div>'

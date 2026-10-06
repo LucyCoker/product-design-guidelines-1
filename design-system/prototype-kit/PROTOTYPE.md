@@ -48,11 +48,14 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - Toast for events, banner (`alert`) for conditions that are still true. A toast takes the status theme of the outcome with an icon. No "successfully", no exclamation marks.
 - Reversible destructive actions act at once and offer Undo. Irreversible ones confirm, naming the object.
 
+**Component candidates**
+- Entries in the Library's Component candidates section (for example the Production list and the Profile tile: Auditions) are waiting for a decision. Do not use them in new work.
+
 **Search and filter**
 - Large sets (actors, crew, locations): the Complex bar. Search, up to three filters, More filters (opens a row of extra filters in the bar), then Sort by. Applied filters show as chips with Clear filters after the last one.
 - Short, familiar lists (coworkers, projects): the Simple bar. A few subtle filter buttons, each showing its value.
 - Filters are a Combobox reading "Label: value". One value: plain menu items, the current one `.selected` with a check. Several values: checkboxes. Filters apply on change.
-- Profile search results use the selectable Profile tile, with the view switcher (Small tiles, Large tiles, List view) as one Button group.
+- Profile search results use the Profile tile: search results, with the view switcher (Small tiles, Large tiles, List view) as one Button group.
 
 ## Open decisions and flags
 
