@@ -270,3 +270,13 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-rating .btn-check:hover > i,
 .fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
 .fm-rating [data-rating-clear][hidden] { display: none; }
+
+/* Profile tile, selectable (CNT-20): the checkbox sits top left on the photo on
+   a body-coloured pad, so it reads on any photo, with a 24px target. A selected
+   tile gets a 2px primary outline, so selection is not shown by the box alone. */
+.fm-tile-check { position: absolute; top: 8px; inset-inline-start: 8px; display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; border-radius: var(--bs-border-radius-sm); background: var(--bs-bg-body); cursor: pointer; }
+.fm-tile:has(.fm-tile-check input:checked) { outline: 2px solid var(--bs-primary-bg); outline-offset: -1px; }
+/* List view row: the same checkbox with a 24px target; a selected row gets
+   the subtle primary background. */
+.fm-row-check { display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; cursor: pointer; }
+.fm-tile:has(.fm-row-check input:checked) { background: var(--bs-primary-bg-subtle); }
