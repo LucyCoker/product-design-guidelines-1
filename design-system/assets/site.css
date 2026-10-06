@@ -381,3 +381,8 @@ body {
 .fm-results:has([data-view="list"]:checked) .fm-results-grid,
 .fm-results:not(:has([data-view="list"]:checked)) .fm-results-table { display: none; }
 .fm-results:has([data-view="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
+
+/* Logo in the top bar: the Filmmakers System wordmark, 32px tall. */
+.lib-top .lib-logo { display: inline-flex; align-items: center; line-height: 0; }
+.lib-top .lib-logo img { block-size: 32px; inline-size: auto; }
+@media (width < 860px) { .lib-top .lib-logo img { block-size: 26px; } }
