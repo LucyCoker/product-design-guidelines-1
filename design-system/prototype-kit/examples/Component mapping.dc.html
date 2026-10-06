@@ -357,6 +357,9 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
    choice. The chosen button uses the Library's selected-item style (bg-2,
    body text), as menus do: never primary, never solid secondary. */
 .fm-view-switch { display: flex; align-items: center; justify-content: flex-end; }
+/* Tile size: the same Font Awesome person, small (10px) and large (16px). */
+.fm-view-switch .fm-size-sm > i { font-size: 10px; }
+.fm-view-switch .fm-size-lg > i { font-size: 16px; }
 .fm-view-switch .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
 
 /* List view row photo: 160px square, as production; 96px on small screens. */
