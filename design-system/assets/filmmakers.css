@@ -317,3 +317,7 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
    body text), as menus do: never primary, never solid secondary. */
 .fm-view-switch { display: flex; align-items: center; justify-content: flex-end; }
 .fm-view-switch .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
+
+/* List view row photo: 160px square, as production; 96px on small screens. */
+.fm-row-photo { inline-size: 160px; aspect-ratio: 1 / 1; object-fit: cover; }
+@media (width < 576px) { .fm-row-photo { inline-size: 96px; } }
