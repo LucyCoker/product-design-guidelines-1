@@ -289,17 +289,18 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 @media (hover: none) { .fm-tile-check { opacity: 1; } }
 .fm-tile:has(.fm-tile-check input:checked) { outline: 2px solid var(--bs-primary-bg); outline-offset: -2px; }
 
-/* Assignment status icon (production colours: In discussion is yellow).
+/* Assignment status icon: Available green tick, In discussion yellow ?,
+   Blocked orange !, Booked red no-entry sign (as production).
    Light shades on the dark band, darker ones on white. */
 .fm-status { flex: 0 0 auto; }
 .fm-status-available { color: var(--bs-green-400); }
 .fm-status-discussion { color: var(--bs-yellow-400); }
-.fm-status-blocked { color: var(--bs-red-400); }
-.fm-status-booked { color: var(--bs-blue-300); }
+.fm-status-blocked { color: var(--bs-orange-400); }
+.fm-status-booked { color: var(--bs-red-400); }
 :is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-available { color: var(--bs-green-700); }
 :is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-discussion { color: var(--bs-yellow-700); }
-:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: var(--bs-red-600); }
-:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: var(--bs-blue-600); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: var(--bs-orange-700); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: var(--bs-red-600); }
 
 /* List view row: the same checkbox with a 24px target; a selected row gets
    the subtle primary background. */
