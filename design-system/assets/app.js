@@ -149,6 +149,9 @@ function render(data) {
   $('#side-organisms-area').insertAdjacentHTML('beforeend', sideLinks(areaSpecific))
   $('#side-app-shell').insertAdjacentHTML('beforeend', sideLinks(shell))
   $('#side-candidates').insertAdjacentHTML('beforeend', sideLinks(candidates))
+  // Decisions backlog: parked questions, out of the component pages.
+  $('#backlog-items').innerHTML = (data.backlog || []).map((b) =>
+    `<tr><td><b>${escapeHtml(b.title)}</b><br><a class="fs-xs" href="${b.href}">${escapeHtml(b.where)}</a></td><td>${escapeHtml(b.question)}</td><td>${escapeHtml(b.why)}</td><td>${escapeHtml(b.revisit)}</td></tr>`).join('')
 
   $('#components-excluded').innerHTML =
     `<div class="lib-page-head"><h2 class="fs-lg">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>

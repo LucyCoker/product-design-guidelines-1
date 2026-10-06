@@ -147,7 +147,7 @@ This page defines roles and proportion. How each role is applied to a given situ
 
 ### Open decisions
 
-**Dark mode in the product** — the tokens and the Library support dark mode. Whether the product offers it, and where people switch it, is not decided. Do not ship a dark mode switch in the product until it is.
+**Dark mode in the product** — the tokens and the Library support dark mode. Whether the product offers it, and where people switch it, is not decided. Do not ship a dark mode switch in the product until it is. Listed in the Library's Decisions backlog.
 
 ### Watching
 

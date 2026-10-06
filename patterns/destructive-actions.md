@@ -37,6 +37,8 @@ Undo uses the standard toast component.
 
 ## Our rules
 
+- Toasts appear in the top right of the window, for every action. The Toast component in the Library has the markup.
+
 **Choosing the pattern**
 
 - Reversible actions MUST NOT use the word delete or show a confirmation dialog. Use remove or archive, and allow undo via toast or an archive area.
@@ -88,11 +90,8 @@ Undo uses the standard toast component.
 
 ### Open decisions
 
-**Typed confirmation** — whether we use it at all, and if so which actions qualify.
-*Review by: [date]*
-
-**Toast position** — where should Toast be positioned? Should it depend on the action. Should this detail be here or in Toast component documentation.
-*Review by: [date]*
+**Typed confirmation** — whether we use it at all, and if so which actions qualify. Parked: no current screen needs it. Listed in the Library's Decisions backlog.
+*Review by: when a screen needs it*
 
 ### Watching
 

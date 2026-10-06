@@ -673,10 +673,10 @@
      "id": "bg-open",
      "name": "Open decisions",
      "classes": "",
-     "unresolved": true,
+     "unresolved": false,
      "note": "Not yet decided in the Button groups pattern. Do not build these until they are.",
      "rules": [
-      "<b>Toolbars:</b> whether a toolbar of several groups is a pattern we use, and how groups are separated in one."
+      "Toolbars are parked in the <a href=\"#backlog\">Decisions backlog</a>."
      ],
      "examples": []
     }
@@ -1793,12 +1793,7 @@
      "replaces": "(none)",
      "note": "Confirms that something just happened. It takes the status theme of the outcome, with an icon beside the text.",
      "unresolved": false,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Toast position on the screen, and whether it depends on the action. This is the open decision in Destructive actions."
-      }
-     ],
+     "flags": [],
      "layout": "row",
      "examples": [
       {
@@ -1821,7 +1816,8 @@
       "State what happened and the count, e.g. “4 records archived.” No “successfully”, no exclamation marks, no raw error codes.",
       "Auto-dismisses unless it carries an action. A toast with Undo stays until dismissed, and Undo stays available for at least 10 seconds.",
       "Nothing important lives only in a toast.",
-      "Use <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code>. The Undo and close buttons take the toast’s theme, with no colour overrides."
+      "Use <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code>. The Undo and close buttons take the toast’s theme, with no colour overrides.",
+      "Toasts appear in the top right of the window, for every action: a <code>.toast-container position-fixed top-0 end-0 p-3</code>, so they never cover the page’s main actions."
      ],
      "guide": "patterns/destructive-actions.md"
     }
@@ -1884,12 +1880,7 @@
      "replaces": "tooltip data-toggle",
      "note": "A short label shown on hover and keyboard focus. Required on every icon-only control.",
      "unresolved": false,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Should tooltips also show the full text of truncated content, such as long names in a table cell? Not added until decided."
-      }
-     ],
+     "flags": [],
      "layout": "row",
      "examples": [
       {
@@ -1908,7 +1899,8 @@
      "rules": [
       "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus.",
       "A few words, no full sentences, no links or buttons inside.",
-      "Help needed to complete a field is always visible, never only in a tooltip."
+      "Help needed to complete a field is always visible, never only in a tooltip.",
+      "Truncated text: there is no general rule. Each component decides whether a truncated value gets a tooltip with the full text (the Profile tile: search results does, for long names)."
      ]
     }
    ]
@@ -1930,8 +1922,8 @@
      "unresolved": false,
      "flags": [
       {
-       "type": "ask",
-       "text": "Help text in popovers: ideally no, because help needed to complete a field is always visible. The system uses it a lot, so the cases and alternatives are being collected in the Help text guideline (draft) before deciding."
+       "type": "info",
+       "text": "Parked: help text in popovers, until the Help text guideline is finished. See the Decisions backlog."
       }
      ],
      "layout": "row",
@@ -1981,12 +1973,12 @@
      ],
      "flags": [
       {
-       "type": "ask",
-       "text": "Typed confirmation (“type DELETE to confirm”) for irreversible actions that affect other users or billed data: do we use it, and where? (Open in Destructive actions.)"
+       "type": "info",
+       "text": "Bootstrap 6 alpha keeps .dialog at visibility:hidden until its open transition starts, so the browser cannot move focus in on open. The Library focuses the autofocus control (or the first control) on shown.bs.dialog; production needs the same few lines until Bootstrap fixes it."
       },
       {
        "type": "info",
-       "text": "Bootstrap 6 alpha keeps .dialog at visibility:hidden until its open transition starts, so the browser cannot move focus in on open. The Library focuses the autofocus control (or the first control) on shown.bs.dialog; production needs the same few lines until Bootstrap fixes it."
+       "text": "Parked: typed confirmation (“type DELETE to confirm”). See the Decisions backlog."
       }
      ],
      "examples": [
@@ -3019,6 +3011,44 @@
    "code": "CNT-16",
    "name": "Activity list",
    "reason": "Merged into the Definition list (CNT-15) as its Activity example: the same two-column list with the timestamp as the label."
+  }
+ ],
+ "backlog": [
+  {
+   "title": "Typed confirmation",
+   "where": "Dialog",
+   "href": "#dialog",
+   "question": "Do we use “type DELETE to confirm” for irreversible actions that affect other users or billed data, and which actions qualify?",
+   "why": "No current screen needs it.",
+   "revisit": "When a screen needs it.",
+   "source": "Destructive actions pattern"
+  },
+  {
+   "title": "Help text in popovers",
+   "where": "Popover",
+   "href": "#sf-2",
+   "question": "Is help text allowed in popovers? Ideally no: help needed to complete a field is always visible. The product uses it a lot today.",
+   "why": "The Help text guideline (draft) is collecting the cases and alternatives first.",
+   "revisit": "When the Help text guideline is finished.",
+   "source": "Help text guideline (draft)"
+  },
+  {
+   "title": "Toolbars",
+   "where": "Button group",
+   "href": "#button-group",
+   "question": "Is a toolbar of several groups a pattern we use, and how are the groups separated?",
+   "why": "No current screen needs one.",
+   "revisit": "When a screen needs one.",
+   "source": "Button groups pattern"
+  },
+  {
+   "title": "Dark mode in the product",
+   "where": "Colour",
+   "href": "#colour",
+   "question": "Does the product offer dark mode, and where do people switch it? The tokens and the Library support it.",
+   "why": "A product decision, not a Library one.",
+   "revisit": "When product planning picks it up.",
+   "source": "Colour guideline"
   }
  ]
 }
