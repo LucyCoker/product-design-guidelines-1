@@ -4,7 +4,7 @@
  * borders, no shadows, weights 400 and 600, primary only for actions.
  */
 
-:root, body { color-scheme: light !important; }
+/* Colour mode comes from data-bs-theme on <html> (see filmmakers.css). */
 
 body {
   background: var(--bs-bg-body);
@@ -386,3 +386,18 @@ body {
 .lib-top .lib-logo { display: inline-flex; align-items: center; line-height: 0; }
 .lib-top .lib-logo img { block-size: 32px; inline-size: auto; }
 @media (width < 860px) { .lib-top .lib-logo img { block-size: 26px; } }
+
+/* Colour mode switch (Light / Dark / Auto) and the black logo in dark mode. */
+[data-bs-theme="dark"] .lib-top .lib-logo img { filter: invert(1); }
+.lib-mode .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
+
+/* Colour page: every swatch shows its light and its dark value. */
+.lib-swatch-pair { display: grid; grid-template-columns: 1fr 1fr; block-size: 56px; border-radius: var(--bs-radius-4, 6px); overflow: hidden; border: 1px solid var(--bs-border-subtle); }
+.lib-swatch-pair > span { display: flex; align-items: flex-end; padding: 4px 6px; font-size: 10px; }
+.lib-swatch-pair > span:first-child { color-scheme: light; }
+.lib-swatch-pair > span:last-child { color-scheme: dark; }
+.lib-swatch-item .lib-swatch-pair > span { border: 0; border-radius: 0; block-size: auto; }
+.lib-token-table td:nth-child(n+3) { white-space: nowrap; }
+.lib-token-chip { display: inline-block; inline-size: 14px; block-size: 14px; border-radius: 3px; border: 1px solid var(--bs-border-color); vertical-align: -2px; margin-inline-end: 6px; }
+.lib-token-chip.is-light { color-scheme: light; }
+.lib-token-chip.is-dark { color-scheme: dark; }

@@ -10,12 +10,18 @@
  * overrides are unlayered too and win by source order.
  */
 
-/* The product is light only for now. !important so a host page or OS
-   dark setting cannot switch Bootstrap's light-dark() tokens. */
-:root,
-body,
-[data-theme],
-[data-bs-theme] { color-scheme: light !important; }
+/* ---------------------------------------------------------------------------
+ * Colour modes: light (default) and dark
+ *
+ * Bootstrap 6 defines every theme token with light-dark(), so the mode is
+ * just color-scheme: data-bs-theme="dark" on <html> (or any element) turns
+ * the tokens dark, data-bs-theme="light" turns them light. Light is the
+ * default; nothing switches on the OS setting unless the page asks it to.
+ * Every Filmmakers override below gives a light and a dark value too.
+ * ------------------------------------------------------------------------ */
+:root { color-scheme: light; }
+[data-bs-theme="light"] { color-scheme: light; }
+[data-bs-theme="dark"] { color-scheme: dark; }
 
 /* ---------------------------------------------------------------------------
  * Primary
@@ -31,13 +37,16 @@ body,
 
 :root,
 [data-fm-primary] {
+  /* light value, dark value: the dark mixes lighten the primary for text and
+     mix it into the dark body colour for surfaces, as Bootstrap's own
+     scales do (blue-400 text, blue-900 subtle on dark). */
   --bs-primary-base: var(--fm-primary);
   --bs-primary-bg: var(--fm-primary);
-  --bs-primary-fg: var(--fm-primary);
-  --bs-primary-fg-emphasis: color-mix(in oklch, var(--fm-primary) 78%, var(--bs-black));
-  --bs-primary-bg-subtle: color-mix(in oklch, var(--fm-primary) 12%, var(--bs-white));
-  --bs-primary-bg-muted: color-mix(in oklch, var(--fm-primary) 26%, var(--bs-white));
-  --bs-primary-border: color-mix(in oklch, var(--fm-primary) 55%, var(--bs-white));
+  --bs-primary-fg: light-dark(var(--fm-primary), color-mix(in oklch, var(--fm-primary) 62%, var(--bs-white)));
+  --bs-primary-fg-emphasis: light-dark(color-mix(in oklch, var(--fm-primary) 78%, var(--bs-black)), color-mix(in oklch, var(--fm-primary) 45%, var(--bs-white)));
+  --bs-primary-bg-subtle: light-dark(color-mix(in oklch, var(--fm-primary) 12%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 22%, var(--bs-gray-975)));
+  --bs-primary-bg-muted: light-dark(color-mix(in oklch, var(--fm-primary) 26%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 38%, var(--bs-gray-975)));
+  --bs-primary-border: light-dark(color-mix(in oklch, var(--fm-primary) 55%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 60%, var(--bs-gray-975)));
   --bs-primary-contrast: var(--bs-white);
 }
 
@@ -282,7 +291,7 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-tile-band { position: absolute; inset-inline: 0; inset-block-end: 0; display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: color-mix(in oklch, var(--bs-black) 60%, transparent); color: var(--bs-white); }
 .fm-tile-band .fm-tile-name { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit; text-decoration: none; font-weight: var(--bs-font-weight-semibold); }
 .fm-tile-band .fm-tile-name::after { content: ""; position: absolute; inset: 0; }
-.fm-tile-band:hover, .fm-tile-band:focus-within { background: color-mix(in oklch, var(--bs-white) 92%, transparent); }
+.fm-tile-band:hover, .fm-tile-band:focus-within { background: color-mix(in oklch, var(--bs-bg-body) 92%, transparent); }
 .fm-tile-band:hover .fm-tile-name, .fm-tile-band:focus-within .fm-tile-name { color: var(--bs-link-color); }
 .fm-tile-check { position: absolute; z-index: 1; inset-block-start: 8px; inset-inline-end: 8px; display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; border-radius: var(--bs-border-radius-sm); background: var(--bs-bg-body); cursor: pointer; opacity: 0; }
 .fm-tile:hover .fm-tile-check, .fm-tile:focus-within .fm-tile-check, .fm-tile-check:has(input:checked) { opacity: 1; }
@@ -291,16 +300,17 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 
 /* Assignment status icon: Available green tick, In discussion yellow ?,
    Blocked orange !, Booked red ban (as production).
-   Light shades on the dark band, darker ones on white. */
+   Light shades on the dark band; on the body colour (hover band, list
+   rows) darker shades in light mode and light shades in dark mode. */
 .fm-status { flex: 0 0 auto; font-size: 1.15em; }
 .fm-status-available { color: var(--bs-green-500); }
 .fm-status-discussion { color: var(--bs-yellow-400); }
 .fm-status-blocked { color: var(--bs-orange-500); }
 .fm-status-booked { color: var(--bs-red-400); }
-:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-available { color: var(--bs-green-700); }
-:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-discussion { color: var(--bs-yellow-700); }
-:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: var(--bs-orange-700); }
-:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: var(--bs-red-600); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-available { color: light-dark(var(--bs-green-700), var(--bs-green-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-discussion { color: light-dark(var(--bs-yellow-700), var(--bs-yellow-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: light-dark(var(--bs-orange-700), var(--bs-orange-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: light-dark(var(--bs-red-600), var(--bs-red-400)); }
 
 /* List view row: the same checkbox with a 24px target; a selected row gets
    the subtle primary background. */

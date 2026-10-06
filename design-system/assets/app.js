@@ -362,6 +362,31 @@ function setupRatingDemo() {
 // open transition starts, so the browser cannot move focus in when it
 // opens. Once Bootstrap reports it shown, focus the autofocus control (Cancel
 // on a confirmation) or the first control.
+// Colour mode: Light, Dark or Match system. Bootstrap 6 does the work: the
+// tokens use light-dark(), so setting data-bs-theme on <html> switches them.
+// The choice is kept in localStorage; an inline script in <head> applies it
+// before the first paint.
+function setupColourMode() {
+  const KEY = 'lib-colour-mode'
+  const media = matchMedia('(prefers-color-scheme: dark)')
+  let mode = 'light'
+  try { mode = localStorage.getItem(KEY) || 'light' } catch {}
+  const apply = () => {
+    const dark = mode === 'dark' || (mode === 'auto' && media.matches)
+    document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light')
+  }
+  $$('input[name="lib-mode"]').forEach((input) => {
+    input.checked = input.value === mode
+    input.addEventListener('change', () => {
+      mode = input.value
+      try { localStorage.setItem(KEY, mode) } catch {}
+      apply()
+    })
+  })
+  media.addEventListener('change', () => { if (mode === 'auto') apply() })
+  apply()
+}
+
 function setupDialogs() {
   document.addEventListener('shown.bs.dialog', (e) => {
     const dialog = e.target
@@ -671,6 +696,7 @@ async function start() {
   freeMenus()
   setupTooltips()
   setupNavOverflow()
+  setupColourMode()
   setupDialogs()
   setupRatingDemo()
   setupUploadDemo()
