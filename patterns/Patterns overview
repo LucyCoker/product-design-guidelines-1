@@ -117,7 +117,7 @@ Five different states, five different messages. Never one generic "No data".
 - Bootstrap default → our documented rule → propose a new one. There is no fourth option.
 - A custom pattern is justified only when no existing one can be adapted, and it needs a written proposal.
 - "It's just this one screen" is how inconsistency starts.
-- Never invent a class name. If it isn't in the permitted table, **ASK**.
+- Never invent a class name. Use Bootstrap 6 classes and the documented Filmmakers classes (`fm-`, listed in the Library under Foundations › Filmmakers classes, defined in `filmmakers.css`). A new `fm-` class is added to that list, with a reason, before it is used. Anything else: **ASK**.
 ## What stays consistent everywhere
  
 These never vary by screen, area, product or persona:

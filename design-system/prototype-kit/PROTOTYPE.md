@@ -15,7 +15,7 @@ Filmmakers System runs on Bootstrap 6 with the Filmmakers layer on top. Load the
 
 Start from `design-system/prototype-kit/starter.html`. It already has the header and subheader band.
 
-- MUST use Bootstrap 6 markup and classes only. Copy component markup from `design-system/data/components.json`.
+- MUST use Bootstrap 6 markup and classes, plus the documented Filmmakers classes (`fm-`, in `filmmakers.css`) where a component uses them. Copy component markup from `design-system/data/components.json`. Never invent a class.
 - MUST NOT use Tailwind, shadcn, Material or any other UI kit, and MUST NOT write CSS for colours, fonts, spacing or components.
 - MUST NOT use hex, rgb or named colours. Colour comes from theme classes (`theme-primary`, `theme-secondary`, `theme-danger`…) and tokens (`var(--bs-…)`).
 - To preview a customer's colour, set `:root { --fm-primary: #hex; }`. Nothing else.

@@ -295,12 +295,7 @@
       "At most three, then a “More” row action that opens the overflow menu. Never destructive.",
       "The label must meet 4.5:1 on the row background for every customer primary."
      ],
-     "flags": [
-      {
-       "type": "ask",
-       "text": "\"Row action\" is a working name. Confirm it before it goes into code or Figma."
-      }
-     ],
+     "flags": [],
      "examples": [
       {
        "label": "Label",
@@ -495,12 +490,7 @@
      "layout": "row",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
      "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
-     "flags": [
-      {
-       "type": "ask",
-       "text": "The Buttons guideline says icon-only buttons must use btn-text theme-secondary. The Button groups pattern says btn-text is never used inside a group, which makes outline icon-only buttons the only option here. Confirm this exception and add it to the Buttons guideline."
-      }
-     ],
+     "flags": [],
      "id": "bg-icons",
      "name": "Icon only",
      "classes": "btn-group > btn-outline theme-secondary btn-icon",
@@ -2100,10 +2090,6 @@
      "unresolved": false,
      "flags": [
       {
-       "type": "ask",
-       "text": "To review: how filters inside More filters apply. Today each one applies on change, like the inline filters, and so does the production actor search. Options: keep that; add an Apply filters button to the end of the More filters row (a batch filter, which Carbon suggests when people set several filters at once or results are slow to load); or apply when the row is closed. Decide which one."
-      },
-      {
        "type": "info",
        "text": "The prototype opens Sort by with menu-end, which this Bootstrap build does not have. Use data-bs-placement=\"bottom-end\"."
       }
@@ -2115,7 +2101,7 @@
       "Clear filters appears only when a search or filter is applied, and resets all of them. It sits right after the last chip, in the chips row; on compact widths it is the x on the “3 filters applied” chip and in the Applied filters dialog.",
       "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
       "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter. On compact widths the chips row is one chip instead, “3 filters applied”. Its text opens an <b>Applied filters</b> <a href=\"#dialog\">Dialog</a>: the chips, then Clear filters and View results in the footer. Removing the last filter closes the dialog, and focus returns to search. The chip’s x (“Clear filters”) clears every filter at once.",
-      "Filters apply on change. No Apply button.",
+      "Filters apply on change, including those in the More filters row. No Apply button.",
       "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>).",
       "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. The button has <code>aria-expanded</code> and <code>aria-controls</code>, and its caret points up while the row is open.",
       "On compact widths the More filters row ends with a full-width <b>View results</b> button (<code>btn-solid theme-primary btn-sm</code>). It closes the row and moves focus to the count row, so people see the results. Filters still apply on change: View results only closes the row.",
@@ -2378,8 +2364,8 @@
        "text": "Description length: production truncates at 400 characters with an expander. The truncation rule is not defined yet."
       },
       {
-       "type": "ask",
-       "text": "Custom classes: see the Production list. The responsive Action gutter uses .fm-action-gutter in filmmakers.css. Decide whether this short, documented list of fm- classes is allowed."
+       "type": "info",
+       "text": "Uses documented Filmmakers classes for the layout Bootstrap has no class for (.fm-action-gutter, .fm-production-row, .fm-row-media). See Foundations › Filmmakers classes."
       }
      ]
     },
@@ -2436,8 +2422,8 @@
        "text": "New applications: production highlights the count in red (class highlight). Red means danger and primary must not mean new. This page shows the count as a weight 600 link with “3 new applications” in its tooltip. Decide how new items are marked."
       },
       {
-       "type": "ask",
-       "text": "Custom classes: Bootstrap has no class for the Action gutter or for rows that switch between a grid and wrapping, so this card and the Project card use three small classes in filmmakers.css (.fm-action-gutter, .fm-production-row, .fm-row-media). The Patterns overview says never invent a class name. Allow this short, documented list of fm- classes, or build without them?"
+       "type": "info",
+       "text": "Uses documented Filmmakers classes for the layout Bootstrap has no class for (.fm-action-gutter, .fm-production-row, .fm-row-media). See Foundations › Filmmakers classes."
       }
      ]
     },
