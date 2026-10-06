@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="assets/fontawesome.css">
 <link rel="stylesheet" href="assets/filmmakers.css">
 <link rel="stylesheet" href="assets/site.css">
-<script>/* Colour mode before first paint: light, dark, or auto (the OS setting). */(function(){var m="light";try{m=localStorage.getItem("lib-colour-mode")||"light"}catch(e){}var d=m==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):m;document.documentElement.setAttribute("data-bs-theme",d)})()</script>
+<script>/* Colour mode before first paint: light, dark, or auto (the OS setting). */(function(){var m="light";try{m=localStorage.getItem("lib-colour-mode")||"light"}catch(e){}var d=m==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):m;document.documentElement.setAttribute("data-bs-theme",d);document.documentElement.style.setProperty("color-scheme",d,"important")})()</script>
 </head>
 <body>
 <!--lib:body-start-->

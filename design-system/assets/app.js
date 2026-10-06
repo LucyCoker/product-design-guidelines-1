@@ -373,7 +373,10 @@ function setupColourMode() {
   try { mode = localStorage.getItem(KEY) || 'light' } catch {}
   const apply = () => {
     const dark = mode === 'dark' || (mode === 'auto' && media.matches)
-    document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light')
+    const root = document.documentElement
+    root.setAttribute('data-bs-theme', dark ? 'dark' : 'light')
+    // Inline too, so a host page's own color-scheme cannot override it.
+    root.style.setProperty('color-scheme', dark ? 'dark' : 'light', 'important')
   }
   $$('input[name="lib-mode"]').forEach((input) => {
     input.checked = input.value === mode

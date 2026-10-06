@@ -4,7 +4,11 @@
  * borders, no shadows, weights 400 and 600, primary only for actions.
  */
 
-/* Colour mode comes from data-bs-theme on <html> (see filmmakers.css). */
+/* Colour mode comes from data-bs-theme on <html> (see filmmakers.css). The
+   claude.ai viewer adds its own theme (data-theme and color-scheme on the
+   root), so the Library's choice is made to win here. */
+html[data-bs-theme="light"] { color-scheme: light !important; }
+html[data-bs-theme="dark"] { color-scheme: dark !important; }
 
 body {
   background: var(--bs-bg-body);
