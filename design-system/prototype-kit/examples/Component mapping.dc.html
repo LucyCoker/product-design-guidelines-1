@@ -353,13 +353,15 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-tile-grid-lg { --fm-tile-track: 220px; }
 
 /* View switcher for profile results, as production: tile size (two avatar
-   icons), a separator, then Grid / Table view. Radio groups, so each set has
-   one choice; the chosen view is solid primary, as production. */
+   icons) and Grid / Table view, each a Button group of toggle buttons,
+   with a separator between. Radio groups, so each set has one choice. The
+   chosen button uses the Library's selected-item style (bg-2, body text),
+   as menus do: never primary, never solid secondary. */
 .fm-view-switch { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
 .fm-view-switch .vr { align-self: center; block-size: 24px; min-block-size: 0; }
 .fm-view-switch .fm-size-sm > i { font-size: 11px; }
 .fm-view-switch .fm-size-lg > i { font-size: 16px; }
-.fm-view-switch .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-primary-bg); --bs-btn-active-border-color: var(--bs-primary-bg); --bs-btn-active-color: var(--bs-primary-contrast); }
+.fm-view-switch .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
 
 </style>
 </helmet>
