@@ -54,26 +54,53 @@ def picture(i, w, h):
     return 'data:image/svg+xml;utf8,' + quote(svg, safe="/:='()., -")
 
 
-def headshot(w=160, h=160):
+# Illustrated people (not real people) for profile examples: skin tone, hair
+# colour and style, top and background vary with i. i=0 is the original.
+SKIN = ['#f2d4c2', '#c68863', '#8d5a3b', '#e9b99a', '#5c3a26', '#f5dcc8']
+HAIR = ['#5b3a29', '#1f1a17', '#c9a15a', '#8a8f99', '#2b1d14', '#a0452a']
+TOPS = ['#3d5a80', '#2a9d8f', '#6d597a', '#e76f51', '#264653', '#b56576']
+BGS = [('#cfe3f5', '#9fc2e6'), ('#fde2c8', '#f6bd8f'), ('#d8f3dc', '#95d5b2'), ('#e9d8fd', '#c3a6ff'), ('#ffe5ec', '#ffb3c6'), ('#e0e1dd', '#b8bdc4')]
+STYLES = ['bob', 'short', 'long', 'bun', 'crop', 'curly']
+
+def headshot(w=160, h=160, i=0):
     """An illustrated headshot (not a real person) for profile examples."""
+    skin, hair, top = SKIN[i % 6], HAIR[(i * 5 + i // 6) % 6], TOPS[(i * 7) % 6]
+    bg = BGS[(i * 5) % 6]
+    style = STYLES[i % 6]
+    shade = 'rgba(0,0,0,.12)'
+    behind = {
+        'bob': "<path d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='HAIR'/>",
+        'short': "",
+        'long': "<path d='M42 70 C38 28 64 16 82 16 C106 16 124 32 120 72 C120 104 126 132 122 150 L38 150 C34 132 40 104 42 70 Z' fill='HAIR'/>",
+        'bun': "<circle cx='80' cy='20' r='14' fill='HAIR'/>",
+        'crop': "",
+        'curly': ''.join(f"<circle cx='{x}' cy='{y}' r='13' fill='HAIR'/>" for x, y in ((52,48),(60,30),(80,22),(100,30),(108,48),(110,68),(50,68),(56,88),(104,88))),
+    }[style].replace('HAIR', hair)
+    front = {
+        'bob': "<path d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='HAIR'/>",
+        'short': "<path d='M53 62 C50 36 66 28 80 28 C96 28 110 36 107 62 C104 50 96 44 80 44 C66 44 57 50 53 62 Z' fill='HAIR'/>",
+        'long': "<path d='M54 60 C54 38 68 31 82 31 C98 31 108 42 106 60 C100 48 90 42 78 44 C68 46 60 52 54 60 Z' fill='HAIR'/>",
+        'bun': "<path d='M54 60 C55 38 68 32 80 32 C94 32 106 40 106 60 C98 48 90 44 80 44 C70 44 60 50 54 60 Z' fill='HAIR'/>",
+        'crop': "<path d='M55 56 C58 38 70 34 80 34 C92 34 103 39 105 56 C96 48 88 46 80 46 C72 46 63 49 55 56 Z' fill='HAIR' opacity='.9'/>",
+        'curly': ''.join(f"<circle cx='{x}' cy='{y}' r='9' fill='HAIR'/>" for x, y in ((60,44),(72,38),(86,37),(99,43))),
+    }[style].replace('HAIR', hair)
+    beard = "<path d='M58 76 C60 96 70 100 80 100 C90 100 100 96 102 76 C96 88 88 90 80 90 C72 90 64 88 58 76 Z' fill='HAIR' opacity='.85'/>".replace('HAIR', hair) if i % 4 == 3 else ''
+    glasses = "<g fill='none' stroke='#2b2d42' stroke-width='2'><circle cx='70' cy='66' r='7'/><circle cx='90' cy='66' r='7'/><path d='M77 66 H83'/></g>" if i % 5 == 2 else ''
+    ox = (w - 160) / 2
+    oy = h - 160
     svg = (f"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {w} {h}'>"
-           "<defs><linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#cfe3f5'/><stop offset='1' stop-color='#9fc2e6'/></linearGradient></defs>"
+           f"<defs><linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='{bg[0]}'/><stop offset='1' stop-color='{bg[1]}'/></linearGradient></defs>"
            f"<rect width='{w}' height='{h}' fill='url(#bg)'/>"
-           # Shoulders and top
-           "<path d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='#3d5a80'/>"
-           "<path d='M64 112 L80 132 L96 112 Z' fill='#f2d4c2'/>"
-           # Neck
-           "<rect x='69' y='92' width='22' height='26' rx='8' fill='#e8bfa6'/>"
-           # Hair behind
-           "<path d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='#5b3a29'/>"
-           # Face
-           "<ellipse cx='80' cy='66' rx='26' ry='31' fill='#f2d4c2'/>"
-           # Fringe
-           "<path d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='#5b3a29'/>"
-           # Eyes, brows, mouth
+           f"<g transform='translate({ox} {oy})'>"
+           + behind +
+           f"<path d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='{top}'/>"
+           f"<path d='M64 112 L80 132 L96 112 Z' fill='{skin}'/>"
+           f"<rect x='69' y='92' width='22' height='26' rx='8' fill='{skin}'/><rect x='69' y='92' width='22' height='10' fill='{shade}'/>"
+           f"<ellipse cx='80' cy='66' rx='26' ry='31' fill='{skin}'/>"
+           + front + beard +
            "<circle cx='70' cy='66' r='2.6' fill='#2b2d42'/><circle cx='90' cy='66' r='2.6' fill='#2b2d42'/>"
-           "<path d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='#5b3a29' stroke-width='2' fill='none' stroke-linecap='round'/>"
-           "<path d='M72 80 Q80 86 88 80' stroke='#b5655b' stroke-width='2.4' fill='none' stroke-linecap='round'/>"
-           "<ellipse cx='64' cy='76' rx='5' ry='3' fill='#f0a8a0' opacity='.45'/><ellipse cx='96' cy='76' rx='5' ry='3' fill='#f0a8a0' opacity='.45'/>"
-           "</svg>")
+           f"<path d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='{hair}' stroke-width='2' fill='none' stroke-linecap='round'/>"
+           "<path d='M72 80 Q80 86 88 80' stroke='#8c3b33' stroke-width='2.4' fill='none' stroke-linecap='round'/>"
+           + glasses +
+           "</g></svg>")
     return 'data:image/svg+xml;utf8,' + quote(svg, safe="/:='()., -")
