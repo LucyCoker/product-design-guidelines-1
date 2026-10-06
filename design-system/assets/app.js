@@ -445,19 +445,6 @@ function setupUploadDemo() {
   })
 }
 
-// Toast examples: the live toast, and the placement picker.
-function setupToastExtras() {
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('[data-demo-toast-live]')) bootstrap.Toast.getOrCreateInstance(document.getElementById('lib-live-toast')).show()
-  })
-  document.addEventListener('change', (e) => {
-    const select = e.target.closest('[data-demo-toast-place] select')
-    if (!select) return
-    const box = select.closest('[data-demo-toast-place]').querySelector('[data-place]')
-    box.className = 'toast-container position-absolute p-3 ' + select.value
-  })
-}
-
 function setupCopy() {
   document.addEventListener('click', async (e) => {
     const button = e.target.closest('.lib-copy')
@@ -733,7 +720,6 @@ async function start() {
   setupDialogs()
   setupRatingDemo()
   setupUploadDemo()
-  setupToastExtras()
   setupCopy()
   setupPages()
   setupComponentSort()

@@ -1766,6 +1766,7 @@
      "code": "MSG-10",
      "name": "Toast",
      "status": "Added",
+     "review": "Needs updating with existing versions",
      "classes": ".toast-container > .toast",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/toasts/",
      "replaces": "(none)",
@@ -1775,10 +1776,6 @@
       {
        "type": "ask",
        "text": "Toast position on the screen, and whether it depends on the action. This is the open decision in Destructive actions."
-      },
-      {
-       "type": "ask",
-       "text": "Which Bootstrap toast options does the product use? Today it uses only the body toast with a status theme and an icon (Default). The examples marked Bootstrap show every Bootstrap 6 option for reference: header, colour themes, translucent, stacking, custom content, placement. Decide which, if any, are allowed."
       }
      ],
      "layout": "row",
@@ -1787,64 +1784,15 @@
        "label": "Confirmation",
        "badge": "Default",
        "wide": true,
-       "caption": "Product use: body only, the status theme of the outcome and an icon. Auto-dismisses after 5 seconds; Show again to watch.",
+       "caption": "Auto-dismisses after 5 seconds. Dismiss it, then Show again to watch.",
        "html": "<div class=\"d-flex flex-column align-items-center gap-3\"><div class=\"toast show theme-success\" data-bs-autohide=\"true\" data-bs-delay=\"5000\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center gap-2 pe-2\"><div class=\"toast-body d-flex align-items-center gap-2 flex-grow-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>Project archived.</span></div><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-toast><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>"
       },
       {
        "label": "With Undo",
        "badge": "Default",
        "wide": true,
-       "caption": "Product use: stays until dismissed. Undo takes the toast’s theme.",
+       "caption": "Stays until dismissed.",
        "html": "<div class=\"d-flex flex-column align-items-center gap-3\"><div class=\"toast show theme-success\" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center gap-2 pe-2\"><div class=\"toast-body d-flex align-items-center gap-2 flex-grow-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>4 records archived.</span></div><button type=\"button\" class=\"btn-text btn-sm\">Undo</button><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-toast><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>"
-      },
-      {
-       "label": "Basic",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": "Bootstrap’s default: .toast-header (icon, title, time, close) and .toast-body.",
-       "html": "<div class=\"d-flex flex-column align-items-center gap-3\"><div class=\"toast show  \" data-bs-autohide=\"true\" data-bs-delay=\"5000\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Filmmakers System</strong><small>11 mins ago</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">Your selection was shared with the production team.</div></div><button type=\"button\" class=\"btn-outline theme-secondary btn-xs\" data-demo-toast><i class=\"fa-solid fa-rotate-right\" aria-hidden=\"true\"></i>Show again</button></div>"
-      },
-      {
-       "label": "Colour themes",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": "Any .theme-* on .toast colours the border and the header. Shown without auto-hide.",
-       "html": "<div class=\"d-flex flex-wrap justify-content-center gap-3\"><div class=\"toast show theme-primary \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Primary</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-primary</div></div><div class=\"toast show theme-secondary \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Secondary</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-secondary</div></div><div class=\"toast show theme-success \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Success</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-success</div></div><div class=\"toast show theme-danger \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Danger</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-danger</div></div><div class=\"toast show theme-warning \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Warning</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-warning</div></div><div class=\"toast show theme-info \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Info</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-info</div></div><div class=\"toast show theme-accent \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Accent</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-accent</div></div><div class=\"toast show theme-inverse \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Inverse</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">.toast.theme-inverse</div></div></div>"
-      },
-      {
-       "label": "Translucent",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": ".toast-translucent blurs what is behind it.",
-       "html": "<div class=\"d-flex justify-content-center p-4 rounded\" style=\"width:100%;background:repeating-linear-gradient(45deg,var(--bs-primary-bg-subtle) 0 12px,var(--bs-bg-2) 12px 24px)\"><div class=\"toast show  toast-translucent\" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Filmmakers System</strong><small>11 mins ago</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">Your selection was shared with the production team.</div></div></div>"
-      },
-      {
-       "label": "Stacking",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": "Several toasts in one .toast-container stack with Bootstrap’s spacing.",
-       "html": "<div class=\"toast-container position-static\"><div class=\"toast show  \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Filmmakers System</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">See? Just like this.</div></div><div class=\"toast show  \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Filmmakers System</strong><small>2 seconds ago</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">Heads up, toasts will stack automatically.</div></div></div>"
-      },
-      {
-       "label": "Custom content",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": "Body only with a close button, or with actions in the body.",
-       "html": "<div class=\"d-flex flex-wrap justify-content-center gap-3\"><div class=\"toast show \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center gap-2 pe-2\"><div class=\"toast-body d-flex align-items-center gap-2 flex-grow-1\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\"></i><span>Hello, world! This is a toast message.</span></div><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div><div class=\"toast show\" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-body vstack gap-2\"><span>Your selection was shared with the production team.</span><div class=\"d-flex gap-2 pt-2 border-top\"><button type=\"button\" class=\"btn-solid theme-primary btn-sm\">Open selection</button><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-bs-dismiss=\"toast\">Close</button></div></div></div></div>"
-      },
-      {
-       "label": "Placement",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": "A .toast-container with position utilities places toasts on the page. Pick a placement.",
-       "html": "<div class=\"vstack gap-2\" style=\"width:100%\" data-demo-toast-place><label class=\"d-flex align-items-center gap-2 fs-sm\" style=\"align-self:flex-start\">Placement <select class=\"form-control form-control-sm\" style=\"width:auto\" aria-label=\"Toast placement\"><option value=\"top-0 start-0\">Top left</option><option value=\"top-0 start-50 translate-middle-x\">Top centre</option><option value=\"top-0 end-0\">Top right</option><option value=\"top-50 start-50 translate-middle\">Middle</option><option value=\"bottom-0 start-0\">Bottom left</option><option value=\"bottom-0 start-50 translate-middle-x\">Bottom centre</option><option value=\"bottom-0 end-0\" selected>Bottom right</option></select></label><div class=\"position-relative rounded border\" style=\"height:240px;background:var(--bs-bg-1)\" aria-label=\"Page\"><div class=\"toast-container position-absolute p-3 bottom-0 end-0\" data-place><div class=\"toast show  \" data-bs-autohide=\"false\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"toast-header\"><i class=\"fa-solid fa-film me-2\" aria-hidden=\"true\"></i><strong class=\"me-auto\">Filmmakers System</strong><small>just now</small><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div><div class=\"toast-body\">Your selection was shared with the production team.</div></div></div></div></div>"
-      },
-      {
-       "label": "Live",
-       "badge": "Bootstrap",
-       "wide": true,
-       "caption": "Shown by the Toast plugin, bottom right of the window, as on a real page.",
-       "html": "<div class=\"d-flex justify-content-center\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm\" data-demo-toast-live><i class=\"fa-regular fa-bell\" aria-hidden=\"true\"></i>Show live toast</button></div><div class=\"toast-container position-fixed bottom-0 end-0 p-3\"><div class=\"toast theme-success\" id=\"lib-live-toast\" data-bs-autohide=\"true\" data-bs-delay=\"5000\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"><div class=\"d-flex align-items-center gap-2 pe-2\"><div class=\"toast-body d-flex align-items-center gap-2 flex-grow-1\"><i class=\"fa-solid fa-circle-check\" aria-hidden=\"true\"></i><span>Selection shared.</span></div><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"toast\" aria-label=\"Dismiss\"></button></div></div></div>"
       }
      ],
      "rules": [
