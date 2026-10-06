@@ -375,3 +375,10 @@ body {
 .lib-table-wrap th[scope="row"] { font-weight: 600; white-space: nowrap; }
 .lib-item-links { display: flex; flex-wrap: wrap; gap: 8px; }
 
+
+/* Library demo only: the Profile tile view switcher drives the example with
+   :has(), so the size and view radios change the results without a script. */
+.fm-results:has([data-view="table"]:checked) .fm-results-grid,
+.fm-results:has([data-view="grid"]:checked) .fm-results-table { display: none; }
+.fm-results:has([data-size="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
+.fm-results:has([data-view="table"]:checked) :is(.fm-size-group, .vr) { visibility: hidden; }

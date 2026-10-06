@@ -306,3 +306,16 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
    the subtle primary background. */
 .fm-row-check { display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; cursor: pointer; }
 .fm-row:has(.fm-row-check input:checked) { background: var(--bs-primary-bg-subtle); }
+
+/* Profile tile grid (CNT-20): default 150px track; large is 220px. */
+.fm-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--fm-tile-track, 150px), 1fr)); gap: 16px; }
+.fm-tile-grid-lg { --fm-tile-track: 220px; }
+
+/* View switcher for profile results, as production: tile size (two avatar
+   icons), a separator, then Grid / Table view. Radio groups, so each set has
+   one choice; the chosen view is solid primary, as production. */
+.fm-view-switch { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+.fm-view-switch .vr { align-self: center; block-size: 24px; min-block-size: 0; }
+.fm-view-switch .fm-size-sm > i { font-size: 11px; }
+.fm-view-switch .fm-size-lg > i { font-size: 16px; }
+.fm-view-switch .btn-outline.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-primary-bg); --bs-btn-active-border-color: var(--bs-primary-bg); --bs-btn-active-color: var(--bs-primary-contrast); }
