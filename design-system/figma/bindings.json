@@ -39,7 +39,7 @@
         "text": "danger/contrast"
       },
       "Client zone": {
-        "classes": "btn-outline theme-secondary has-client-zone-icon",
+        "classes": "btn-outline theme-secondary fm-client-zone",
         "fill": null,
         "stroke": "secondary/border",
         "text": "secondary/fg",

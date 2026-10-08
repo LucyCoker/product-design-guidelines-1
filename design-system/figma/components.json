@@ -133,7 +133,7 @@
       "figmaPage": "Components",
       "figmaName": "Buttons/Client zone",
       "libraryId": "btn-client-zone",
-      "classes": "btn-outline theme-secondary has-client-zone-icon",
+      "classes": "btn-outline theme-secondary fm-client-zone",
       "variants": {
         "Version": [
           "Icon and label"

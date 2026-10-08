@@ -40,7 +40,7 @@ All Buttons MUST use the "Default" rounded option for corner radius. The "styled
 | Destructive action inside an overflow menu, or standalone on a detail page | `btn-text theme-danger` | Never as a bare control in a table row. See [Destructive actions](../../../patterns/destructive-actions.md) |
 | Any action on a dark or brand-coloured surface | `btn-solid theme-inverse` | Primary on inverse |
 | Secondary on a dark or brand-coloured surface | `btn-outline theme-inverse` | |
-| Client zone signal | `btn-outline theme-secondary has-client-zone-icon` | Custom - See below |
+| Client zone signal | `btn-outline theme-secondary fm-client-zone` | Custom - See below |
 
 Anything outside this table is a deviation and MUST be proposed, not improvised.
 
@@ -75,14 +75,9 @@ This is the rule that prevents a row of competing buttons. Combined with one pri
 
 ## Custom Accent button - Client zone signal
 
-`btn-outline theme-secondary has-client-zone-icon` is a secondary button whose icon carries an accent colour while the label stays secondary.
+`btn-outline theme-secondary fm-client-zone` is a secondary button whose icon carries the client zone accent (`--fm-accent-client-zone`) while the label stays secondary.
 
-It signals that the user is in a client zone — an area where clients or other users may have access to the content. It is a visibility cue, not branding.
-
-- It MUST be used consistently within a client zone. An inconsistent client zone signal is worse than none, because its absence then means nothing.
-- It MUST NOT be used outside client zones.
-- The accent icon MUST NOT be added to solid or text buttons, as this will compete with other actions on the page.
-- It MUST NOT be the only signal that content is externally visible. Zone context must also be carried by the surrounding page.
+The client zone accent signals an area where clients or other users may have access to the content. It is a visibility cue, not branding. It is not limited to buttons: it can also be a background colour for client areas, on avatars and elsewhere. There are no usage rules for it yet.
 
 ## Icon-only buttons
 
@@ -147,9 +142,6 @@ Where any of these cannot be met, **ASK**.
 *Review by: [date]*
 
 **Other button types** — button groups, toggle buttons and loading buttons are not yet covered here.
-*Review by: [date]*
-
-**`has-client-zone-icon` naming and scope** — the class name and whether the client zone signal should extend beyond buttons to other components. Needs team review before adoption.
 *Review by: [date]*
 
 **`btn-subtle`** — decided for one use only: the filter and Sort by buttons in the Simple search and filter bar (`btn-subtle theme-secondary btn-sm`), where the grey fill marks each filter as a control. Anywhere else it stays out: adding it more widely needs evidence that outline and text cannot cover the case.

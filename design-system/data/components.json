@@ -365,26 +365,19 @@
     {
      "id": "btn-client-zone",
      "name": "Client zone",
-     "classes": "btn-outline theme-secondary has-client-zone-icon",
+     "classes": "btn-outline theme-secondary fm-client-zone",
      "docs": "",
      "status": "Custom",
-     "note": "A secondary button whose icon takes the client zone accent. It tells people they are in an area that clients, or others outside the team, can see.",
+     "note": "A secondary button whose icon takes the client zone accent. It signals an area that clients, or others outside the team, can see. The accent is not limited to buttons: it can also be a background colour for client areas, on avatars and elsewhere. There are no usage rules for it yet.",
      "rules": [
-      "Use it on every such action inside a client zone. An inconsistent signal is worse than none.",
-      "Never use it outside client zones, and never on solid or text buttons.",
-      "It is never the only signal. The page itself must also say the content is visible to clients.",
-      "The icon is <code>--fm-accent-client-zone</code>, Bootstrap <code>orange-600</code> (about 4.4:1 on white)."
+      "The icon is <code>--fm-accent-client-zone</code>, Bootstrap <code>orange-600</code> (about 4.4:1 on white, so the icon passes the 3:1 that icons need).",
+      "The class is <code>fm-client-zone</code>. See Foundations › Filmmakers classes."
      ],
-     "flags": [
-      {
-       "type": "ask",
-       "text": "The class name, and whether the signal extends beyond buttons, need team review (Buttons guideline)."
-      }
-     ],
+     "flags": [],
      "examples": [
       {
        "label": "Icon and label",
-       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm has-client-zone-icon\"><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i>View as client</button>",
+       "html": "<button type=\"button\" class=\"btn-outline theme-secondary btn-sm fm-client-zone\"><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i>View as client</button>",
        "caption": "",
        "badge": ""
       }

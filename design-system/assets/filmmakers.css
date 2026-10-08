@@ -159,8 +159,8 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
   --fm-accent-client-zone: var(--bs-orange-600);
 }
 
-.btn-outline.theme-secondary.has-client-zone-icon > i,
-.btn-outline.theme-secondary.has-client-zone-icon > .fm-icon {
+.btn-outline.theme-secondary.fm-client-zone > i,
+.btn-outline.theme-secondary.fm-client-zone > .fm-icon {
   color: var(--fm-accent-client-zone);
 }
 
