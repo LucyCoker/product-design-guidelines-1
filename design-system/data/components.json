@@ -674,7 +674,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Every button is icon only. Never mix icon-only and text buttons in one group."
+       "text": "Never mix icon-only and text buttons in one group."
       },
       {
        "kind": "a11y",
