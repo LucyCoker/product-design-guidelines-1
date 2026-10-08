@@ -674,10 +674,6 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A group where every button is icon only. Use only when each icon is well known."
-      },
-      {
-       "kind": "do",
        "text": "Every button is icon only. Never mix icon-only and text buttons in one group."
       },
       {
