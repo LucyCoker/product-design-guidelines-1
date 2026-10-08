@@ -305,10 +305,6 @@
       {
        "kind": "a11y",
        "text": "The hit target is at least 24×24px, the WCAG 2.2 AA minimum (2.5.8), so <code>btn-xs</code> is the smallest size."
-      },
-      {
-       "kind": "do",
-       "text": "Inside a <a href=\"#bg-icons\">Button group</a> or an <a href=\"#frm-3\">Input group</a>, icon-only buttons take the group’s style, <code>btn-outline theme-secondary</code>, so they join the other controls."
       }
      ],
      "flags": [],
