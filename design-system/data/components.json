@@ -254,10 +254,6 @@
       {
        "kind": "do",
        "text": "Quiet page-level actions, in menus and in toolbars: Discard, Learn more, Back. For actions on one item in a list, use a Row action."
-      },
-      {
-       "kind": "do",
-       "text": "Icon-only buttons are never destructive."
       }
      ],
      "flags": [],
