@@ -257,10 +257,6 @@
       },
       {
        "kind": "do",
-       "text": "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter)."
-      },
-      {
-       "kind": "do",
        "text": "Icon-only buttons are never destructive."
       }
      ],
