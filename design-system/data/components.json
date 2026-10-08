@@ -1924,16 +1924,35 @@
     },
     {
      "code": "FRM-8",
-     "name": "Lite and Expert mode switch",
+     "name": "Two-option switch",
      "status": "Replace",
-     "classes": ".switch.theme-primary inside a bordered pill",
+     "classes": ".switch.theme-primary inside a bordered pill (.border-primary .rounded-pill)",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/switch/",
-     "replaces": "production mode pill new_production_dialog_mode_form",
-     "note": "In the header band the pill takes the body background so it lifts off the tint, and it hides below md.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div class=\"d-flex align-items-center gap-2 border border-primary rounded-pill px-3 py-1 text-uppercase fs-sm\" style=\"width:fit-content\">\n<span class=\"fg-3\" title=\"Lite Mode keeps the interface focused on essential functions. Perfect for new users or anyone who prefers a simple approach.\"><i class=\"fas fa-shapes\"></i><span class=\"fa5-text\">Lite</span></span>\n<div class=\"switch theme-primary\"><input role=\"switch\" aria-label=\"Mode\" type=\"checkbox\" id=\"production_mode_specimen\"></div>\n<label class=\"fg-primary fw-semibold\" title=\"Expert Mode gives experienced users the full feature set, including advanced settings and customization.\" for=\"production_mode_specimen\"><i class=\"fas fa-rocket\"></i><span class=\"fa5-text\">Expert</span></label>\n</div>"
+     "replaces": "production mode pill new_production_dialog_mode_form; the All / Fitting filter pill",
+     "note": "A switch between two named options in a bordered pill: the option on the left is off, the option on the right is on and in the primary colour. Used for Lite and Expert mode, and for All and Fitting profiles. In the header band the pill takes the body background so it lifts off the tint, and it hides below md.",
+     "unresolved": true,
+     "flags": [
+      {
+       "type": "ask",
+       "text": "The Fitting info button’s tooltip is a full sentence. The Tooltip rules allow only a few words, and help text in popovers is parked in the Decisions backlog. Keep it as production, shorten it, or move it into a popover?"
+      },
+      {
+       "type": "info",
+       "text": "Changes from production in the All and Fitting example: Bootstrap 6 tooltip (data-bs-toggle=\"tooltip\") instead of rel=\"tooltip\"; fa-solid fa-circle-info instead of fas fa-info-circle, with aria-hidden; “Fitting” is a label for the switch, so clicking the word toggles it, as Expert does."
+      }
+     ],
+     "layout": "full",
+     "examples": [
+      {
+       "label": "Lite and Expert mode",
+       "html": "<div class=\"d-flex align-items-center gap-2 border border-primary rounded-pill px-3 py-1 text-uppercase fs-sm\" style=\"width:fit-content\">\n<span class=\"fg-3\" title=\"Lite Mode keeps the interface focused on essential functions. Perfect for new users or anyone who prefers a simple approach.\"><i class=\"fas fa-shapes\"></i><span class=\"fa5-text\">Lite</span></span>\n<div class=\"switch theme-primary\"><input role=\"switch\" aria-label=\"Mode\" type=\"checkbox\" id=\"production_mode_specimen\"></div>\n<label class=\"fg-primary fw-semibold\" title=\"Expert Mode gives experienced users the full feature set, including advanced settings and customization.\" for=\"production_mode_specimen\"><i class=\"fas fa-rocket\"></i><span class=\"fa5-text\">Expert</span></label>\n</div>"
+      },
+      {
+       "label": "All and Fitting",
+       "caption": "With an info button that explains Fitting",
+       "html": "<div class=\"d-flex align-items-center gap-1 border border-primary rounded-pill px-2 fs-sm\" style=\"padding-block:2px;width:fit-content\"><div class=\"d-flex align-items-center gap-1\"><span class=\"fg-3\">All</span><div class=\"switch theme-primary\"><input role=\"switch\" aria-label=\"Show fitting profiles\" type=\"checkbox\" id=\"fitting_switch_specimen\"></div><label class=\"fg-primary fw-semibold\" for=\"fitting_switch_specimen\">Fitting</label></div><button type=\"button\" class=\"btn-text theme-primary btn-xs btn-icon fs-sm\" data-bs-toggle=\"tooltip\" data-bs-title=\"Fitting shows only profiles that match the role requirements for gender, age, languages and ethnic background. ‘Out of discussion’ profiles are excluded.\" aria-label=\"Fitting shows only profiles that match the role requirements for gender, age, languages and ethnic background. ‘Out of discussion’ profiles are excluded.\"><i class=\"fa-solid fa-circle-info\" aria-hidden=\"true\"></i></button></div>"
+      }
+     ]
     }
    ]
   },
