@@ -754,7 +754,7 @@
        "text": "Destructive actions go in the overflow menu with a text label."
       },
       {
-       "kind": "do",
+       "kind": "caution",
        "text": "A screen that needs many actions on one object is a hierarchy problem. Lower the emphasis rather than adding buttons."
       }
      ],
