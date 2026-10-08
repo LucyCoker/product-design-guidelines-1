@@ -2725,7 +2725,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Status badges are subtle and use the status theme for their meaning: success for Active, warning when someone still has to act for it to be complete (e.g. Invited), secondary for Inactive or neutral states."
+       "text": "Status badges are subtle and use the status theme for their meaning: success for Active, warning when someone still has to act for it to be complete (e.g. Invited), secondary for Inactive or neutral states (colours meaning open to review and changes)."
       },
       {
        "kind": "do",
