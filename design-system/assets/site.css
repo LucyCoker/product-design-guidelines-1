@@ -418,3 +418,14 @@ body {
 .lib-item-meta .lib-see-code { padding: 0; border: 0; background: none; font: inherit; color: var(--bs-fg-3); text-decoration: underline; text-decoration-color: var(--bs-border-color); text-underline-offset: 2px; cursor: pointer; }
 .lib-item-meta .lib-see-code:hover { color: var(--bs-fg-body); }
 .lib-rule-caution > i { color: var(--bs-warning-fg); }
+
+/* Light grey page (bg-1). Examples, code and tables sit on the body colour,
+   so components are shown on the surface they are built for. */
+body, .lib-top { background: var(--bs-bg-1); }
+.lib-side { background: var(--bs-bg-1); }
+.lib-examples, .lib-preview, .lib-table-wrap, .lib-type-scale, .lib-type-context, .lib-pager a { background: var(--bs-bg-body); }
+.lib-code pre, .lib-page > .lib-code-box pre { background: var(--bs-bg-body); }
+.lib-preview-missing { background: var(--bs-bg-body); }
+
+/* Each example's name sits above it, not under it. */
+.lib-example figcaption { order: -1; border-top: 0; border-bottom: 1px solid var(--bs-border-subtle); }
