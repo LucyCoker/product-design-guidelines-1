@@ -1112,11 +1112,15 @@
      "classes": ".check.check-sm + label",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
      "replaces": "checkbox .checkbox > label > input",
-     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label so the whole row is the hit target, and it drops .check-sm. UNRESOLVED - whether the nested form is permitted or the menu item should carry for/id like every other checkbox.",
-     "unresolved": true,
+     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label, so the whole row is the hit target, and it drops .check-sm.",
+     "unresolved": false,
      "flags": [],
      "layout": "stack",
-     "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>"
+     "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>",
+     "rules": [
+      "Everywhere except menus: the input sits beside its label, joined by <code>for</code> and <code>id</code>.",
+      "In a menu item only (multi-select Combobox): the input is nested in the <code>label.menu-item</code>, so the whole row is the hit target. It still has an <code>aria-label</code> or the label text as its name."
+     ]
     }
    ]
   },
@@ -2375,16 +2379,13 @@
       "Actions follow <a href=\"#cnt-13\">Row actions</a>: <code>btn-text theme-primary btn-xs</code>, text and solid icon, in the fixed order Messages, Edit, then More.",
       "More follows the <a href=\"#menu-overflow\">Overflow menu</a>: <code>data-bs-placement=\"bottom-end\"</code> (this Bootstrap build has no <code>.menu-end</code>), 260–320px wide, descriptions wrap. The View as client items carry the client zone accent on the icon only and say “View as …” in text. Destructive items go last after a divider; Delete is <code>theme-danger</code>, and when disabled it has <code>disabled</code>, <code>aria-disabled=\"true\"</code> and the reason as its visible description.",
       "When the card is under 900px wide, the Action gutter becomes a bar along the bottom of the card, with the actions in a row at the end. The text drops under the image when the content is narrow, and the details wrap under the description.",
-      "User-written rich text (the description) keeps its <code>&lt;em&gt;</code> italics. This is an exception to the no-italics rule, which applies to product UI text only."
+      "User-written rich text (the description) keeps its <code>&lt;em&gt;</code> italics. This is an exception to the no-italics rule, which applies to product UI text only.",
+      "A long description is cut at the last whole word before 400 characters, ending in “…”, followed by a <b>Show more</b> text button (<code>btn-text theme-primary btn-xs</code>, <code>aria-expanded</code>) that shows the rest in place and becomes <b>Show less</b>. As production."
      ],
      "flags": [
       {
        "type": "info",
        "text": "Changed from the Project card spec to match this library: actions are btn-xs (Row actions) not btn-sm; the order is Messages, Edit (Row actions order) not Edit, Messages; placement is data-bs-placement=\"bottom-end\" not .menu-end; the client zone colour is --fm-accent-client-zone; the title uses .fs-lg; layout uses Bootstrap utilities and inline styles instead of new project-card__* classes."
-      },
-      {
-       "type": "ask",
-       "text": "Description length: production truncates at 400 characters with an expander. The truncation rule is not defined yet."
       },
       {
        "type": "info",
