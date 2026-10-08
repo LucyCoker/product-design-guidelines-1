@@ -2796,10 +2796,6 @@
      ],
      "rules": [
       {
-       "kind": "do",
-       "text": "Use the person’s photo when there is one. Without a photo, show their initials."
-      },
-      {
        "kind": "a11y",
        "text": "A photo’s <code>alt</code> is the person’s name, unless the name is shown right beside it; then <code>alt=\"\"</code>."
       }
