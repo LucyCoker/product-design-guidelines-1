@@ -196,10 +196,6 @@
       {
        "kind": "do",
        "text": "Never use <code>btn-outline theme-primary</code>: it becomes a second primary."
-      },
-      {
-       "kind": "dont",
-       "text": "Secondary buttons on a brand-coloured surface: no Bootstrap 6 version passes contrast there."
       }
      ],
      "examples": [
