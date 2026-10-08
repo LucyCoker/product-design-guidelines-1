@@ -403,3 +403,14 @@ body {
 /* Colour page: one panel per mode, each on its own body colour. */
 .lib-mode-panel { padding: 20px; border: 1px solid var(--bs-border-color); border-radius: var(--bs-radius-5, 8px); background: var(--bs-bg-body); color: var(--bs-fg-body); }
 .lib-mode-panel > h3 { color: var(--bs-fg-body); }
+
+/* Guidelines: do (green tick) and don't (red cross); code notes collapsed. */
+.lib-rules-guide { list-style: none; padding-inline-start: 0; }
+.lib-rules-guide li { display: grid; grid-template-columns: 16px 1fr; gap: 8px; align-items: baseline; }
+.lib-rule-do > i { color: var(--bs-success-fg); }
+.lib-rule-dont > i { color: var(--bs-danger-fg); }
+.lib-rules .badge { vertical-align: 1px; }
+.lib-code-notes { margin-top: 12px; }
+.lib-code-notes .lib-rules { margin-top: 8px; }
+.lib-rules-other { margin-top: 12px; }
+.lib-rules-other h4 { margin: 0 0 6px; text-transform: none; }

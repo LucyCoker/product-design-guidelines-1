@@ -57,6 +57,15 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - Filters are a Combobox reading "Label: value". One value: plain menu items, the current one `.selected` with a check. Several values: checkboxes. Filters apply on change.
 - The Profile tile: search results is a Component candidate. Until it is decided, build profile search results only to match it as it stands, with the view switcher (Small tiles, Large tiles, List view) as one Button group.
 
+## Rules
+
+Each entry's `rules` are objects with a `kind`:
+
+- **do**: a guideline to follow. **dont**: something not allowed (the Not allowed lists).
+- **code**: a code note: markup, ARIA and CSS details. Follow them when building; designers can skip them.
+- **other**: cross-references and parked notes.
+- `devReview: true`: a developer still has to confirm it. Follow it, but it may change.
+
 ## Open decisions and flags
 
 Each entry in `components.json` can carry flags:

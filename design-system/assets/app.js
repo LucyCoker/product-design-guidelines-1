@@ -46,13 +46,34 @@ function exampleHtml(example) {
   </figure>`
 }
 
+const DEV_BADGE = '<span class="badge theme-info badge-subtle">Needs developer review</span>'
+
+const ruleLi = (r) => `<li${r.kind === 'do' || r.kind === 'dont' ? ` class="lib-rule-${r.kind}"` : ''}>${
+  r.kind === 'do' ? '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="visually-hidden">Do: </span>'
+  : r.kind === 'dont' ? '<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i><span class="visually-hidden">Don’t: </span>' : ''
+}<span>${r.text}${r.devReview ? ` ${DEV_BADGE}` : ''}</span></li>`
+
+function rulesHtml(rules) {
+  const of = (...kinds) => rules.filter((r) => kinds.includes(r.kind))
+  const guidelines = of('do', 'dont')
+  const code = of('code')
+  const other = of('other')
+  return [
+    guidelines.length ? `<ul class="lib-rules lib-rules-guide">${guidelines.map(ruleLi).join('')}</ul>` : '',
+    code.length ? `<details class="lib-code lib-code-notes"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code notes<span class="lib-count">${code.length}</span></summary>
+      <ul class="lib-rules">${code.map(ruleLi).join('')}</ul></details>` : '',
+    other.length ? `<div class="lib-rules-other"><h4 class="fs-xs fw-semibold fg-3">Other</h4><ul class="lib-rules">${other.map(ruleLi).join('')}</ul></div>` : ''
+  ].join('')
+}
+
 function itemHtml(item) {
   const chips = [
     item.code ? `<span class="badge theme-secondary badge-subtle">${item.code}</span>` : '',
     item.status === 'Custom' ? '<span class="badge theme-secondary">Custom</span>' : '',
     item.unresolved ? '<span class="badge theme-warning badge-subtle">Unresolved</span>' : '',
     // Work in progress, for example “Needs review · Not finished”.
-    item.review ? `<span class="badge theme-warning badge-subtle">${escapeHtml(item.review)}</span>` : ''
+    item.review ? `<span class="badge theme-warning badge-subtle">${escapeHtml(item.review)}</span>` : '',
+    item.rules?.some((r) => r.devReview) ? DEV_BADGE : ''
   ].join('')
   const meta = [
     item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',
@@ -84,8 +105,9 @@ function itemHtml(item) {
     ? `<details class="lib-code"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code</summary>
         <div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code>${escapeHtml(markup)}</code></pre></div></details>`
     : ''
-  // Rules are written in this repo and may carry inline markup.
-  const rules = item.rules?.length ? `<ul class="lib-rules">${item.rules.map((r) => `<li>${r}</li>`).join('')}</ul>` : ''
+  // Rules are written in this repo and may carry inline markup. Each one is
+  // a guideline (do or don't), a code note for developers, or other.
+  const rules = rulesHtml(item.rules || [])
   return `<article class="lib-item" id="${itemId(item)}">
     <div class="lib-item-head"><h3 class="fs-md">${escapeHtml(item.name)}</h3>${chips}</div>
     ${meta ? `<div class="lib-item-meta">${meta}</div>` : ''}
@@ -149,6 +171,11 @@ function render(data) {
   $('#side-organisms-area').insertAdjacentHTML('beforeend', sideLinks(areaSpecific))
   $('#side-app-shell').insertAdjacentHTML('beforeend', sideLinks(shell))
   $('#side-candidates').insertAdjacentHTML('beforeend', sideLinks(candidates))
+  // Developer review: every bullet tagged for a developer to check.
+  const devRows = data.groups.flatMap((g) => g.items.flatMap((item) => (item.rules || []).filter((r) => r.devReview).map((r) =>
+    `<tr><td><a href="#${itemId(item)}">${escapeHtml(item.name)}</a><br><span class="fs-xs fg-3">${escapeHtml(g.title)}${item.code ? ` · ${item.code}` : ''}</span></td><td>${r.kind === 'code' ? 'Code note' : r.kind === 'dont' ? 'Don’t' : r.kind === 'do' ? 'Do' : 'Other'}</td><td>${r.text}</td></tr>`)))
+  $('#dev-review-items').innerHTML = devRows.join('')
+  $('#dev-review-count').textContent = devRows.length
   // Decisions backlog: parked questions, out of the component pages.
   $('#backlog-items').innerHTML = (data.backlog || []).map((b) =>
     `<tr><td><b>${escapeHtml(b.title)}</b><br><a class="fs-xs" href="${b.href}">${escapeHtml(b.where)}</a></td><td>${escapeHtml(b.question)}</td><td>${escapeHtml(b.why)}</td><td>${escapeHtml(b.revisit)}</td></tr>`).join('')

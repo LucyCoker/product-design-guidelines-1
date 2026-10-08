@@ -61,9 +61,18 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/#sizes",
      "note": "Small is the default. Filmmakers System is dense, and small suits it. Use a different size only for the cases below.",
      "rules": [
-      "Use <code>btn-sm</code> unless one of the other rows applies.",
-      "Use <code>btn-xs</code> in table rows, inline row actions and compact toolbars.",
-      "Keep one size within a group of buttons."
+      {
+       "kind": "do",
+       "text": "Use <code>btn-sm</code> unless one of the other rows applies."
+      },
+      {
+       "kind": "do",
+       "text": "Use <code>btn-xs</code> in table rows, inline row actions and compact toolbars."
+      },
+      {
+       "kind": "do",
+       "text": "Keep one size within a group of buttons."
+      }
      ],
      "layout": "row",
      "examples": [
@@ -104,9 +113,18 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
      "note": "The one most important action on the screen. It takes the customer’s primary colour.",
      "rules": [
-      "At most one primary button per screen. Where two compete, pick the one most people take, or make both secondary.",
-      "Primary means “most important thing here”. It never means safe, confirm, new or recommended.",
-      "On a dark or brand-coloured surface, use <code>btn-solid theme-inverse</code> instead."
+      {
+       "kind": "do",
+       "text": "At most one primary button per screen. Where two compete, pick the one most people take, or make both secondary."
+      },
+      {
+       "kind": "do",
+       "text": "Primary means “most important thing here”. It never means safe, confirm, new or recommended."
+      },
+      {
+       "kind": "do",
+       "text": "On a dark or brand-coloured surface, use <code>btn-solid theme-inverse</code> instead."
+      }
      ],
      "examples": [
       {
@@ -147,9 +165,18 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
      "note": "Actions that matter but are not the main one: Cancel, Export, Save draft.",
      "rules": [
-      "Use as many as the screen needs. Most actions are secondary.",
-      "Never use <code>btn-outline theme-primary</code>: it becomes a second primary.",
-      "On a dark or brand-coloured surface, use <code>btn-outline theme-inverse</code>."
+      {
+       "kind": "do",
+       "text": "Use as many as the screen needs. Most actions are secondary."
+      },
+      {
+       "kind": "do",
+       "text": "Never use <code>btn-outline theme-primary</code>: it becomes a second primary."
+      },
+      {
+       "kind": "do",
+       "text": "On a dark or brand-coloured surface, use <code>btn-outline theme-inverse</code>."
+      }
      ],
      "examples": [
       {
@@ -190,9 +217,18 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
      "note": "Quiet page-level actions, in menus and in toolbars: Discard, Learn more, Back. For actions on one item in a list, use a Row action.",
      "rules": [
-      "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter).",
-      "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus.",
-      "The hit target is at least 24×24px (WCAG 2.2 AA). Icon-only buttons are never destructive."
+      {
+       "kind": "do",
+       "text": "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter)."
+      },
+      {
+       "kind": "do",
+       "text": "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus."
+      },
+      {
+       "kind": "do",
+       "text": "The hit target is at least 24×24px (WCAG 2.2 AA). Icon-only buttons are never destructive."
+      }
      ],
      "flags": [],
      "examples": [
@@ -243,12 +279,30 @@
      "classes": "btn-text theme-secondary btn-icon",
      "note": "A button that shows only an icon. For actions whose icon everyone knows: an overflow menu, close, and toolbar actions such as search and filter.",
      "rules": [
-      "Use <code>btn-text theme-secondary btn-icon</code> by default. <code>.btn-icon</code> makes the button square. Use <code>btn-outline theme-secondary btn-icon</code> when the button stands on its own and needs a visible edge, for example on a grey or busy surface.",
-      "Only for overflow menus (ellipsis), close controls (xmark) and toolbar actions with a well-known icon (search, filter, sort). Anything else gets a text label.",
-      "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip with the same words, on hover and keyboard focus. The icon is <code>aria-hidden</code>.",
-      "Never destructive, never primary or solid. Delete, Remove and the like go in a menu with a text label.",
-      "Size follows the place: <code>btn-sm</code> by default; <code>btn-xs</code> in dense rows; medium (no size class) where the button sits beside large content, such as under the Profile header picture. The hit target is at least 24×24px, the WCAG 2.2 AA minimum (2.5.8), so <code>btn-xs</code> is the smallest size.",
-      "Inside a <a href=\"#bg-icons\">Button group</a> or an <a href=\"#frm-3\">Input group</a>, icon-only buttons take the group’s style, <code>btn-outline theme-secondary</code>, so they join the other controls."
+      {
+       "kind": "do",
+       "text": "Use <code>btn-text theme-secondary btn-icon</code> by default. <code>.btn-icon</code> makes the button square. Use <code>btn-outline theme-secondary btn-icon</code> when the button stands on its own and needs a visible edge, for example on a grey or busy surface."
+      },
+      {
+       "kind": "do",
+       "text": "Only for overflow menus (ellipsis), close controls (xmark) and toolbar actions with a well-known icon (search, filter, sort). Anything else gets a text label."
+      },
+      {
+       "kind": "do",
+       "text": "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip with the same words, on hover and keyboard focus. The icon is <code>aria-hidden</code>."
+      },
+      {
+       "kind": "do",
+       "text": "Never destructive, never primary or solid. Delete, Remove and the like go in a menu with a text label."
+      },
+      {
+       "kind": "do",
+       "text": "Size follows the place: <code>btn-sm</code> by default; <code>btn-xs</code> in dense rows; medium (no size class) where the button sits beside large content, such as under the Profile header picture. The hit target is at least 24×24px, the WCAG 2.2 AA minimum (2.5.8), so <code>btn-xs</code> is the smallest size."
+      },
+      {
+       "kind": "do",
+       "text": "Inside a <a href=\"#bg-icons\">Button group</a> or an <a href=\"#frm-3\">Input group</a>, icon-only buttons take the group’s style, <code>btn-outline theme-secondary</code>, so they join the other controls."
+      }
      ],
      "flags": [],
      "examples": [
@@ -289,11 +343,26 @@
      "guide": "products/filmmakers-system/components/buttons.md",
      "note": "Actions on one item in a dense list: Edit, Duplicate, View as applicant, Copy/Move, Messages. Primary colour shows where to act on each row; text and extra small keep it quiet.",
      "rules": [
-      "Only on an item: a table cell, a list row or a row gutter. Page-level quiet actions are Tertiary.",
-      "Always has a text label. Never icon only.",
-      "Same set, same order, on every row. Always visible, never revealed on hover.",
-      "At most three, then a “More” row action that opens the overflow menu. Never destructive.",
-      "The label must meet 4.5:1 on the row background for every customer primary."
+      {
+       "kind": "do",
+       "text": "Only on an item: a table cell, a list row or a row gutter. Page-level quiet actions are Tertiary."
+      },
+      {
+       "kind": "do",
+       "text": "Always has a text label. Never icon only."
+      },
+      {
+       "kind": "do",
+       "text": "Same set, same order, on every row. Always visible, never revealed on hover."
+      },
+      {
+       "kind": "do",
+       "text": "At most three, then a “More” row action that opens the overflow menu. Never destructive."
+      },
+      {
+       "kind": "do",
+       "text": "The label must meet 4.5:1 on the row background for every customer primary."
+      }
      ],
      "flags": [],
      "examples": [
@@ -337,10 +406,22 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
      "note": "For actions that remove or destroy something. Red because of what it does. How loud it is depends on where it sits.",
      "rules": [
-      "<b>Text danger</b> is for a destructive action in an overflow menu, or standalone on a detail page. Never as a bare control in a table row.",
-      "<b>Solid danger</b> is only for confirming a destructive action in a dialog.",
-      "Label the action with what it does (Remove, Delete). Never icon only.",
-      "See the <a href=\"https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/\" target=\"_blank\" rel=\"noopener\">Destructive actions</a> pattern for when to confirm."
+      {
+       "kind": "do",
+       "text": "<b>Text danger</b> is for a destructive action in an overflow menu, or standalone on a detail page. Never as a bare control in a table row."
+      },
+      {
+       "kind": "do",
+       "text": "<b>Solid danger</b> is only for confirming a destructive action in a dialog."
+      },
+      {
+       "kind": "do",
+       "text": "Label the action with what it does (Remove, Delete). Never icon only."
+      },
+      {
+       "kind": "other",
+       "text": "See the <a href=\"https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/\" target=\"_blank\" rel=\"noopener\">Destructive actions</a> pattern for when to confirm."
+      }
      ],
      "layout": "row",
      "examples": [
@@ -370,8 +451,14 @@
      "status": "Custom",
      "note": "A secondary button whose icon takes the client zone accent. It signals an area that clients, or others outside the team, can see. The accent is not limited to buttons: it can also be a background colour for client areas, on avatars and elsewhere. There are no usage rules for it yet.",
      "rules": [
-      "The icon is <code>--fm-accent-client-zone</code>, Bootstrap <code>orange-600</code> (about 4.4:1 on white, so the icon passes the 3:1 that icons need).",
-      "The class is <code>fm-client-zone</code>. See Foundations › Filmmakers classes."
+      {
+       "kind": "other",
+       "text": "The icon is <code>--fm-accent-client-zone</code>, Bootstrap <code>orange-600</code> (about 4.4:1 on white, so the icon passes the 3:1 that icons need)."
+      },
+      {
+       "kind": "code",
+       "text": "The class is <code>fm-client-zone</code>. See Foundations › Filmmakers classes."
+      }
      ],
      "flags": [],
      "examples": [
@@ -393,11 +480,26 @@
      "docs": "",
      "note": "Anything outside the versions above is a deviation. Propose it, do not improvise it.",
      "rules": [
-      "<code>theme-success</code>, <code>theme-warning</code> or <code>theme-info</code> on any button. Success is a state, not an action.",
-      "<code>btn-solid theme-secondary</code>. Primary emphasis without primary meaning.",
-      "<code>btn-outline theme-primary</code> or <code>btn-subtle theme-primary</code>. It becomes a second primary.",
-      "<code>btn-subtle</code> in any theme, except the filter and Sort by buttons of the <a href=\"#sf-4\">Simple search and filter</a> bar (<code>btn-subtle theme-secondary</code>).",
-      "The styled button style (<code>btn-styled</code>). Use the default rounded corners."
+      {
+       "kind": "dont",
+       "text": "<code>theme-success</code>, <code>theme-warning</code> or <code>theme-info</code> on any button. Success is a state, not an action."
+      },
+      {
+       "kind": "dont",
+       "text": "<code>btn-solid theme-secondary</code>. Primary emphasis without primary meaning."
+      },
+      {
+       "kind": "dont",
+       "text": "<code>btn-outline theme-primary</code> or <code>btn-subtle theme-primary</code>. It becomes a second primary."
+      },
+      {
+       "kind": "dont",
+       "text": "<code>btn-subtle</code> in any theme, except the filter and Sort by buttons of the <a href=\"#sf-4\">Simple search and filter</a> bar (<code>btn-subtle theme-secondary</code>)."
+      },
+      {
+       "kind": "dont",
+       "text": "The styled button style (<code>btn-styled</code>). Use the default rounded corners."
+      }
      ],
      "examples": [],
      "status": "Direct",
@@ -426,9 +528,18 @@
      "classes": "btn-group-sm · btn-group-xs",
      "note": "Groups use small or extra small only. Put the size on the group and on every button in it, so they always match.",
      "rules": [
-      "Every button in a group is the same size.",
-      "Small is the default. Use extra small in table rows and compact toolbars.",
-      "Medium and large are not used for groups."
+      {
+       "kind": "do",
+       "text": "Every button in a group is the same size."
+      },
+      {
+       "kind": "do",
+       "text": "Small is the default. Use extra small in table rows and compact toolbars."
+      },
+      {
+       "kind": "do",
+       "text": "Medium and large are not used for groups."
+      }
      ],
      "examples": [
       {
@@ -457,10 +568,22 @@
      "classes": "btn-group > btn-outline theme-secondary",
      "note": "Two or three closely related actions on the same object, joined into one control. The joining is the meaning: these actions belong together.",
      "rules": [
-      "Two or three actions. That is the whole range.",
-      "Every button uses <code>btn-outline theme-secondary</code>. No solid buttons, no text buttons, no second variant.",
-      "Labels are short and name the action.",
-      "Where one action deserves more weight, put it outside the group as a separate button."
+      {
+       "kind": "do",
+       "text": "Two or three actions. That is the whole range."
+      },
+      {
+       "kind": "do",
+       "text": "Every button uses <code>btn-outline theme-secondary</code>. No solid buttons, no text buttons, no second variant."
+      },
+      {
+       "kind": "do",
+       "text": "Labels are short and name the action."
+      },
+      {
+       "kind": "do",
+       "text": "Where one action deserves more weight, put it outside the group as a separate button."
+      }
      ],
      "examples": [
       {
@@ -489,8 +612,14 @@
      "classes": "btn-group > btn-outline theme-secondary btn-icon",
      "note": "A group where every button is icon only. Use only when each icon is well known.",
      "rules": [
-      "Every button is icon only. Never mix icon-only and text buttons in one group.",
-      "Each button has an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus."
+      {
+       "kind": "do",
+       "text": "Every button is icon only. Never mix icon-only and text buttons in one group."
+      },
+      {
+       "kind": "do",
+       "text": "Each button has an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus."
+      }
      ],
      "examples": [
       {
@@ -513,8 +642,14 @@
      "classes": "btn-group > btn-outline theme-secondary + menu-toggle-split",
      "note": "One action with variants: a text button plus an icon-only menu trigger that belongs to it. This is the only group that may mix a text button and an icon button.",
      "rules": [
-      "The trigger opens variants of the same action (Save / Save and new, Generate PDF / CSV).",
-      "The trigger has an accessible name that says what the menu holds."
+      {
+       "kind": "do",
+       "text": "The trigger opens variants of the same action (Save / Save and new, Generate PDF / CSV)."
+      },
+      {
+       "kind": "do",
+       "text": "The trigger has an accessible name that says what the menu holds."
+      }
      ],
      "examples": [
       {
@@ -542,11 +677,26 @@
      "classes": "btn-group > btn-outline theme-secondary + btn-icon menu trigger",
      "note": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu at the end of the group.",
      "rules": [
-      "The overflow trigger is the last button in the group, in the same outline style and size.",
-      "It is icon only, with an accessible name (<code>aria-label=\"More actions\"</code>) and a tooltip.",
-      "Like the split-button trigger, it is an allowed exception to “never mix text and icon-only buttons”.",
-      "Destructive actions go in the overflow menu with a text label.",
-      "A screen that needs many actions on one object is a hierarchy problem. Lower the emphasis rather than adding buttons."
+      {
+       "kind": "do",
+       "text": "The overflow trigger is the last button in the group, in the same outline style and size."
+      },
+      {
+       "kind": "do",
+       "text": "It is icon only, with an accessible name (<code>aria-label=\"More actions\"</code>) and a tooltip."
+      },
+      {
+       "kind": "do",
+       "text": "Like the split-button trigger, it is an allowed exception to “never mix text and icon-only buttons”."
+      },
+      {
+       "kind": "do",
+       "text": "Destructive actions go in the overflow menu with a text label."
+      },
+      {
+       "kind": "do",
+       "text": "A screen that needs many actions on one object is a hierarchy problem. Lower the emphasis rather than adding buttons."
+      }
      ],
      "examples": [
       {
@@ -569,8 +719,14 @@
      "classes": "btn-group-vertical btn-group-sm",
      "note": "Groups are horizontal. Stack them only in narrow layouts where horizontal does not fit.",
      "rules": [
-      "Below the tablet breakpoint, a group that does not fit stacks. It never scrolls or truncates.",
-      "Never stretch a group to fill its container. Icon buttons would grow into squares."
+      {
+       "kind": "do",
+       "text": "Below the tablet breakpoint, a group that does not fit stacks. It never scrolls or truncates."
+      },
+      {
+       "kind": "do",
+       "text": "Never stretch a group to fill its container. Icon buttons would grow into squares."
+      }
      ],
      "examples": [
       {
@@ -592,10 +748,24 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "Bootstrap’s toggle buttons: a <code>label.btn-check</code> with a radio inside, in a <code>.btn-group</code>, all <code>btn-outline theme-secondary</code>. The group has <code>role=\"radiogroup\"</code> and an <code>aria-label</code>.",
-      "The chosen button uses the selected-item style: <code>--bs-bg-2</code> with body text, as menus do. Never primary, never solid secondary.",
-      "Icon-only options each need an <code>aria-label</code> and a tooltip.",
-      "Only for views of the same content. Different content sets are tabs; actions are a normal Button group."
+      {
+       "kind": "code",
+       "text": "Bootstrap’s toggle buttons: a <code>label.btn-check</code> with a radio inside, in a <code>.btn-group</code>, all <code>btn-outline theme-secondary</code>. The group has <code>role=\"radiogroup\"</code> and an <code>aria-label</code>.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "The chosen button uses the selected-item style: <code>--bs-bg-2</code> with body text, as menus do. Never primary, never solid secondary.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "Icon-only options each need an <code>aria-label</code> and a tooltip."
+      },
+      {
+       "kind": "do",
+       "text": "Only for views of the same content. Different content sets are tabs; actions are a normal Button group."
+      }
      ],
      "examples": [
       {
@@ -626,10 +796,22 @@
      "classes": "role=\"group\" · aria-label",
      "note": "What every group needs, whatever its version.",
      "rules": [
-      "The container has <code>role=\"group\"</code> (or <code>role=\"toolbar\"</code> for a toolbar) and an <code>aria-label</code> that names what the group does.",
-      "Every button is a <code>&lt;button type=\"button\"&gt;</code>. Not a link, not a span.",
-      "Buttons are reachable by keyboard in visual order.",
-      "Focus is visible on each button, including where borders are shared."
+      {
+       "kind": "code",
+       "text": "The container has <code>role=\"group\"</code> (or <code>role=\"toolbar\"</code> for a toolbar) and an <code>aria-label</code> that names what the group does."
+      },
+      {
+       "kind": "code",
+       "text": "Every button is a <code>&lt;button type=\"button\"&gt;</code>. Not a link, not a span."
+      },
+      {
+       "kind": "code",
+       "text": "Buttons are reachable by keyboard in visual order."
+      },
+      {
+       "kind": "code",
+       "text": "Focus is visible on each button, including where borders are shared."
+      }
      ],
      "examples": []
     },
@@ -645,14 +827,38 @@
      "classes": "",
      "note": "A button group is for actions only.",
      "rules": [
-      "All-primary groups, or any <code>btn-solid</code> button inside a group.",
-      "Mixed variants or themes in one group, or <code>btn-text</code> inside a group.",
-      "Destructive and non-destructive actions in the same group.",
-      "More than three actions in a group.",
-      "Switching between different content sets: use tabs. Switching views of the same content uses the Toggle group.",
-      "A yes/no or on/off choice: use a switch or checkbox. Choosing one value: use a radio group.",
-      "Navigation: use links.",
-      "Unrelated actions grouped together. Separate them."
+      {
+       "kind": "dont",
+       "text": "All-primary groups, or any <code>btn-solid</code> button inside a group."
+      },
+      {
+       "kind": "dont",
+       "text": "Mixed variants or themes in one group, or <code>btn-text</code> inside a group."
+      },
+      {
+       "kind": "dont",
+       "text": "Destructive and non-destructive actions in the same group."
+      },
+      {
+       "kind": "dont",
+       "text": "More than three actions in a group."
+      },
+      {
+       "kind": "dont",
+       "text": "Switching between different content sets: use tabs. Switching views of the same content uses the Toggle group."
+      },
+      {
+       "kind": "dont",
+       "text": "A yes/no or on/off choice: use a switch or checkbox. Choosing one value: use a radio group."
+      },
+      {
+       "kind": "dont",
+       "text": "Navigation: use links."
+      },
+      {
+       "kind": "dont",
+       "text": "Unrelated actions grouped together. Separate them."
+      }
      ],
      "examples": []
     },
@@ -669,7 +875,10 @@
      "unresolved": false,
      "note": "Not yet decided in the Button groups pattern. Do not build these until they are.",
      "rules": [
-      "Toolbars are parked in the <a href=\"#backlog\">Decisions backlog</a>."
+      {
+       "kind": "other",
+       "text": "Toolbars are parked in the <a href=\"#backlog\">Decisions backlog</a>."
+      }
      ],
      "examples": []
     }
@@ -693,14 +902,38 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "Built on Bootstrap’s file input: a real <code>input type=\"file\"</code> (visually hidden, with <code>accept</code>) and a <code>label</code> styled as the button. Keyboard and screen reader users use the button; dropping is an extra.",
-      "The area is <code>.fm-dropzone</code>: icon, title, hint, button. The title says what to upload (“Upload script PDF”), the hint says how (“Drop the PDF here or select it manually”), and the button names the file (“Choose a PDF”).",
-      "State the limits under the button when there are any (“PDF only, up to 5 MB”), and link them with <code>aria-describedby</code>.",
-      "The button is <code>btn-solid theme-primary</code> when uploading is the main action of the screen; otherwise <code>btn-outline theme-secondary</code>.",
-      "While a file is dragged over, the area shows the primary border and subtle fill (<code>.is-dragover</code>).",
-      "While it uploads: the file row with a <a href=\"#msg-7\">Progress</a> bar, its percentage and Cancel. Then the normal file row (icon, name, size, Remove). A polite live region says “… uploaded”.",
-      "A wrong type or size is rejected with a message in <code>.invalid-feedback</code> under the area, naming the limit (“Only PDF files, up to 5 MB.”).",
-      "Compact (<code>.fm-dropzone-sm</code>): one line under an existing list, for adding more files."
+      {
+       "kind": "code",
+       "text": "Built on Bootstrap’s file input: a real <code>input type=\"file\"</code> (visually hidden, with <code>accept</code>) and a <code>label</code> styled as the button. Keyboard and screen reader users use the button; dropping is an extra."
+      },
+      {
+       "kind": "do",
+       "text": "The area is <code>.fm-dropzone</code>: icon, title, hint, button. The title says what to upload (“Upload script PDF”), the hint says how (“Drop the PDF here or select it manually”), and the button names the file (“Choose a PDF”)."
+      },
+      {
+       "kind": "do",
+       "text": "State the limits under the button when there are any (“PDF only, up to 5 MB”), and link them with <code>aria-describedby</code>."
+      },
+      {
+       "kind": "do",
+       "text": "The button is <code>btn-solid theme-primary</code> when uploading is the main action of the screen; otherwise <code>btn-outline theme-secondary</code>."
+      },
+      {
+       "kind": "do",
+       "text": "While a file is dragged over, the area shows the primary border and subtle fill (<code>.is-dragover</code>)."
+      },
+      {
+       "kind": "do",
+       "text": "While it uploads: the file row with a <a href=\"#msg-7\">Progress</a> bar, its percentage and Cancel. Then the normal file row (icon, name, size, Remove). A polite live region says “… uploaded”."
+      },
+      {
+       "kind": "do",
+       "text": "A wrong type or size is rejected with a message in <code>.invalid-feedback</code> under the area, naming the limit (“Only PDF files, up to 5 MB.”)."
+      },
+      {
+       "kind": "do",
+       "text": "Compact (<code>.fm-dropzone-sm</code>): one line under an existing list, for adding more files."
+      }
      ],
      "examples": [
       {
@@ -835,9 +1068,20 @@
      "replaces": "Scrolling tabs .scrtabs-tab-container + .nav-tabs.nav-justified",
      "note": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways. Bootstrap 6 Nav overflow; it watches the width of its wrapper, not the window. Used on Sedcard (Summary view).",
      "rules": [
-      "Wrap the <code>.nav.nav-tabs</code> in <code>.nav-overflow</code> with <code>data-bs-toggle=\"nav-overflow\"</code>. Bootstrap moves the tabs that do not fit into a More menu (<a href=\"#menu-basic\">Menu</a>) and keeps the active tab’s state.",
-      "The toggle reads “More” with the ellipsis after the text: <code>data-bs-icon-placement=\"end\"</code> and an <code>&lt;i class=\"fa-solid fa-ellipsis\" data-bs-overflow-icon&gt;</code> in the wrapper.",
-      "More sits right after the last visible tab, not at the far end. filmmakers.css sets <code>.nav-overflow-item { margin-inline-start: 0 }</code>, overriding Bootstrap’s <code>auto</code>, so no script is needed after init."
+      {
+       "kind": "code",
+       "text": "Wrap the <code>.nav.nav-tabs</code> in <code>.nav-overflow</code> with <code>data-bs-toggle=\"nav-overflow\"</code>. Bootstrap moves the tabs that do not fit into a More menu (<a href=\"#menu-basic\">Menu</a>) and keeps the active tab’s state.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "The toggle reads “More” with the ellipsis after the text: <code>data-bs-icon-placement=\"end\"</code> and an <code>&lt;i class=\"fa-solid fa-ellipsis\" data-bs-overflow-icon&gt;</code> in the wrapper."
+      },
+      {
+       "kind": "code",
+       "text": "More sits right after the last visible tab, not at the far end. filmmakers.css sets <code>.nav-overflow-item { margin-inline-start: 0 }</code>, overriding Bootstrap’s <code>auto</code>, so no script is needed after init.",
+       "devReview": true
+      }
      ],
      "examples": [
       {
@@ -869,9 +1113,18 @@
      "classes": "[data-bs-toggle=\"menu\"] + .menu > .menu-item",
      "note": "A list of actions or links that opens from a trigger button. Bootstrap 6 Menu replaces the v3 dropdown.",
      "rules": [
-      "The trigger follows the Buttons rules: usually <code>btn-outline theme-secondary</code> or <code>btn-text theme-secondary</code>, with a caret icon.",
-      "Open on click, never on hover alone. Bootstrap handles the keyboard: arrow keys move, Esc closes.",
-      "Items are <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for links. Labels name the outcome."
+      {
+       "kind": "do",
+       "text": "The trigger follows the Buttons rules: usually <code>btn-outline theme-secondary</code> or <code>btn-text theme-secondary</code>, with a caret icon."
+      },
+      {
+       "kind": "do",
+       "text": "Open on click, never on hover alone. Bootstrap handles the keyboard: arrow keys move, Esc closes."
+      },
+      {
+       "kind": "code",
+       "text": "Items are <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for links. Labels name the outcome."
+      }
      ],
      "examples": [
       {
@@ -899,8 +1152,14 @@
      "classes": ".menu-item-icon",
      "note": "An icon before the label helps people scan a longer menu. Use icons on all items or none.",
      "rules": [
-      "Icons sit in the <code>menu-item-icon</code> slot, in the muted text colour (<code>fg-3</code>).",
-      "Every item still has a text label."
+      {
+       "kind": "do",
+       "text": "Icons sit in the <code>menu-item-icon</code> slot, in the muted text colour (<code>fg-3</code>)."
+      },
+      {
+       "kind": "do",
+       "text": "Every item still has a text label."
+      }
      ],
      "examples": [
       {
@@ -922,8 +1181,14 @@
      "classes": ".menu-item.active + aria-current",
      "note": "Marks the current page, or the current item in a set.",
      "rules": [
-      "The active item takes the <code>bg-2</code> surface, one step darker than the <code>bg-1</code> hover. Never the primary colour.",
-      "Add <code>aria-current=\"page\"</code> for the current page, or <code>aria-current=\"true\"</code> for the current item in a set."
+      {
+       "kind": "do",
+       "text": "The active item takes the <code>bg-2</code> surface, one step darker than the <code>bg-1</code> hover. Never the primary colour."
+      },
+      {
+       "kind": "code",
+       "text": "Add <code>aria-current=\"page\"</code> for the current page, or <code>aria-current=\"true\"</code> for the current item in a set."
+      }
      ],
      "examples": [
       {
@@ -945,8 +1210,14 @@
      "classes": ".menu-header · hr.menu-divider",
      "note": "Split a long menu into labelled groups.",
      "rules": [
-      "Use a divider between groups, and above a destructive or sign-out item.",
-      "Use a header only when a group needs a name. Headers are short and sentence case."
+      {
+       "kind": "do",
+       "text": "Use a divider between groups, and above a destructive or sign-out item."
+      },
+      {
+       "kind": "do",
+       "text": "Use a header only when a group needs a name. Headers are short and sentence case."
+      }
      ],
      "examples": [
       {
@@ -974,7 +1245,10 @@
      "classes": ".menu-item-content > .menu-item-description",
      "note": "A second line under the label, for when the outcome needs explaining.",
      "rules": [
-      "Keep descriptions to one short line. If every item needs one, a dialog may be the better tool."
+      {
+       "kind": "do",
+       "text": "Keep descriptions to one short line. If every item needs one, a dialog may be the better tool."
+      }
      ],
      "examples": [
       {
@@ -996,9 +1270,18 @@
      "classes": ".menu-item.theme-danger",
      "note": "Destructive actions live in menus, labelled with text. They go last, after a divider.",
      "rules": [
-      "Always a text label. An icon beside it is optional.",
-      "Reversible actions act straight away and offer Undo. Irreversible ones open a confirmation dialog. See Destructive actions.",
-      "<code>theme-danger</code> is the only theme used on menu items."
+      {
+       "kind": "do",
+       "text": "Always a text label. An icon beside it is optional."
+      },
+      {
+       "kind": "do",
+       "text": "Reversible actions act straight away and offer Undo. Irreversible ones open a confirmation dialog. See Destructive actions."
+      },
+      {
+       "kind": "do",
+       "text": "<code>theme-danger</code> is the only theme used on menu items."
+      }
      ],
      "guide": "patterns/destructive-actions.md",
      "examples": [
@@ -1021,7 +1304,10 @@
      "classes": ".menu-item.disabled + aria-disabled",
      "note": "An action that exists but cannot be used right now.",
      "rules": [
-      "Prefer hiding actions people can never use. Disable only when the reason is clear from the page."
+      {
+       "kind": "do",
+       "text": "Prefer hiding actions people can never use. Disable only when the reason is clear from the page."
+      }
      ],
      "examples": [
       {
@@ -1048,7 +1334,10 @@
      "classes": "data-bs-placement=\"bottom-start\" · \"bottom-end\"",
      "note": "Menus open below their trigger, aligned to its start edge. Triggers at the end of a row or page open aligned to the end edge, so the menu stays on screen.",
      "rules": [
-      "Use logical placements (<code>start</code>, <code>end</code>) so the menu flips for right-to-left languages."
+      {
+       "kind": "code",
+       "text": "Use logical placements (<code>start</code>, <code>end</code>) so the menu flips for right-to-left languages."
+      }
      ],
      "examples": [
       {
@@ -1076,9 +1365,18 @@
      "classes": "btn-text theme-primary btn-xs + .menu",
      "note": "Holds the less frequent actions on an item, behind a “More” row action.",
      "rules": [
-      "The trigger is a Row action: <code>btn-text theme-primary btn-xs</code> with the ellipsis icon and the label “More”.",
-      "It is the last row action, after at most three others.",
-      "Destructive actions go here, last, after a divider, with a text label."
+      {
+       "kind": "do",
+       "text": "The trigger is a Row action: <code>btn-text theme-primary btn-xs</code> with the ellipsis icon and the label “More”."
+      },
+      {
+       "kind": "do",
+       "text": "It is the last row action, after at most three others."
+      },
+      {
+       "kind": "do",
+       "text": "Destructive actions go here, last, after a divider, with a text label."
+      }
      ],
      "examples": [
       {
@@ -1106,12 +1404,30 @@
      "classes": "",
      "note": "Bootstrap supports more than we use.",
      "rules": [
-      "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items.",
-      "An active or selected item in the primary colour.",
-      "A plain Menu for a complex filter: a long list of values, or one that needs checkboxes, fields or sliders. Use the <a href=\"#sf-3\">Combobox</a>. A plain Menu with a checkmark on the chosen value is fine for a short list, as in the <a href=\"#sf-4\">Simple search and filter bar</a>.",
-      "Icon-only menu items.",
-      "Translucent menus, and dark menus on a light page. In dark mode, menus are dark with the rest of the page.",
-      "Menus that open on hover."
+      {
+       "kind": "dont",
+       "text": "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items."
+      },
+      {
+       "kind": "dont",
+       "text": "An active or selected item in the primary colour."
+      },
+      {
+       "kind": "dont",
+       "text": "A plain Menu for a complex filter: a long list of values, or one that needs checkboxes, fields or sliders. Use the <a href=\"#sf-3\">Combobox</a>. A plain Menu with a checkmark on the chosen value is fine for a short list, as in the <a href=\"#sf-4\">Simple search and filter bar</a>."
+      },
+      {
+       "kind": "dont",
+       "text": "Icon-only menu items."
+      },
+      {
+       "kind": "dont",
+       "text": "Translucent menus, and dark menus on a light page. In dark mode, menus are dark with the rest of the page."
+      },
+      {
+       "kind": "dont",
+       "text": "Menus that open on hover."
+      }
      ],
      "examples": []
     }
@@ -1136,8 +1452,14 @@
      "layout": "stack",
      "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>",
      "rules": [
-      "Everywhere except menus: the input sits beside its label, joined by <code>for</code> and <code>id</code>.",
-      "In a menu item only (multi-select Combobox): the input is nested in the <code>label.menu-item</code>, so the whole row is the hit target. It still has an <code>aria-label</code> or the label text as its name."
+      {
+       "kind": "code",
+       "text": "Everywhere except menus: the input sits beside its label, joined by <code>for</code> and <code>id</code>."
+      },
+      {
+       "kind": "code",
+       "text": "In a menu item only (multi-select Combobox): the input is nested in the <code>label.menu-item</code>, so the whole row is the hit target. It still has an <code>aria-label</code> or the label text as its name."
+      }
      ]
     }
    ]
@@ -1165,8 +1487,15 @@
      ],
      "layout": "row",
      "rules": [
-      "The remove button keeps its 16px icon but has a 24×24px hit area (an invisible ::after in filmmakers.css), so it meets WCAG 2.2 target size.",
-      "Attachments are <code>a.chip</code> links, one per file, with a Font Awesome file-type icon (<code>fa-regular fa-file-pdf</code>, …) and the file name. No dismiss button."
+      {
+       "kind": "code",
+       "text": "The remove button keeps its 16px icon but has a 24×24px hit area (an invisible ::after in filmmakers.css), so it meets WCAG 2.2 target size.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "Attachments are <code>a.chip</code> links, one per file, with a Font Awesome file-type icon (<code>fa-regular fa-file-pdf</code>, …) and the file name. No dismiss button."
+      }
      ],
      "examples": [
       {
@@ -1203,13 +1532,34 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "The toggle always reads <b>label: value</b>, for example “Status: Active” or “Language: 2 selected”, so a filter reads as a sentence.",
-      "A filter that differs from its default is <b>weight 600</b>. No colour, no badge.",
-      "One value: plain items, no radio buttons. The current value is <code>.menu-item.selected</code> (semibold) with a check (<code>.menu-item-check</code>) and <code>aria-current=\"true\"</code>, as in the <a href=\"#sf-4\">Simple</a> bar, and the menu closes on pick. Several values: checkbox items, and the menu stays open.",
-      "More than six options: a find field appears at the top, with a “No … matches” line when nothing matches.",
-      "Filters apply on change. There is no Apply button. The menu closes on an outside click.",
-      "Use the Combobox for every filter and for Sort by. The native select is only for forms.",
-      "Use it in complex searches, where a filter needs more than a short list: many values, checkboxes, radios, fields, sliders or whatever suits that filter. For a short list of options, a plain Menu is enough (see the <a href=\"#sf-4\">Simple</a> bar)."
+      {
+       "kind": "do",
+       "text": "The toggle always reads <b>label: value</b>, for example “Status: Active” or “Language: 2 selected”, so a filter reads as a sentence."
+      },
+      {
+       "kind": "do",
+       "text": "A filter that differs from its default is <b>weight 600</b>. No colour, no badge."
+      },
+      {
+       "kind": "do",
+       "text": "One value: plain items, no radio buttons. The current value is <code>.menu-item.selected</code> (semibold) with a check (<code>.menu-item-check</code>) and <code>aria-current=\"true\"</code>, as in the <a href=\"#sf-4\">Simple</a> bar, and the menu closes on pick. Several values: checkbox items, and the menu stays open."
+      },
+      {
+       "kind": "do",
+       "text": "More than six options: a find field appears at the top, with a “No … matches” line when nothing matches."
+      },
+      {
+       "kind": "do",
+       "text": "Filters apply on change. There is no Apply button. The menu closes on an outside click."
+      },
+      {
+       "kind": "do",
+       "text": "Use the Combobox for every filter and for Sort by. The native select is only for forms."
+      },
+      {
+       "kind": "do",
+       "text": "Use it in complex searches, where a filter needs more than a short list: many values, checkboxes, radios, fields, sliders or whatever suits that filter. For a short list of options, a plain Menu is enough (see the <a href=\"#sf-4\">Simple</a> bar)."
+      }
      ],
      "examples": [
       {
@@ -1308,13 +1658,34 @@
       }
      ],
      "rules": [
-      "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels.",
-      "Controls inside a field follow the <a href=\"#frm-1\">Form control</a> rules, including the small size.",
-      "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above. Bootstrap documents these on a separate Floating labels page.",
-      "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control.",
-      "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>.",
-      "Errors follow the <a href=\"#frm-11\">Validation</a> rules.",
-      "No inline (side-by-side) labels. Removed in review; add them back only with a use case."
+      {
+       "kind": "do",
+       "text": "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels."
+      },
+      {
+       "kind": "do",
+       "text": "Controls inside a field follow the <a href=\"#frm-1\">Form control</a> rules, including the small size."
+      },
+      {
+       "kind": "do",
+       "text": "Floating labels (<code>.form-floating</code>) are allowed only on very short forms people already know, such as sign in with email and password. Everywhere else the label sits above. Bootstrap documents these on a separate Floating labels page."
+      },
+      {
+       "kind": "do",
+       "text": "Mark required fields with a red asterisk after the label, e.g. Email*, and <code>required</code> on the control."
+      },
+      {
+       "kind": "do",
+       "text": "Help needed to complete a field is a <code>.form-text</code> under the control, always visible and wired with <code>aria-describedby</code>."
+      },
+      {
+       "kind": "other",
+       "text": "Errors follow the <a href=\"#frm-11\">Validation</a> rules."
+      },
+      {
+       "kind": "do",
+       "text": "No inline (side-by-side) labels. Removed in review; add them back only with a use case."
+      }
      ]
     }
    ]
@@ -1369,10 +1740,22 @@
       }
      ],
      "rules": [
-      "Controls are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states.",
-      "Select uses <code>.form-control</code> and appears only inside forms. Every filter and Sort by is a <a href=\"#sf-3\">Combobox</a>.",
-      "Use disabled when the value cannot change right now, and readonly when people should still be able to see, focus and copy it.",
-      "A control always has a label: in a <a href=\"#frm-5\">Field</a>, or an <code>aria-label</code> when there is no visible label, e.g. a search box in a filter bar."
+      {
+       "kind": "do",
+       "text": "Controls are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states."
+      },
+      {
+       "kind": "do",
+       "text": "Select uses <code>.form-control</code> and appears only inside forms. Every filter and Sort by is a <a href=\"#sf-3\">Combobox</a>."
+      },
+      {
+       "kind": "do",
+       "text": "Use disabled when the value cannot change right now, and readonly when people should still be able to see, focus and copy it."
+      },
+      {
+       "kind": "do",
+       "text": "A control always has a label: in a <a href=\"#frm-5\">Field</a>, or an <code>aria-label</code> when there is no visible label, e.g. a search box in a filter bar."
+      }
      ]
     }
    ]
@@ -1455,15 +1838,43 @@
      "replaces": "ajaxful-rating / rating stars ul.ajaxful-rating, .fa-star",
      "note": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).",
      "rules": [
-      "Editable: a radio group built from Bootstrap’s toggle buttons. The stars sit in a <code>role=\"radiogroup\"</code> with <code>aria-labelledby</code> pointing at a visible label that says what is rated (for example “Text fluency”). Each star is a <code>label.btn-check.btn-text.theme-secondary.btn-xs.btn-icon</code> holding a <code>radio</code> with <code>aria-label=\"n out of 5 stars\"</code>.",
-      "Keyboard: Tab moves into the group and out to the next field. Right and Up add one star, Left and Down remove one (down to 0), Home sets 0 and End sets 5. The rating applies as it changes; no confirm step. Bootstrap’s focus ring shows on the focused star.",
-      "The current value shows as text after the stars (“4 stars”, “1 star”, “0 stars” when cleared; <code>.fg-2</code>) in an <code>aria-live=\"polite\"</code> region, so screen readers announce each change. The radios keep their full names (“4 out of 5 stars”), so the scale is still announced. No tooltips on the stars: each radio already has its name, and tooltips only appear on mouse hover.",
-      "Fill shows the state: every star up to the chosen one is filled (<code>fa-solid</code>), the rest are outline (<code>fa-regular</code>), and hovering previews a rating. filmmakers.css does this with CSS only (<code>.fm-rating</code>). Never colour alone. Stars are <code>--bs-fg-body</code>, the body text colour (filmmakers.css sets it on <code>.fm-rating</code>), which passes 15:1 on white and grey.",
-      "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. The star icons are the body text size (14px), as in production, in both the editable and the read-only rating.",
-      "When a rating is set, <b>Clear rating</b> follows the value (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating.",
-      "In a form: help text and errors are linked with <code>aria-describedby</code>, an error sets <code>aria-invalid=\"true\"</code>, and a required rating sets <code>aria-required=\"true\"</code> on the radiogroup (see <a href=\"#frm-11\">Validation</a>).",
-      "Read-only: the label, then star icons in a <code>span.fg-3</code> (lighter than the editable stars, so a read-only rating does not look clickable; 5.2:1 or more on white and grey) with a <code>title</code> and a visually hidden “n out of 5 stars”. Two sizes: 14px (body text) by default, and 12px (<code>.fs-xs</code> on the whole rating, label included) in dense lists and tables. Keep it on one line (<code>.text-nowrap</code>).",
-      "Left aligned in its row, so nothing moves when the value text or Clear rating changes."
+      {
+       "kind": "code",
+       "text": "Editable: a radio group built from Bootstrap’s toggle buttons. The stars sit in a <code>role=\"radiogroup\"</code> with <code>aria-labelledby</code> pointing at a visible label that says what is rated (for example “Text fluency”). Each star is a <code>label.btn-check.btn-text.theme-secondary.btn-xs.btn-icon</code> holding a <code>radio</code> with <code>aria-label=\"n out of 5 stars\"</code>."
+      },
+      {
+       "kind": "code",
+       "text": "Keyboard: Tab moves into the group and out to the next field. Right and Up add one star, Left and Down remove one (down to 0), Home sets 0 and End sets 5. The rating applies as it changes; no confirm step. Bootstrap’s focus ring shows on the focused star."
+      },
+      {
+       "kind": "do",
+       "text": "The current value shows as text after the stars (“4 stars”, “1 star”, “0 stars” when cleared; <code>.fg-2</code>) in an <code>aria-live=\"polite\"</code> region, so screen readers announce each change. The radios keep their full names (“4 out of 5 stars”), so the scale is still announced. No tooltips on the stars: each radio already has its name, and tooltips only appear on mouse hover."
+      },
+      {
+       "kind": "do",
+       "text": "Fill shows the state: every star up to the chosen one is filled (<code>fa-solid</code>), the rest are outline (<code>fa-regular</code>), and hovering previews a rating. filmmakers.css does this with CSS only (<code>.fm-rating</code>). Never colour alone. Stars are <code>--bs-fg-body</code>, the body text colour (filmmakers.css sets it on <code>.fm-rating</code>), which passes 15:1 on white and grey.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "Stars use <code>btn-xs</code>, a 24px target with no gap between stars. That meets the WCAG 2.2 AA minimum (2.5.8, 24 by 24px) and keeps the control compact for desktop, where most people use it. Do not go smaller. The star icons are the body text size (14px), as in production, in both the editable and the read-only rating."
+      },
+      {
+       "kind": "do",
+       "text": "When a rating is set, <b>Clear rating</b> follows the value (<a href=\"#btn-tertiary\">Tertiary</a>, <code>btn-text theme-secondary btn-sm</code>); it hides when there is no rating."
+      },
+      {
+       "kind": "code",
+       "text": "In a form: help text and errors are linked with <code>aria-describedby</code>, an error sets <code>aria-invalid=\"true\"</code>, and a required rating sets <code>aria-required=\"true\"</code> on the radiogroup (see <a href=\"#frm-11\">Validation</a>)."
+      },
+      {
+       "kind": "do",
+       "text": "Read-only: the label, then star icons in a <code>span.fg-3</code> (lighter than the editable stars, so a read-only rating does not look clickable; 5.2:1 or more on white and grey) with a <code>title</code> and a visually hidden “n out of 5 stars”. Two sizes: 14px (body text) by default, and 12px (<code>.fs-xs</code> on the whole rating, label included) in dense lists and tables. Keep it on one line (<code>.text-nowrap</code>)."
+      },
+      {
+       "kind": "do",
+       "text": "Left aligned in its row, so nothing moves when the value text or Clear rating changes."
+      }
      ],
      "examples": [
       {
@@ -1577,13 +1988,35 @@
       }
      ],
      "rules": [
-      "Validate on blur, never on each keystroke and never before the person has typed. <code>data-bs-validate</code> on the form does this with <code>:user-invalid</code>.",
-      "The message sits under the field and says how to fix it, not just what is wrong: “Enter an email address, like name@example.com.”",
-      "Errors use colour, an icon and text together, never colour alone.",
-      "On submit, a danger alert at the top of the form names how many fields need attention and links to each one. Focus moves to it.",
-      "A failed save never discards what the person entered. A dialog with an invalid field stays open.",
-      "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>.",
-      "The green valid state (<code>.is-valid</code> + <code>.valid-feedback</code>, with a check icon) is used only where a field is checked against a rule people cannot see: creating a password, confirming a password, and codes with a set format (e.g. VAT or voucher codes). Other fields show errors only."
+      {
+       "kind": "do",
+       "text": "Validate on blur, never on each keystroke and never before the person has typed. <code>data-bs-validate</code> on the form does this with <code>:user-invalid</code>.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "The message sits under the field and says how to fix it, not just what is wrong: “Enter an email address, like name@example.com.”"
+      },
+      {
+       "kind": "do",
+       "text": "Errors use colour, an icon and text together, never colour alone."
+      },
+      {
+       "kind": "do",
+       "text": "On submit, a danger alert at the top of the form names how many fields need attention and links to each one. Focus moves to it."
+      },
+      {
+       "kind": "do",
+       "text": "A failed save never discards what the person entered. A dialog with an invalid field stays open."
+      },
+      {
+       "kind": "code",
+       "text": "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>."
+      },
+      {
+       "kind": "do",
+       "text": "The green valid state (<code>.is-valid</code> + <code>.valid-feedback</code>, with a check icon) is used only where a field is checked against a rule people cannot see: creating a password, confirming a password, and codes with a set format (e.g. VAT or voucher codes). Other fields show errors only."
+      }
      ],
      "flags": []
     }
@@ -1641,9 +2074,18 @@
      "replaces": "dl-horizontal .dl-horizontal, .dl-horizontal-double-width-label",
      "note": "Label and value pairs in two columns: attributes, details, or a dated log of activity. Replaces CNT-8, which was removed in review, and the activity list (CNT-16). Used on Sedcard (Summary view).",
      "rules": [
-      "A <code>dl</code> in a two-column grid: labels <code>minmax(120px, 180px)</code>, values <code>minmax(0, 1fr)</code>. Show only rows that have a value.",
-      "Labels (<code>dt</code>) are weight 400 in <code>.fg-3</code>; values (<code>dd</code>) are body text, the same size. De-emphasis is colour only. <code>.fg-3</code> is for every label and value list; it passes WCAG AA on white and grey (5.9:1 on white, 5.2:1 on <code>bg-2</code>).",
-      "For activity, the label is the timestamp and author in 12px <code>.fs-xs .fg-3</code>, newest first. Long lists show the first 5 and a “Show N more” toggle in the <a href=\"#btn-row-action\">Row action</a> style (<code>btn-text theme-primary btn-xs</code>) with a caret."
+      {
+       "kind": "do",
+       "text": "A <code>dl</code> in a two-column grid: labels <code>minmax(120px, 180px)</code>, values <code>minmax(0, 1fr)</code>. Show only rows that have a value."
+      },
+      {
+       "kind": "do",
+       "text": "Labels (<code>dt</code>) are weight 400 in <code>.fg-3</code>; values (<code>dd</code>) are body text, the same size. De-emphasis is colour only. <code>.fg-3</code> is for every label and value list; it passes WCAG AA on white and grey (5.9:1 on white, 5.2:1 on <code>bg-2</code>)."
+      },
+      {
+       "kind": "do",
+       "text": "For activity, the label is the timestamp and author in 12px <code>.fs-xs .fg-3</code>, newest first. Long lists show the first 5 and a “Show N more” toggle in the <a href=\"#btn-row-action\">Row action</a> style (<code>btn-text theme-primary btn-xs</code>) with a caret."
+      }
      ],
      "examples": [
       {
@@ -1688,13 +2130,36 @@
      ],
      "layout": "full",
      "rules": [
-      "Use Bootstrap’s accordion markup: <code>.accordion.accordion-sm</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded.",
-      "The header is grey (<code>bg-1</code>) while closed and white while open. filmmakers.css sets this through Bootstrap’s own variables (<code>--bs-accordion-btn-bg</code>, <code>--bs-accordion-active-bg</code>), so no extra class is needed. No theme classes.",
-      "<code>.accordion-sm</code> on every accordion, to match the 14px body text and small controls.",
-      "The header is the title, weight 600, then “Show” or “Hide” and a chevron (<code>fa-chevron-down</code> with <code>.accordion-icon</code>) that turns when open. The label is <code>.fm-accordion-label</code> with both words inside; CSS shows the right one, so no script is needed. It is <code>aria-hidden</code>, because the browser already announces open and closed.",
-      "Standalone, for example Statistics, use the accordion as it is. Inside a card, for example Additional information, use <code>.accordion-flush</code> with <code>.border-top</code>, so it runs edge to edge under the card’s content with a line above it.",
-      "Important, rarely: add <code>.fg-primary</code> to the <code>summary</code> so the title and chevron take the primary colour, for information that would get lost on a busy page (for example Important information). At most one per page, and never to decorate.",
-      "Several accordions in a row that should open one at a time share a <code>name</code> on their <code>details</code>."
+      {
+       "kind": "code",
+       "text": "Use Bootstrap’s accordion markup: <code>.accordion.accordion-sm</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded.",
+       "devReview": true
+      },
+      {
+       "kind": "code",
+       "text": "The header is grey (<code>bg-1</code>) while closed and white while open. filmmakers.css sets this through Bootstrap’s own variables (<code>--bs-accordion-btn-bg</code>, <code>--bs-accordion-active-bg</code>), so no extra class is needed. No theme classes.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "<code>.accordion-sm</code> on every accordion, to match the 14px body text and small controls."
+      },
+      {
+       "kind": "do",
+       "text": "The header is the title, weight 600, then “Show” or “Hide” and a chevron (<code>fa-chevron-down</code> with <code>.accordion-icon</code>) that turns when open. The label is <code>.fm-accordion-label</code> with both words inside; CSS shows the right one, so no script is needed. It is <code>aria-hidden</code>, because the browser already announces open and closed."
+      },
+      {
+       "kind": "do",
+       "text": "Standalone, for example Statistics, use the accordion as it is. Inside a card, for example Additional information, use <code>.accordion-flush</code> with <code>.border-top</code>, so it runs edge to edge under the card’s content with a line above it."
+      },
+      {
+       "kind": "do",
+       "text": "Important, rarely: add <code>.fg-primary</code> to the <code>summary</code> so the title and chevron take the primary colour, for information that would get lost on a busy page (for example Important information). At most one per page, and never to decorate."
+      },
+      {
+       "kind": "code",
+       "text": "Several accordions in a row that should open one at a time share a <code>name</code> on their <code>details</code>."
+      }
      ],
      "examples": [
       {
@@ -1777,11 +2242,26 @@
       }
      ],
      "rules": [
-      "Alerts are for conditions that are still true. Something that just happened is a Toast.",
-      "Every alert has an icon and text, never colour alone. The theme matches the meaning: info, warning or danger.",
-      "Say how to resolve the condition, with an <code>.alert-link</code> where there is a next step.",
-      "No success alerts: when the result is already visible on screen, say nothing.",
-      "An alert MAY be dismissed with a <code>.btn-close</code> (<code>data-bs-dismiss=\"alert\"</code>, <code>aria-label=\"Dismiss\"</code>) at the end. After dismissing, move focus to a sensible place, such as the page heading."
+      {
+       "kind": "do",
+       "text": "Alerts are for conditions that are still true. Something that just happened is a Toast."
+      },
+      {
+       "kind": "do",
+       "text": "Every alert has an icon and text, never colour alone. The theme matches the meaning: info, warning or danger."
+      },
+      {
+       "kind": "do",
+       "text": "Say how to resolve the condition, with an <code>.alert-link</code> where there is a next step."
+      },
+      {
+       "kind": "do",
+       "text": "No success alerts: when the result is already visible on screen, say nothing."
+      },
+      {
+       "kind": "do",
+       "text": "An alert MAY be dismissed with a <code>.btn-close</code> (<code>data-bs-dismiss=\"alert\"</code>, <code>aria-label=\"Dismiss\"</code>) at the end. After dismissing, move focus to a sensible place, such as the page heading."
+      }
      ]
     },
     {
@@ -1834,12 +2314,30 @@
       }
      ],
      "rules": [
-      "Toasts report events: something just happened. A condition that is still true is an Alert.",
-      "State what happened and the count, e.g. “4 records archived.” No “successfully”, no exclamation marks, no raw error codes.",
-      "Auto-dismisses unless it carries an action. A toast with Undo stays until dismissed, and Undo stays available for at least 10 seconds.",
-      "Nothing important lives only in a toast.",
-      "Use <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code>. The Undo and close buttons take the toast’s theme, with no colour overrides.",
-      "Toasts appear in the top right of the window, for every action: a <code>.toast-container position-fixed top-0 end-0 p-3</code>, so they never cover the page’s main actions."
+      {
+       "kind": "do",
+       "text": "Toasts report events: something just happened. A condition that is still true is an Alert."
+      },
+      {
+       "kind": "do",
+       "text": "State what happened and the count, e.g. “4 records archived.” No “successfully”, no exclamation marks, no raw error codes."
+      },
+      {
+       "kind": "do",
+       "text": "Auto-dismisses unless it carries an action. A toast with Undo stays until dismissed, and Undo stays available for at least 10 seconds."
+      },
+      {
+       "kind": "do",
+       "text": "Nothing important lives only in a toast."
+      },
+      {
+       "kind": "code",
+       "text": "Use <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code>. The Undo and close buttons take the toast’s theme, with no colour overrides."
+      },
+      {
+       "kind": "do",
+       "text": "Toasts appear in the top right of the window, for every action: a <code>.toast-container position-fixed top-0 end-0 p-3</code>, so they never cover the page’s main actions."
+      }
      ],
      "guide": "patterns/destructive-actions.md"
     }
@@ -1863,10 +2361,23 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "<code>role=\"progressbar\"</code> and the aria-value attributes sit on the outer <code>.progress</code> in Bootstrap 6; the bar keeps only its width.",
-      "Give it an <code>aria-label</code> that names the task and the file, e.g. “Upload progress, Showreel-2026.mp4”.",
-      "Show the file name above the bar and the percentage at its end, in 12px.",
-      "While a file uploads, its row shows the bar and a Cancel button. At 100% the row becomes the normal file row (icon, name, size, Remove), and a polite live region says “Showreel-2026.mp4 uploaded”."
+      {
+       "kind": "code",
+       "text": "<code>role=\"progressbar\"</code> and the aria-value attributes sit on the outer <code>.progress</code> in Bootstrap 6; the bar keeps only its width.",
+       "devReview": true
+      },
+      {
+       "kind": "code",
+       "text": "Give it an <code>aria-label</code> that names the task and the file, e.g. “Upload progress, Showreel-2026.mp4”."
+      },
+      {
+       "kind": "do",
+       "text": "Show the file name above the bar and the percentage at its end, in 12px."
+      },
+      {
+       "kind": "do",
+       "text": "While a file uploads, its row shows the bar and a Cancel button. At 100% the row becomes the normal file row (icon, name, size, Remove), and a polite live region says “Showreel-2026.mp4 uploaded”."
+      }
      ],
      "examples": [
       {
@@ -1919,10 +2430,22 @@
       }
      ],
      "rules": [
-      "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus.",
-      "A few words, no full sentences, no links or buttons inside.",
-      "Help needed to complete a field is always visible, never only in a tooltip.",
-      "Truncated text: there is no general rule. Each component decides whether a truncated value gets a tooltip with the full text (the Profile tile: search results does, for long names)."
+      {
+       "kind": "do",
+       "text": "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus."
+      },
+      {
+       "kind": "do",
+       "text": "A few words, no full sentences, no links or buttons inside."
+      },
+      {
+       "kind": "do",
+       "text": "Help needed to complete a field is always visible, never only in a tooltip."
+      },
+      {
+       "kind": "do",
+       "text": "Truncated text: there is no general rule. Each component decides whether a truncated value gets a tooltip with the full text (the Profile tile: search results does, for long names)."
+      }
      ]
     }
    ]
@@ -1958,9 +2481,18 @@
       }
      ],
      "rules": [
-      "Opened by a click, never by hover. The trigger has <code>aria-expanded</code>.",
-      "No <code>.popover-header</code>: the button that opens it already names it.",
-      "Holds controls or a short list only. Anything longer, or anything that needs a Save button, is a dialog."
+      {
+       "kind": "do",
+       "text": "Opened by a click, never by hover. The trigger has <code>aria-expanded</code>."
+      },
+      {
+       "kind": "do",
+       "text": "No <code>.popover-header</code>: the button that opens it already names it."
+      },
+      {
+       "kind": "do",
+       "text": "Holds controls or a short list only. Anything longer, or anything that needs a Save button, is a dialog."
+      }
      ]
     }
    ]
@@ -1983,15 +2515,43 @@
      "guide": "patterns/destructive-actions.md",
      "note": "A short task or decision on top of the page: one decision, or a form of about six fields. Bootstrap 6 Dialog, built on the native dialog element, which traps focus, closes on Esc and returns focus to the button that opened it.",
      "rules": [
-      "Use Bootstrap’s Dialog: a <code>dialog.dialog</code> opened by <code>data-bs-toggle=\"dialog\"</code> and <code>data-bs-target</code>, closed by <code>data-bs-dismiss=\"dialog\"</code>. Label it with <code>aria-labelledby</code> pointing at the title.",
-      "Only for one short decision or a form of about six fields. Anything multi-step or needing its own URL is a page. Dialogs never open dialogs, never stack and never appear unprompted.",
-      "Dialogs may scroll. When the content can be longer than the window, add <code>.dialog-scrollable</code> (Bootstrap’s default): the body scrolls and the header and footer stay fixed, so the actions are always visible. Give the scrolling body <code>tabindex=\"0\"</code> so keyboard users can scroll it.",
-      "Sizes: the default (500px) for most; <code>.dialog-lg</code> (800px) for a six-field form. No extra large or fullscreen dialogs: use a page.",
-      "Header: the title (<code>h2.dialog-title.fs-md.fw-semibold</code>) and Bootstrap’s close button (<code>.btn-close</code>, with <code>aria-label=\"Close\"</code>). Footer: Cancel (<a href=\"#btn-secondary\">Secondary</a>) then the action, which names the outcome (“Save name”, never “OK” or “Submit”). All buttons <code>btn-sm</code>.",
-      "Focus: the first field gets focus when a form opens (<code>autofocus</code>); a confirmation focuses Cancel. Focus is trapped inside while open and returns to the button that opened the dialog when it closes.",
-      "Forms: <code>data-bs-backdrop=\"static\"</code>, so a click outside does not throw away what was typed. A dialog with an invalid field stays open and keeps the input (see <a href=\"#frm-11\">Validation</a>).",
-      "Confirming an irreversible action (<a href=\"https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/\" target=\"_blank\" rel=\"noopener\">Destructive actions</a>): the title is a question naming the action and object (“Delete invoice INV-4021?”); the body says what is lost and that it cannot be undone; the action repeats the verb (“Delete invoice”, <code>btn-solid theme-danger</code>, with an icon so danger is not colour alone). Cancel and the action sit at opposite ends of the footer, and Cancel has focus when the dialog opens (<code>autofocus</code>). Esc cancels, never confirms.",
-      "Reversible actions never get a confirmation dialog: act at once and offer Undo in a <a href=\"#msg-10\">Toast</a>."
+      {
+       "kind": "code",
+       "text": "Use Bootstrap’s Dialog: a <code>dialog.dialog</code> opened by <code>data-bs-toggle=\"dialog\"</code> and <code>data-bs-target</code>, closed by <code>data-bs-dismiss=\"dialog\"</code>. Label it with <code>aria-labelledby</code> pointing at the title."
+      },
+      {
+       "kind": "do",
+       "text": "Only for one short decision or a form of about six fields. Anything multi-step or needing its own URL is a page. Dialogs never open dialogs, never stack and never appear unprompted."
+      },
+      {
+       "kind": "do",
+       "text": "Dialogs may scroll. When the content can be longer than the window, add <code>.dialog-scrollable</code> (Bootstrap’s default): the body scrolls and the header and footer stay fixed, so the actions are always visible. Give the scrolling body <code>tabindex=\"0\"</code> so keyboard users can scroll it.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "Sizes: the default (500px) for most; <code>.dialog-lg</code> (800px) for a six-field form. No extra large or fullscreen dialogs: use a page."
+      },
+      {
+       "kind": "do",
+       "text": "Header: the title (<code>h2.dialog-title.fs-md.fw-semibold</code>) and Bootstrap’s close button (<code>.btn-close</code>, with <code>aria-label=\"Close\"</code>). Footer: Cancel (<a href=\"#btn-secondary\">Secondary</a>) then the action, which names the outcome (“Save name”, never “OK” or “Submit”). All buttons <code>btn-sm</code>."
+      },
+      {
+       "kind": "code",
+       "text": "Focus: the first field gets focus when a form opens (<code>autofocus</code>); a confirmation focuses Cancel. Focus is trapped inside while open and returns to the button that opened the dialog when it closes."
+      },
+      {
+       "kind": "do",
+       "text": "Forms: <code>data-bs-backdrop=\"static\"</code>, so a click outside does not throw away what was typed. A dialog with an invalid field stays open and keeps the input (see <a href=\"#frm-11\">Validation</a>)."
+      },
+      {
+       "kind": "do",
+       "text": "Confirming an irreversible action (<a href=\"https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/\" target=\"_blank\" rel=\"noopener\">Destructive actions</a>): the title is a question naming the action and object (“Delete invoice INV-4021?”); the body says what is lost and that it cannot be undone; the action repeats the verb (“Delete invoice”, <code>btn-solid theme-danger</code>, with an icon so danger is not colour alone). Cancel and the action sit at opposite ends of the footer, and Cancel has focus when the dialog opens (<code>autofocus</code>). Esc cancels, never confirms."
+      },
+      {
+       "kind": "do",
+       "text": "Reversible actions never get a confirmation dialog: act at once and offer Undo in a <a href=\"#msg-10\">Toast</a>."
+      }
      ],
      "flags": [
       {
@@ -2058,9 +2618,18 @@
       }
      ],
      "rules": [
-      "Status badges are subtle (<code>badge-subtle</code>) and use the status theme for their meaning: success for Active, warning when someone still has to act for it to be complete (e.g. Invited), secondary for Inactive or neutral states.",
-      "Counts are solid <code>theme-secondary</code>. Never primary, and never danger just to draw attention.",
-      "Sentence case, one or two words."
+      {
+       "kind": "do",
+       "text": "Status badges are subtle (<code>badge-subtle</code>) and use the status theme for their meaning: success for Active, warning when someone still has to act for it to be complete (e.g. Invited), secondary for Inactive or neutral states."
+      },
+      {
+       "kind": "do",
+       "text": "Counts are solid <code>theme-secondary</code>. Never primary, and never danger just to draw attention."
+      },
+      {
+       "kind": "do",
+       "text": "Sentence case, one or two words."
+      }
      ]
     },
     {
@@ -2141,17 +2710,50 @@
      ],
      "layout": "row",
      "rules": [
-      "Order: search, inline filters (up to three), More filters, then Sort by at the far end.",
-      "Every filter is a <a href=\"#sf-3\">Combobox</a> reading <b>label: value</b>. Applied filters are weight 600, and More filters shows how many of its filters are applied.",
-      "Clear filters appears only when a search or filter is applied, and resets all of them. It sits right after the last chip, in the chips row; on compact widths it is the x on the “3 filters applied” chip and in the Applied filters dialog.",
-      "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
-      "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter. On compact widths the chips row is one chip instead, “3 filters applied”. Its text opens an <b>Applied filters</b> <a href=\"#dialog\">Dialog</a>: the chips, then Clear filters and View results in the footer. Removing the last filter closes the dialog, and focus returns to search. The chip’s x (“Clear filters”) clears every filter at once.",
-      "Filters apply on change, including those in the More filters row. No Apply button.",
-      "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>).",
-      "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. The button has <code>aria-expanded</code> and <code>aria-controls</code>, and its caret points up while the row is open.",
-      "On compact widths the More filters row ends with a full-width <b>View results</b> button (<code>btn-solid theme-primary btn-sm</code>). It closes the row and moves focus to the count row, so people see the results. Filters still apply on change: View results only closes the row.",
-      "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both go into one Button group (<code>btn-outline theme-secondary</code> as every Button group is): <b>More filters</b> with the filter icon, then a sort icon button with an accessible name and tooltip. More filters shows no count; the applied count is in its accessible name (“More filters, 2 applied”), after the visible text. On these widths each filter in the row, and its menu, fills the bar’s width.",
-      "The bar sits on the bg-1 surface at the top of the card that holds the list."
+      {
+       "kind": "do",
+       "text": "Order: search, inline filters (up to three), More filters, then Sort by at the far end."
+      },
+      {
+       "kind": "do",
+       "text": "Every filter is a <a href=\"#sf-3\">Combobox</a> reading <b>label: value</b>. Applied filters are weight 600, and More filters shows how many of its filters are applied."
+      },
+      {
+       "kind": "do",
+       "text": "Clear filters appears only when a search or filter is applied, and resets all of them. It sits right after the last chip, in the chips row; on compact widths it is the x on the “3 filters applied” chip and in the Applied filters dialog."
+      },
+      {
+       "kind": "do",
+       "text": "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar."
+      },
+      {
+       "kind": "do",
+       "text": "Applied filters always show as chips below the bar, one per search term and per value. Each chip removes its own filter. On compact widths the chips row is one chip instead, “3 filters applied”. Its text opens an <b>Applied filters</b> <a href=\"#dialog\">Dialog</a>: the chips, then Clear filters and View results in the footer. Removing the last filter closes the dialog, and focus returns to search. The chip’s x (“Clear filters”) clears every filter at once."
+      },
+      {
+       "kind": "do",
+       "text": "Filters apply on change, including those in the More filters row. No Apply button."
+      },
+      {
+       "kind": "do",
+       "text": "The count row always shows, with the same range as the table footer, for example “5 of 12 profiles”, in 12px (<code>fs-xs fw-semibold</code>)."
+      },
+      {
+       "kind": "do",
+       "text": "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. The button has <code>aria-expanded</code> and <code>aria-controls</code>, and its caret points up while the row is open."
+      },
+      {
+       "kind": "do",
+       "text": "On compact widths the More filters row ends with a full-width <b>View results</b> button (<code>btn-solid theme-primary btn-sm</code>). It closes the row and moves focus to the count row, so people see the results. Filters still apply on change: View results only closes the row."
+      },
+      {
+       "kind": "do",
+       "text": "The bar fits filters to its width: each filter that no longer fits moves into More filters, then none are inline. When More filters and Sort by would overlap, both go into one Button group (<code>btn-outline theme-secondary</code> as every Button group is): <b>More filters</b> with the filter icon, then a sort icon button with an accessible name and tooltip. More filters shows no count; the applied count is in its accessible name (“More filters, 2 applied”), after the visible text. On these widths each filter in the row, and its menu, fills the bar’s width."
+      },
+      {
+       "kind": "do",
+       "text": "The bar sits on the bg-1 surface at the top of the card that holds the list."
+      }
      ],
      "examples": [
       {
@@ -2197,16 +2799,47 @@
      "unresolved": false,
      "layout": "row",
      "rules": [
-      "Two zones: search, the filters and Clear filters on the left; Sort by on its own at the top right.",
-      "Every filter is a subtle button (<code>btn-subtle theme-secondary btn-sm</code>, Bootstrap’s grey-filled button) reading <b>Label: value</b> that opens a <code>.menu</code>. The value is the link colour, weight 600 once applied.",
-      "<code>btn-subtle</code> is allowed only for the filter and Sort by buttons in Search and filter. It is not used anywhere else.",
-      "Each filter opens a standard Bootstrap 6 menu: <code>data-bs-toggle=\"menu\"</code> on the button, the menu straight after it. The current value is a <code>.menu-item.selected</code> with a <code>.menu-item-check</code> icon, so the state is not colour alone. Multi-value filters use <code>data-bs-auto-close=\"outside\"</code> so they stay open while you pick; single-value filters and Sort by close on pick. Sort by opens with <code>data-bs-placement=\"bottom-end\"</code>.",
-      "When space runs out, the left zone wraps onto more lines and Sort by stays top right. Below 560px the search field takes its own line and Sort by becomes an icon button with an accessible name. There is no More filters: if a page needs it, use Complex.",
-      "Clear filters appears only when a search or filter is applied, and resets all of them.",
-      "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar.",
-      "Filters apply on change. No Apply button.",
-      "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. It is a slim grey band in 12px (<code>fs-xs fw-semibold</code>). The table footer repeats it beside the pagination.",
-      "Filters are plain Menus with a checkmark on the chosen value, because each has only a few options. When a filter needs a long list, checkboxes, fields or sliders, use the <a href=\"#sf-1\">Complex</a> bar and its <a href=\"#sf-3\">Combobox</a>."
+      {
+       "kind": "do",
+       "text": "Two zones: search, the filters and Clear filters on the left; Sort by on its own at the top right."
+      },
+      {
+       "kind": "do",
+       "text": "Every filter is a subtle button (<code>btn-subtle theme-secondary btn-sm</code>, Bootstrap’s grey-filled button) reading <b>Label: value</b> that opens a <code>.menu</code>. The value is the link colour, weight 600 once applied."
+      },
+      {
+       "kind": "do",
+       "text": "<code>btn-subtle</code> is allowed only for the filter and Sort by buttons in Search and filter. It is not used anywhere else."
+      },
+      {
+       "kind": "code",
+       "text": "Each filter opens a standard Bootstrap 6 menu: <code>data-bs-toggle=\"menu\"</code> on the button, the menu straight after it. The current value is a <code>.menu-item.selected</code> with a <code>.menu-item-check</code> icon, so the state is not colour alone. Multi-value filters use <code>data-bs-auto-close=\"outside\"</code> so they stay open while you pick; single-value filters and Sort by close on pick. Sort by opens with <code>data-bs-placement=\"bottom-end\"</code>.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "When space runs out, the left zone wraps onto more lines and Sort by stays top right. Below 560px the search field takes its own line and Sort by becomes an icon button with an accessible name. There is no More filters: if a page needs it, use Complex."
+      },
+      {
+       "kind": "do",
+       "text": "Clear filters appears only when a search or filter is applied, and resets all of them."
+      },
+      {
+       "kind": "do",
+       "text": "Clear filters is <code>btn-text theme-primary btn-sm</code>. This is a decided exception to the Row action rule: it is allowed for Clear filters in a filter bar."
+      },
+      {
+       "kind": "do",
+       "text": "Filters apply on change. No Apply button."
+      },
+      {
+       "kind": "do",
+       "text": "A count row under the bar shows the range, for example “1-5 of 20 coworkers”. It is a slim grey band in 12px (<code>fs-xs fw-semibold</code>). The table footer repeats it beside the pagination."
+      },
+      {
+       "kind": "do",
+       "text": "Filters are plain Menus with a checkmark on the chosen value, because each has only a few options. When a filter needs a long list, checkboxes, fields or sliders, use the <a href=\"#sf-1\">Complex</a> bar and its <a href=\"#sf-3\">Combobox</a>."
+      }
      ],
      "flags": [],
      "examples": [
@@ -2271,11 +2904,26 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "Put the table in a card with no padding, so the filter bar, table and footer share one frame.",
-      "A second line of detail, such as an email under a name, sits in the same cell in fs-xs and fg-3.",
-      "Status is a subtle badge with text: theme-success for Active, theme-secondary for Inactive. Never colour alone.",
-      "The last row has no bottom border inside a card.",
-      "Never striped rows."
+      {
+       "kind": "do",
+       "text": "Put the table in a card with no padding, so the filter bar, table and footer share one frame."
+      },
+      {
+       "kind": "do",
+       "text": "A second line of detail, such as an email under a name, sits in the same cell in fs-xs and fg-3."
+      },
+      {
+       "kind": "do",
+       "text": "Status is a subtle badge with text: theme-success for Active, theme-secondary for Inactive. Never colour alone."
+      },
+      {
+       "kind": "do",
+       "text": "The last row has no bottom border inside a card."
+      },
+      {
+       "kind": "do",
+       "text": "Never striped rows."
+      }
      ],
      "examples": [
       {
@@ -2299,9 +2947,19 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "The count names the thing: “1-3 of 4 coworkers”, not “1-3 of 4”. It is 12px (<code>fs-xs fw-semibold</code>), like the count row.",
-      "Previous and next are icon only with an aria-label. The current page is active with aria-current=\"page\"; the ends are disabled.",
-      "Pagination uses Font Awesome chevrons, not Bootstrap’s SVG sprite."
+      {
+       "kind": "do",
+       "text": "The count names the thing: “1-3 of 4 coworkers”, not “1-3 of 4”. It is 12px (<code>fs-xs fw-semibold</code>), like the count row."
+      },
+      {
+       "kind": "do",
+       "text": "Previous and next are icon only with an aria-label. The current page is active with aria-current=\"page\"; the ends are disabled."
+      },
+      {
+       "kind": "code",
+       "text": "Pagination uses Font Awesome chevrons, not Bootstrap’s SVG sprite.",
+       "devReview": true
+      }
      ],
      "examples": [
       {
@@ -2332,9 +2990,18 @@
      "flags": [],
      "layout": "row",
      "rules": [
-      "Name the state, and say what to do next.",
-      "Nothing added yet: short heading and one line on what appears here.",
-      "No matches for a search or filter: keep the filter bar visible so people can change it, and tell them how."
+      {
+       "kind": "do",
+       "text": "Name the state, and say what to do next."
+      },
+      {
+       "kind": "do",
+       "text": "Nothing added yet: short heading and one line on what appears here."
+      },
+      {
+       "kind": "do",
+       "text": "No matches for a search or filter: keep the filter bar visible so people can change it, and tell them how."
+      }
      ],
      "examples": [
       {
@@ -2389,16 +3056,47 @@
       }
      ],
      "rules": [
-      "One <code>.card</code> (<code>article</code>) per page. Content on the left, the <a href=\"#cnt-12\">Action gutter</a> on the right (180px, <code>--bs-bg-1</code>, hairline on the inline-start edge). The old red-tinted gutter is gone: colour is for actions and states.",
-      "Image: 260px wide, 16:9, <code>--bs-radius-5</code>, hairline border, <code>alt</code> is the Project title. Leave it out when there is none; never a placeholder.",
-      "Title is an <code>h2</code> at the section heading size (<code>.fs-lg</code>, weight 600). Description is body text, max 72ch.",
-      "Attachments are <a href=\"#msg-8\">Chips</a> that link to the file, one per file, with a file-type icon.",
-      "Details are a <code>dl</code> in two columns. Labels are <code>.fg-3</code> at the same size and weight as values (as in the <a href=\"#cnt-15\">Definition list</a>), with no colon. Show only fields that have a value.",
-      "Actions follow <a href=\"#cnt-13\">Row actions</a>: <code>btn-text theme-primary btn-xs</code>, text and solid icon, in the fixed order Messages, Edit, then More.",
-      "More follows the <a href=\"#menu-overflow\">Overflow menu</a>: <code>data-bs-placement=\"bottom-end\"</code> (this Bootstrap build has no <code>.menu-end</code>), 260–320px wide, descriptions wrap. The View as client items carry the client zone accent on the icon only and say “View as …” in text. Destructive items go last after a divider; Delete is <code>theme-danger</code>, and when disabled it has <code>disabled</code>, <code>aria-disabled=\"true\"</code> and the reason as its visible description.",
-      "When the card is under 900px wide, the Action gutter becomes a bar along the bottom of the card, with the actions in a row at the end. The text drops under the image when the content is narrow, and the details wrap under the description.",
-      "User-written rich text (the description) keeps its <code>&lt;em&gt;</code> italics. This is an exception to the no-italics rule, which applies to product UI text only.",
-      "A long description is cut at the last whole word before 400 characters, ending in “…”, followed by a <b>Show more</b> text button (<code>btn-text theme-primary btn-xs</code>, <code>aria-expanded</code>) that shows the rest in place and becomes <b>Show less</b>. As production."
+      {
+       "kind": "do",
+       "text": "One <code>.card</code> (<code>article</code>) per page. Content on the left, the <a href=\"#cnt-12\">Action gutter</a> on the right (180px, <code>--bs-bg-1</code>, hairline on the inline-start edge). The old red-tinted gutter is gone: colour is for actions and states."
+      },
+      {
+       "kind": "do",
+       "text": "Image: 260px wide, 16:9, <code>--bs-radius-5</code>, hairline border, <code>alt</code> is the Project title. Leave it out when there is none; never a placeholder."
+      },
+      {
+       "kind": "do",
+       "text": "Title is an <code>h2</code> at the section heading size (<code>.fs-lg</code>, weight 600). Description is body text, max 72ch."
+      },
+      {
+       "kind": "do",
+       "text": "Attachments are <a href=\"#msg-8\">Chips</a> that link to the file, one per file, with a file-type icon."
+      },
+      {
+       "kind": "do",
+       "text": "Details are a <code>dl</code> in two columns. Labels are <code>.fg-3</code> at the same size and weight as values (as in the <a href=\"#cnt-15\">Definition list</a>), with no colon. Show only fields that have a value."
+      },
+      {
+       "kind": "do",
+       "text": "Actions follow <a href=\"#cnt-13\">Row actions</a>: <code>btn-text theme-primary btn-xs</code>, text and solid icon, in the fixed order Messages, Edit, then More."
+      },
+      {
+       "kind": "do",
+       "text": "More follows the <a href=\"#menu-overflow\">Overflow menu</a>: <code>data-bs-placement=\"bottom-end\"</code> (this Bootstrap build has no <code>.menu-end</code>), 260–320px wide, descriptions wrap. The View as client items carry the client zone accent on the icon only and say “View as …” in text. Destructive items go last after a divider; Delete is <code>theme-danger</code>, and when disabled it has <code>disabled</code>, <code>aria-disabled=\"true\"</code> and the reason as its visible description.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "When the card is under 900px wide, the Action gutter becomes a bar along the bottom of the card, with the actions in a row at the end. The text drops under the image when the content is narrow, and the details wrap under the description."
+      },
+      {
+       "kind": "do",
+       "text": "User-written rich text (the description) keeps its <code>&lt;em&gt;</code> italics. This is an exception to the no-italics rule, which applies to product UI text only."
+      },
+      {
+       "kind": "do",
+       "text": "A long description is cut at the last whole word before 400 characters, ending in “…”, followed by a <b>Show more</b> text button (<code>btn-text theme-primary btn-xs</code>, <code>aria-expanded</code>) that shows the rest in place and becomes <b>Show less</b>. As production."
+      }
      ],
      "flags": [
       {
@@ -2444,8 +3142,14 @@
      "replaces": "h3 section heading h3",
      "note": "One heading per page section, with an optional action on the same line. Used on Sedcard (Summary view).",
      "rules": [
-      "An <code>h2</code> at 16px (<code>.fs-md</code>), weight 600, with a 1px <code>--bs-border-color</code> line under the row. 16px is enough above 14px content. Other sizes can be added as separate Section heading versions if a page needs them.",
-      "A trailing icon action (<a href=\"#btn-tertiary\">Tertiary</a>, icon only, with a tooltip) or a filter (<a href=\"#sf-4\">Simple</a> bar) sits on the same line, right aligned."
+      {
+       "kind": "do",
+       "text": "An <code>h2</code> at 16px (<code>.fs-md</code>), weight 600, with a 1px <code>--bs-border-color</code> line under the row. 16px is enough above 14px content. Other sizes can be added as separate Section heading versions if a page needs them."
+      },
+      {
+       "kind": "do",
+       "text": "A trailing icon action (<a href=\"#btn-tertiary\">Tertiary</a>, icon only, with a tooltip) or a filter (<a href=\"#sf-4\">Simple</a> bar) sits on the same line, right aligned."
+      }
      ],
      "examples": [
       {
@@ -2502,12 +3206,30 @@
      "layout": "row",
      "guide": "products/filmmakers-system/components/buttons.md",
      "rules": [
-      "Every action is a Row action: <code>btn-text theme-primary btn-xs</code>, icon plus text label. Edit is a link (<code>a</code>) because it navigates; the rest are buttons.",
-      "Fixed order on every row: Messages, Edit, Duplicate, View as applicant, Copy/Move, then More. Turning an action off never reorders the rest.",
-      "At most three actions show. Each page chooses which three; the choice is the same on every row of that page. The rest go into More, which is always last and always opens a <code>.menu</code>.",
-      "Unsubscribe and Remove are never bare controls. They go last in More, after a divider, as <code>menu-item theme-danger</code>, and follow Destructive actions (undo if reversible, confirm if not).",
-      "More carries an accessible name with the row, e.g. “More actions for Season 14: Erste Runde”, so repeated triggers are distinguishable.",
-      "Stack has no gap between buttons; inline uses an 8px gap."
+      {
+       "kind": "do",
+       "text": "Every action is a Row action: <code>btn-text theme-primary btn-xs</code>, icon plus text label. Edit is a link (<code>a</code>) because it navigates; the rest are buttons."
+      },
+      {
+       "kind": "do",
+       "text": "Fixed order on every row: Messages, Edit, Duplicate, View as applicant, Copy/Move, then More. Turning an action off never reorders the rest."
+      },
+      {
+       "kind": "do",
+       "text": "At most three actions show. Each page chooses which three; the choice is the same on every row of that page. The rest go into More, which is always last and always opens a <code>.menu</code>."
+      },
+      {
+       "kind": "do",
+       "text": "Unsubscribe and Remove are never bare controls. They go last in More, after a divider, as <code>menu-item theme-danger</code>, and follow Destructive actions (undo if reversible, confirm if not)."
+      },
+      {
+       "kind": "code",
+       "text": "More carries an accessible name with the row, e.g. “More actions for Season 14: Erste Runde”, so repeated triggers are distinguishable."
+      },
+      {
+       "kind": "do",
+       "text": "Stack has no gap between buttons; inline uses an 8px gap."
+      }
      ],
      "examples": [
       {
@@ -2559,11 +3281,26 @@
      "replaces": "caster-header .caster-header + .caster-picture + .caster-header--actions",
      "note": "The top of a profile (Sedcard): picture, name, status, meta line, important information and the profile actions. Used on Sedcard (Summary view).",
      "rules": [
-      "Picture on the left: a square (1:1), 160px wide, matching production (a <code>col-sm-2</code> column, about 165px in the 1170px container). The image fills it with <code>object-fit: cover</code>. With no picture, the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon, as in the <a href=\"#cnt-10\">Profile tile</a>. Under it, two icon-only buttons for the profile’s Videos and Pictures (<code>btn-outline theme-secondary btn-icon</code> (outline, so they stand out under the picture) at the medium size (no size class), matching production’s <code>btn-md</code>, each with an <code>aria-label</code> and a tooltip). This is a decided exception to the button sizes (medium is otherwise for empty states and roomy screens): under a large picture, small icon buttons get lost.",
-      "The name is the page’s <code>h1</code> at the page title size (<code>.fs-2xl</code>, 28–32px, close to production’s 30px), weight 600, never in capitals. A status <a href=\"#msg-2\">Badge</a> follows it.",
-      "The meta line (ID, profile type) is <code>.fg-2</code>.",
-      "Important information sits in an <a href=\"#cnt-5\">Accordion</a>, the Important version.",
-      "Actions are stacked, full width: one primary (Add profile, with its menu), the rest Secondary (<code>btn-outline theme-secondary btn-sm</code>)."
+      {
+       "kind": "do",
+       "text": "Picture on the left: a square (1:1), 160px wide, matching production (a <code>col-sm-2</code> column, about 165px in the 1170px container). The image fills it with <code>object-fit: cover</code>. With no picture, the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon, as in the <a href=\"#cnt-10\">Profile tile</a>. Under it, two icon-only buttons for the profile’s Videos and Pictures (<code>btn-outline theme-secondary btn-icon</code> (outline, so they stand out under the picture) at the medium size (no size class), matching production’s <code>btn-md</code>, each with an <code>aria-label</code> and a tooltip). This is a decided exception to the button sizes (medium is otherwise for empty states and roomy screens): under a large picture, small icon buttons get lost."
+      },
+      {
+       "kind": "do",
+       "text": "The name is the page’s <code>h1</code> at the page title size (<code>.fs-2xl</code>, 28–32px, close to production’s 30px), weight 600, never in capitals. A status <a href=\"#msg-2\">Badge</a> follows it."
+      },
+      {
+       "kind": "do",
+       "text": "The meta line (ID, profile type) is <code>.fg-2</code>."
+      },
+      {
+       "kind": "do",
+       "text": "Important information sits in an <a href=\"#cnt-5\">Accordion</a>, the Important version."
+      },
+      {
+       "kind": "do",
+       "text": "Actions are stacked, full width: one primary (Add profile, with its menu), the rest Secondary (<code>btn-outline theme-secondary btn-sm</code>)."
+      }
      ],
      "examples": [
       {
@@ -2595,9 +3332,18 @@
      "replaces": "profile-sections label > input[type=checkbox]",
      "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
      "rules": [
-      "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”).",
-      "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps.",
-      "Ticking or unticking applies straight away. No Save or Apply button."
+      {
+       "kind": "do",
+       "text": "A <code>fieldset</code> on <code>--bs-bg-1</code> with a hairline border and <code>--bs-radius-5</code>. The <code>legend</code> is visually hidden (“Sections shown on this page”)."
+      },
+      {
+       "kind": "do",
+       "text": "Each section is a <a href=\"#frm-9\">Checkbox</a> in a <code>.form-field</code>, in a grid of <code>repeat(auto-fill, minmax(140px, 1fr))</code>, so it wraps."
+      },
+      {
+       "kind": "do",
+       "text": "Ticking or unticking applies straight away. No Save or Apply button."
+      }
      ],
      "examples": [
       {
@@ -2648,10 +3394,22 @@
      "replaces": "dropdown, dropdown-menu-right, language switch",
      "note": "The two menus at the right of the header: the account menu and the language switch. Both use the standard Menu, opened from a text button.",
      "rules": [
-      "Header controls carry no primary colour. Triggers are <code>btn-text theme-secondary btn-sm</code>.",
-      "Both menus open aligned to their end edge (<code>data-bs-placement=\"bottom-end\"</code>), because they sit at the right of the header.",
-      "The account menu shows the avatar and name, then Home and Settings, then a divider and Sign out.",
-      "The current page and the current language take the active state (<code>bg-2</code>)."
+      {
+       "kind": "do",
+       "text": "Header controls carry no primary colour. Triggers are <code>btn-text theme-secondary btn-sm</code>."
+      },
+      {
+       "kind": "code",
+       "text": "Both menus open aligned to their end edge (<code>data-bs-placement=\"bottom-end\"</code>), because they sit at the right of the header."
+      },
+      {
+       "kind": "do",
+       "text": "The account menu shows the avatar and name, then Home and Settings, then a divider and Sign out."
+      },
+      {
+       "kind": "do",
+       "text": "The current page and the current language take the active state (<code>bg-2</code>)."
+      }
      ],
      "flags": [
       {
@@ -2723,13 +3481,35 @@
       }
      ],
      "rules": [
-      "The same footer on every page. It sits at the bottom of the page (<code>mt-auto</code> inside a full-height flex column), on <code>bg-1</code> with a <code>border-top</code>, text in <code>fg-2</code>.",
-      "Three rows: <b>Language</b> and <b>Ask support</b>; the legal links and social media; the copyright and Back to top. Below the <code>md</code> breakpoint each row stacks and Ask support moves to the end of its row.",
-      "Language is a native <code>select</code> with a visible label. It applies on change, with a submit button inside <code>noscript</code> for people without JavaScript.",
-      "Ask support is <code>btn-outline theme-secondary btn-sm</code> with <code>aria-haspopup=\"dialog\"</code>; it opens the contact form in a <a href=\"#dialog\">Dialog</a>.",
-      "Legal links are <code>btn-link btn-sm theme-secondary</code> at 12px (<code>fs-xs</code>), in a list.",
-      "Social media links are icon-only <code>btn-text theme-secondary btn-sm btn-icon</code> in a <code>nav</code> labelled “Social media”. Each has its name in <code>.visually-hidden</code> (with “opens in a new tab”) and a tooltip.",
-      "Back to top is an icon-only <code>btn-outline theme-secondary btn-sm btn-icon</code> with its name and a tooltip."
+      {
+       "kind": "do",
+       "text": "The same footer on every page. It sits at the bottom of the page (<code>mt-auto</code> inside a full-height flex column), on <code>bg-1</code> with a <code>border-top</code>, text in <code>fg-2</code>."
+      },
+      {
+       "kind": "do",
+       "text": "Three rows: <b>Language</b> and <b>Ask support</b>; the legal links and social media; the copyright and Back to top. Below the <code>md</code> breakpoint each row stacks and Ask support moves to the end of its row."
+      },
+      {
+       "kind": "do",
+       "text": "Language is a native <code>select</code> with a visible label. It applies on change, with a submit button inside <code>noscript</code> for people without JavaScript.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "Ask support is <code>btn-outline theme-secondary btn-sm</code> with <code>aria-haspopup=\"dialog\"</code>; it opens the contact form in a <a href=\"#dialog\">Dialog</a>."
+      },
+      {
+       "kind": "do",
+       "text": "Legal links are <code>btn-link btn-sm theme-secondary</code> at 12px (<code>fs-xs</code>), in a list."
+      },
+      {
+       "kind": "do",
+       "text": "Social media links are icon-only <code>btn-text theme-secondary btn-sm btn-icon</code> in a <code>nav</code> labelled “Social media”. Each has its name in <code>.visually-hidden</code> (with “opens in a new tab”) and a tooltip."
+      },
+      {
+       "kind": "do",
+       "text": "Back to top is an icon-only <code>btn-outline theme-secondary btn-sm btn-icon</code> with its name and a tooltip."
+      }
      ],
      "examples": [
       {
@@ -2760,11 +3540,26 @@
      "replaces": "",
      "note": "A list page such as Coworkers: section heading with the page’s primary action, then one card holding the Simple search and filter bar, the count, the table and the table footer.",
      "rules": [
-      "One card holds the bar, the table and the footer.",
-      "The section’s primary action (for example Add coworker) sits beside the heading, not in the bar.",
-      "The heading row has the same 16px side padding as the filter bar, so the heading lines up with search and the primary action with Sort by.",
-      "When nothing matches, the table and footer are replaced by the No matches empty state; the bar stays.",
-      "Built from: <a href=\"#sf-4\">Simple search and filter</a>, Table, Table footer, Empty state. Use <a href=\"#sf-1\">Complex</a> instead only for large data sets such as actors, locations or crew."
+      {
+       "kind": "do",
+       "text": "One card holds the bar, the table and the footer."
+      },
+      {
+       "kind": "do",
+       "text": "The section’s primary action (for example Add coworker) sits beside the heading, not in the bar."
+      },
+      {
+       "kind": "do",
+       "text": "The heading row has the same 16px side padding as the filter bar, so the heading lines up with search and the primary action with Sort by."
+      },
+      {
+       "kind": "do",
+       "text": "When nothing matches, the table and footer are replaced by the No matches empty state; the bar stays."
+      },
+      {
+       "kind": "other",
+       "text": "Built from: <a href=\"#sf-4\">Simple search and filter</a>, Table, Table footer, Empty state. Use <a href=\"#sf-1\">Complex</a> instead only for large data sets such as actors, locations or crew."
+      }
      ],
      "flags": [
       {
@@ -2818,16 +3613,47 @@
       }
      ],
      "rules": [
-      "One <code>.card</code> holding a <code>.list-group.list-group-flush</code> with <code>role=\"list\"</code>; each row is a <code>.list-group-item</code> (<code>role=\"listitem\"</code>, padding 0). Every row in a list shares one <code>grid-template-columns</code>, so the columns line up.",
-      "Cells have 12px 16px padding. Stacked lines in a cell use an 8px gap; a title and its subtitle 2px.",
-      "The title is the row’s link, weight 600, followed by a <code>.fg-3</code> meta suffix at the same size: (open), (Rank: #2). The whole row is not clickable. No italics for state.",
-      "Media: a fixed 132px, 16:9 thumbnail in every list that has media (as in production), <code>--bs-radius-5</code>, hairline border, <code>alt</code> is the title. When an item has no image, show the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> monitor icon (<code>fa-display</code>). Lists without media leave the column out.",
-      "Details sit on one line that wraps: the type as icon + weight 600 label in sentence case (not all-caps), the visibility as icon + text, then the stats.",
-      "Stats are icon + value. Each has a visually hidden label and a tooltip with the same name (e.g. Roles, Invitations), and is focusable so the tooltip opens on keyboard focus too. Icons inherit the text colour; success only for a state such as Selection status. Primary never tints icons or headings.",
-      "Short labels such as R: and A: are <code>.fg-3</code>, with the full words (Recording period, Airing) as visually hidden text.",
-      "Client visibility is an eye in the client zone colour when clients can see the content, and a <code>.fg-3</code> eye-slash when they cannot, each with a tooltip and hidden text that say so.",
-      "The last column is the <a href=\"#cnt-12\">Action gutter</a> (140–180px, one width per list), filling the row height, with <a href=\"#cnt-13\">Row actions</a> stacked: Edit first, at most three visible, More last. Archive and Delete, or Remove, go in More with their explanation as a visible description. Delete is last, after a divider; a Remove that isn’t possible yet is disabled, with the reason.",
-      "When the card is under 900px wide, the row reflows: cells wrap onto new lines and the Action gutter becomes a bar along the bottom with the actions in a row at the end, like the Project card. No sideways scrolling."
+      {
+       "kind": "code",
+       "text": "One <code>.card</code> holding a <code>.list-group.list-group-flush</code> with <code>role=\"list\"</code>; each row is a <code>.list-group-item</code> (<code>role=\"listitem\"</code>, padding 0). Every row in a list shares one <code>grid-template-columns</code>, so the columns line up.",
+       "devReview": true
+      },
+      {
+       "kind": "do",
+       "text": "Cells have 12px 16px padding. Stacked lines in a cell use an 8px gap; a title and its subtitle 2px."
+      },
+      {
+       "kind": "do",
+       "text": "The title is the row’s link, weight 600, followed by a <code>.fg-3</code> meta suffix at the same size: (open), (Rank: #2). The whole row is not clickable. No italics for state."
+      },
+      {
+       "kind": "do",
+       "text": "Media: a fixed 132px, 16:9 thumbnail in every list that has media (as in production), <code>--bs-radius-5</code>, hairline border, <code>alt</code> is the title. When an item has no image, show the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> monitor icon (<code>fa-display</code>). Lists without media leave the column out."
+      },
+      {
+       "kind": "do",
+       "text": "Details sit on one line that wraps: the type as icon + weight 600 label in sentence case (not all-caps), the visibility as icon + text, then the stats."
+      },
+      {
+       "kind": "do",
+       "text": "Stats are icon + value. Each has a visually hidden label and a tooltip with the same name (e.g. Roles, Invitations), and is focusable so the tooltip opens on keyboard focus too. Icons inherit the text colour; success only for a state such as Selection status. Primary never tints icons or headings."
+      },
+      {
+       "kind": "code",
+       "text": "Short labels such as R: and A: are <code>.fg-3</code>, with the full words (Recording period, Airing) as visually hidden text."
+      },
+      {
+       "kind": "do",
+       "text": "Client visibility is an eye in the client zone colour when clients can see the content, and a <code>.fg-3</code> eye-slash when they cannot, each with a tooltip and hidden text that say so."
+      },
+      {
+       "kind": "do",
+       "text": "The last column is the <a href=\"#cnt-12\">Action gutter</a> (140–180px, one width per list), filling the row height, with <a href=\"#cnt-13\">Row actions</a> stacked: Edit first, at most three visible, More last. Archive and Delete, or Remove, go in More with their explanation as a visible description. Delete is last, after a divider; a Remove that isn’t possible yet is disabled, with the reason."
+      },
+      {
+       "kind": "do",
+       "text": "When the card is under 900px wide, the row reflows: cells wrap onto new lines and the Action gutter becomes a bar along the bottom with the actions in a row at the end, like the Project card. No sideways scrolling."
+      }
      ],
      "flags": [
       {
@@ -2873,11 +3699,26 @@
      "unresolved": true,
      "layout": "full",
      "rules": [
-      "One <code>.card</code> per profile, in a grid of <code>repeat(auto-fill, minmax(160px, 1fr))</code> with a 16px gap. The grid has <code>role=\"list\"</code> and each tile <code>role=\"listitem\"</code>.",
-      "Photo: 3:4 portrait, <code>.card-img-top</code>, <code>object-fit: cover</code>, <code>alt</code> is the person’s name. When there is no photo, show the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon (<code>fa-user</code>). Never a broken image.",
-      "The name and role sit under the photo, never over it: the name is the tile’s link, weight 600; the role is <code>.fs-xs .fg-2</code>. No italics. Long names wrap.",
-      "Open in a new tab is an icon-only button beside the name: <code>btn-text theme-secondary btn-xs btn-icon</code> with <code>fa-arrow-up-right-from-square</code>, an <code>aria-label</code> naming the person, and a tooltip.",
-      "The badge sits top left on the photo: <code>badge badge-solid theme-inverse</code>, so it reads on any photo."
+      {
+       "kind": "code",
+       "text": "One <code>.card</code> per profile, in a grid of <code>repeat(auto-fill, minmax(160px, 1fr))</code> with a 16px gap. The grid has <code>role=\"list\"</code> and each tile <code>role=\"listitem\"</code>."
+      },
+      {
+       "kind": "do",
+       "text": "Photo: 3:4 portrait, <code>.card-img-top</code>, <code>object-fit: cover</code>, <code>alt</code> is the person’s name. When there is no photo, show the placeholder: a <code>--bs-bg-2</code> box with a <code>.fg-3</code> person icon (<code>fa-user</code>). Never a broken image."
+      },
+      {
+       "kind": "do",
+       "text": "The name and role sit under the photo, never over it: the name is the tile’s link, weight 600; the role is <code>.fs-xs .fg-2</code>. No italics. Long names wrap."
+      },
+      {
+       "kind": "do",
+       "text": "Open in a new tab is an icon-only button beside the name: <code>btn-text theme-secondary btn-xs btn-icon</code> with <code>fa-arrow-up-right-from-square</code>, an <code>aria-label</code> naming the person, and a tooltip."
+      },
+      {
+       "kind": "do",
+       "text": "The badge sits top left on the photo: <code>badge badge-solid theme-inverse</code>, so it reads on any photo."
+      }
      ],
      "flags": [
       {
@@ -2939,15 +3780,42 @@
      "unresolved": true,
      "layout": "full",
      "rules": [
-      "Grid view: <code>.fm-tile-grid</code>, <code>repeat(auto-fill, minmax(150px, 1fr))</code> with a 16px gap, <code>role=\"list\"</code> and <code>role=\"listitem\"</code>. Square photo (<code>.fm-tile-photo</code>, 1:1, <code>object-fit: cover</code>), or the placeholder when there is no photo. The photo’s <code>alt</code> is empty because the name is the link right below it.",
-      "Large: the same tile in a 220px track (<code>.fm-tile-grid-lg</code>), so about 220 × 220px, as production. Nothing else changes. The grid is <code>.fm-tile-grid</code>; its track is <code>--fm-tile-track</code>.",
-      "View switcher (<code>.fm-view-switch</code>), above the results on the right: one Button group of three toggle buttons, Small tiles (a small <code>fa-user</code>, 10px), Large tiles (a large <code>fa-user</code>, 16px) and List view (<code>fa-list</code>), all <code>btn-outline theme-secondary btn-sm btn-icon</code>. It is a radio group of <code>.btn-check</code> buttons, so there is one choice and the arrow keys move between them; each has an <code>aria-label</code> and a tooltip. The chosen button uses the Library’s selected-item style, <code>--bs-bg-2</code> with body text, as menus do: never primary. This is the Button group’s <a href=\"#bg-toggle\">Toggle group</a>.",
-      "Name: over the bottom of the photo on a band of black at 60% (<code>.fm-tile-band</code>), white and weight 600, on one line with an ellipsis. White on that band keeps at least 4.5:1 over any photo. On hover or keyboard focus the band turns white and the name takes the link colour.",
-      "Status: one of four, set from a single-choice list, shown as a colour-coded icon before the name (<code>.fm-status</code>), as production: Available, green circle check; In discussion, yellow circle question; Blocked, orange circle exclamation; Booked, red ban (<code>fa-ban</code>). Each has its own shape, so colour is never the only cue. Lighter shades sit on the dark band, darker ones on white. The status is also in the link’s accessible name (<code>.visually-hidden</code>, “Gaëlle Haüsermann, In discussion”).",
-      "Tooltip: on the whole tile, “In discussion · ID 34196 · Gaëlle Haüsermann · Agence Oz”. It opens on hover anywhere on the tile, and on keyboard focus of the name or checkbox.",
-      "Checkbox: <code>.check</code> top right on a body-coloured pad, 24×24px target, <code>aria-label</code> naming the person. It shows on hover, on keyboard focus, once ticked, and always on touch screens (no hover). A selected tile gets a 2px primary outline.",
-      "List view: one row per profile in a card, rows divided by <code>.border-top</code>, built from Bootstrap utilities (<code>d-flex gap-3 p-3</code>, <code>vstack</code>). A 160px square photo (<code>.fm-row-photo</code>, 96px on small screens); the status icon (with its own tooltip) and the name as a link in <code>.fs-md</code>, with “ID: 34195” in <code>.fg-2</code> below; then the agency in bold, “(Main agency)” in <code>.fg-2</code> and an icon button to view the agency in a new tab, with each contact below it (user icon, name in bold, role in brackets); a profile with no agency leaves this column empty. The checkbox sits at the end of the row, as production. A selected row gets the subtle primary background.",
-      "Where people only browse, leave out the checkbox. Where status does not apply, leave out the icon."
+      {
+       "kind": "do",
+       "text": "Grid view: <code>.fm-tile-grid</code>, <code>repeat(auto-fill, minmax(150px, 1fr))</code> with a 16px gap, <code>role=\"list\"</code> and <code>role=\"listitem\"</code>. Square photo (<code>.fm-tile-photo</code>, 1:1, <code>object-fit: cover</code>), or the placeholder when there is no photo. The photo’s <code>alt</code> is empty because the name is the link right below it."
+      },
+      {
+       "kind": "do",
+       "text": "Large: the same tile in a 220px track (<code>.fm-tile-grid-lg</code>), so about 220 × 220px, as production. Nothing else changes. The grid is <code>.fm-tile-grid</code>; its track is <code>--fm-tile-track</code>."
+      },
+      {
+       "kind": "do",
+       "text": "View switcher (<code>.fm-view-switch</code>), above the results on the right: one Button group of three toggle buttons, Small tiles (a small <code>fa-user</code>, 10px), Large tiles (a large <code>fa-user</code>, 16px) and List view (<code>fa-list</code>), all <code>btn-outline theme-secondary btn-sm btn-icon</code>. It is a radio group of <code>.btn-check</code> buttons, so there is one choice and the arrow keys move between them; each has an <code>aria-label</code> and a tooltip. The chosen button uses the Library’s selected-item style, <code>--bs-bg-2</code> with body text, as menus do: never primary. This is the Button group’s <a href=\"#bg-toggle\">Toggle group</a>."
+      },
+      {
+       "kind": "do",
+       "text": "Name: over the bottom of the photo on a band of black at 60% (<code>.fm-tile-band</code>), white and weight 600, on one line with an ellipsis. White on that band keeps at least 4.5:1 over any photo. On hover or keyboard focus the band turns white and the name takes the link colour."
+      },
+      {
+       "kind": "do",
+       "text": "Status: one of four, set from a single-choice list, shown as a colour-coded icon before the name (<code>.fm-status</code>), as production: Available, green circle check; In discussion, yellow circle question; Blocked, orange circle exclamation; Booked, red ban (<code>fa-ban</code>). Each has its own shape, so colour is never the only cue. Lighter shades sit on the dark band, darker ones on white. The status is also in the link’s accessible name (<code>.visually-hidden</code>, “Gaëlle Haüsermann, In discussion”)."
+      },
+      {
+       "kind": "do",
+       "text": "Tooltip: on the whole tile, “In discussion · ID 34196 · Gaëlle Haüsermann · Agence Oz”. It opens on hover anywhere on the tile, and on keyboard focus of the name or checkbox."
+      },
+      {
+       "kind": "do",
+       "text": "Checkbox: <code>.check</code> top right on a body-coloured pad, 24×24px target, <code>aria-label</code> naming the person. It shows on hover, on keyboard focus, once ticked, and always on touch screens (no hover). A selected tile gets a 2px primary outline."
+      },
+      {
+       "kind": "do",
+       "text": "List view: one row per profile in a card, rows divided by <code>.border-top</code>, built from Bootstrap utilities (<code>d-flex gap-3 p-3</code>, <code>vstack</code>). A 160px square photo (<code>.fm-row-photo</code>, 96px on small screens); the status icon (with its own tooltip) and the name as a link in <code>.fs-md</code>, with “ID: 34195” in <code>.fg-2</code> below; then the agency in bold, “(Main agency)” in <code>.fg-2</code> and an icon button to view the agency in a new tab, with each contact below it (user icon, name in bold, role in brackets); a profile with no agency leaves this column empty. The checkbox sits at the end of the row, as production. A selected row gets the subtle primary background."
+      },
+      {
+       "kind": "do",
+       "text": "Where people only browse, leave out the checkbox. Where status does not apply, leave out the icon."
+      }
      ],
      "flags": [
       {
