@@ -2773,13 +2773,8 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/",
      "replaces": "user avatar custom",
      "note": "Replace. A photo when there is one, otherwise initials, weight 600 via the remapped medium token. Client people can carry the client zone orange.",
-     "unresolved": true,
-     "flags": [
-      {
-       "type": "ask",
-       "text": "Client avatars: solid client zone orange with white initials is 4.4:1, just under the 4.5:1 that small text needs. Use the subtle version (5.8:1), or keep solid and accept it?"
-      }
-     ],
+     "unresolved": false,
+     "flags": [],
      "layout": "full",
      "replacesFrom": "custom",
      "examples": [
@@ -2794,15 +2789,9 @@
        "html": "<span class=\"avatar avatar-xs\"><img class=\"avatar-img\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cfe3f5'/%3E%3Cstop offset='1' stop-color='%239fc2e6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='160' height='160' fill='url(%23bg)'/%3E%3Cg transform='translate(0.0 0)'%3E%3Cpath d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='%235b3a29'/%3E%3Cpath d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='%233d5a80'/%3E%3Cpath d='M64 112 L80 132 L96 112 Z' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='26' rx='8' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='10' fill='rgba(0,0,0,.12)'/%3E%3Cellipse cx='80' cy='66' rx='26' ry='31' fill='%23f2d4c2'/%3E%3Cpath d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='%235b3a29'/%3E%3Ccircle cx='70' cy='66' r='2.6' fill='%232b2d42'/%3E%3Ccircle cx='90' cy='66' r='2.6' fill='%232b2d42'/%3E%3Cpath d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='%235b3a29' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M72 80 Q80 86 88 80' stroke='%238c3b33' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E\" alt=\"Dana Zimmer\"></span><span class=\"avatar avatar-sm\"><img class=\"avatar-img\" src=\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cfe3f5'/%3E%3Cstop offset='1' stop-color='%239fc2e6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='160' height='160' fill='url(%23bg)'/%3E%3Cg transform='translate(0.0 0)'%3E%3Cpath d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='%235b3a29'/%3E%3Cpath d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='%233d5a80'/%3E%3Cpath d='M64 112 L80 132 L96 112 Z' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='26' rx='8' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='10' fill='rgba(0,0,0,.12)'/%3E%3Cellipse cx='80' cy='66' rx='26' ry='31' fill='%23f2d4c2'/%3E%3Cpath d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='%235b3a29'/%3E%3Ccircle cx='70' cy='66' r='2.6' fill='%232b2d42'/%3E%3Ccircle cx='90' cy='66' r='2.6' fill='%232b2d42'/%3E%3Cpath d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='%235b3a29' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M72 80 Q80 86 88 80' stroke='%238c3b33' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E\" alt=\"Dana Zimmer\"></span>"
       },
       {
-       "label": "Client, subtle",
-       "caption": "Client zone orange, subtle: initials pass 4.5:1.",
+       "label": "Client",
+       "caption": "Client zone orange, always subtle: initials pass 4.5:1.",
        "html": "<span class=\"avatar avatar-xs avatar-subtle fm-client-zone\">C</span><span class=\"avatar avatar-sm avatar-subtle fm-client-zone\">AK</span>"
-      },
-      {
-       "label": "Client, solid",
-       "badge": "ASK",
-       "caption": "Client zone orange, solid: white initials are 4.4:1.",
-       "html": "<span class=\"avatar avatar-xs fm-client-zone\">C</span><span class=\"avatar avatar-sm fm-client-zone\">AK</span>"
       }
      ],
      "rules": [
@@ -2811,12 +2800,16 @@
        "text": "Use the person’s photo when there is one. Without a photo, show their initials."
       },
       {
+       "kind": "do",
+       "text": "Client people’s avatars use the client zone orange, always the subtle version. Never solid orange: white initials on it are only 4.4:1."
+      },
+      {
        "kind": "a11y",
        "text": "A photo’s <code>alt</code> is the person’s name, unless the name is shown right beside it; then <code>alt=\"\"</code>."
       },
       {
        "kind": "code",
-       "text": "Photos are an <code>img.avatar-img</code> inside the <code>.avatar</code>. <code>.fm-client-zone</code> on an avatar gives it the client zone orange; add <code>.avatar-subtle</code> for the light version."
+       "text": "Photos are an <code>img.avatar-img</code> inside the <code>.avatar</code>. A client avatar is <code>.avatar.avatar-subtle.fm-client-zone</code>."
       }
      ]
     },
