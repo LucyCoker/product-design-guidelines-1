@@ -704,10 +704,6 @@
      "rules": [
       {
        "kind": "do",
-       "text": "One action with variants: a text button plus an icon-only menu trigger that belongs to it. This is the only group that may mix a text button and an icon button."
-      },
-      {
-       "kind": "do",
        "text": "The trigger opens variants of the same action (Save / Save and new, Generate PDF / CSV)."
       },
       {
