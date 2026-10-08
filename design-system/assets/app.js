@@ -60,7 +60,7 @@ function rulesHtml(rules) {
   const other = of('other')
   return [
     guidelines.length ? `<ul class="lib-rules lib-rules-guide">${guidelines.map(ruleLi).join('')}</ul>` : '',
-    code.length ? `<details class="lib-code lib-code-notes"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code notes<span class="lib-count">${code.length}</span></summary>
+    code.length ? `<details class="lib-code lib-code-notes"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code notes<span class="lib-count">${code.length}</span>${code.some((r) => r.devReview) ? DEV_BADGE : ''}</summary>
       <ul class="lib-rules">${code.map(ruleLi).join('')}</ul></details>` : '',
     other.length ? `<div class="lib-rules-other"><h4 class="fs-xs fw-semibold fg-3">Other</h4><ul class="lib-rules">${other.map(ruleLi).join('')}</ul></div>` : ''
   ].join('')
@@ -72,8 +72,7 @@ function itemHtml(item) {
     item.status === 'Custom' ? '<span class="badge theme-secondary">Custom</span>' : '',
     item.unresolved ? '<span class="badge theme-warning badge-subtle">Unresolved</span>' : '',
     // Work in progress, for example “Needs review · Not finished”.
-    item.review ? `<span class="badge theme-warning badge-subtle">${escapeHtml(item.review)}</span>` : '',
-    item.rules?.some((r) => r.devReview) ? DEV_BADGE : ''
+    item.review ? `<span class="badge theme-warning badge-subtle">${escapeHtml(item.review)}</span>` : ''
   ].join('')
   const meta = [
     item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',

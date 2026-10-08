@@ -414,3 +414,5 @@ body {
 .lib-code-notes .lib-rules { margin-top: 8px; }
 .lib-rules-other { margin-top: 12px; }
 .lib-rules-other h4 { margin: 0 0 6px; text-transform: none; }
+.lib-code-notes summary .lib-count { color: var(--bs-fg-3); font-weight: 400; }
+.lib-code-notes summary .badge { font-weight: 600; margin-inline-start: 4px; }
