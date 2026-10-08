@@ -436,3 +436,6 @@ body, .lib-top { background: var(--bs-bg-1); }
 .lib-example { border: 0; margin: 0; row-gap: 0; background: var(--bs-bg-body); border-radius: var(--bs-radius-5, 8px); }
 .lib-example figcaption { background: transparent; border-bottom: 0; padding: 14px 16px 0; }
 .lib-preview { border: 0; }
+
+/* No breadcrumbs on Library pages: the sidebar already shows where you are. */
+.lib-crumbs { display: none; }
