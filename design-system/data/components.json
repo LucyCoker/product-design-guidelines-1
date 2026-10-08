@@ -751,10 +751,6 @@
       },
       {
        "kind": "do",
-       "text": "Like the split-button trigger, it is an allowed exception to “never mix text and icon-only buttons”."
-      },
-      {
-       "kind": "do",
        "text": "Destructive actions go in the overflow menu with a text label."
       },
       {
