@@ -2741,9 +2741,13 @@
      "classes": ".position-absolute.top-0.start-100.translate-middle.p-1.bg-danger.rounded-circle",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
      "replaces": "notification-icon",
-     "note": "A small red dot that says something new is waiting, with no number. It can sit on any icon, or after any text label: an icon button, a tab, a link or a menu item.",
-     "unresolved": false,
+     "note": "A small dot that says something new is waiting, with no number. It can sit on any icon, or after any text label: an icon button, a tab, a link or a menu item.",
+     "unresolved": true,
      "flags": [
+      {
+       "type": "ask",
+       "text": "Dot colour needs review: red (danger, as now), the customer primary colour, or always Bootstrap blue?"
+      },
       {
        "type": "info",
        "text": "Built only from Bootstrap 6 utilities, as Bootstrap’s positioned “generic indicator” badge pattern: no custom CSS and no inline styles."
