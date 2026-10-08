@@ -532,7 +532,7 @@
      "id": "bg-sizes",
      "name": "Sizes",
      "classes": "btn-group-sm · btn-group-xs",
-     "note": "Groups use small or extra small only. Put the size on the group and on every button in it, so they always match.",
+     "note": "",
      "rules": [
       {
        "kind": "do",
@@ -2738,20 +2738,42 @@
      "code": "MSG-3",
      "name": "Notification dot",
      "status": "Replace",
-     "classes": ".badge.theme-danger",
+     "classes": ".position-absolute.top-0.start-100.translate-middle.p-1.bg-danger.rounded-circle",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
      "replaces": "notification-icon",
-     "note": "Replace. The dot sits on the icon itself, not on the button box, so it stays attached at any button size; it is a 7px dot (a .badge with inline sizing) ringed with the body background and its label is visually hidden. The bell keeps its own accessible name. The list itself opens in a popover, not a menu.",
+     "note": "A small red dot that says something new is waiting, with no number. It can sit on any icon, or after any text label: an icon button, a tab, a link or a menu item.",
      "unresolved": false,
      "flags": [
       {
        "type": "info",
-       "text": "Bootstrap 6 has no notification dot (.badge-dot is not in this build), so the dot is a .badge theme-danger with inline sizing."
+       "text": "Built only from Bootstrap 6 utilities, as Bootstrap’s positioned “generic indicator” badge pattern: no custom CSS and no inline styles."
       }
      ],
-     "layout": "row",
-     "example": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Notifications\" data-bs-toggle=\"tooltip\" data-bs-title=\"Notifications\"><span style=\"position:relative;display:inline-flex;line-height:1\"><i class=\"fa-regular fa-bell\" style=\"font-size:16px\" aria-hidden=\"true\"></i><span class=\"badge theme-danger\" style=\"position:absolute;display:block;width:7px;height:7px;min-width:0;min-height:0;border:0;padding:0;border-radius:50%;top:-1px;right:-2px;box-shadow:0 0 0 2px var(--bs-bg-body)\"><span class=\"visually-hidden\">New alerts</span></span></span></button>",
-     "replacesFrom": "custom"
+     "layout": "full",
+     "replacesFrom": "custom",
+     "examples": [
+      {
+       "label": "On an icon button",
+       "badge": "Default",
+       "caption": "Top right of the icon, not the button box, so it stays attached at any size.",
+       "html": "<button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Notifications\" data-bs-toggle=\"tooltip\" data-bs-title=\"Notifications\"><span class=\"position-relative d-inline-flex\"><i class=\"fa-regular fa-bell\" aria-hidden=\"true\"></i><span class=\"position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle\"><span class=\"visually-hidden\">New notifications</span></span></span></button><button type=\"button\" class=\"btn-text theme-secondary btn-sm btn-icon\" aria-label=\"Messages\" data-bs-toggle=\"tooltip\" data-bs-title=\"Messages\"><span class=\"position-relative d-inline-flex\"><i class=\"fa-regular fa-envelope\" aria-hidden=\"true\"></i><span class=\"position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle\"><span class=\"visually-hidden\">New messages</span></span></span></button>"
+      },
+      {
+       "label": "After a text label",
+       "caption": "In a tab, link or menu item.",
+       "html": "<ul class=\"nav nav-underline\"><li class=\"nav-item\"><a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Overview</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\"><span>Messages<span class=\"d-inline-block p-1 ms-1 bg-danger rounded-circle align-middle\"><span class=\"visually-hidden\">New messages</span></span></span></a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">Files</a></li></ul>"
+      }
+     ],
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Only means “something new here”. When the number matters, use a count <a href=\"#msg-2\">Badge</a> instead."
+      },
+      {
+       "kind": "a11y",
+       "text": "The dot carries visually hidden text that says what is new (“New messages”), so screen readers hear it. An icon button keeps its own accessible name."
+      }
+     ]
     }
    ]
   },
