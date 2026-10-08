@@ -92,10 +92,6 @@
       {
        "kind": "do",
        "text": "Use <code>btn-xs</code> in table rows, inline row actions and compact toolbars."
-      },
-      {
-       "kind": "do",
-       "text": "Keep one size within a group of buttons."
       }
      ],
      "layout": "row",
