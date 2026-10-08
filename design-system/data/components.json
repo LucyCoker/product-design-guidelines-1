@@ -2210,7 +2210,6 @@
       },
       {
        "kind": "code",
-       "devReview": true,
        "text": "The grey (closed) and white (open) header comes from filmmakers.css, through Bootstrap’s own <code>--bs-accordion-btn-bg</code> and <code>--bs-accordion-active-bg</code>. Add no theme classes."
       },
       {
