@@ -63,6 +63,7 @@ Each entry's `rules` are objects with a `kind`:
 
 - **do**: a guideline to follow. **dont**: something not allowed (the Not allowed lists).
 - **code**: a code note: markup, ARIA and CSS details. Follow them when building; designers can skip them.
+- **a11y**: accessibility: accessible names, ARIA, keyboard, focus, contrast and target sizes. Always follow these.
 - **other**: cross-references and parked notes.
 - `devReview: true`: a developer still has to confirm it. Follow it, but it may change.
 

@@ -57,9 +57,11 @@ function rulesHtml(rules) {
   const of = (...kinds) => rules.filter((r) => kinds.includes(r.kind))
   const guidelines = of('do', 'dont')
   const code = of('code')
+  const a11y = of('a11y')
   const other = of('other')
   return [
     guidelines.length ? `<ul class="lib-rules lib-rules-guide">${guidelines.map(ruleLi).join('')}</ul>` : '',
+    a11y.length ? `<div class="lib-rules-a11y"><h4 class="fs-sm fw-semibold"><i class="fa-solid fa-universal-access" aria-hidden="true"></i>Accessibility${a11y.some((r) => r.devReview) ? DEV_BADGE : ''}</h4><ul class="lib-rules">${a11y.map(ruleLi).join('')}</ul></div>` : '',
     code.length ? `<details class="lib-code lib-code-notes"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code notes<span class="lib-count">${code.length}</span>${code.some((r) => r.devReview) ? DEV_BADGE : ''}</summary>
       <ul class="lib-rules">${code.map(ruleLi).join('')}</ul></details>` : '',
     other.length ? `<div class="lib-rules-other"><h4 class="fs-xs fw-semibold fg-3">Other</h4><ul class="lib-rules">${other.map(ruleLi).join('')}</ul></div>` : ''
@@ -172,7 +174,7 @@ function render(data) {
   $('#side-candidates').insertAdjacentHTML('beforeend', sideLinks(candidates))
   // Developer review: every bullet tagged for a developer to check.
   const devRows = data.groups.flatMap((g) => g.items.flatMap((item) => (item.rules || []).filter((r) => r.devReview).map((r) =>
-    `<tr><td><a href="#${itemId(item)}">${escapeHtml(item.name)}</a><br><span class="fs-xs fg-3">${escapeHtml(g.title)}${item.code ? ` · ${item.code}` : ''}</span></td><td>${r.kind === 'code' ? 'Code note' : r.kind === 'dont' ? 'Don’t' : r.kind === 'do' ? 'Do' : 'Other'}</td><td>${r.text}</td></tr>`)))
+    `<tr><td><a href="#${itemId(item)}">${escapeHtml(item.name)}</a><br><span class="fs-xs fg-3">${escapeHtml(g.title)}${item.code ? ` · ${item.code}` : ''}</span></td><td>${r.kind === 'code' ? 'Code note' : r.kind === 'a11y' ? 'Accessibility' : r.kind === 'dont' ? 'Don’t' : r.kind === 'do' ? 'Do' : 'Other'}</td><td>${r.text}</td></tr>`)))
   $('#dev-review-items').innerHTML = devRows.join('')
   $('#dev-review-count').textContent = devRows.length
   // Decisions backlog: parked questions, out of the component pages.

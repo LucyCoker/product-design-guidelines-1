@@ -416,3 +416,7 @@ body {
 .lib-rules-other h4 { margin: 0 0 6px; text-transform: none; }
 .lib-code-notes summary .lib-count { color: var(--bs-fg-3); font-weight: 400; }
 .lib-code-notes summary .badge { font-weight: 600; margin-inline-start: 4px; }
+.lib-rules-a11y { margin-top: 4px; }
+.lib-rules-a11y h4 { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; color: var(--bs-fg-body); }
+.lib-rules-a11y h4 i { color: var(--bs-fg-3); }
+.lib-rules-a11y h4 .badge { margin-inline-start: 4px; }
