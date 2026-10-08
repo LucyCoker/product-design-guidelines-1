@@ -182,7 +182,7 @@ export function initFilterBar(root) {
     const compact = inlineCount === 0 &&
       root.clientWidth - 32 < SEARCH_W + GAP + MORE_W + GAP + SORT_W
     const clearBtn = '<button type="button" class="btn-text theme-primary btn-sm" data-clear style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button>'
-    const search = `<div class="input-group input-group-sm" style="${compact ? 'flex:1 1 auto;min-width:0;max-width:240px' : 'flex:0 0 auto;width:min(240px,100%)'}"><input class="form-control form-control-sm" type="search" data-query placeholder="Search name" aria-label="Search profiles by name" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>`
+    const search = `<div class="input-group input-group-sm" style="${compact ? 'flex:1 1 auto;min-width:0;max-width:240px' : 'flex:0 0 auto;width:min(240px,100%)'}"><input class="form-control form-control-sm" type="search" data-query placeholder="Search name" aria-label="Search profiles by name" value="${esc(state.query)}"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" data-bs-toggle="tooltip" data-bs-title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div>`
     let bar
     if (compact) {
       const applied = DEFS.filter(isApplied).length
@@ -199,7 +199,7 @@ export function initFilterBar(root) {
         // Sort by menu anchors to the whole bar.
         '<div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="position:static;margin-inline-start:auto;flex:0 0 auto">' +
         `<button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="${moreOpen}" aria-controls="${panelId}" aria-label="${moreName}" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters</button>` +
-        `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortPop}` +
+        `<button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="${state.open === 'sort'}" aria-label="Sort by: ${SORTS[state.sort].label}" data-bs-toggle="tooltip" data-bs-title="Sort by: ${SORTS[state.sort].label}"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button>${sortPop}` +
         '</div>' +
         '</div>'
     } else {
@@ -237,7 +237,7 @@ export function initFilterBar(root) {
       else chipList.push({ label: `${d.label}: ${v}`, remove: `Remove the ${d.label} filter`, clear: { key: d.key } })
     }
     chipsState = chipList
-    const chipHtml = (c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`
+    const chipHtml = (c, i) => `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>${esc(c.label)}</span><button type="button" class="chip-dismiss" data-chip="${i}" aria-label="${esc(c.remove)}" data-bs-toggle="tooltip" data-bs-title="${esc(c.remove)}"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span>`
     const appliedName = `${chipList.length} ${chipList.length === 1 ? 'filter' : 'filters'} applied`
     // Compact: one chip, “3 filters applied”, opens the Applied filters
     // dialog instead of a row of chips that would fill the screen.
@@ -246,7 +246,7 @@ export function initFilterBar(root) {
         // One chip: its text opens the dialog, its x clears every filter.
         `<span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem">` +
         `<button type="button" data-applied data-bs-toggle="dialog" data-bs-target="#${id}-applied" aria-haspopup="dialog" style="background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer">${appliedName}</button>` +
-        '<button type="button" class="chip-dismiss" data-clear aria-label="Clear filters" title="Clear filters"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span></div>'
+        '<button type="button" class="chip-dismiss" data-clear aria-label="Clear filters" data-bs-toggle="tooltip" data-bs-title="Clear filters"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span></div>'
       : chipList.length
       ? // Compact row: 24px chips on the primary muted tone (--bs-primary-bg-muted,
       // one step darker than bg-subtle), with body text.

@@ -103,6 +103,11 @@ function itemHtml(item) {
     preview = '<div class="lib-preview-missing"><i class="fa-regular fa-file-lines" aria-hidden="true"></i><span>Example not shared yet.</span></div>'
   }
   if (snippet) markup = snippet
+  // Library-only hooks (lib-…) drive the demos here; they are not part of the component.
+  markup = markup.replace(/ class="([^"]*)"/g, (m, list) => {
+    const kept = list.split(/\s+/).filter((c) => c && !c.startsWith('lib-')).join(' ')
+    return kept ? ` class="${kept}"` : ''
+  })
   const code = markup
     ? `<details class="lib-code"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code</summary>
         <div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code>${escapeHtml(markup)}</code></pre></div></details>`

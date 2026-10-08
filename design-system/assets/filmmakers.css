@@ -352,3 +352,10 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 /* Compact: one line, for adding more files under a list. */
 .fm-dropzone-sm { flex-direction: row; gap: 8px; padding: 12px 16px; border-color: var(--bs-primary-border); background: transparent; }
 .fm-dropzone-sm label { color: var(--bs-primary-fg); font-weight: var(--bs-font-weight-semibold); cursor: pointer; }
+
+/* Profile search results: the view switcher (.fm-view-switch) shows the grid,
+   the large grid or the list with :has(), so it works without a script.
+   .fm-results wraps the switcher and both views. */
+.fm-results:has([data-view="list"]:checked) .fm-results-grid,
+.fm-results:not(:has([data-view="list"]:checked)) .fm-results-table { display: none; }
+.fm-results:has([data-view="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
