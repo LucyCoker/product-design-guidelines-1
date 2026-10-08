@@ -2731,7 +2731,7 @@
        "text": "The first field gets focus when a form opens."
       },
       {
-       "kind": "do",
+       "kind": "caution",
        "text": "Forms: a click outside does not close the dialog, so nothing typed is lost. A dialog with an invalid field stays open and keeps the input (see Validation)."
       },
       {
