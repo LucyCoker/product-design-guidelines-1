@@ -847,37 +847,6 @@
      "code": "",
      "status": "Direct",
      "layout": "row",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
-     "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
-     "flags": [],
-     "id": "bg-accessibility",
-     "name": "Accessibility",
-     "classes": "role=\"group\" · aria-label",
-     "note": "",
-     "rules": [
-      {
-       "kind": "a11y",
-       "text": "The container has <code>role=\"group\"</code> (or <code>role=\"toolbar\"</code> for a toolbar) and an <code>aria-label</code> that names what the group does."
-      },
-      {
-       "kind": "code",
-       "text": "Every button is a <code>&lt;button type=\"button\"&gt;</code>. Not a link, not a span."
-      },
-      {
-       "kind": "a11y",
-       "text": "Buttons are reachable by keyboard in visual order."
-      },
-      {
-       "kind": "a11y",
-       "text": "Focus is visible on each button, including where borders are shared."
-      }
-     ],
-     "examples": []
-    },
-    {
-     "code": "",
-     "status": "Direct",
-     "layout": "row",
      "docs": "",
      "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
      "flags": [],
