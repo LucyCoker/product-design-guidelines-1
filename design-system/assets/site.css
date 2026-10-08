@@ -457,3 +457,8 @@ body, .lib-top { background: var(--bs-bg-1); }
 .lib-logo-name { display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 600; line-height: 1; white-space: nowrap; }
 .lib-logo-name i { color: var(--bs-fg-2); }
 @media (width < 860px) { .lib-top .lib-logo img { block-size: 18px; } .lib-logo-sep { block-size: 18px; } .lib-logo-name { font-size: .875rem; } }
+
+/* Bootstrap docs link: the small Bootstrap "B" before the text. */
+.lib-item-meta .lib-docs-link { display: inline-flex; align-items: baseline; gap: 4px; }
+.lib-docs-link i { font-size: 12px; color: #7952b3; text-decoration: none; }
+[data-bs-theme="dark"] .lib-docs-link i { color: #a98eda; }

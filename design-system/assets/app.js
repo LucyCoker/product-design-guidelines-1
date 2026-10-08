@@ -80,7 +80,7 @@ function itemHtml(item) {
   const meta = [
     // The classes are all in the Code box; this opens it.
     item.examples?.length || item.example || item.snippet ? '<button type="button" class="lib-see-code">See classes in Code</button>' : '',
-    item.docs ? `<a href="${item.docs}" target="_blank" rel="noopener">Bootstrap 6 docs</a>` : '',
+    item.docs ? `<a class="lib-docs-link" href="${item.docs}" target="_blank" rel="noopener"><i class="fa-brands fa-bootstrap" aria-hidden="true"></i>Bootstrap 6 docs</a>` : '',
     item.guide ? `<a href="${guideUrl(item.guide)}" target="_blank" rel="noopener">Guideline</a>` : '',
     item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : ''
   ].join('')
