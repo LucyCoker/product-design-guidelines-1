@@ -194,7 +194,7 @@
      "note": "",
      "rules": [
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "Never use <code>btn-outline theme-primary</code>: it becomes a second primary."
       }
      ],
@@ -303,7 +303,7 @@
        "text": "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip with the same words, on hover and keyboard focus. The icon is <code>aria-hidden</code>."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "Never destructive, never primary or solid. Delete, Remove and the like go in a menu with a text label."
       },
       {
@@ -742,7 +742,7 @@
        "text": "Groups are horizontal. Stack them only in narrow layouts where horizontal does not fit."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "Never stretch a group to fill its container. Icon buttons would grow into squares."
       }
      ],
@@ -1757,7 +1757,7 @@
        "text": "Errors follow the <a href=\"#frm-11\">Validation</a> rules."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "No inline (side-by-side) labels. Removed in review; add them back only with a use case."
       }
      ],
@@ -2440,7 +2440,7 @@
        "text": "Say how to resolve the condition, with a link where there is a next step."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "No success alerts: when the result is already visible on screen, say nothing."
       },
       {
@@ -2508,7 +2508,7 @@
        "text": "Auto-dismisses unless it carries an action. A toast with Undo stays until dismissed, and Undo stays available for at least 10 seconds."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "Nothing important lives only in a toast."
       },
       {
@@ -2677,7 +2677,7 @@
        "text": "Opened by a click, never by hover."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "No <code>.popover-header</code>: the button that opens it already names it."
       },
       {
@@ -3248,7 +3248,7 @@
        "text": "Status is a subtle badge with text: theme-success for Active, theme-secondary for Inactive."
       },
       {
-       "kind": "do",
+       "kind": "dont",
        "text": "Never striped rows."
       }
      ],
