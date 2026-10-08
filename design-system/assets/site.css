@@ -462,3 +462,4 @@ body, .lib-top { background: var(--bs-bg-1); }
 .lib-item-meta .lib-docs-link { display: inline-flex; align-items: baseline; gap: 4px; }
 .lib-docs-link i { font-size: 12px; color: #7952b3; text-decoration: none; }
 [data-bs-theme="dark"] .lib-docs-link i { color: #a98eda; }
+.lib-item-meta .lib-replaces-from { font-weight: 600; color: var(--bs-fg-2); }

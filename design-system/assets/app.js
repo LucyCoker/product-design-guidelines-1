@@ -82,7 +82,7 @@ function itemHtml(item) {
     item.examples?.length || item.example || item.snippet ? '<button type="button" class="lib-see-code">See classes in Code</button>' : '',
     item.docs ? `<a class="lib-docs-link" href="${item.docs}" target="_blank" rel="noopener"><i class="fa-brands fa-bootstrap" aria-hidden="true"></i>Bootstrap 6 docs</a>` : '',
     item.guide ? `<a href="${guideUrl(item.guide)}" target="_blank" rel="noopener">Guideline</a>` : '',
-    item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : ''
+    item.replaces && item.replaces !== '(none)' && item.replaces !== '—' ? `<span>Replaces${item.replacesFrom ? ` <b class="lib-replaces-from">${escapeHtml(item.replacesFrom)}</b>` : ''}: ${escapeHtml(item.replaces)}</span>` : ''
   ].join('')
   // Related pages, such as responsive behaviour, as buttons under the note.
   const links = item.links?.length
