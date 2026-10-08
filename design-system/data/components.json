@@ -2227,37 +2227,20 @@
      "rules": [
       {
        "kind": "code",
-       "text": "Use Bootstrap’s accordion markup: <code>.accordion.accordion-sm</code> &gt; <code>details.accordion-item</code> &gt; <code>summary.accordion-header</code> + <code>.accordion-body</code>. Add <code>open</code> to start expanded.",
-       "devReview": true
+       "text": "Always <code>.accordion-sm</code>, to match the 14px body text and small controls."
       },
       {
        "kind": "code",
-       "text": "The header is grey (<code>bg-1</code>) while closed and white while open. filmmakers.css sets this through Bootstrap’s own variables (<code>--bs-accordion-btn-bg</code>, <code>--bs-accordion-active-bg</code>), so no extra class is needed. No theme classes.",
-       "devReview": true
-      },
-      {
-       "kind": "code",
-       "text": "<code>.accordion-sm</code> on every accordion, to match the 14px body text and small controls."
-      },
-      {
-       "kind": "code",
-       "text": "The header is the title, weight 600, then “Show” or “Hide” and a chevron (<code>fa-chevron-down</code> with <code>.accordion-icon</code>) that turns when open. The label is <code>.fm-accordion-label</code> with both words inside; CSS shows the right one, so no script is needed."
+       "devReview": true,
+       "text": "The grey (closed) and white (open) header comes from filmmakers.css, through Bootstrap’s own <code>--bs-accordion-btn-bg</code> and <code>--bs-accordion-active-bg</code>. Add no theme classes."
       },
       {
        "kind": "a11y",
        "text": "The Show / Hide label is <code>aria-hidden</code>, because the browser already announces open and closed."
       },
       {
-       "kind": "code",
-       "text": "Standalone, for example Statistics, use the accordion as it is. Inside a card, for example Additional information, use <code>.accordion-flush</code> with <code>.border-top</code>, so it runs edge to edge under the card’s content with a line above it."
-      },
-      {
        "kind": "caution",
        "text": "Caution with the primary colour: only use it when the information is very important and gets lost on a busy page (for example Important information). At most one per page, and never to decorate."
-      },
-      {
-       "kind": "code",
-       "text": "Important accordion: add <code>.fg-primary</code> to the <code>summary</code>, so the title and chevron take the primary colour."
       },
       {
        "kind": "code",
