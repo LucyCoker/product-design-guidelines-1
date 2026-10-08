@@ -62,6 +62,7 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 Each entry's `rules` are objects with a `kind`:
 
 - **do**: a guideline to follow. **dont**: something not allowed (the Not allowed lists).
+- **caution**: allowed, but only in the narrow case it names. Use it rarely.
 - **code**: a code note: markup, ARIA and CSS details. Follow them when building; designers can skip them.
 - **a11y**: accessibility: accessible names, ARIA, keyboard, focus, contrast and target sizes. Always follow these.
 - **other**: cross-references and parked notes.

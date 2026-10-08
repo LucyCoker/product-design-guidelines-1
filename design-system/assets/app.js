@@ -48,14 +48,15 @@ function exampleHtml(example) {
 
 const DEV_BADGE = '<span class="badge theme-info badge-subtle">Needs developer review</span>'
 
-const ruleLi = (r) => `<li${r.kind === 'do' || r.kind === 'dont' ? ` class="lib-rule-${r.kind}"` : ''}>${
+const ruleLi = (r) => `<li${['do', 'dont', 'caution'].includes(r.kind) ? ` class="lib-rule-${r.kind}"` : ''}>${
   r.kind === 'do' ? '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="visually-hidden">Do: </span>'
-  : r.kind === 'dont' ? '<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i><span class="visually-hidden">Don’t: </span>' : ''
+  : r.kind === 'dont' ? '<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i><span class="visually-hidden">Don’t: </span>'
+  : r.kind === 'caution' ? '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><span class="visually-hidden">Caution: </span>' : ''
 }<span>${r.text}</span></li>`
 
 function rulesHtml(rules) {
   const of = (...kinds) => rules.filter((r) => kinds.includes(r.kind))
-  const guidelines = of('do', 'dont')
+  const guidelines = of('do', 'caution', 'dont')
   const code = of('code')
   const a11y = of('a11y')
   const other = of('other')
@@ -180,7 +181,7 @@ function render(data) {
   $('#side-candidates').insertAdjacentHTML('beforeend', sideLinks(candidates))
   // Developer review: every bullet tagged for a developer to check.
   const devRows = data.groups.flatMap((g) => g.items.flatMap((item) => (item.rules || []).filter((r) => r.devReview).map((r) =>
-    `<tr><td><a href="#${itemId(item)}">${escapeHtml(item.name)}</a><br><span class="fs-xs fg-3">${escapeHtml(g.title)}${item.code ? ` · ${item.code}` : ''}</span></td><td>${r.kind === 'code' ? 'Code note' : r.kind === 'a11y' ? 'Accessibility' : r.kind === 'dont' ? 'Don’t' : r.kind === 'do' ? 'Do' : 'Other'}</td><td>${r.text}</td></tr>`)))
+    `<tr><td><a href="#${itemId(item)}">${escapeHtml(item.name)}</a><br><span class="fs-xs fg-3">${escapeHtml(g.title)}${item.code ? ` · ${item.code}` : ''}</span></td><td>${r.kind === 'code' ? 'Code note' : r.kind === 'a11y' ? 'Accessibility' : r.kind === 'dont' ? 'Don’t' : r.kind === 'do' ? 'Do' : r.kind === 'caution' ? 'Caution' : 'Other'}</td><td>${r.text}</td></tr>`)))
   $('#dev-review-items').innerHTML = devRows.join('')
   $('#dev-review-count').textContent = devRows.length
   // Decisions backlog: parked questions, out of the component pages.

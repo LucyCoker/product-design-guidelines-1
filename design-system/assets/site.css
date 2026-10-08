@@ -417,3 +417,4 @@ body {
 .lib-rules-a11y h4 .badge { margin-inline-start: 4px; }
 .lib-item-meta .lib-see-code { padding: 0; border: 0; background: none; font: inherit; color: var(--bs-fg-3); text-decoration: underline; text-decoration-color: var(--bs-border-color); text-underline-offset: 2px; cursor: pointer; }
 .lib-item-meta .lib-see-code:hover { color: var(--bs-fg-body); }
+.lib-rule-caution > i { color: var(--bs-warning-fg); }

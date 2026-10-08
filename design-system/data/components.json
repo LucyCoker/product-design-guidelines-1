@@ -2252,8 +2252,12 @@
        "text": "Standalone, for example Statistics, use the accordion as it is. Inside a card, for example Additional information, use <code>.accordion-flush</code> with <code>.border-top</code>, so it runs edge to edge under the card’s content with a line above it."
       },
       {
-       "kind": "do",
-       "text": "Important, rarely: add <code>.fg-primary</code> to the <code>summary</code> so the title and chevron take the primary colour, for information that would get lost on a busy page (for example Important information). At most one per page, and never to decorate."
+       "kind": "caution",
+       "text": "Caution with the primary colour: only use it when the information is very important and gets lost on a busy page (for example Important information). At most one per page, and never to decorate."
+      },
+      {
+       "kind": "code",
+       "text": "Important accordion: add <code>.fg-primary</code> to the <code>summary</code>, so the title and chevron take the primary colour."
       },
       {
        "kind": "code",
