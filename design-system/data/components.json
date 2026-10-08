@@ -572,11 +572,11 @@
      "id": "bg-labels",
      "name": "Text labels",
      "classes": "btn-group > btn-outline theme-secondary",
-     "note": "Two or three closely related actions on the same object, joined into one control. The joining is the meaning: these actions belong together.",
+     "note": "",
      "rules": [
       {
        "kind": "do",
-       "text": "Two or three actions. That is the whole range."
+       "text": "Use for two or three closely related actions on the same object. Joining them says they belong together."
       },
       {
        "kind": "do",
