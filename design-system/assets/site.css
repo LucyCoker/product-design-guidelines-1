@@ -448,3 +448,12 @@ body, .lib-top { background: var(--bs-bg-1); }
 .lib-pager a { border: 0; }
 .lib-pager a:hover { background: var(--bs-bg-body); }
 .lib-pager a:hover b, .lib-pager a:hover strong { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Header: white, with the Filmmakers logo and "The Library" as one lockup. */
+.lib-top { background: var(--bs-bg-body); }
+.lib-top .lib-logo { gap: 12px; text-decoration: none; color: var(--bs-fg-body); }
+.lib-top .lib-logo img { block-size: 22px; }
+.lib-logo-sep { inline-size: 1px; block-size: 22px; background: var(--bs-border-color); }
+.lib-logo-name { display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 600; line-height: 1; white-space: nowrap; }
+.lib-logo-name i { color: var(--bs-fg-2); }
+@media (width < 860px) { .lib-top .lib-logo img { block-size: 18px; } .lib-logo-sep { block-size: 18px; } .lib-logo-name { font-size: .875rem; } }
