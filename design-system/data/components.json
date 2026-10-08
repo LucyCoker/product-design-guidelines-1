@@ -2045,13 +2045,28 @@
      "note": "",
      "unresolved": false,
      "flags": [],
-     "layout": "row",
-     "example": "<div class=\"form-field\"><div class=\"switch\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch\" checked></div><label for=\"map-switch\">Expert mode</label></div>",
+     "layout": "full",
      "replacesFrom": "custom",
      "rules": [
       {
        "kind": "do",
        "text": "A switch inside a Field, like Checkbox and Radio: the switch in column one, its label beside it."
+      },
+      {
+       "kind": "do",
+       "text": "Size follows the place: <code>switch-sm</code> by default; medium (no size class) where the switch sits beside large content. There is no extra small switch."
+      }
+     ],
+     "examples": [
+      {
+       "label": "Small",
+       "badge": "Default",
+       "html": "<div class=\"form-field\"><div class=\"switch switch-sm\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch-sm\" checked></div><label for=\"map-switch-sm\">Expert mode</label></div>"
+      },
+      {
+       "label": "Medium",
+       "caption": "Beside large content.",
+       "html": "<div class=\"form-field\"><div class=\"switch\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch-md\" checked></div><label for=\"map-switch-md\">Expert mode</label></div>"
       }
      ]
     },
