@@ -674,7 +674,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Never mix icon-only and text buttons in one group."
+       "text": "Use icons without text only when everyone knows what they mean, such as edit, copy and download."
       },
       {
        "kind": "a11y",
