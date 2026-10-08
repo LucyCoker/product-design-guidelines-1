@@ -422,7 +422,7 @@ body {
 /* Light grey page (bg-1). Examples, code and tables sit on the body colour,
    so components are shown on the surface they are built for. */
 body, .lib-top { background: var(--bs-bg-1); }
-.lib-side { background: var(--bs-bg-1); }
+.lib-side { background: var(--bs-bg-body); }
 .lib-examples, .lib-preview, .lib-table-wrap, .lib-type-scale, .lib-type-context, .lib-pager a { background: var(--bs-bg-body); }
 .lib-code pre, .lib-page > .lib-code-box pre { background: var(--bs-bg-body); }
 .lib-preview-missing { background: var(--bs-bg-body); }
