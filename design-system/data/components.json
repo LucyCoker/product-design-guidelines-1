@@ -726,12 +726,7 @@
      "layout": "row",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/",
      "guide": "https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups",
-     "flags": [
-      {
-       "type": "info",
-       "text": "Decided in review: the overflow trigger sits inside the group, in outline style. The Button groups pattern should be updated to say so."
-      }
-     ],
+     "flags": [],
      "id": "bg-overflow",
      "name": "With an overflow menu",
      "classes": "btn-group > btn-outline theme-secondary + btn-icon menu trigger",
