@@ -2971,12 +2971,8 @@
        "text": "Colour-coded status. Colour carries meaning (WCAG 1.4.1), and production’s yellow fails contrast on white. Kept to match production; the icon shapes differ, and the white hover band uses darker shades."
       },
       {
-       "type": "ask",
-       "text": "List view, agency: in production the agency name opens a collapsed panel (collapse_talent_agency_connection_…). What does that panel hold, and does it stay? It is left out until decided."
-      },
-      {
        "type": "info",
-       "text": "Still different from production: the tooltip also opens on keyboard focus; the status is in the link’s accessible name; the checkbox also shows on focus and on touch screens; in List view the agency link and contact icons are neutral grey, not primary, as the Library’s icon buttons are, and “(Main agency)” is plain text, not explained by a title tooltip."
+       "text": "Still different from production: the tooltip also opens on keyboard focus; the status is in the link’s accessible name; the checkbox also shows on focus and on touch screens; in List view the agency link and contact icons are neutral grey, not primary, as the Library’s icon buttons are, and “(Main agency)” is plain text, not explained by a title tooltip; the agency name no longer opens a collapsed panel, which is not needed."
       }
      ],
      "examples": [
