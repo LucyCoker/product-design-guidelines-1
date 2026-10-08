@@ -776,10 +776,6 @@
       },
       {
        "kind": "do",
-       "text": "Below the tablet breakpoint, a group that does not fit stacks. It never scrolls or truncates."
-      },
-      {
-       "kind": "do",
        "text": "Never stretch a group to fill its container. Icon buttons would grow into squares."
       }
      ],
