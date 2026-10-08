@@ -2806,10 +2806,6 @@
       {
        "kind": "a11y",
        "text": "A photo’s <code>alt</code> is the person’s name, unless the name is shown right beside it; then <code>alt=\"\"</code>."
-      },
-      {
-       "kind": "code",
-       "text": "Photos are an <code>img.avatar-img</code> inside the <code>.avatar</code>. A client avatar is <code>.avatar.avatar-subtle.fm-client-zone</code>."
       }
      ]
     },
