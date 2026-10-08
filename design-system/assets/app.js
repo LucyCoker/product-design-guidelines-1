@@ -51,7 +51,7 @@ const DEV_BADGE = '<span class="badge theme-info badge-subtle">Needs developer r
 const ruleLi = (r) => `<li${r.kind === 'do' || r.kind === 'dont' ? ` class="lib-rule-${r.kind}"` : ''}>${
   r.kind === 'do' ? '<i class="fa-solid fa-circle-check" aria-hidden="true"></i><span class="visually-hidden">Do: </span>'
   : r.kind === 'dont' ? '<i class="fa-solid fa-circle-xmark" aria-hidden="true"></i><span class="visually-hidden">Don’t: </span>' : ''
-}<span>${r.text}${r.devReview ? ` ${DEV_BADGE}` : ''}</span></li>`
+}<span>${r.text}</span></li>`
 
 function rulesHtml(rules) {
   const of = (...kinds) => rules.filter((r) => kinds.includes(r.kind))

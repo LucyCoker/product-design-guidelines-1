@@ -755,7 +755,11 @@
       },
       {
        "kind": "do",
-       "text": "The chosen button uses the selected-item style: <code>--bs-bg-2</code> with body text, as menus do. Never primary, never solid secondary.",
+       "text": "The chosen button uses the selected-item style: <code>--bs-bg-2</code> with body text, as menus do. Never primary, never solid secondary."
+      },
+      {
+       "kind": "code",
+       "text": "filmmakers.css sets the selected style on <code>.btn-group &gt; .btn-outline.theme-secondary.btn-check:has(input:checked)</code> through <code>--bs-btn-active-bg</code>.",
        "devReview": true
       },
       {
@@ -1852,7 +1856,11 @@
       },
       {
        "kind": "do",
-       "text": "Fill shows the state: every star up to the chosen one is filled (<code>fa-solid</code>), the rest are outline (<code>fa-regular</code>), and hovering previews a rating. filmmakers.css does this with CSS only (<code>.fm-rating</code>). Never colour alone. Stars are <code>--bs-fg-body</code>, the body text colour (filmmakers.css sets it on <code>.fm-rating</code>), which passes 15:1 on white and grey.",
+       "text": "Fill shows the state: every star up to the chosen one is filled, the rest are outline, and hovering previews a rating. Never colour alone. Stars are the body text colour, which passes 15:1 on white and grey."
+      },
+      {
+       "kind": "code",
+       "text": "Filled stars are <code>fa-solid</code>, the rest <code>fa-regular</code>. filmmakers.css does the fill and hover preview with CSS only (<code>.fm-rating</code>) and sets the star colour to <code>--bs-fg-body</code> on <code>.fm-rating</code>.",
        "devReview": true
       },
       {
@@ -2004,7 +2012,11 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Validate on blur, never on each keystroke and never before the person has typed. <code>data-bs-validate</code> on the form does this with <code>:user-invalid</code>.",
+       "text": "Validate on blur, never on each keystroke and never before the person has typed."
+      },
+      {
+       "kind": "code",
+       "text": "<code>data-bs-validate</code> on the form does this with <code>:user-invalid</code>.",
        "devReview": true
       },
       {
@@ -2539,7 +2551,11 @@
       },
       {
        "kind": "do",
-       "text": "Dialogs may scroll. When the content can be longer than the window, add <code>.dialog-scrollable</code> (Bootstrap’s default): the body scrolls and the header and footer stay fixed, so the actions are always visible. Give the scrolling body <code>tabindex=\"0\"</code> so keyboard users can scroll it.",
+       "text": "Dialogs may scroll. When the content can be longer than the window, the body scrolls and the header and footer stay fixed, so the actions are always visible."
+      },
+      {
+       "kind": "code",
+       "text": "Add <code>.dialog-scrollable</code> (Bootstrap’s default) for a scrolling body, and give the scrolling body <code>tabindex=\"0\"</code> so keyboard users can scroll it.",
        "devReview": true
       },
       {
@@ -3096,7 +3112,11 @@
       },
       {
        "kind": "do",
-       "text": "More follows the <a href=\"#menu-overflow\">Overflow menu</a>: <code>data-bs-placement=\"bottom-end\"</code> (this Bootstrap build has no <code>.menu-end</code>), 260–320px wide, descriptions wrap. The View as client items carry the client zone accent on the icon only and say “View as …” in text. Destructive items go last after a divider; Delete is <code>theme-danger</code>, and when disabled it has <code>disabled</code>, <code>aria-disabled=\"true\"</code> and the reason as its visible description.",
+       "text": "More follows the <a href=\"#menu-overflow\">Overflow menu</a>: 260–320px wide, descriptions wrap. The View as client items carry the client zone accent on the icon only and say “View as …” in text. Destructive items go last after a divider; Delete is <code>theme-danger</code>, and when disabled it shows the reason as its visible description."
+      },
+      {
+       "kind": "code",
+       "text": "More opens with <code>data-bs-placement=\"bottom-end\"</code> (this Bootstrap build has no <code>.menu-end</code>). A disabled Delete has <code>disabled</code> and <code>aria-disabled=\"true\"</code>.",
        "devReview": true
       },
       {
@@ -3505,7 +3525,11 @@
       },
       {
        "kind": "do",
-       "text": "Language is a native <code>select</code> with a visible label. It applies on change, with a submit button inside <code>noscript</code> for people without JavaScript.",
+       "text": "Language is a native select with a visible label. It applies on change."
+      },
+      {
+       "kind": "code",
+       "text": "A submit button inside <code>noscript</code> lets people without JavaScript change the language.",
        "devReview": true
       },
       {
