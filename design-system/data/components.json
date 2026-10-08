@@ -148,6 +148,10 @@
       {
        "kind": "do",
        "text": "On a dark or brand-coloured surface, use <code>btn-solid theme-inverse</code> instead."
+      },
+      {
+       "kind": "code",
+       "text": "On a brand surface, put <code>data-bs-theme=\"dark\"</code> on the surface. Bootstrap 6’s <code>theme-inverse</code> is the opposite of the colour mode, so on a light page it is dark, and invisible on blue."
       }
      ],
      "examples": [
@@ -171,7 +175,7 @@
       },
       {
        "label": "On a brand surface",
-       "html": "<div class=\"p-3 rounded d-inline-flex gap-2\" style=\"background:var(--bs-primary-bg)\"><button type=\"button\" class=\"btn-solid theme-inverse btn-sm\">Open selection</button></div>",
+       "html": "<div class=\"p-3 rounded d-inline-flex gap-2\" data-bs-theme=\"dark\" style=\"background:var(--bs-primary-bg)\"><button type=\"button\" class=\"btn-solid theme-inverse btn-sm\">Open selection</button></div>",
        "caption": "",
        "badge": "btn-solid theme-inverse"
       }
@@ -191,19 +195,15 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Actions that matter but are not the main one: Cancel, Export, Save draft."
-      },
-      {
-       "kind": "do",
-       "text": "Use as many as the screen needs. Most actions are secondary."
-      },
-      {
-       "kind": "do",
        "text": "Never use <code>btn-outline theme-primary</code>: it becomes a second primary."
       },
       {
        "kind": "do",
        "text": "On a dark or brand-coloured surface, use <code>btn-outline theme-inverse</code>."
+      },
+      {
+       "kind": "code",
+       "text": "On a brand surface, put <code>data-bs-theme=\"dark\"</code> on the surface. Bootstrap 6’s <code>theme-inverse</code> is the opposite of the colour mode, so on a light page it is dark, and invisible on blue."
       }
      ],
      "examples": [
@@ -227,16 +227,22 @@
       },
       {
        "label": "On a brand surface",
-       "html": "<div class=\"p-3 rounded d-inline-flex gap-2\" style=\"background:var(--bs-primary-bg)\"><button type=\"button\" class=\"btn-outline theme-inverse btn-sm\">Not now</button></div>",
-       "caption": "",
-       "badge": "btn-outline theme-inverse"
+       "html": "<div class=\"p-3 rounded d-inline-flex gap-2\" data-bs-theme=\"dark\" style=\"background:var(--bs-primary-bg)\"><button type=\"button\" class=\"btn-outline theme-inverse btn-sm\">Not now</button></div>",
+       "caption": "Light text on the blue is 3.3:1, below 4.5:1.",
+       "badge": "ASK"
       }
      ],
      "status": "Direct",
-     "flags": [],
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Secondary on a brand surface: no Bootstrap 6 option passes contrast on the primary blue (the inverse outline’s text is 3.3:1). Is there a real case for a secondary button on a brand surface? If not, remove this version; if so, decide how it should look."
+      }
+     ],
      "layout": "row",
      "code": "",
-     "guide": "products/filmmakers-system/components/buttons.md"
+     "guide": "products/filmmakers-system/components/buttons.md",
+     "unresolved": true
     },
     {
      "id": "btn-tertiary",
