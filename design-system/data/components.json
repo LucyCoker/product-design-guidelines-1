@@ -292,10 +292,6 @@
       },
       {
        "kind": "do",
-       "text": "Text style by default (<code>btn-text theme-secondary btn-icon</code>). Outline (<code>btn-outline theme-secondary btn-icon</code>) when the button stands on its own and needs a visible edge, for example on a grey or busy surface."
-      },
-      {
-       "kind": "do",
        "text": "Only for overflow menus (ellipsis), close controls (xmark) and toolbar actions with a well-known icon (search, filter, sort). Anything else gets a text label."
       },
       {
