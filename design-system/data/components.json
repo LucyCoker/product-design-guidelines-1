@@ -2729,10 +2729,6 @@
       },
       {
        "kind": "do",
-       "text": "Counts are solid grey (secondary). Never primary, and never danger just to draw attention."
-      },
-      {
-       "kind": "do",
        "text": "Sentence case, one or two words."
       }
      ],
