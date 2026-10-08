@@ -743,7 +743,7 @@
       },
       {
        "kind": "a11y",
-       "text": "It is icon only, with an accessible name (<code>aria-label=\"More actions\"</code>) and a tooltip."
+       "text": "The overflow trigger is icon only, with an accessible name (<code>aria-label=\"More actions\"</code>) and a tooltip."
       },
       {
        "kind": "do",
