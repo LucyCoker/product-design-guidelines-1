@@ -14,12 +14,18 @@
      "classes": "fa-solid",
      "docs": "",
      "replaces": "glyphicon",
-     "note": "Replace. Glyphicons were dropped after v3. Solid carries the interface; icons inherit currentColor.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<i class=\"fa-solid fa-house\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-trash\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Glyphicons were dropped after v3. Solid carries the interface; icons inherit currentColor."
+      }
+     ]
     },
     {
      "code": "ICN-2",
@@ -28,12 +34,18 @@
      "classes": "fa-regular",
      "docs": "",
      "replaces": "glyphicon",
-     "note": "Replace. Used where solid would sit too heavy beside 14px text.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<i class=\"fa-regular fa-bell\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-eye\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-image\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-copy\" aria-hidden=\"true\"></i><i class=\"fa-regular fa-circle-question\" aria-hidden=\"true\"></i>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Used where solid would sit too heavy beside 14px text."
+      }
+     ]
     },
     {
      "code": "ICN-3",
@@ -42,11 +54,17 @@
      "classes": ".visually-hidden",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/helpers/visually-hidden/",
      "replaces": "—",
-     "note": "Added. Colour or icon is never the only signal — every icon count carries a hidden label.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<i class=\"fa-solid fa-user\" aria-hidden=\"true\"></i>76<span class=\"visually-hidden\">people in this selection</span><span style=\"font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px\">+ \"people in this selection\"</span>"
+     "example": "<i class=\"fa-solid fa-user\" aria-hidden=\"true\"></i>76<span class=\"visually-hidden\">people in this selection</span><span style=\"font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px\">+ \"people in this selection\"</span>",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Colour or icon is never the only signal — every icon count carries a hidden label."
+      }
+     ]
     }
    ]
   },
@@ -61,8 +79,12 @@
      "name": "Sizes",
      "classes": "btn-xs · btn-sm · (none) · btn-lg",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/#sizes",
-     "note": "Small is the default. Filmmakers System is dense, and small suits it. Use a different size only for the cases below.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Small is the default. Filmmakers System is dense, and small suits it. Use a different size only for the cases below."
+      },
       {
        "kind": "do",
        "text": "Use <code>btn-sm</code> unless one of the other rows applies."
@@ -113,8 +135,12 @@
      "name": "Primary",
      "classes": "btn-solid theme-primary",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
-     "note": "The one most important action on the screen. It takes the customer’s primary colour.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "The one most important action on the screen. It takes the customer’s primary colour."
+      },
       {
        "kind": "do",
        "text": "At most one primary button per screen. Where two compete, pick the one most people take, or make both secondary."
@@ -165,8 +191,12 @@
      "name": "Secondary",
      "classes": "btn-outline theme-secondary",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
-     "note": "Actions that matter but are not the main one: Cancel, Export, Save draft.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Actions that matter but are not the main one: Cancel, Export, Save draft."
+      },
       {
        "kind": "do",
        "text": "Use as many as the screen needs. Most actions are secondary."
@@ -217,8 +247,12 @@
      "name": "Tertiary",
      "classes": "btn-text theme-secondary",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
-     "note": "Quiet page-level actions, in menus and in toolbars: Discard, Learn more, Back. For actions on one item in a list, use a Row action.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Quiet page-level actions, in menus and in toolbars: Discard, Learn more, Back. For actions on one item in a list, use a Row action."
+      },
       {
        "kind": "do",
        "text": "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter)."
@@ -283,8 +317,12 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
      "guide": "products/filmmakers-system/components/buttons.md",
      "classes": "btn-text theme-secondary btn-icon",
-     "note": "A button that shows only an icon. For actions whose icon everyone knows: an overflow menu, close, and toolbar actions such as search and filter.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A button that shows only an icon. For actions whose icon everyone knows: an overflow menu, close, and toolbar actions such as search and filter."
+      },
       {
        "kind": "do",
        "text": "Text style by default (<code>btn-text theme-secondary btn-icon</code>). Outline (<code>btn-outline theme-secondary btn-icon</code>) when the button stands on its own and needs a visible edge, for example on a grey or busy surface."
@@ -351,8 +389,12 @@
      "classes": "btn-text theme-primary btn-xs",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
      "guide": "products/filmmakers-system/components/buttons.md",
-     "note": "Actions on one item in a dense list: Edit, Duplicate, View as applicant, Copy/Move, Messages. Primary colour shows where to act on each row; text and extra small keep it quiet.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Actions on one item in a dense list: Edit, Duplicate, View as applicant, Copy/Move, Messages. Primary colour shows where to act on each row; text and extra small keep it quiet."
+      },
       {
        "kind": "do",
        "text": "Only on an item: a table cell, a list row or a row gutter. Page-level quiet actions are Tertiary."
@@ -414,8 +456,12 @@
      "name": "Danger",
      "classes": "btn-text theme-danger · btn-solid theme-danger",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/",
-     "note": "For actions that remove or destroy something. Red because of what it does. How loud it is depends on where it sits.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "For actions that remove or destroy something. Red because of what it does. How loud it is depends on where it sits."
+      },
       {
        "kind": "do",
        "text": "<b>Text danger</b> is for a destructive action in an overflow menu, or standalone on a detail page. Never as a bare control in a table row."
@@ -459,8 +505,12 @@
      "classes": "btn-outline theme-secondary fm-client-zone",
      "docs": "",
      "status": "Custom",
-     "note": "A secondary button whose icon takes the client zone accent. It signals an area that clients, or others outside the team, can see. The accent is not limited to buttons: it can also be a background colour for client areas, on avatars and elsewhere. There are no usage rules for it yet.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A secondary button whose icon takes the client zone accent. It signals an area that clients, or others outside the team, can see. The accent is not limited to buttons: it can also be a background colour for client areas, on avatars and elsewhere. There are no usage rules for it yet."
+      },
       {
        "kind": "a11y",
        "text": "The icon is <code>--fm-accent-client-zone</code>, Bootstrap <code>orange-600</code> (about 4.4:1 on white, so the icon passes the 3:1 that icons need)."
@@ -484,8 +534,12 @@
      "name": "Not allowed",
      "classes": "",
      "docs": "",
-     "note": "Anything outside the versions above is a deviation. Propose it, do not improvise it.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Anything outside the versions above is a deviation. Propose it, do not improvise it."
+      },
       {
        "kind": "dont",
        "text": "<code>theme-success</code>, <code>theme-warning</code> or <code>theme-info</code> on any button. Success is a state, not an action."
@@ -616,8 +670,12 @@
      "id": "bg-icons",
      "name": "Icon only",
      "classes": "btn-group > btn-outline theme-secondary btn-icon",
-     "note": "A group where every button is icon only. Use only when each icon is well known.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A group where every button is icon only. Use only when each icon is well known."
+      },
       {
        "kind": "do",
        "text": "Every button is icon only. Never mix icon-only and text buttons in one group."
@@ -646,8 +704,12 @@
      "id": "bg-split",
      "name": "Split button",
      "classes": "btn-group > btn-outline theme-secondary + menu-toggle-split",
-     "note": "One action with variants: a text button plus an icon-only menu trigger that belongs to it. This is the only group that may mix a text button and an icon button.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "One action with variants: a text button plus an icon-only menu trigger that belongs to it. This is the only group that may mix a text button and an icon button."
+      },
       {
        "kind": "do",
        "text": "The trigger opens variants of the same action (Save / Save and new, Generate PDF / CSV)."
@@ -681,8 +743,12 @@
      "id": "bg-overflow",
      "name": "With an overflow menu",
      "classes": "btn-group > btn-outline theme-secondary + btn-icon menu trigger",
-     "note": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu at the end of the group.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu at the end of the group."
+      },
       {
        "kind": "do",
        "text": "The overflow trigger is the last button in the group, in the same outline style and size."
@@ -723,8 +789,12 @@
      "id": "bg-vertical",
      "name": "Vertical",
      "classes": "btn-group-vertical btn-group-sm",
-     "note": "Groups are horizontal. Stack them only in narrow layouts where horizontal does not fit.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Groups are horizontal. Stack them only in narrow layouts where horizontal does not fit."
+      },
       {
        "kind": "do",
        "text": "Below the tablet breakpoint, a group that does not fit stacks. It never scrolls or truncates."
@@ -749,11 +819,15 @@
      "classes": ".btn-group + label.btn-check.btn-outline.theme-secondary",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
      "replaces": "(none)",
-     "note": "Chooses how the same content is shown, such as Small tiles, Large tiles and List view. A radio group: exactly one option is chosen.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Chooses how the same content is shown, such as Small tiles, Large tiles and List view. A radio group: exactly one option is chosen."
+      },
       {
        "kind": "a11y",
        "text": "The group has <code>role=\"radiogroup\"</code> and an <code>aria-label</code>.",
@@ -804,8 +878,12 @@
      "id": "bg-accessibility",
      "name": "Accessibility",
      "classes": "role=\"group\" · aria-label",
-     "note": "What every group needs, whatever its version.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "What every group needs, whatever its version."
+      },
       {
        "kind": "a11y",
        "text": "The container has <code>role=\"group\"</code> (or <code>role=\"toolbar\"</code> for a toolbar) and an <code>aria-label</code> that names what the group does."
@@ -835,8 +913,12 @@
      "id": "bg-not-allowed",
      "name": "Not allowed",
      "classes": "",
-     "note": "A button group is for actions only.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A button group is for actions only."
+      },
       {
        "kind": "dont",
        "text": "All-primary groups, or any <code>btn-solid</code> button inside a group."
@@ -883,8 +965,12 @@
      "name": "Open decisions",
      "classes": "",
      "unresolved": false,
-     "note": "Not yet decided in the Button groups pattern. Do not build these until they are.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Not yet decided in the Button groups pattern. Do not build these until they are."
+      },
       {
        "kind": "other",
        "text": "Toolbars are parked in the <a href=\"#backlog\">Decisions backlog</a>."
@@ -907,11 +993,15 @@
      "classes": ".fm-dropzone + input[type=file] + label.btn-solid + .progress",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/",
      "replaces": "c-upload-dropzone (Uppy) and the custom upload box",
-     "note": "Adds files where dropping helps, such as a script PDF or media. A drop area around a real file input: the button opens the file picker, and a file can also be dropped anywhere on the area. Shows progress while uploading, then the file. Production builds it with Uppy; this is the markup and behaviour.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Adds files where dropping helps, such as a script PDF or media. A drop area around a real file input: the button opens the file picker, and a file can also be dropped anywhere on the area. Shows progress while uploading, then the file. Production builds it with Uppy; this is the markup and behaviour."
+      },
       {
        "kind": "a11y",
        "text": "Keyboard and screen reader users use the button; dropping is an extra."
@@ -986,12 +1076,18 @@
      "classes": ".breadcrumb-item / -divider / -link",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/breadcrumb/",
      "replaces": "subheader-breadcrumbs .breadcrumb",
-     "note": "Replace. The divider is an element in v6, not a CSS ::after. In the header band it inherits the band’s text colour, the parent crumb hides below lg, and a long project name truncates with an ellipsis and keeps the full name in its title. The divider glyph comes from --bs-breadcrumb-divider; links take a white background on hover.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<nav class=\"breadcrumb\" aria-label=\"Breadcrumb\" style=\"margin:0;align-items:center;flex-wrap:nowrap;white-space:nowrap;min-width:0;overflow:hidden\"><span class=\"breadcrumb-item\" style=\"flex:0 0 auto;display:flex;align-items:center\"><a class=\"breadcrumb-link\" href=\"#\" style=\"font-weight:600;line-height:1.5\">Your Projects</a></span><span class=\"breadcrumb-divider\" aria-hidden=\"true\" style=\"display:flex;align-items:center\"></span><span class=\"breadcrumb-item\" style=\"flex:0 0 auto;display:flex;align-items:center\"><a class=\"breadcrumb-link\" href=\"#\" title=\"Best Movie Ever Best Movie Ever Best Movie Ever\" style=\"font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:28px\">Best Movie Ev...</a></span></nav>",
-     "replacesFrom": "Bootstrap 3.4 + custom"
+     "replacesFrom": "Bootstrap 3.4 + custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "The divider is an element in v6, not a CSS ::after. In the header band it inherits the band’s text colour, the parent crumb hides below lg, and a long project name truncates with an ellipsis and keeps the full name in its title. The divider glyph comes from --bs-breadcrumb-divider; links take a white background on hover."
+      }
+     ]
     },
     {
      "code": "NAV-5",
@@ -1000,12 +1096,18 @@
      "classes": ".nav.nav-underline",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#underline",
      "replaces": "subheader-nav .nav-tabs",
-     "note": "Replace. Reads better than tabs on the tinted band. Resting links are the secondary text colour — set through --bs-theme-fg, because a theme-primary parent defines that token and it wins over --bs-nav-link-color. Hover takes a white background; the active tab takes the body background, weight 600 and the primary text colour so it reads as a lifted tab.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<nav class=\"nav nav-underline\" style=\"gap:0;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"display:flex;align-items:center;gap:8px;padding:10px 12px\"><i class=\"fa-solid fa-photo-film\" aria-hidden=\"true\"></i>Audition</a><a class=\"nav-link\" href=\"#\" style=\"display:flex;align-items:center;gap:8px;padding:10px 12px\"><i class=\"fa-solid fa-users\" aria-hidden=\"true\"></i>Extras</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\"><i class=\"fa-solid fa-user-tag\" aria-hidden=\"true\"></i>Selection</a></nav>",
-     "replacesFrom": "Bootstrap 3.4 + custom"
+     "replacesFrom": "Bootstrap 3.4 + custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Reads better than tabs on the tinted band. Resting links are the secondary text colour — set through --bs-theme-fg, because a theme-primary parent defines that token and it wins over --bs-nav-link-color. Hover takes a white background; the active tab takes the body background, weight 600 and the primary text colour so it reads as a lifted tab."
+      }
+     ]
     },
     {
      "code": "NAV-6",
@@ -1014,12 +1116,18 @@
      "classes": ".nav.nav-tabs.nav-fill",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify",
      "replaces": "Count tabs .nav-tabs.nav-justified",
-     "note": "Direct. nav-justified was removed after v3. Counts are icon + text, not badges.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<nav class=\"nav nav-tabs nav-fill\"><a class=\"nav-link active\" href=\"#\"><i class=\"fa-solid fa-layer-group\" aria-hidden=\"true\"></i>6</a><a class=\"nav-link\" href=\"#\"><i class=\"fa-solid fa-user\" aria-hidden=\"true\"></i>76</a><a class=\"nav-link\" href=\"#\"><i class=\"fa-solid fa-check\" aria-hidden=\"true\"></i>1 / 3</a></nav>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "nav-justified was removed after v3. Counts are icon + text, not badges."
+      }
+     ]
     },
     {
      "code": "NAV-7",
@@ -1028,12 +1136,18 @@
      "classes": ".nav.nav-tabs.nav-fill",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify",
      "replaces": "Step tabs .nav-tabs",
-     "note": "Direct. Two-step flow with a help icon per tab.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<nav class=\"nav nav-tabs nav-fill\"><a class=\"nav-link active\" href=\"#\">Invitation<i class=\"fa-regular fa-circle-question\" aria-hidden=\"true\"></i></a><a class=\"nav-link\" href=\"#\">Rating<i class=\"fa-regular fa-circle-question\" aria-hidden=\"true\"></i></a></nav>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Two-step flow with a help icon per tab."
+      }
+     ]
     },
     {
      "code": "NAV-8",
@@ -1042,12 +1156,18 @@
      "classes": ".nav.nav-tabs",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#tabs",
      "replaces": "View tabs .nav-tabs",
-     "note": "Direct. Bottom border removed so the tabs sit on the card below.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<nav class=\"nav nav-tabs\" style=\"justify-content:flex-end;border-bottom:0;flex-wrap:nowrap\"><a class=\"nav-link active\" href=\"#\">Upload view</a><a class=\"nav-link\" href=\"#\">Sort view</a></nav>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Bottom border removed so the tabs sit on the card below."
+      }
+     ]
     },
     {
      "code": "NAV-9",
@@ -1056,12 +1176,18 @@
      "classes": ".nav-link",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/",
      "replaces": "Home icon link",
-     "note": "Direct. Carries aria-label and title.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<a class=\"nav-link\" href=\"#\" aria-label=\"Home\" data-bs-toggle=\"tooltip\" data-bs-title=\"Home\" style=\"display:inline-flex\"><i class=\"fa-solid fa-house\" aria-hidden=\"true\"></i></a>",
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Carries aria-label and title."
+      }
+     ]
     },
     {
      "code": "NAV-10",
@@ -1070,12 +1196,18 @@
      "classes": ".pagination.pagination-sm + .page-item / .page-link",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/pagination/#working-with-icons",
      "replaces": "pagination .pagination",
-     "note": "Added. Sits in the table footer beside the range count. Icon-only previous and next carry an aria-label; the current page gets .active and aria-current, the ends get .disabled. Font Awesome chevrons, not Bootstrap’s SVG sprite. Used on Search and filter and Subscribers .",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<nav aria-label=\"Pagination\"><ul class=\"pagination pagination-sm theme-primary\" style=\"margin:0\"><li class=\"page-item disabled\"><a class=\"page-link\" href=\"#\" aria-label=\"Previous page\"><i class=\"fa-solid fa-chevron-left\" aria-hidden=\"true\"></i></a></li><li class=\"page-item active\"><a class=\"page-link\" href=\"#\" aria-current=\"page\">1</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li><li class=\"page-item\"><a class=\"page-link\" href=\"#\" aria-label=\"Next page\"><i class=\"fa-solid fa-chevron-right\" aria-hidden=\"true\"></i></a></li></ul></nav>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Sits in the table footer beside the range count. Icon-only previous and next carry an aria-label; the current page gets .active and aria-current, the ends get .disabled. Font Awesome chevrons, not Bootstrap’s SVG sprite. Used on Search and filter and Subscribers ."
+      }
+     ]
     },
     {
      "status": "Added",
@@ -1092,8 +1224,12 @@
      "name": "Overflow tabs",
      "classes": ".nav-overflow[data-bs-toggle=\"nav-overflow\"] > .nav.nav-tabs > .nav-item",
      "replaces": "Scrolling tabs .scrtabs-tab-container + .nav-tabs.nav-justified",
-     "note": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways. Bootstrap 6 Nav overflow; it watches the width of its wrapper, not the window. Used on Sedcard (Summary view).",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways. Bootstrap 6 Nav overflow; it watches the width of its wrapper, not the window. Used on Sedcard (Summary view)."
+      },
       {
        "kind": "code",
        "text": "Tabs that do not fit move into a More menu, and the active tab keeps its state.",
@@ -1138,8 +1274,12 @@
      "id": "menu-basic",
      "name": "Menu",
      "classes": "[data-bs-toggle=\"menu\"] + .menu > .menu-item",
-     "note": "A list of actions or links that opens from a trigger button. Bootstrap 6 Menu replaces the v3 dropdown.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A list of actions or links that opens from a trigger button. Bootstrap 6 Menu replaces the v3 dropdown."
+      },
       {
        "kind": "do",
        "text": "The trigger follows the Buttons rules: usually <code>btn-outline theme-secondary</code> or <code>btn-text theme-secondary</code>, with a caret icon."
@@ -1181,8 +1321,12 @@
      "id": "menu-icons",
      "name": "Icons",
      "classes": ".menu-item-icon",
-     "note": "An icon before the label helps people scan a longer menu. Use icons on all items or none.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "An icon before the label helps people scan a longer menu. Use icons on all items or none."
+      },
       {
        "kind": "do",
        "text": "Every item still has a text label."
@@ -1206,8 +1350,12 @@
      "id": "menu-active",
      "name": "Active item",
      "classes": ".menu-item.active + aria-current",
-     "note": "Marks the current page, or the current item in a set.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Marks the current page, or the current item in a set."
+      },
       {
        "kind": "do",
        "text": "The active item takes the <code>bg-2</code> surface, one step darker than the <code>bg-1</code> hover. Never the primary colour."
@@ -1235,8 +1383,12 @@
      "id": "menu-groups",
      "name": "Headers and dividers",
      "classes": ".menu-header · hr.menu-divider",
-     "note": "Split a long menu into labelled groups.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Split a long menu into labelled groups."
+      },
       {
        "kind": "do",
        "text": "Use a divider between groups, and above a destructive or sign-out item."
@@ -1270,8 +1422,12 @@
      "id": "menu-descriptions",
      "name": "Descriptions",
      "classes": ".menu-item-content > .menu-item-description",
-     "note": "A second line under the label, for when the outcome needs explaining.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A second line under the label, for when the outcome needs explaining."
+      },
       {
        "kind": "do",
        "text": "Keep descriptions to one short line. If every item needs one, a dialog may be the better tool."
@@ -1295,8 +1451,12 @@
      "id": "menu-danger",
      "name": "Destructive item",
      "classes": ".menu-item.theme-danger",
-     "note": "Destructive actions live in menus, labelled with text. They go last, after a divider.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Destructive actions live in menus, labelled with text. They go last, after a divider."
+      },
       {
        "kind": "do",
        "text": "Always a text label. An icon beside it is optional."
@@ -1329,8 +1489,12 @@
      "id": "menu-disabled",
      "name": "Disabled item",
      "classes": ".menu-item.disabled + aria-disabled",
-     "note": "An action that exists but cannot be used right now.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "An action that exists but cannot be used right now."
+      },
       {
        "kind": "do",
        "text": "Prefer hiding actions people can never use. Disable only when the reason is clear from the page."
@@ -1359,8 +1523,12 @@
      "id": "menu-placement",
      "name": "Placement",
      "classes": "data-bs-placement=\"bottom-start\" · \"bottom-end\"",
-     "note": "Menus open below their trigger, aligned to its start edge. Triggers at the end of a row or page open aligned to the end edge, so the menu stays on screen.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Menus open below their trigger, aligned to its start edge. Triggers at the end of a row or page open aligned to the end edge, so the menu stays on screen."
+      },
       {
        "kind": "code",
        "text": "Use logical placements (<code>start</code>, <code>end</code>) so the menu flips for right-to-left languages."
@@ -1390,8 +1558,12 @@
      "id": "menu-overflow",
      "name": "Overflow menu",
      "classes": "btn-text theme-primary btn-xs + .menu",
-     "note": "Holds the less frequent actions on an item, behind a “More” row action.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Holds the less frequent actions on an item, behind a “More” row action."
+      },
       {
        "kind": "do",
        "text": "The trigger is a Row action labelled “More”, with the ellipsis icon."
@@ -1429,8 +1601,12 @@
      "id": "menu-not-allowed",
      "name": "Not allowed",
      "classes": "",
-     "note": "Bootstrap supports more than we use.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Bootstrap supports more than we use."
+      },
       {
        "kind": "dont",
        "text": "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items."
@@ -1473,12 +1649,16 @@
      "classes": ".check.check-sm + label",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/",
      "replaces": "checkbox .checkbox > label > input",
-     "note": "Replace. The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label, so the whole row is the hit target, and it drops .check-sm.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo\"><label for=\"map-check-demo\">Different name for applicants/agents</label></div>\n<div class=\"form-field\"><input type=\"checkbox\" class=\"check check-sm\" id=\"map-check-demo-2\" checked=\"checked\" aria-describedby=\"map-check-demo-2-help\"><label for=\"map-check-demo-2\">Notify agents on publish</label></div>\n<small class=\"form-text\" id=\"map-check-demo-2-help\" style=\"font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)\">Sends one email per agent when the audition goes live.</small>",
      "rules": [
+      {
+       "kind": "do",
+       "text": "The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label, so the whole row is the hit target, and it drops .check-sm."
+      },
       {
        "kind": "code",
        "text": "Everywhere except menus: the input sits beside its label, joined by <code>for</code> and <code>id</code>."
@@ -1505,7 +1685,7 @@
      "classes": ".chip + .chip-dismiss, a.chip",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/chips/",
      "replaces": "(none)",
-     "note": "Removable tokens for applied filters, and links to attached files.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -1515,6 +1695,10 @@
      ],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Removable tokens for applied filters, and links to attached files."
+      },
       {
        "kind": "a11y",
        "text": "The remove button keeps its 16px icon but has a 24×24px hit area (an invisible ::after in filmmakers.css), so it meets WCAG 2.2 target size.",
@@ -1555,11 +1739,15 @@
      "classes": ".combobox-toggle + .menu + .check / .radio",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/combobox/",
      "replaces": "dropdown of checkboxes .dropdown + .checkbox",
-     "note": "Replace. Multi-select filter: the toggle shows the label and the selection (“Language: 2 selected”), the menu holds one checkbox per value, and a .combobox-search input appears once the list passes six entries. One control for every filter: single-value filters carry radio items, multi-value filters checkbox items, and the toggle always reads label plus value. Replaces the native select the product used before (FRM-2, retired), including the Sort by control. Two deviations to settle: the checkbox is nested inside label.menu-item rather than paired by for/id (see FRM-9), and it resets --bs-theme-bg / --bs-theme-contrast because a themed .menu parent would otherwise paint the unchecked box in the menu's own fill.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Multi-select filter: the toggle shows the label and the selection (“Language: 2 selected”), the menu holds one checkbox per value, and a .combobox-search input appears once the list passes six entries. One control for every filter: single-value filters carry radio items, multi-value filters checkbox items, and the toggle always reads label plus value. Replaces the native select the product used before (FRM-2, retired), including the Sort by control. Two deviations to settle: the checkbox is nested inside label.menu-item rather than paired by for/id (see FRM-9), and it resets --bs-theme-bg / --bs-theme-contrast because a themed .menu parent would otherwise paint the unchecked box in the menu's own fill."
+      },
       {
        "kind": "do",
        "text": "The toggle always reads <b>label: value</b>, for example “Status: Active” or “Language: 2 selected”, so a filter reads as a sentence."
@@ -1654,7 +1842,7 @@
      "classes": ".form-field + .form-label + .form-text",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/field/",
      "replaces": "form-group + control-label",
-     "note": "Every form control sits in a .form-field with its label above it. Labels are weight 600, sentence case.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -1691,6 +1879,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "Every form control sits in a .form-field with its label above it. Labels are weight 600, sentence case."
+      },
       {
        "kind": "do",
        "text": "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels."
@@ -1741,7 +1933,7 @@
      "classes": ".form-control.form-control-sm",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/",
      "replaces": "form-control",
-     "note": "Text inputs, textareas and selects all use .form-control in Bootstrap 6. Shown here on their own; in a form, wrap each in a Field.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -1780,6 +1972,10 @@
      "rules": [
       {
        "kind": "do",
+       "text": "Text inputs, textareas and selects all use .form-control in Bootstrap 6. Shown here on their own; in a form, wrap each in a Field."
+      },
+      {
+       "kind": "do",
        "text": "Controls are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states."
       },
       {
@@ -1812,12 +2008,18 @@
      "classes": ".input-group.input-group-sm",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/",
      "replaces": "input-group .input-group-btn",
-     "note": "Direct, with input-group-btn retired. The button now sits directly in the group.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<div class=\"input-group input-group-sm\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"flex:0 0 auto;width:120px\"><span class=\"combobox-value\">Profile</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><input class=\"form-control\" placeholder=\"Search...\" aria-label=\"Search\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "The button now sits directly in the group."
+      }
+     ]
     },
     {
      "code": "FRM-4",
@@ -1826,12 +2028,18 @@
      "classes": ".input-group-text",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/",
      "replaces": "input-group-addon",
-     "note": "Direct. Used as the separator between Block from and to.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<div class=\"input-group input-group-sm\" style=\"max-width:220px\"><input class=\"form-control\" placeholder=\"from\" aria-label=\"Block from\"><span class=\"input-group-text\">—</span><input class=\"form-control\" placeholder=\"to\" aria-label=\"Block to\"></div>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Used as the separator between Block from and to."
+      }
+     ]
     }
    ]
   },
@@ -1848,12 +2056,18 @@
      "classes": ".radio .radio-sm  + label",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#radios",
      "replaces": "radio .radio > label > input",
-     "note": "Replace. Same pattern as the checkbox: input beside the label, joined by for/id. Group them in a fieldset with a legend so the set has one accessible name.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<fieldset style=\"border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px\"><legend style=\"font-size:var(--bs-font-size-sm);font-weight:600;margin:0 0 4px;padding:0;float:none;width:auto;border:0\">Profile visibility</legend>\n<div class=\"form-field\"><input type=\"radio\" class=\"radio radio-sm\" name=\"map-visibility\" id=\"map-pv-all\" checked=\"checked\"><label for=\"map-pv-all\">Visible to all Casters</label></div>\n<div class=\"form-field\"><input type=\"radio\" class=\"radio radio-sm\" name=\"map-visibility\" id=\"map-pv-agency\"><label for=\"map-pv-agency\">Only visible to My Casting Agency 123</label></div>\n</fieldset>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Same pattern as the checkbox: input beside the label, joined by for/id. Group them in a fieldset with a legend so the set has one accessible name."
+      }
+     ]
     }
    ]
   },
@@ -1878,8 +2092,12 @@
      "name": "Star rating",
      "classes": ".fm-rating > [role=radiogroup] > label.btn-check.btn-text.btn-icon > input[type=radio] + fa-star",
      "replaces": "ajaxful-rating / rating stars ul.ajaxful-rating, .fa-star",
-     "note": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view).",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view)."
+      },
       {
        "kind": "a11y",
        "text": "The stars sit in a <code>role=\"radiogroup\"</code> with <code>aria-labelledby</code> pointing at a visible label that says what is rated (for example “Text fluency”). Each star’s radio has <code>aria-label=\"n out of 5 stars\"</code>."
@@ -1983,12 +2201,18 @@
      "classes": ".form-field > .switch + label",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#switches",
      "replaces": "radio_switch",
-     "note": "A switch inside a Field, like Checkbox and Radio: the switch in column one, its label beside it.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<div class=\"form-field\"><div class=\"switch\"><input type=\"checkbox\" role=\"switch\" id=\"map-switch\" checked></div><label for=\"map-switch\">Expert mode</label></div>",
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "A switch inside a Field, like Checkbox and Radio: the switch in column one, its label beside it."
+      }
+     ]
     },
     {
      "code": "FRM-8",
@@ -1997,7 +2221,7 @@
      "classes": ".switch.theme-primary inside a bordered pill (.border-primary .rounded-pill)",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/switch/",
      "replaces": "production mode pill new_production_dialog_mode_form; the All / Fitting filter pill",
-     "note": "A switch between two named options in a bordered pill: the option on the left is off, the option on the right is on and in the primary colour. Used for Lite and Expert mode, and for All and Fitting profiles. In the header band the pill takes the body background so it lifts off the tint, and it hides below md.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -2016,7 +2240,13 @@
        "html": "<div class=\"d-flex align-items-center gap-2 border border-primary rounded-pill px-3 py-1 fs-sm\" style=\"width:fit-content\"><div class=\"d-flex align-items-center gap-2\"><span class=\"fg-3\">All</span><div class=\"switch theme-primary\"><input role=\"switch\" aria-label=\"Show fitting profiles\" type=\"checkbox\" id=\"fitting_switch_specimen\"></div><label class=\"fg-primary fw-semibold\" for=\"fitting_switch_specimen\">Fitting</label></div></div>"
       }
      ],
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "A switch between two named options in a bordered pill: the option on the left is off, the option on the right is on and in the primary colour. Used for Lite and Expert mode, and for All and Fitting profiles. In the header band the pill takes the body background so it lifts off the tint, and it hides below md."
+      }
+     ]
     }
    ]
   },
@@ -2034,7 +2264,7 @@
      "classes": ".is-invalid + .invalid-feedback, [data-bs-validate]",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/validation/",
      "replaces": "has-error + help-block",
-     "note": "Errors sit next to the field and say how to fix it. On submit, a summary at the top links to each invalid field.",
+     "note": "",
      "unresolved": false,
      "layout": "row",
      "examples": [
@@ -2071,6 +2301,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "Errors sit next to the field and say how to fix it. On submit, a summary at the top links to each invalid field."
+      },
       {
        "kind": "do",
        "text": "Validate on blur, never on each keystroke and never before the person has typed."
@@ -2127,12 +2361,18 @@
      "classes": ".card / .card-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "production-box / box",
-     "note": "Consolidate. Same component as the audition overview box; flat and border-led, no shadow.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<div class=\"card\"><div class=\"card-body\" style=\"display:flex;gap:12px;align-items:center\"><div style=\"width:48px;height:48px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5)\"></div><div><div style=\"font-weight:600\">Das Supertalent</div><div style=\"font-size:12px;color:var(--bs-fg-3)\">Season 14</div></div></div></div>",
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Same component as the audition overview box; flat and border-led, no shadow."
+      }
+     ]
     },
     {
      "code": "CNT-7",
@@ -2141,12 +2381,18 @@
      "classes": ".card-header",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/#header-and-footer",
      "replaces": "panel-heading",
-     "note": "Replace. Panels became cards after v3.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "example": "<div class=\"card\"><div class=\"card-header\" style=\"font-weight:600\">Roles</div><div class=\"card-body\" style=\"font-size:14px;color:var(--bs-fg-2)\">2 roles in this audition</div></div>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Panels became cards after v3."
+      }
+     ]
     }
    ]
   },
@@ -2166,8 +2412,12 @@
      "name": "Definition list",
      "classes": "dl grid: minmax(120px, 180px) minmax(0, 1fr)",
      "replaces": "dl-horizontal .dl-horizontal, .dl-horizontal-double-width-label",
-     "note": "Label and value pairs in two columns: attributes, details, or a dated log of activity. Replaces CNT-8, which was removed in review, and the activity list (CNT-16). Used on Sedcard (Summary view).",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Label and value pairs in two columns: attributes, details, or a dated log of activity. Replaces CNT-8, which was removed in review, and the activity list (CNT-16). Used on Sedcard (Summary view)."
+      },
       {
        "kind": "do",
        "text": "Two columns, labels and values. Show only rows that have a value."
@@ -2219,7 +2469,7 @@
      "classes": "details.accordion-item > summary.accordion-header + .fm-accordion-label + .accordion-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/accordion/",
      "replaces": "expander .collapse / .in",
-     "note": "Hides secondary content behind a header people can open, such as Statistics or Additional information. Bootstrap 6 builds it from native details and summary, so it needs no JavaScript and the open state is announced without ARIA.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -2229,6 +2479,10 @@
      ],
      "layout": "full",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Hides secondary content behind a header people can open, such as Statistics or Additional information. Bootstrap 6 builds it from native details and summary, so it needs no JavaScript and the open state is announced without ARIA."
+      },
       {
        "kind": "code",
        "text": "Always <code>.accordion-sm</code>, to match the 14px body text and small controls."
@@ -2293,7 +2547,7 @@
      "classes": ".alert.theme-info",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
      "replaces": "alert alert-info .alert-link",
-     "note": "A banner for a condition that is still true. Top of the content area, one per page.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -2328,6 +2582,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "A banner for a condition that is still true. Top of the content area, one per page."
+      },
       {
        "kind": "do",
        "text": "Alerts are for conditions that are still true. Something that just happened is a Toast."
@@ -2371,7 +2629,7 @@
      "classes": ".toast-container > .toast",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/toasts/",
      "replaces": "(none)",
-     "note": "Confirms that something just happened. It takes the status theme of the outcome, with an icon beside the text.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -2392,6 +2650,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "Confirms that something just happened. It takes the status theme of the outcome, with an icon beside the text."
+      },
       {
        "kind": "do",
        "text": "Toasts report events: something just happened. A condition that is still true is an Alert."
@@ -2438,11 +2700,15 @@
      "classes": ".progress > .progress-bar",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/progress/",
      "replaces": "progress .progress-bar with inline width",
-     "note": "Shows how far a task, such as an upload, has got. Shown while the file uploads, then replaced by the file row. The fill is Bootstrap blue-600 through --bs-progress-bar-bg, never the customer primary.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Shows how far a task, such as an upload, has got. Shown while the file uploads, then replaced by the file row. The fill is Bootstrap blue-600 through --bs-progress-bar-bg, never the customer primary."
+      },
       {
        "kind": "a11y",
        "text": "<code>role=\"progressbar\"</code> and the aria-value attributes sit on the outer <code>.progress</code> in Bootstrap 6; the bar keeps only its width.",
@@ -2494,7 +2760,7 @@
      "classes": "data-bs-toggle=\"tooltip\"",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/tooltips/",
      "replaces": "tooltip data-toggle",
-     "note": "A short label shown on hover and keyboard focus. Required on every icon-only control.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -2513,6 +2779,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "A short label shown on hover and keyboard focus. Required on every icon-only control."
+      },
       {
        "kind": "a11y",
        "text": "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus."
@@ -2547,7 +2817,7 @@
      "classes": ".popover + .popover-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/popovers/",
      "replaces": "(none)",
-     "note": "Opens on click from the button that names it, below the button. Closes on outside click and Esc.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -2565,6 +2835,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "Opens on click from the button that names it, below the button. Closes on outside click and Esc."
+      },
       {
        "kind": "do",
        "text": "Opened by a click, never by hover."
@@ -2601,8 +2875,12 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/dialog/",
      "replaces": "modal .modal / .modal-dialog",
      "guide": "patterns/destructive-actions.md",
-     "note": "A short task or decision on top of the page: one decision, or a form of about six fields. Bootstrap 6 Dialog, built on the native dialog element, which traps focus, closes on Esc and returns focus to the button that opened it.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A short task or decision on top of the page: one decision, or a form of about six fields. Bootstrap 6 Dialog, built on the native dialog element, which traps focus, closes on Esc and returns focus to the button that opened it."
+      },
       {
        "kind": "a11y",
        "text": "Label it with <code>aria-labelledby</code> pointing at the title."
@@ -2704,7 +2982,7 @@
      "classes": ".badge.theme-* + .badge-subtle",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
      "replaces": "label label-default .label-danger",
-     "note": "Small labels for a state or a count. Always text, never colour alone.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -2725,6 +3003,10 @@
      "rules": [
       {
        "kind": "do",
+       "text": "Small labels for a state or a count. Always text, never colour alone."
+      },
+      {
+       "kind": "do",
        "text": "Status badges are subtle and use the status theme for their meaning: success for Active, warning when someone still has to act for it to be complete (e.g. Invited), secondary for Inactive or neutral states (colours meaning open to review and changes)."
       },
       {
@@ -2741,7 +3023,7 @@
      "classes": ".position-absolute.top-0.start-100.translate-middle.p-1.bg-danger.rounded-circle",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/",
      "replaces": "notification-icon",
-     "note": "A small dot that says something new is waiting, with no number. It can sit on any icon, or after any text label: an icon button, a tab, a link or a menu item.",
+     "note": "",
      "unresolved": true,
      "flags": [
       {
@@ -2771,6 +3053,10 @@
      "rules": [
       {
        "kind": "do",
+       "text": "A small dot that says something new is waiting, with no number. It can sit on any icon, or after any text label: an icon button, a tab, a link or a menu item."
+      },
+      {
+       "kind": "do",
        "text": "Only means “something new here”. When the number matters, use a count <a href=\"#msg-2\">Badge</a> instead."
       },
       {
@@ -2794,7 +3080,7 @@
      "classes": ".avatar.avatar-xs.theme-secondary",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/",
      "replaces": "user avatar custom",
-     "note": "Replace. A photo when there is one, otherwise initials, weight 600 via the remapped medium token. Client people can carry the client zone orange.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "full",
@@ -2818,6 +3104,10 @@
      ],
      "rules": [
       {
+       "kind": "do",
+       "text": "A photo when there is one, otherwise initials, weight 600 via the remapped medium token. Client people can carry the client zone orange."
+      },
+      {
        "kind": "a11y",
        "text": "A photo’s <code>alt</code> is the person’s name, unless the name is shown right beside it; then <code>alt=\"\"</code>."
       }
@@ -2830,7 +3120,7 @@
      "classes": ".avatar-stack.avatar-stack-sm",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/#stacks",
      "replaces": "avatar list custom",
-     "note": "Replace.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "full",
@@ -2883,7 +3173,7 @@
      "classes": "input-group + combobox-toggle + chip",
      "docs": "",
      "replaces": "filter bar inline labels + selects",
-     "note": "Use it to find the right records in large sets of data, such as actors, locations or crew. People search and combine several filters to narrow the pool, so every applied filter shows as a chip they can remove on its own.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -2893,6 +3183,10 @@
      ],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Use it to find the right records in large sets of data, such as actors, locations or crew. People search and combine several filters to narrow the pool, so every applied filter shows as a chip they can remove on its own."
+      },
       {
        "kind": "do",
        "text": "Order: search, inline filters (up to three), More filters, then Sort by at the far end."
@@ -2995,10 +3289,14 @@
      "classes": "input-group + btn-subtle theme-secondary + menu (data-bs-toggle=\"menu\")",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
      "replaces": "filter bar inline labels + selects",
-     "note": "Use it to find one item in a shorter, familiar list, such as coworkers or projects. A few filters sit in the bar and each one shows its current value, so no chip row is needed.",
+     "note": "",
      "unresolved": false,
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Use it to find one item in a shorter, familiar list, such as coworkers or projects. A few filters sit in the bar and each one shows its current value, so no chip row is needed."
+      },
       {
        "kind": "do",
        "text": "Two zones: search, the filters and Clear filters on the left; Sort by on its own at the top right."
@@ -3080,7 +3378,7 @@
      "classes": "",
      "docs": "",
      "replaces": "(none)",
-     "note": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, they become one Button group (More filters and a sort icon), each filter in the row takes the full width, and the chips become one button that opens the Applied filters dialog.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
@@ -3091,6 +3389,12 @@
        "wide": true,
        "caption": "1240, 1040, 760 and 440px, each with two languages applied, so the chips (or, at 440px, the applied filters chip) show.",
        "html": "<div style=\"display:flex;flex-direction:column;gap:20px;padding-bottom:200px\"><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1240px</b> · Two inline filters</span><div data-filterbar data-variant=\"bar\" style=\"width:1240px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">1040px</b> · One inline filter</span><div data-filterbar data-variant=\"bar\" style=\"width:1040px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">760px</b> · No inline filters: every filter is in More filters</span><div data-filterbar data-variant=\"bar\" style=\"width:760px;max-width:none\"></div></div><div style=\"display:flex;flex-direction:column;gap:6px\"><span class=\"fs-xs fg-3\"><b class=\"fg-2\">440px</b> · Compact: More filters and Sort by in one Button group; chips become “2 filters applied”</span><div data-filterbar data-variant=\"bar\" style=\"width:440px;max-width:none\"></div></div></div>"
+      }
+     ],
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Filters move into More filters as space runs out. When More filters and Sort by would overlap, they become one Button group (More filters and a sort icon), each filter in the row takes the full width, and the chips become one button that opens the Applied filters dialog."
       }
      ]
     }
@@ -3109,11 +3413,15 @@
      "classes": ".table",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/",
      "replaces": "table table-striped",
-     "note": "Rows of records inside a card. Column headers are weight 600 from the product layer; row actions sit in an actions column.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Rows of records inside a card. Column headers are weight 600 from the product layer; row actions sit in an actions column."
+      },
       {
        "kind": "do",
        "text": "Put the table in a card with no padding, so the filter bar, table and footer share one frame."
@@ -3153,11 +3461,15 @@
      "classes": "count + NAV-10 in a bordered row",
      "docs": "",
      "replaces": "result count above the table",
-     "note": "The range count on the left and pagination on the right, on bg-1 at the bottom of the table card. The same range string feeds the filter bar count row, so the two never disagree.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "The range count on the left and pagination on the right, on bg-1 at the bottom of the table card. The same range string feeds the filter bar count row, so the two never disagree."
+      },
       {
        "kind": "do",
        "text": "The count names the thing: “1-3 of 4 coworkers”, not “1-3 of 4”."
@@ -3201,11 +3513,15 @@
      "classes": ".card + .card-body",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "well / no-data text",
-     "note": "What shows in place of a list when there is nothing to show. It replaces the table, including its headers.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "row",
      "rules": [
+      {
+       "kind": "do",
+       "text": "What shows in place of a list when there is nothing to show. It replaces the table, including its headers."
+      },
       {
        "kind": "do",
        "text": "Name the state, and say what to do next."
@@ -3253,7 +3569,7 @@
      "classes": ".card + .fm-action-gutter + .menu",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "project summary box with red gutter",
-     "note": "Summarises a Project at the top of its pages and holds the Project-level actions. Once per page. Built from Card, the Action gutter, Row actions, the Overflow menu and a Chip.",
+     "note": "",
      "unresolved": false,
      "layout": "full",
      "examples": [
@@ -3273,6 +3589,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "Summarises a Project at the top of its pages and holds the Project-level actions. Once per page. Built from Card, the Action gutter, Row actions, the Overflow menu and a Chip."
+      },
       {
        "kind": "do",
        "text": "One card per project. Content on the left, the Action gutter on the right. The old red-tinted gutter is gone: colour is for actions and states."
@@ -3347,12 +3667,18 @@
      "classes": ".card-body + .avatar-stack",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "Coworkers / Clients boxes",
-     "note": "Replace. The no-access variant uses bg-1 with a lock icon and text, never colour alone.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "stack",
      "example": "<div class=\"card\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:12px\"><span style=\"color:var(--bs-fg-3)\">Coworkers:</span><div class=\"avatar-stack avatar-stack-sm\"><span class=\"avatar avatar-sm theme-secondary\">DZ</span><span class=\"avatar avatar-sm theme-secondary\">CS</span><span class=\"avatar avatar-sm theme-secondary\">+3</span></div></div></div><div class=\"card\" style=\"background:var(--bs-bg-1)\"><div class=\"card-body\" style=\"display:flex;align-items:center;gap:8px;color:var(--bs-fg-2)\"><i class=\"fa-solid fa-lock\" aria-hidden=\"true\"></i>No access to clients</div></div>",
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "The no-access variant uses bg-1 with a lock icon and text, never colour alone."
+      }
+     ]
     }
    ]
   },
@@ -3372,8 +3698,12 @@
      "name": "Section heading",
      "classes": "h2 + border-bottom",
      "replaces": "h3 section heading h3",
-     "note": "One heading per page section, with an optional action on the same line. Used on Sedcard (Summary view).",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "One heading per page section, with an optional action on the same line. Used on Sedcard (Summary view)."
+      },
       {
        "kind": "do",
        "text": "16px is enough above 14px content. Other sizes can be added as separate Section heading versions if a page needs them."
@@ -3410,7 +3740,7 @@
      "classes": "bg-1 + border-inline-start",
      "docs": "",
      "replaces": "action panel tinted gutter",
-     "note": "Replace. Row actions are always visible, never revealed on hover. The gutter tint is --bs-bg-1 on every page; the buttons inside are always CNT-13.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -3420,7 +3750,13 @@
      ],
      "layout": "row",
      "example": "<div style=\"display:grid;grid-template-columns:minmax(0,1fr) 132px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden\"><div style=\"padding:12px 16px;font-size:14px\">Season 14: Erste Runde</div><div style=\"background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0\"><button type=\"button\" class=\"btn-text theme-primary btn-xs\"><i class=\"fa-solid fa-pencil\" aria-hidden=\"true\"></i>Edit</button><div><button type=\"button\" class=\"btn-text theme-primary btn-xs\" data-bs-toggle=\"menu\" aria-expanded=\"false\" aria-label=\"More actions for Season 14: Erste Runde\"><i class=\"fa-solid fa-ellipsis\" aria-hidden=\"true\"></i>More</button><div class=\"menu\"><button type=\"button\" class=\"menu-item theme-danger\">Remove</button></div></div></div></div>",
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Row actions are always visible, never revealed on hover. The gutter tint is --bs-bg-1 on every page; the buttons inside are always CNT-13."
+      }
+     ]
     },
     {
      "code": "CNT-13",
@@ -3429,7 +3765,7 @@
      "classes": "btn-text theme-primary btn-xs + .menu",
      "docs": "",
      "replaces": "row action links separated by |",
-     "note": "One component for every row action group. Each action is a boolean prop (messages, edit, duplicate, viewAsApplicant, copyMove, unsubscribe, remove, more), so pages cannot drift. layout=\"stack\" fills an Action gutter; layout=\"inline\" sits in a table cell. The v3 pipe separators are gone: spacing comes from flex gap.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -3440,6 +3776,10 @@
      "layout": "row",
      "guide": "products/filmmakers-system/components/buttons.md",
      "rules": [
+      {
+       "kind": "do",
+       "text": "One component for every row action group. Each action is a boolean prop (messages, edit, duplicate, viewAsApplicant, copyMove, unsubscribe, remove, more), so pages cannot drift. layout=\"stack\" fills an Action gutter; layout=\"inline\" sits in a table cell. The v3 pipe separators are gone: spacing comes from flex gap."
+      },
       {
        "kind": "do",
        "text": "Every action is a Row action with an icon and a text label."
@@ -3514,8 +3854,12 @@
      "name": "Profile header",
      "classes": "picture + h1 + badge + meta + Accordion (CNT-5) + action stack",
      "replaces": "caster-header .caster-header + .caster-picture + .caster-header--actions",
-     "note": "The top of a profile (Sedcard): picture, name, status, meta line, important information and the profile actions. Used on Sedcard (Summary view).",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "The top of a profile (Sedcard): picture, name, status, meta line, important information and the profile actions. Used on Sedcard (Summary view)."
+      },
       {
        "kind": "do",
        "text": "Picture on the left: square, 160px wide, matching production. With no picture, the placeholder, as in the <a href=\"#cnt-10\">Profile tile</a>. Under it, two icon-only outline buttons for the profile’s Videos and Pictures, at the medium size, each with a tooltip. This is a decided exception to the button sizes (medium is otherwise for empty states and roomy screens): under a large picture, small icon buttons get lost."
@@ -3566,8 +3910,12 @@
      "name": "Section toggle bar",
      "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
      "replaces": "profile-sections label > input[type=checkbox]",
-     "note": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view).",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "Shows and hides the sections of a page. It applies at once, so it never sits in a form with a Save button. Used on Sedcard (Summary view)."
+      },
       {
        "kind": "a11y",
        "text": "The <code>legend</code> is visually hidden (“Sections shown on this page”)."
@@ -3630,8 +3978,12 @@
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
      "classes": "btn-text theme-secondary btn-sm + .menu",
      "replaces": "dropdown, dropdown-menu-right, language switch",
-     "note": "The two menus at the right of the header: the account menu and the language switch. Both use the standard Menu, opened from a text button.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "The two menus at the right of the header: the account menu and the language switch. Both use the standard Menu, opened from a text button."
+      },
       {
        "kind": "do",
        "text": "Header controls carry no primary colour."
@@ -3687,13 +4039,19 @@
      "classes": "--bs-primary-bg-subtle",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/",
      "replaces": "subheader fixed green band",
-     "note": "Replace. Tint derives from the per-user primary, not a fixed green. Three zones. The home icon sits alone in a chevron-clipped block on --bs-primary-bg-muted and turns solid primary with a white glyph on hover; the breadcrumb sits on the band tint; from the slanted divider onwards the band lightens (primary-bg-subtle mixed 45% with the body) and runs behind the tabs and the mode pill (FRM-8). The band never widens the page — the tab strip is the only part that scrolls.",
+     "note": "",
      "unresolved": false,
      "flags": [],
      "layout": "full",
      "example": "<nav class=\"navbar border rounded theme-primary\" style=\"background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden\"><div class=\"container-fluid\" style=\"padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%\"><div style=\"display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)\"><a class=\"nav-link\" href=\"#\" aria-label=\"Home\" data-bs-toggle=\"tooltip\" data-bs-title=\"Home\" style=\"display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)\" style-hover=\"background:var(--bs-primary-bg);color:var(--bs-primary-contrast)\"><i class=\"fa-solid fa-house\" aria-hidden=\"true\"></i></a></div><div style=\"display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap\">Best Movie Ev...</div><div style=\"display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))\"><span aria-hidden=\"true\" style=\"flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)\"></span><nav class=\"nav nav-underline\" style=\"gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)\"><a class=\"nav-link\" href=\"#\" style=\"padding:10px 10px;flex:0 0 auto\">Audition</a><a class=\"nav-link active\" href=\"#\" aria-current=\"page\" style=\"padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)\">Selection</a></nav></div></div></nav>",
      "id": "shell-subheader",
-     "replacesFrom": "custom"
+     "replacesFrom": "custom",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Tint derives from the per-user primary, not a fixed green. Three zones. The home icon sits alone in a chevron-clipped block on --bs-primary-bg-muted and turns solid primary with a white glyph on hover; the breadcrumb sits on the band tint; from the slanted divider onwards the band lightens (primary-bg-subtle mixed 45% with the body) and runs behind the tabs and the mode pill (FRM-8). The band never widens the page — the tab strip is the only part that scrolls."
+      }
+     ]
     }
    ]
   },
@@ -3712,7 +4070,7 @@
      "classes": "footer.bg-1.border-top + responsive flex utilities + btn-link / btn-text / btn-outline",
      "docs": "",
      "replaces": "c-site-footer",
-     "note": "The strip at the bottom of every page: Ask support and the language, the legal links and social media, then the copyright and Back to top. Production already builds it from Bootstrap 6 classes; this is that markup.",
+     "note": "",
      "unresolved": false,
      "flags": [
       {
@@ -3721,6 +4079,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "The strip at the bottom of every page: Ask support and the language, the legal links and social media, then the copyright and Back to top. Production already builds it from Bootstrap 6 classes; this is that markup."
+      },
       {
        "kind": "do",
        "text": "The same footer on every page, at the bottom of the page."
@@ -3787,8 +4149,12 @@
      "classes": "heading + card > Simple search and filter + table + table footer",
      "docs": "",
      "replaces": "",
-     "note": "A list page such as Coworkers: section heading with the page’s primary action, then one card holding the Simple search and filter bar, the count, the table and the table footer.",
+     "note": "",
      "rules": [
+      {
+       "kind": "do",
+       "text": "A list page such as Coworkers: section heading with the page’s primary action, then one card holding the Simple search and filter bar, the count, the table and the table footer."
+      },
       {
        "kind": "do",
        "text": "One card holds the bar, the table and the footer."
@@ -3842,7 +4208,7 @@
      "classes": ".card > .list-group-flush > .list-group-item > .fm-production-row + .fm-action-gutter",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/list-group/#flush",
      "replaces": "production-entity-list (#castings, #episodes .is-selection)",
-     "note": "A list of production entities, such as Auditions and Selections. Each row has a title, one to four columns that the page supplies, and an Action gutter. One shell for every such list.",
+     "note": "",
      "unresolved": false,
      "layout": "full",
      "examples": [
@@ -3862,6 +4228,10 @@
       }
      ],
      "rules": [
+      {
+       "kind": "do",
+       "text": "A list of production entities, such as Auditions and Selections. Each row has a title, one to four columns that the page supplies, and an Action gutter. One shell for every such list."
+      },
       {
        "kind": "code",
        "text": "Every row in a list shares one <code>grid-template-columns</code>, so the columns line up.",
@@ -3954,10 +4324,14 @@
      "classes": ".card + .card-img-top + .badge + .btn-icon",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "profile tile (photo with name and role overlay)",
-     "note": "One applicant in an Audition role, in a grid: 3:4 photo, name and role, a badge and open in a new tab. Needs improving before it can be used.",
+     "note": "",
      "unresolved": true,
      "layout": "full",
      "rules": [
+      {
+       "kind": "do",
+       "text": "One applicant in an Audition role, in a grid: 3:4 photo, name and role, a badge and open in a new tab. Needs improving before it can be used."
+      },
       {
        "kind": "a11y",
        "text": "The grid has <code>role=\"list\"</code> and each tile <code>role=\"listitem\"</code>."
@@ -4044,10 +4418,14 @@
      "classes": ".card + .check + tooltip + .fm-tile-band + .fm-status + .fm-tile-grid + .fm-view-switch",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/",
      "replaces": "Search results profile tile (.tile and the list view .actor-profile-list-item-content)",
-     "note": "One profile in Profile search results, where people pick profiles. It matches production: a square headshot with the name over it on a translucent band, a colour-coded status icon before the name, and a checkbox top right that shows on hover. Hovering the tile shows the status, ID, name and agency. List view shows the same profile as a row.",
+     "note": "",
      "unresolved": true,
      "layout": "full",
      "rules": [
+      {
+       "kind": "do",
+       "text": "One profile in Profile search results, where people pick profiles. It matches production: a square headshot with the name over it on a translucent band, a colour-coded status icon before the name, and a checkbox top right that shows on hover. Hovering the tile shows the status, ID, name and agency. List view shows the same profile as a row."
+      },
       {
        "kind": "do",
        "text": "Grid view: square photos, or the placeholder when there is no photo."
@@ -4188,7 +4566,7 @@
      "classes": ".alert.theme-info[role=\"note\"]",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
      "replaces": "help-block beside a card .help-block",
-     "note": "Replace. Guidance for a whole card, so not a form-text: that is reserved for the single control it is wired to with aria-describedby (FRM-5). role=\"note\" instead of role=\"alert\" because nothing changed and there is nothing to announce. The caret points at the card it explains.",
+     "note": "",
      "unresolved": true,
      "flags": [
       {
@@ -4198,7 +4576,13 @@
      ],
      "layout": "row",
      "example": "<div class=\"alert theme-info\" role=\"note\" style=\"margin:0;display:flex;gap:8px\"><i class=\"fa-solid fa-caret-left\" style=\"margin-top:3px\" aria-hidden=\"true\"></i><span>Determine the name of the Audition and provide as comprehensive information as possible.</span></div>",
-     "replacesFrom": "Bootstrap 3.4"
+     "replacesFrom": "Bootstrap 3.4",
+     "rules": [
+      {
+       "kind": "do",
+       "text": "Guidance for a whole card, so not a form-text: that is reserved for the single control it is wired to with aria-describedby (FRM-5). role=\"note\" instead of role=\"alert\" because nothing changed and there is nothing to announce. The caret points at the card it explains."
+      }
+     ]
     }
    ]
   }
