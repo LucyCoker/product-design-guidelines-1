@@ -856,10 +856,6 @@
      "note": "",
      "rules": [
       {
-       "kind": "do",
-       "text": "What every group needs, whatever its version."
-      },
-      {
        "kind": "a11y",
        "text": "The container has <code>role=\"group\"</code> (or <code>role=\"toolbar\"</code> for a toolbar) and an <code>aria-label</code> that names what the group does."
       },
@@ -896,26 +892,6 @@
       },
       {
        "kind": "dont",
-       "text": "All-primary groups, or any <code>btn-solid</code> button inside a group."
-      },
-      {
-       "kind": "dont",
-       "text": "Mixed variants or themes in one group, or <code>btn-text</code> inside a group."
-      },
-      {
-       "kind": "dont",
-       "text": "Destructive and non-destructive actions in the same group."
-      },
-      {
-       "kind": "dont",
-       "text": "More than three actions in a group."
-      },
-      {
-       "kind": "dont",
-       "text": "Switching between different content sets: use tabs. Switching views of the same content uses the Toggle group."
-      },
-      {
-       "kind": "dont",
        "text": "A yes/no or on/off choice: use a switch or checkbox. Choosing one value: use a radio group."
       },
       {
@@ -942,10 +918,6 @@
      "unresolved": false,
      "note": "",
      "rules": [
-      {
-       "kind": "do",
-       "text": "Not yet decided in the Button groups pattern. Do not build these until they are."
-      },
       {
        "kind": "other",
        "text": "Toolbars are parked in the <a href=\"#backlog\">Decisions backlog</a>."
