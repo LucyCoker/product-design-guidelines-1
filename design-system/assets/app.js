@@ -63,8 +63,7 @@ function rulesHtml(rules) {
   return [
     guidelines.length ? `<div class="lib-rules-a11y"><h4 class="fs-sm fw-semibold"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Notes from Guidelines</h4><ul class="lib-rules lib-rules-guide">${guidelines.map(ruleLi).join('')}</ul></div>` : '',
     a11y.length ? `<div class="lib-rules-a11y"><h4 class="fs-sm fw-semibold"><i class="fa-solid fa-universal-access" aria-hidden="true"></i>Accessibility${a11y.some((r) => r.devReview) ? DEV_BADGE : ''}</h4><ul class="lib-rules">${a11y.map(ruleLi).join('')}</ul></div>` : '',
-    code.length ? `<details class="lib-code lib-code-notes"><summary><i class="fa-solid fa-chevron-right fs-xs" aria-hidden="true"></i>Code notes<span class="lib-count">${code.length}</span>${code.some((r) => r.devReview) ? DEV_BADGE : ''}</summary>
-      <ul class="lib-rules">${code.map(ruleLi).join('')}</ul></details>` : '',
+    code.length ? `<div class="lib-rules-a11y lib-code-notes"><h4 class="fs-sm fw-semibold"><i class="fa-solid fa-code" aria-hidden="true"></i>Code notes${code.some((r) => r.devReview) ? DEV_BADGE : ''}</h4><ul class="lib-rules">${code.map(ruleLi).join('')}</ul></div>` : '',
     other.length ? `<div class="lib-rules-other"><h4 class="fs-xs fw-semibold fg-3">Other</h4><ul class="lib-rules">${other.map(ruleLi).join('')}</ul></div>` : ''
   ].join('')
 }
