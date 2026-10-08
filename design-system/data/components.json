@@ -742,10 +742,6 @@
        "text": "Four or more actions on the same object: keep the one or two used most in the group, and move the rest to an overflow menu at the end of the group."
       },
       {
-       "kind": "do",
-       "text": "The overflow trigger is the last button in the group, in the same outline style and size."
-      },
-      {
        "kind": "a11y",
        "text": "It is icon only, with an accessible name (<code>aria-label=\"More actions\"</code>) and a tooltip."
       },
