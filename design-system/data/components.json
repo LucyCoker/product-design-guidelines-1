@@ -2358,20 +2358,6 @@
       }
      ],
      "replacesFrom": "Bootstrap 3.4"
-    },
-    {
-     "code": "MSG-6",
-     "name": "Note",
-     "status": "Replace",
-     "classes": ".alert.theme-info[role=\"note\"]",
-     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
-     "replaces": "help-block beside a card .help-block",
-     "note": "Replace. Guidance for a whole card, so not a form-text: that is reserved for the single control it is wired to with aria-describedby (FRM-5). role=\"note\" instead of role=\"alert\" because nothing changed and there is nothing to announce. The caret points at the card it explains.",
-     "unresolved": false,
-     "flags": [],
-     "layout": "row",
-     "example": "<div class=\"alert theme-info\" role=\"note\" style=\"margin:0;display:flex;gap:8px\"><i class=\"fa-solid fa-caret-left\" style=\"margin-top:3px\" aria-hidden=\"true\"></i><span>Determine the name of the Audition and provide as comprehensive information as possible.</span></div>",
-     "replacesFrom": "Bootstrap 3.4"
     }
    ]
   },
@@ -4116,6 +4102,33 @@
       }
      ],
      "replacesFrom": "custom"
+    }
+   ]
+  },
+  {
+   "id": "cand-note",
+   "section": "candidates",
+   "title": "Note",
+   "intro": "Guidance for a whole card, beside it, with a caret pointing at the card. Waiting for a decision.",
+   "items": [
+    {
+     "code": "MSG-6",
+     "name": "Note",
+     "status": "Replace",
+     "classes": ".alert.theme-info[role=\"note\"]",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/",
+     "replaces": "help-block beside a card .help-block",
+     "note": "Replace. Guidance for a whole card, so not a form-text: that is reserved for the single control it is wired to with aria-describedby (FRM-5). role=\"note\" instead of role=\"alert\" because nothing changed and there is nothing to announce. The caret points at the card it explains.",
+     "unresolved": true,
+     "flags": [
+      {
+       "type": "ask",
+       "text": "Candidate: decide one of (a) keep it custom and document it, (b) align it with Bootstrap 6 defaults, or (c) review the UX of the whole page it lives on first."
+      }
+     ],
+     "layout": "row",
+     "example": "<div class=\"alert theme-info\" role=\"note\" style=\"margin:0;display:flex;gap:8px\"><i class=\"fa-solid fa-caret-left\" style=\"margin-top:3px\" aria-hidden=\"true\"></i><span>Determine the name of the Audition and provide as comprehensive information as possible.</span></div>",
+     "replacesFrom": "Bootstrap 3.4"
     }
    ]
   }

@@ -49,7 +49,7 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - Reversible destructive actions act at once and offer Undo. Irreversible ones confirm, naming the object.
 
 **Component candidates**
-- Entries in the Library's Component candidates section (the Production list, the Profile tile: Auditions and the Profile tile: search results) are waiting for a decision. Do not use them in new work.
+- Entries in the Library's Component candidates section (the Production list, the Profile tile: Auditions, the Profile tile: search results and the Note) are waiting for a decision. Do not use them in new work.
 
 **Search and filter**
 - Large sets (actors, crew, locations): the Complex bar. Search, up to three filters, More filters (opens a row of extra filters in the bar), then Sort by. Applied filters show as chips with Clear filters after the last one.
