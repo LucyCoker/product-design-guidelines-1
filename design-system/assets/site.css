@@ -439,3 +439,12 @@ body, .lib-top { background: var(--bs-bg-1); }
 
 /* No breadcrumbs on Library pages: the sidebar already shows where you are. */
 .lib-crumbs { display: none; }
+
+/* Overview and kit cards: white on the grey page, no outlines. Hover
+   underlines the card's name. */
+.lib-cards .card, .lib-steps .card { border: 0; }
+.lib-cards a.card:hover { border-color: transparent; }
+.lib-cards a.card:hover b { text-decoration: underline; text-underline-offset: 2px; }
+.lib-pager a { border: 0; }
+.lib-pager a:hover { background: var(--bs-bg-body); }
+.lib-pager a:hover b, .lib-pager a:hover strong { text-decoration: underline; text-underline-offset: 2px; }
