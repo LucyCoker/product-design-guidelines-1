@@ -862,7 +862,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Adds files where dropping helps, such as a script PDF or media. A drop area around a real file input: the button opens the file picker, and a file can also be dropped anywhere on the area. Shows progress while uploading, then the file. Production builds it with Uppy; this is the markup and behaviour."
+       "text": "Use where dropping helps, such as a script PDF or media. Production builds it with Uppy."
       },
       {
        "kind": "a11y",
@@ -882,19 +882,15 @@
       },
       {
        "kind": "do",
-       "text": "While a file is dragged over, the area shows the primary border and subtle fill (<code>.is-dragover</code>)."
+       "text": "While a file is dragged over, the area shows the primary border and a subtle fill."
       },
       {
        "kind": "do",
-       "text": "While it uploads: the file row with a <a href=\"#msg-7\">Progress</a> bar, its percentage and Cancel. Then the normal file row (icon, name, size, Remove)."
-      },
-      {
-       "kind": "a11y",
-       "text": "A polite live region says “… uploaded”."
+       "text": "While a file uploads, follow the <a href=\"#msg-7\">Progress</a> pattern."
       },
       {
        "kind": "do",
-       "text": "A wrong type or size is rejected with a message in <code>.invalid-feedback</code> under the area, naming the limit (“Only PDF files, up to 5 MB.”)."
+       "text": "A wrong type or size is rejected with a message under the area that names the limit (“Only PDF files, up to 5 MB.”)."
       },
       {
        "kind": "do",
@@ -943,7 +939,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "The divider is an element in v6, not a CSS ::after. In the header band it inherits the band’s text colour, the parent crumb hides below lg, and a long project name truncates with an ellipsis and keeps the full name in its title. The divider glyph comes from --bs-breadcrumb-divider; links take a white background on hover."
+       "text": "In the header band the parent crumb hides below lg, and a long project name truncates with an ellipsis and keeps the full name in its title."
       }
      ]
     },
@@ -963,7 +959,11 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Reads better than tabs on the tinted band. Resting links are the secondary text colour — set through --bs-theme-fg, because a theme-primary parent defines that token and it wins over --bs-nav-link-color. Hover takes a white background; the active tab takes the body background, weight 600 and the primary text colour so it reads as a lifted tab."
+       "text": "Use on the tinted band, where it reads better than tabs."
+      },
+      {
+       "kind": "code",
+       "text": "Resting links take the secondary text colour through <code>--bs-theme-fg</code>, because a <code>theme-primary</code> parent defines that token and it wins over <code>--bs-nav-link-color</code>."
       }
      ]
     },
@@ -983,7 +983,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "nav-justified was removed after v3. Counts are icon + text, not badges."
+       "text": "Counts are icon + text, not badges."
       }
      ]
     },
@@ -1000,12 +1000,7 @@
      "layout": "row",
      "example": "<nav class=\"nav nav-tabs nav-fill\"><a class=\"nav-link active\" href=\"#\">Invitation<i class=\"fa-regular fa-circle-question\" aria-hidden=\"true\"></i></a><a class=\"nav-link\" href=\"#\">Rating<i class=\"fa-regular fa-circle-question\" aria-hidden=\"true\"></i></a></nav>",
      "replacesFrom": "Bootstrap 3.4",
-     "rules": [
-      {
-       "kind": "do",
-       "text": "Two-step flow with a help icon per tab."
-      }
-     ]
+     "rules": []
     },
     {
      "code": "NAV-8",
@@ -1020,12 +1015,7 @@
      "layout": "row",
      "example": "<nav class=\"nav nav-tabs\" style=\"justify-content:flex-end;border-bottom:0;flex-wrap:nowrap\"><a class=\"nav-link active\" href=\"#\">Upload view</a><a class=\"nav-link\" href=\"#\">Sort view</a></nav>",
      "replacesFrom": "Bootstrap 3.4",
-     "rules": [
-      {
-       "kind": "do",
-       "text": "Bottom border removed so the tabs sit on the card below."
-      }
-     ]
+     "rules": []
     },
     {
      "code": "NAV-9",
@@ -1040,12 +1030,7 @@
      "layout": "row",
      "example": "<a class=\"nav-link\" href=\"#\" aria-label=\"Home\" data-bs-toggle=\"tooltip\" data-bs-title=\"Home\" style=\"display:inline-flex\"><i class=\"fa-solid fa-house\" aria-hidden=\"true\"></i></a>",
      "replacesFrom": "custom",
-     "rules": [
-      {
-       "kind": "do",
-       "text": "Carries aria-label and title."
-      }
-     ]
+     "rules": []
     },
     {
      "code": "NAV-10",
@@ -1063,19 +1048,14 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Sits in the table footer beside the range count. Icon-only previous and next carry an aria-label; the current page gets .active and aria-current, the ends get .disabled. Font Awesome chevrons, not Bootstrap’s SVG sprite. Used on Search and filter and Subscribers ."
+       "text": "Sits in the table footer, beside the range count."
       }
      ]
     },
     {
      "status": "Added",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/nav-overflow/",
-     "flags": [
-      {
-       "type": "info",
-       "text": "The mapping prototype set margin-inline-start:0 on .nav-overflow-item with script after init. The Library does it in filmmakers.css instead."
-      }
-     ],
+     "flags": [],
      "unresolved": false,
      "layout": "full",
      "code": "NAV-11",
@@ -1086,7 +1066,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways. Bootstrap 6 Nav overflow; it watches the width of its wrapper, not the window. Used on Sedcard (Summary view)."
+       "text": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways."
       },
       {
        "kind": "do",
@@ -1131,10 +1111,6 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A list of actions or links that opens from a trigger button. Bootstrap 6 Menu replaces the v3 dropdown."
-      },
-      {
-       "kind": "do",
        "text": "The trigger follows the Buttons rules: usually <code>btn-outline theme-secondary</code> or <code>btn-text theme-secondary</code>, with a caret icon."
       },
       {
@@ -1174,11 +1150,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "An icon before the label helps people scan a longer menu. Use icons on all items or none."
-      },
-      {
-       "kind": "do",
-       "text": "Every item still has a text label."
+       "text": "Use icons on all items or none."
       }
      ],
      "examples": [
@@ -1201,10 +1173,6 @@
      "classes": ".menu-item.active + aria-current",
      "note": "",
      "rules": [
-      {
-       "kind": "do",
-       "text": "Marks the current page, or the current item in a set."
-      },
       {
        "kind": "do",
        "text": "The active item takes the <code>bg-2</code> surface, one step darker than the <code>bg-1</code> hover. Never the primary colour."
@@ -1230,10 +1198,6 @@
      "classes": ".menu-header · hr.menu-divider",
      "note": "",
      "rules": [
-      {
-       "kind": "do",
-       "text": "Split a long menu into labelled groups."
-      },
       {
        "kind": "do",
        "text": "Use a divider between groups, and above a destructive or sign-out item."
@@ -1271,10 +1235,6 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A second line under the label, for when the outcome needs explaining."
-      },
-      {
-       "kind": "do",
        "text": "Keep descriptions to one short line. If every item needs one, a dialog may be the better tool."
       }
      ],
@@ -1304,15 +1264,11 @@
       },
       {
        "kind": "do",
-       "text": "Always a text label. An icon beside it is optional."
+       "text": "An icon beside the label is optional."
       },
       {
        "kind": "do",
        "text": "Reversible actions act straight away and offer Undo. Irreversible ones open a confirmation dialog. See Destructive actions."
-      },
-      {
-       "kind": "do",
-       "text": "<code>theme-danger</code> is the only theme used on menu items."
       }
      ],
      "guide": "patterns/destructive-actions.md",
@@ -1338,10 +1294,6 @@
      "rules": [
       {
        "kind": "do",
-       "text": "An action that exists but cannot be used right now."
-      },
-      {
-       "kind": "do",
        "text": "Prefer hiding actions people can never use. Disable only when the reason is clear from the page."
       }
      ],
@@ -1359,12 +1311,7 @@
      "status": "Direct",
      "layout": "row",
      "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/",
-     "flags": [
-      {
-       "type": "info",
-       "text": "The mapping used a .menu-end class. This Bootstrap build has no such class; alignment is set with data-bs-placement on the trigger."
-      }
-     ],
+     "flags": [],
      "id": "menu-placement",
      "name": "Placement",
      "classes": "data-bs-placement=\"bottom-start\" · \"bottom-end\"",
@@ -1407,19 +1354,11 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Holds the less frequent actions on an item, behind a “More” row action."
-      },
-      {
-       "kind": "do",
        "text": "The trigger is a Row action labelled “More”, with the ellipsis icon."
       },
       {
        "kind": "do",
        "text": "It is the last row action, after at most three others."
-      },
-      {
-       "kind": "do",
-       "text": "Destructive actions go here, last, after a divider, with a text label."
       }
      ],
      "examples": [
@@ -1449,16 +1388,8 @@
      "note": "",
      "rules": [
       {
-       "kind": "do",
-       "text": "Bootstrap supports more than we use."
-      },
-      {
        "kind": "dont",
        "text": "Primary or status themes on menu items (<code>theme-primary</code>, <code>theme-success</code> and so on). Only <code>theme-danger</code>, for destructive items."
-      },
-      {
-       "kind": "dont",
-       "text": "An active or selected item in the primary colour."
       },
       {
        "kind": "dont",
@@ -1466,15 +1397,7 @@
       },
       {
        "kind": "dont",
-       "text": "Icon-only menu items."
-      },
-      {
-       "kind": "dont",
        "text": "Translucent menus, and dark menus on a light page. In dark mode, menus are dark with the rest of the page."
-      },
-      {
-       "kind": "dont",
-       "text": "Menus that open on hover."
       }
      ],
      "examples": []
@@ -1502,11 +1425,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label, so the whole row is the hit target, and it drops .check-sm."
-      },
-      {
-       "kind": "a11y",
-       "text": "In a menu item only (multi-select Combobox): the input is nested in the <code>label.menu-item</code>, so the whole row is the hit target. It still has an <code>aria-label</code> or the label text as its name."
+       "text": "The input sits beside its label, not inside it. The one exception is a menu item, as in the <a href=\"#sf-3\">Combobox</a>: there the input is nested in the label, so the whole row is the hit target."
       }
      ],
      "replacesFrom": "Bootstrap 3.4"
@@ -1536,10 +1455,6 @@
      ],
      "layout": "row",
      "rules": [
-      {
-       "kind": "do",
-       "text": "Removable tokens for applied filters, and links to attached files."
-      },
       {
        "kind": "a11y",
        "text": "The remove button keeps its 16px icon but has a 24×24px hit area (an invisible ::after in filmmakers.css), so it meets WCAG 2.2 target size.",
@@ -1586,8 +1501,8 @@
      "layout": "row",
      "rules": [
       {
-       "kind": "do",
-       "text": "Multi-select filter: the toggle shows the label and the selection (“Language: 2 selected”), the menu holds one checkbox per value, and a .combobox-search input appears once the list passes six entries. One control for every filter: single-value filters carry radio items, multi-value filters checkbox items, and the toggle always reads label plus value. Replaces the native select the product used before (FRM-2, retired), including the Sort by control. Two deviations to settle: the checkbox is nested inside label.menu-item rather than paired by for/id (see FRM-9), and it resets --bs-theme-bg / --bs-theme-contrast because a themed .menu parent would otherwise paint the unchecked box in the menu's own fill."
+       "kind": "code",
+       "text": "Two deviations to settle: the checkbox is nested inside <code>label.menu-item</code> (see Checkbox), and the menu resets <code>--bs-theme-bg</code> / <code>--bs-theme-contrast</code> so a themed menu does not paint the unchecked boxes."
       },
       {
        "kind": "do",
@@ -1611,11 +1526,7 @@
       },
       {
        "kind": "do",
-       "text": "Use the Combobox for every filter and for Sort by. The native select is only for forms."
-      },
-      {
-       "kind": "do",
-       "text": "Use it in complex searches, where a filter needs more than a short list: many values, checkboxes, radios, fields, sliders or whatever suits that filter. For a short list of options, a plain Menu is enough (see the <a href=\"#sf-4\">Simple</a> bar)."
+       "text": "Use the Combobox for filters and Sort by in complex searches, where a filter needs more than a short list. A short list can be a plain Menu, as in the <a href=\"#sf-4\">Simple</a> bar. The native select is only for forms."
       }
      ],
      "examples": [
@@ -1634,7 +1545,7 @@
       {
        "label": "One value",
        "html": "<div style=\"display:flex;flex-direction:column;align-items:flex-start\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm show\" aria-expanded=\"true\" style=\"width:170px;font-weight:600\"><span class=\"combobox-value\" style=\"overflow:hidden;text-overflow:ellipsis;white-space:nowrap\">Permissions: Admin</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><div class=\"menu show\" style=\"position:static;display:block;min-width:220px;margin-top:4px\"><button type=\"button\" class=\"menu-item\">All<i class=\"fa-solid fa-check menu-item-check\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"menu-item selected\" aria-current=\"true\">Admin<i class=\"fa-solid fa-check menu-item-check\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"menu-item\">Limited<i class=\"fa-solid fa-check menu-item-check\" aria-hidden=\"true\"></i></button><button type=\"button\" class=\"menu-item\">Read only<i class=\"fa-solid fa-check menu-item-check\" aria-hidden=\"true\"></i></button></div></div>",
-       "caption": "Radio items",
+       "caption": "Plain items, a check on the current one",
        "badge": ""
       },
       {
@@ -1716,10 +1627,6 @@
       }
      ],
      "rules": [
-      {
-       "kind": "do",
-       "text": "Every form control sits in a .form-field with its label above it. Labels are weight 600, sentence case."
-      },
       {
        "kind": "do",
        "text": "Single column. The label sits above the control, weight 600, sentence case. Placeholders are never labels."
@@ -1805,19 +1712,11 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Text inputs, textareas and selects all use .form-control in Bootstrap 6. Shown here on their own; in a form, wrap each in a Field."
+       "text": "In a form, wrap each control in a <a href=\"#frm-5\">Field</a>."
       },
       {
        "kind": "do",
        "text": "Controls are small (<code>form-control-sm</code>, 32px), the same height as the default small buttons. The default 38px size is used only beside medium buttons, e.g. in empty states."
-      },
-      {
-       "kind": "do",
-       "text": "Select uses <code>.form-control</code> and appears only inside forms. Every filter and Sort by is a <a href=\"#sf-3\">Combobox</a>."
-      },
-      {
-       "kind": "do",
-       "text": "Use disabled when the value cannot change right now, and readonly when people should still be able to see, focus and copy it."
       },
       {
        "kind": "a11y",
@@ -1847,12 +1746,7 @@
      "layout": "row",
      "example": "<div class=\"input-group input-group-sm\"><button type=\"button\" class=\"combobox-toggle form-control form-control-sm\" style=\"flex:0 0 auto;width:120px\"><span class=\"combobox-value\">Profile</span><i class=\"fa-solid fa-caret-down combobox-caret\" aria-hidden=\"true\"></i></button><input class=\"form-control\" placeholder=\"Search...\" aria-label=\"Search\"><button type=\"button\" class=\"btn-outline theme-secondary btn-sm btn-icon\" aria-label=\"Search\" data-bs-toggle=\"tooltip\" data-bs-title=\"Search\"><i class=\"fa-solid fa-magnifying-glass\" aria-hidden=\"true\"></i></button></div>",
      "replacesFrom": "Bootstrap 3.4",
-     "rules": [
-      {
-       "kind": "do",
-       "text": "The button now sits directly in the group."
-      }
-     ]
+     "rules": []
     },
     {
      "code": "FRM-4",
@@ -1898,7 +1792,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Same pattern as the checkbox: input beside the label, joined by for/id. Group them in a fieldset with a legend so the set has one accessible name."
+       "text": "Group radios in a fieldset with a legend, so the set has one name."
       }
      ]
     }
@@ -1929,7 +1823,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A rating from 1 to 5. Editable on a profile, read-only in lists and summaries. Used on Sedcard (Summary view)."
+       "text": "Editable on a profile, read-only in lists and summaries."
       },
       {
        "kind": "a11y",
@@ -1949,7 +1843,7 @@
       },
       {
        "kind": "a11y",
-       "text": "The value text is in an <code>aria-live=\"polite\"</code> region, so screen readers announce each change. The radios keep their full names (“4 out of 5 stars”), so the scale is still announced. Tooltips are not needed: each radio already has its name, and tooltips only appear on mouse hover."
+       "text": "The value text is in an <code>aria-live=\"polite\"</code> region, so screen readers announce each change. The radios keep their full names (“4 out of 5 stars”), so the scale is still announced."
       },
       {
        "kind": "do",
@@ -2042,10 +1936,6 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A switch inside a Field, like Checkbox and Radio: the switch in column one, its label beside it."
-      },
-      {
-       "kind": "do",
        "text": "Size follows the place: <code>switch-sm</code> by default; medium (no size class) where the switch sits beside large content. There is no extra small switch."
       }
      ],
@@ -2092,7 +1982,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A switch between two named options in a bordered pill: the option on the left is off, the option on the right is on and in the primary colour. Used for Lite and Expert mode, and for All and Fitting profiles. In the header band the pill takes the body background so it lifts off the tint, and it hides below md."
+       "text": "In the header band the pill takes the body background so it lifts off the tint, and it hides below md."
       }
      ]
     }
@@ -2149,10 +2039,6 @@
       }
      ],
      "rules": [
-      {
-       "kind": "do",
-       "text": "Errors sit next to the field and say how to fix it. On submit, a summary at the top links to each invalid field."
-      },
       {
        "kind": "do",
        "text": "Validate on blur, never on each keystroke and never before the person has typed."
@@ -2260,7 +2146,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Label and value pairs in two columns: attributes, details, or a dated log of activity. Replaces CNT-8, which was removed in review, and the activity list (CNT-16). Used on Sedcard (Summary view)."
+       "text": "For attributes, details, or a dated log of activity."
       },
       {
        "kind": "do",
@@ -2496,7 +2382,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Confirms that something just happened. It takes the status theme of the outcome, with an icon beside the text."
+       "text": "It takes the status theme of the outcome, with an icon beside the text."
       },
       {
        "kind": "do",
@@ -2547,7 +2433,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "Shows how far a task, such as an upload, has got. Shown while the file uploads, then replaced by the file row. The fill is Bootstrap blue-600 through --bs-progress-bar-bg, never the customer primary."
+       "text": "The fill is Bootstrap blue-600, never the customer primary."
       },
       {
        "kind": "a11y",
@@ -2621,7 +2507,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A short label shown on hover and keyboard focus. Required on every icon-only control."
+       "text": "Required on every icon-only control."
       },
       {
        "kind": "do",
@@ -2674,10 +2560,6 @@
       {
        "kind": "do",
        "text": "Opens on click from the button that names it, below the button. Closes on outside click and Esc."
-      },
-      {
-       "kind": "do",
-       "text": "Opened by a click, never by hover."
       },
       {
        "kind": "dont",
