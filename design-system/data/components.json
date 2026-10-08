@@ -2743,7 +2743,7 @@
        "text": "In a confirmation, Cancel has focus when the dialog opens. Esc cancels, never confirms."
       },
       {
-       "kind": "do",
+       "kind": "caution",
        "text": "Reversible actions never get a confirmation dialog: act at once and offer Undo in a <a href=\"#msg-10\">Toast</a>."
       }
      ],
