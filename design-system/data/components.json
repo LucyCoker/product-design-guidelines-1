@@ -258,16 +258,8 @@
        "text": "Icon-only buttons are always tertiary. They are allowed only for overflow menus, close controls, and toolbar actions with a well-known icon (search, filter)."
       },
       {
-       "kind": "a11y",
-       "text": "Every icon-only button needs an accessible name (<code>aria-label</code>) and a tooltip on hover and keyboard focus."
-      },
-      {
        "kind": "do",
        "text": "Icon-only buttons are never destructive."
-      },
-      {
-       "kind": "a11y",
-       "text": "The hit target is at least 24×24px (WCAG 2.2 AA)."
       }
      ],
      "flags": [],
@@ -804,11 +796,6 @@
        "text": "Chooses how the same content is shown, such as Small tiles, Large tiles and List view. A radio group: exactly one option is chosen."
       },
       {
-       "kind": "a11y",
-       "text": "The group has <code>role=\"radiogroup\"</code> and an <code>aria-label</code>.",
-       "devReview": true
-      },
-      {
        "kind": "do",
        "text": "The chosen button uses the selected-item style: <code>--bs-bg-2</code> with body text, as menus do. Never primary, never solid secondary."
       },
@@ -816,10 +803,6 @@
        "kind": "code",
        "text": "filmmakers.css sets the selected style on <code>.btn-group &gt; .btn-outline.theme-secondary.btn-check:has(input:checked)</code> through <code>--bs-btn-active-bg</code>.",
        "devReview": true
-      },
-      {
-       "kind": "a11y",
-       "text": "Icon-only options each need an <code>aria-label</code> and a tooltip."
       },
       {
        "kind": "do",
@@ -929,10 +912,6 @@
       {
        "kind": "do",
        "text": "State the limits under the button when there are any (“PDF only, up to 5 MB”)."
-      },
-      {
-       "kind": "a11y",
-       "text": "Link the limits to the file input with <code>aria-describedby</code>."
       },
       {
        "kind": "do",
@@ -1147,11 +1126,6 @@
        "text": "Tabs that do not fit move into a More menu, so every tab stays reachable without scrolling sideways. Bootstrap 6 Nav overflow; it watches the width of its wrapper, not the window. Used on Sedcard (Summary view)."
       },
       {
-       "kind": "code",
-       "text": "Tabs that do not fit move into a More menu, and the active tab keeps its state.",
-       "devReview": true
-      },
-      {
        "kind": "do",
        "text": "The toggle reads “More”, with the ellipsis after the text."
       },
@@ -1205,12 +1179,8 @@
        "text": "Open on click, never on hover alone."
       },
       {
-       "kind": "a11y",
-       "text": "Bootstrap handles the keyboard: arrow keys move, Esc closes."
-      },
-      {
-       "kind": "code",
-       "text": "Items are <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for links. Labels name the outcome."
+       "kind": "do",
+       "text": "Labels name the outcome."
       }
      ],
      "examples": [
@@ -1275,10 +1245,6 @@
       {
        "kind": "do",
        "text": "The active item takes the <code>bg-2</code> surface, one step darker than the <code>bg-1</code> hover. Never the primary colour."
-      },
-      {
-       "kind": "a11y",
-       "text": "Add <code>aria-current=\"page\"</code> for the current page, or <code>aria-current=\"true\"</code> for the current item in a set."
       }
      ],
      "examples": [
@@ -1576,10 +1542,6 @@
        "text": "The input is a sibling of the label, not nested inside it; pair them with for/id. Help text goes in a form-text below. One exception, inside a menu item (as in the Combobox, SF-3): the input is nested in the label, so the whole row is the hit target, and it drops .check-sm."
       },
       {
-       "kind": "code",
-       "text": "Everywhere except menus: the input sits beside its label, joined by <code>for</code> and <code>id</code>."
-      },
-      {
        "kind": "a11y",
        "text": "In a menu item only (multi-select Combobox): the input is nested in the <code>label.menu-item</code>, so the whole row is the hit target. It still has an <code>aria-label</code> or the label text as its name."
       }
@@ -1675,10 +1637,6 @@
       {
        "kind": "do",
        "text": "One value: plain items, with a check on the current one, and the menu closes on pick. Several values: checkbox items, and the menu stays open."
-      },
-      {
-       "kind": "a11y",
-       "text": "The current value has <code>aria-current=\"true\"</code>."
       },
       {
        "kind": "do",
@@ -1818,10 +1776,6 @@
       {
        "kind": "do",
        "text": "Help needed to complete a field is a <code>.form-text</code> under the control, always visible."
-      },
-      {
-       "kind": "a11y",
-       "text": "Help text is wired to its control with <code>aria-describedby</code>."
       },
       {
        "kind": "other",
@@ -2251,10 +2205,6 @@
        "text": "A failed save never discards what the person entered. A dialog with an invalid field stays open."
       },
       {
-       "kind": "a11y",
-       "text": "Server errors use <code>.is-invalid</code> on the control, with the message wired by <code>aria-describedby</code>."
-      },
-      {
        "kind": "do",
        "text": "The green valid state (with a check icon) is used only where a field is checked against a rule people cannot see: creating a password, confirming a password, and codes with a set format (e.g. VAT or voucher codes). Other fields show errors only."
       }
@@ -2524,7 +2474,7 @@
       },
       {
        "kind": "a11y",
-       "text": "The close button has <code>aria-label=\"Dismiss\"</code>. After dismissing, move focus to a sensible place, such as the page heading."
+       "text": "After dismissing, move focus to a sensible place, such as the page heading."
       }
      ],
      "replacesFrom": "Bootstrap 3.4"
@@ -2589,10 +2539,6 @@
       {
        "kind": "code",
        "text": "The Undo and close buttons take the toast’s theme, with no colour overrides."
-      },
-      {
-       "kind": "a11y",
-       "text": "Use <code>role=\"status\"</code> with <code>aria-live=\"polite\"</code>."
       },
       {
        "kind": "do",
@@ -2700,10 +2646,6 @@
        "text": "A short label shown on hover and keyboard focus. Required on every icon-only control."
       },
       {
-       "kind": "a11y",
-       "text": "Every icon-only control has an <code>aria-label</code> and a tooltip with the same words, shown on hover and keyboard focus."
-      },
-      {
        "kind": "do",
        "text": "A few words, no full sentences, no links or buttons inside."
       },
@@ -2760,10 +2702,6 @@
        "text": "Opened by a click, never by hover."
       },
       {
-       "kind": "a11y",
-       "text": "The trigger has <code>aria-expanded</code>."
-      },
-      {
        "kind": "do",
        "text": "No <code>.popover-header</code>: the button that opens it already names it."
       },
@@ -2798,10 +2736,6 @@
        "text": "A short task or decision on top of the page: one decision, or a form of about six fields. Bootstrap 6 Dialog, built on the native dialog element, which traps focus, closes on Esc and returns focus to the button that opened it."
       },
       {
-       "kind": "a11y",
-       "text": "Label it with <code>aria-labelledby</code> pointing at the title."
-      },
-      {
        "kind": "do",
        "text": "Only for one short decision or a form of about six fields. Anything multi-step or needing its own URL is a page. Dialogs never open dialogs, never stack and never appear unprompted."
       },
@@ -2824,11 +2758,7 @@
       },
       {
        "kind": "a11y",
-       "text": "The close button has <code>aria-label=\"Close\"</code>."
-      },
-      {
-       "kind": "a11y",
-       "text": "Focus: the first field gets focus when a form opens (<code>autofocus</code>); a confirmation focuses Cancel. Focus is trapped inside while open and returns to the button that opened the dialog when it closes."
+       "text": "The first field gets focus when a form opens; a confirmation focuses Cancel."
       },
       {
        "kind": "do",
@@ -3140,10 +3070,6 @@
        "text": "More filters opens a row inside the card, below the bar, as the production actor search does. It is not a popover. The row has the same bg-1 surface, its filters keep their bar widths and wrap onto more lines, and it stays open until More filters is pressed again. Its caret points up while the row is open."
       },
       {
-       "kind": "a11y",
-       "text": "The More filters button has <code>aria-expanded</code> and <code>aria-controls</code>."
-      },
-      {
        "kind": "do",
        "text": "On compact widths the More filters row ends with a full-width primary View results button. Filters still apply on change: View results only closes the row."
       },
@@ -3157,7 +3083,7 @@
       },
       {
        "kind": "a11y",
-       "text": "The sort icon button has an accessible name. The applied count is in More filters’ accessible name (“More filters, 2 applied”), after the visible text."
+       "text": "The applied count is in More filters’ accessible name (“More filters, 2 applied”), after the visible text."
       },
       {
        "kind": "do",
@@ -3238,10 +3164,6 @@
       {
        "kind": "do",
        "text": "When space runs out, the left zone wraps onto more lines and Sort by stays top right. Below 560px the search field takes its own line and Sort by becomes an icon button. There is no More filters: if a page needs it, use Complex."
-      },
-      {
-       "kind": "a11y",
-       "text": "The Sort by icon button has an accessible name."
       },
       {
        "kind": "do",
@@ -3351,10 +3273,6 @@
        "text": "Status is a subtle badge with text: theme-success for Active, theme-secondary for Inactive."
       },
       {
-       "kind": "a11y",
-       "text": "Never colour alone."
-      },
-      {
        "kind": "do",
        "text": "Never striped rows."
       }
@@ -3393,10 +3311,6 @@
       {
        "kind": "do",
        "text": "Previous and next are icon only. The current page is active; the ends are disabled."
-      },
-      {
-       "kind": "a11y",
-       "text": "Previous and next have an <code>aria-label</code>. The current page has <code>aria-current=\"page\"</code>."
       },
       {
        "kind": "code",
@@ -3558,10 +3472,6 @@
       {
        "kind": "do",
        "text": "A long description is cut at the last whole word before 400 characters, ending in “…”, followed by a <b>Show more</b> text button that shows the rest in place and becomes <b>Show less</b>. As production."
-      },
-      {
-       "kind": "a11y",
-       "text": "The Show more button has <code>aria-expanded</code>."
       }
      ],
      "flags": [
@@ -3781,10 +3691,6 @@
        "text": "Picture on the left: square, 160px wide, matching production. With no picture, the placeholder, as in the <a href=\"#cnt-10\">Profile tile</a>. Under it, two icon-only outline buttons for the profile’s Videos and Pictures, at the medium size, each with a tooltip. This is a decided exception to the button sizes (medium is otherwise for empty states and roomy screens): under a large picture, small icon buttons get lost."
       },
       {
-       "kind": "a11y",
-       "text": "The Videos and Pictures buttons each have an <code>aria-label</code>."
-      },
-      {
        "kind": "do",
        "text": "The name is the page’s h1 at the page title size, weight 600, never in capitals. A status Badge follows it."
       },
@@ -3905,10 +3811,6 @@
        "text": "Header controls carry no primary colour."
       },
       {
-       "kind": "code",
-       "text": "Both menus open aligned to their end edge (<code>data-bs-placement=\"bottom-end\"</code>), because they sit at the right of the header."
-      },
-      {
        "kind": "do",
        "text": "The account menu shows the avatar and name, then Home and Settings, then a divider and Sign out."
       },
@@ -4021,20 +3923,12 @@
        "text": "Ask support opens the contact form in a <a href=\"#dialog\">Dialog</a>."
       },
       {
-       "kind": "a11y",
-       "text": "Ask support has <code>aria-haspopup=\"dialog\"</code>."
-      },
-      {
        "kind": "do",
        "text": "Social media links are icon-only, in a nav labelled “Social media”."
       },
       {
        "kind": "a11y",
-       "text": "Each has its name in <code>.visually-hidden</code> (with “opens in a new tab”) and a tooltip."
-      },
-      {
-       "kind": "code",
-       "text": "<code>mt-auto</code> inside a full-height flex column keeps the footer at the bottom."
+       "text": "Each social link’s hidden name adds “opens in a new tab”."
       }
      ],
      "examples": [
@@ -4357,10 +4251,6 @@
       {
        "kind": "do",
        "text": "View switcher, above the results on the right: one <a href=\"#bg-toggle\">Toggle group</a> of three icon buttons, Small tiles (a small person), Large tiles (a large person) and List view. The chosen button uses the selected-item style, as menus do: never primary."
-      },
-      {
-       "kind": "a11y",
-       "text": "The view switcher is a radio group of <code>.btn-check</code> buttons, so there is one choice and the arrow keys move between them; each has an <code>aria-label</code> and a tooltip."
       },
       {
        "kind": "do",
