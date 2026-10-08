@@ -108,7 +108,7 @@ body {
   text-decoration: none;
 }
 .lib-side a:hover { background: var(--bs-bg-2); color: var(--bs-fg-body); }
-.lib-side a[aria-current="true"] { background: var(--bs-bg-2); color: var(--bs-fg-body); font-weight: 600; }
+.lib-side a[aria-current="page"] { background: var(--bs-bg-2); color: var(--bs-fg-body); font-weight: 600; }
 .lib-side a .lib-count { color: var(--bs-fg-3); font-weight: 400; font-variant-numeric: tabular-nums; }
 .lib-side .lib-sub { padding-inline-start: 20px; }
 .lib-side-sort { display: flex; gap: 2px; padding: 0 0 4px 12px; }

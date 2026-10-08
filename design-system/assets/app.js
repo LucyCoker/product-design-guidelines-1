@@ -272,7 +272,7 @@ function setupPages() {
       const hit = a.hash === '#' + current
       a.setAttribute('aria-current', hit ? 'page' : 'false')
     })
-    document.title = `${page.dataset.title} · Filmmakers Component Library`
+    document.title = `${page.dataset.title} · The Library`
     if (target && !target.matches('.lib-page')) target.scrollIntoView({ block: 'start' })
     else window.scrollTo(0, 0)
   }
