@@ -2804,19 +2804,36 @@
      "id": "shell-footer",
      "name": "Footer",
      "status": "Direct",
-     "layout": "row",
-     "classes": "",
+     "layout": "full",
+     "classes": "footer.bg-1.border-top + responsive flex utilities + btn-link / btn-text / btn-outline",
      "docs": "",
-     "replaces": "",
-     "note": "The strip at the bottom of every page.",
+     "replaces": "c-site-footer",
+     "note": "The strip at the bottom of every page: Ask support and the language, the legal links and social media, then the copyright and Back to top. Production already builds it from Bootstrap 6 classes; this is that markup.",
      "unresolved": false,
      "flags": [
       {
        "type": "info",
-       "text": "No footer was included in the Component mapping. Add it here once it is designed."
+       "text": "Changed from production: the social media and Back to top buttons get tooltips, as every icon-only button does, and the social links say they open in a new tab. The production hooks c-site-footer and contact_link are left out."
       }
      ],
-     "example": ""
+     "rules": [
+      "The same footer on every page. It sits at the bottom of the page (<code>mt-auto</code> inside a full-height flex column), on <code>bg-1</code> with a <code>border-top</code>, text in <code>fg-2</code>.",
+      "Three rows: <b>Language</b> and <b>Ask support</b>; the legal links and social media; the copyright and Back to top. Below the <code>md</code> breakpoint each row stacks and Ask support moves to the end of its row.",
+      "Language is a native <code>select</code> with a visible label. It applies on change, with a submit button inside <code>noscript</code> for people without JavaScript.",
+      "Ask support is <code>btn-outline theme-secondary btn-sm</code> with <code>aria-haspopup=\"dialog\"</code>; it opens the contact form in a <a href=\"#dialog\">Dialog</a>.",
+      "Legal links are <code>btn-link btn-sm theme-secondary</code> at 12px (<code>fs-xs</code>), in a list.",
+      "Social media links are icon-only <code>btn-text theme-secondary btn-sm btn-icon</code> in a <code>nav</code> labelled “Social media”. Each has its name in <code>.visually-hidden</code> (with “opens in a new tab”) and a tooltip.",
+      "Back to top is an icon-only <code>btn-outline theme-secondary btn-sm btn-icon</code> with its name and a tooltip."
+     ],
+     "examples": [
+      {
+       "label": "Footer",
+       "badge": "Default",
+       "wide": true,
+       "caption": "As production. Narrow the window below 768px to see the rows stack.",
+       "html": "<footer class=\"mt-auto flex-shrink-0 py-5 md:py-6 xl:py-7 fg-2 bg-1 border-top\" style=\"width:100%\"><div class=\"2xl:container px-4\"><div class=\"d-flex flex-column md:flex-row md:flex-wrap md:align-items-center gap-4 md:column-gap-9 pb-4 mb-4 md:pb-5 md:mb-5 border-bottom\"><button type=\"button\" class=\"btn-outline btn-sm theme-secondary order-last align-self-start md:align-self-auto md:ms-auto\" aria-haspopup=\"dialog\"><i class=\"fa-solid fa-comment\" aria-hidden=\"true\"></i>Ask support</button><form class=\"d-flex align-items-center gap-3\" onsubmit=\"return false\"><label class=\"mb-0\" for=\"footer-locale\">Language</label><select id=\"footer-locale\" class=\"form-control form-control-sm w-auto\"><option value=\"en\" selected>English</option><option value=\"de\">Deutsch</option><option value=\"fr\">Français</option><option value=\"it\">Italiano</option><option value=\"es\">Español</option><option value=\"ca\">Català (beta)</option><option value=\"pl\">Polski (beta)</option><option value=\"bg\">Български (beta)</option><option value=\"da\">Dansk (beta)</option></select></form></div><div class=\"d-flex flex-column md:flex-row md:align-items-center gap-3 xl:column-gap-7\"><ul class=\"list-unstyled d-flex flex-wrap md:flex-grow-1 column-gap-6 mb-0\"><li><a class=\"btn-link btn-sm theme-secondary text-decoration-none text-start justify-content-start text-wrap text-break px-0 fs-xs\" href=\"#\">Legal Disclosure</a></li><li><a class=\"btn-link btn-sm theme-secondary text-decoration-none text-start justify-content-start text-wrap text-break px-0 fs-xs\" href=\"#\">Terms of Service</a></li><li><a class=\"btn-link btn-sm theme-secondary text-decoration-none text-start justify-content-start text-wrap text-break px-0 fs-xs\" href=\"#\">Privacy Policy</a></li></ul><div class=\"d-flex flex-wrap md:flex-shrink-0 align-items-center gap-4\"><nav class=\"d-flex flex-wrap gap-2\" aria-label=\"Social media\"><a class=\"btn-text btn-sm theme-secondary btn-icon\" target=\"_blank\" rel=\"noopener\" href=\"#\" data-bs-toggle=\"tooltip\" data-bs-title=\"Facebook\"><i class=\"fa-brands fa-facebook\" aria-hidden=\"true\"></i><span class=\"visually-hidden\">Facebook (opens in a new tab)</span></a><a class=\"btn-text btn-sm theme-secondary btn-icon\" target=\"_blank\" rel=\"noopener\" href=\"#\" data-bs-toggle=\"tooltip\" data-bs-title=\"Instagram\"><i class=\"fa-brands fa-instagram\" aria-hidden=\"true\"></i><span class=\"visually-hidden\">Instagram (opens in a new tab)</span></a><a class=\"btn-text btn-sm theme-secondary btn-icon\" target=\"_blank\" rel=\"noopener\" href=\"#\" data-bs-toggle=\"tooltip\" data-bs-title=\"LinkedIn\"><i class=\"fa-brands fa-linkedin\" aria-hidden=\"true\"></i><span class=\"visually-hidden\">LinkedIn (opens in a new tab)</span></a></nav></div></div><div class=\"d-flex align-items-end gap-5 mt-3\"><div class=\"d-flex flex-column md:flex-row md:flex-wrap flex-grow-1 gap-3 md:column-gap-7\"><small class=\"fs-xs text-break\">© 2026 Denkungsart GmbH</small></div><button type=\"button\" class=\"btn-outline btn-sm theme-secondary btn-icon flex-shrink-0\" data-bs-toggle=\"tooltip\" data-bs-title=\"Back to top\" onclick=\"window.scrollTo({top:0,behavior:'smooth'})\"><i class=\"fa-solid fa-arrow-up\" aria-hidden=\"true\"></i><span class=\"visually-hidden\">Back to top</span></button></div></div></footer>"
+      }
+     ]
     }
    ]
   },
