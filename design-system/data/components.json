@@ -2711,19 +2711,11 @@
      "rules": [
       {
        "kind": "do",
-       "text": "A short task or decision on top of the page: one decision, or a form of about six fields. Bootstrap 6 Dialog, built on the native dialog element, which traps focus, closes on Esc and returns focus to the button that opened it."
-      },
-      {
-       "kind": "do",
-       "text": "Only for one short decision or a form of about six fields. Anything multi-step or needing its own URL is a page. Dialogs never open dialogs, never stack and never appear unprompted."
-      },
-      {
-       "kind": "do",
-       "text": "Dialogs may scroll. When the content can be longer than the window, the body scrolls and the header and footer stay fixed, so the actions are always visible."
+       "text": "For one short decision or a form of about six fields. Anything multi-step or needing its own URL is a page. Dialogs never open dialogs, never stack and never appear unprompted."
       },
       {
        "kind": "a11y",
-       "text": "Add <code>.dialog-scrollable</code> (Bootstrap’s default) for a scrolling body, and give the scrolling body <code>tabindex=\"0\"</code> so keyboard users can scroll it.",
+       "text": "Give a scrolling body <code>tabindex=\"0\"</code> so keyboard users can scroll it.",
        "devReview": true
       },
       {
@@ -2736,7 +2728,7 @@
       },
       {
        "kind": "a11y",
-       "text": "The first field gets focus when a form opens; a confirmation focuses Cancel."
+       "text": "The first field gets focus when a form opens."
       },
       {
        "kind": "do",
@@ -2748,15 +2740,11 @@
       },
       {
        "kind": "a11y",
-       "text": "In a confirmation, the danger action has an icon so danger is not colour alone. Cancel has focus when the dialog opens (<code>autofocus</code>). Esc cancels, never confirms."
+       "text": "In a confirmation, Cancel has focus when the dialog opens. Esc cancels, never confirms."
       },
       {
        "kind": "do",
        "text": "Reversible actions never get a confirmation dialog: act at once and offer Undo in a <a href=\"#msg-10\">Toast</a>."
-      },
-      {
-       "kind": "code",
-       "text": "Form dialogs use <code>data-bs-backdrop=\"static\"</code>."
       }
      ],
      "flags": [
