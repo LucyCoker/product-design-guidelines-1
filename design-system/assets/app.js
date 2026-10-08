@@ -77,7 +77,8 @@ function itemHtml(item) {
     item.review ? `<span class="badge theme-warning badge-subtle">${escapeHtml(item.review)}</span>` : ''
   ].join('')
   const meta = [
-    item.classes ? `<span>Classes <code>${escapeHtml(item.classes)}</code></span>` : '',
+    // The classes are all in the Code box; this opens it.
+    item.examples?.length || item.example || item.snippet ? '<button type="button" class="lib-see-code">See classes in Code</button>' : '',
     item.docs ? `<a href="${item.docs}" target="_blank" rel="noopener">Bootstrap 6 docs</a>` : '',
     item.guide ? `<a href="${guideUrl(item.guide)}" target="_blank" rel="noopener">Guideline</a>` : '',
     item.replaces && item.replaces !== '(none)' ? `<span>Replaces ${escapeHtml(item.replaces)}</span>` : ''
@@ -539,6 +540,15 @@ function setupUploadDemo() {
 
 function setupCopy() {
   document.addEventListener('click', async (e) => {
+    const see = e.target.closest('.lib-see-code')
+    if (see) {
+      const code = see.closest('.lib-item').querySelector(':scope > details.lib-code:not(.lib-code-notes)')
+      if (!code) return
+      code.open = true
+      code.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      code.querySelector('summary').focus({ preventScroll: true })
+      return
+    }
     const button = e.target.closest('.lib-copy')
     if (!button) return
     const pre = button.parentElement.querySelector('pre')

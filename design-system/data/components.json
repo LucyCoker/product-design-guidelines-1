@@ -1868,7 +1868,7 @@
      "flags": [
       {
        "type": "info",
-       "text": ".fm-rating is a custom class; whether custom fm- classes are allowed is the open question on the Production list."
+       "text": ".fm-rating is a custom class, listed in Foundations › Filmmakers classes."
       }
      ],
      "unresolved": false,
@@ -2220,7 +2220,7 @@
      "flags": [
       {
        "type": "info",
-       "text": "The Show / Hide label uses three custom classes in filmmakers.css (.fm-accordion-label, .fm-accordion-show, .fm-accordion-hide). They are CSS only and follow the native open state. Whether custom fm- classes are allowed is the open question on the Production list."
+       "text": "The Show / Hide label uses three custom classes in filmmakers.css (.fm-accordion-label, .fm-accordion-show, .fm-accordion-hide). They are CSS only and follow the native open state. They are listed in Foundations › Filmmakers classes."
       }
      ],
      "layout": "full",
