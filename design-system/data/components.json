@@ -146,10 +146,6 @@
        "text": "Primary means “most important thing here”. It never means safe, confirm, new or recommended."
       },
       {
-       "kind": "do",
-       "text": "On a dark or brand-coloured surface, use <code>btn-solid theme-inverse</code> instead."
-      },
-      {
        "kind": "code",
        "text": "On a brand surface, put <code>data-bs-theme=\"dark\"</code> on the surface. Bootstrap 6’s <code>theme-inverse</code> is the opposite of the colour mode, so on a light page it is dark, and invisible on blue."
       }
