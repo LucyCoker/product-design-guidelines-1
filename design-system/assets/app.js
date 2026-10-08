@@ -372,6 +372,61 @@ function setupRatingDemo() {
 // tokens use light-dark(), so setting data-bs-theme on <html> switches them.
 // The choice is kept in localStorage; an inline script in <head> applies it
 // before the first paint.
+// Upload dropzone (BTN-9): choose or drop a file, check type and size,
+// show progress, then the file row. Production does this with Uppy.
+function setupDropzoneDemo() {
+  const MAX = 5 * 1024 * 1024
+  const sizeText = (n) => n > 1024 * 1024 ? (n / 1024 / 1024).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'
+  const handle = (box, file) => {
+    const error = $('[data-dz-error]', box)
+    const status = $('[data-dz-status]', box)
+    const list = $('[data-dz-list]', box)
+    const isPdf = /\.pdf$/i.test(file.name) || file.type === 'application/pdf'
+    if (!isPdf || file.size > MAX) {
+      error.textContent = 'Only PDF files, up to 5 MB.'
+      error.hidden = false
+      status.textContent = `${file.name} was not uploaded. Only PDF files, up to 5 MB.`
+      return
+    }
+    error.hidden = true
+    const name = escapeHtml(file.name)
+    const row = document.createElement('li')
+    row.className = 'd-flex align-items-center gap-3'
+    row.innerHTML = '<i class="fa-regular fa-file-pdf fg-3" aria-hidden="true" style="font-size:20px"></i>' +
+      `<div class="vstack gap-1 flex-grow-1 min-w-0"><div class="d-flex justify-content-between gap-2 fs-xs"><span class="text-truncate">${name}</span><span class="fg-3" data-pct>0%</span></div>` +
+      `<div class="progress" role="progressbar" aria-label="Upload progress, ${name}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar" style="width:0%"></div></div></div>` +
+      '<button type="button" class="btn-text theme-secondary btn-xs" data-dz-cancel>Cancel</button>'
+    list.append(row)
+    status.textContent = `Uploading ${file.name}`
+    let pct = 0
+    const timer = setInterval(() => {
+      pct = Math.min(pct + 6 + Math.round(Math.random() * 8), 100)
+      $('.progress', row).setAttribute('aria-valuenow', pct)
+      $('.progress-bar', row).style.width = pct + '%'
+      $('[data-pct]', row).textContent = pct + '%'
+      if (pct === 100) {
+        clearInterval(timer)
+        setTimeout(() => {
+          row.innerHTML = '<i class="fa-regular fa-file-pdf fg-3" aria-hidden="true" style="font-size:20px"></i>' +
+            `<div class="vstack min-w-0"><span>${name}</span><span class="fs-xs fg-3">${sizeText(file.size)}</span></div>` +
+            `<button type="button" class="btn-text theme-secondary btn-xs btn-icon ms-auto" aria-label="Remove ${name}" data-demo-remove><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>`
+          status.textContent = `${file.name} uploaded`
+        }, 300)
+      }
+    }, 120)
+    $('[data-dz-cancel]', row).addEventListener('click', () => { clearInterval(timer); row.remove(); status.textContent = `Upload of ${file.name} cancelled` })
+  }
+  for (const box of $$('[data-demo-dropzone]')) {
+    const zone = $('.fm-dropzone', box)
+    const input = $('input[type="file"]', box)
+    input.addEventListener('change', () => { if (input.files[0]) handle(box, input.files[0]); input.value = '' })
+    zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.classList.add('is-dragover') })
+    zone.addEventListener('dragleave', () => zone.classList.remove('is-dragover'))
+    zone.addEventListener('drop', (e) => { e.preventDefault(); zone.classList.remove('is-dragover'); if (e.dataTransfer.files[0]) handle(box, e.dataTransfer.files[0]) })
+    box.addEventListener('click', (e) => { const r = e.target.closest('[data-demo-remove]'); if (r) r.closest('li').remove() })
+  }
+}
+
 function setupColourMode() {
   const KEY = 'lib-colour-mode'
   const media = matchMedia('(prefers-color-scheme: dark)')
@@ -726,6 +781,7 @@ async function start() {
   setupTooltips()
   setupNavOverflow()
   setupColourMode()
+  setupDropzoneDemo()
   setupDialogs()
   setupRatingDemo()
   setupUploadDemo()

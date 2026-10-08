@@ -381,6 +381,19 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
    primary, never solid secondary. */
 .btn-group > .btn-outline.theme-secondary.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
 
+/* Upload dropzone (BTN-9): a drop target around a real file input. The
+   button is a label for the input, so keyboards and screen readers use the
+   native picker; dropping a file is an extra. As production (Uppy). */
+.fm-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 32px 24px; text-align: center; border: 1px dashed var(--bs-border-emphasized); border-radius: var(--bs-radius-5); background: var(--bs-bg-1); }
+.fm-dropzone-icon { font-size: 24px; color: var(--bs-fg-3); }
+.fm-dropzone-title { font-weight: var(--bs-font-weight-semibold); }
+.fm-dropzone-hint { color: var(--bs-fg-2); }
+.fm-dropzone.is-dragover { border-color: var(--bs-primary-bg); background: var(--bs-primary-bg-subtle); }
+.fm-dropzone input[type="file"]:focus-visible + label { outline: var(--bs-focus-ring); outline-offset: 1px; }
+/* Compact: one line, for adding more files under a list. */
+.fm-dropzone-sm { flex-direction: row; gap: 8px; padding: 12px 16px; border-color: var(--bs-primary-border); background: transparent; }
+.fm-dropzone-sm label { color: var(--bs-primary-fg); font-weight: var(--bs-font-weight-semibold); cursor: pointer; }
+
 </style>
 </helmet>
 
@@ -596,8 +609,8 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 <div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
 <span class="badge theme-warning badge-subtle" style="justify-self:start">BTN-9</span>
 <div><div>custom upload box</div></div>
-<div><div style="font-weight:600">Upload button</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom. No v6 component covers this. Class name and pattern are unresolved — needs a proposal.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-9" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
-<div style="min-width:0;overflow-x:auto"><button type="button" style="border:1px dashed var(--bs-primary-base);background:transparent;color:var(--bs-primary-base);border-radius:var(--bs-radius-5);padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;font-weight:600;font-family:inherit"><i class="fa-solid fa-arrow-up-from-bracket" style="font-size:18px"></i>Upload additional Audition</button></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Upload dropzone</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.fm-dropzone + input[type=file] + label.btn-solid + .progress</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom. Adds files where dropping helps, such as a script PDF or media. A drop area around a real file input: the button opens the file picker, and a file can also be dropped anywhere on the area. Shows progress while uploading, then the file. Production builds it with Uppy; this is the markup and behaviour.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-9" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="vstack gap-3" style="width:100%;max-width:560px" data-demo-dropzone><div class="fm-dropzone"><span class="fm-dropzone-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up-from-bracket"></i></span><span class="fm-dropzone-title">Upload script PDF</span><span class="fm-dropzone-hint">Drop the PDF here or select it manually</span><input class="visually-hidden" type="file" id="dz-script" accept="application/pdf,.pdf" aria-describedby="dz-script-help"><label class="btn-solid theme-primary btn-sm" for="dz-script"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Choose a PDF</label><span class="fs-xs fg-3" id="dz-script-help">PDF only, up to 5 MB</span></div><div class="invalid-feedback d-block" data-dz-error hidden="hidden"></div><ul class="list-unstyled m-0 vstack gap-3" data-dz-list></ul><p class="visually-hidden" aria-live="polite" data-dz-status></p></div></div>
 </div>
 
 <div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">

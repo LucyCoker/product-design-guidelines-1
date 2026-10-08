@@ -683,16 +683,41 @@
    "items": [
     {
      "code": "BTN-9",
-     "name": "Upload button",
+     "name": "Upload dropzone",
      "status": "Custom",
-     "classes": "",
-     "docs": "",
-     "replaces": "custom upload box",
-     "note": "No v6 component covers this. Class name and pattern are unresolved — needs a proposal.",
-     "unresolved": true,
+     "classes": ".fm-dropzone + input[type=file] + label.btn-solid + .progress",
+     "docs": "https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/",
+     "replaces": "c-upload-dropzone (Uppy) and the custom upload box",
+     "note": "Adds files where dropping helps, such as a script PDF or media. A drop area around a real file input: the button opens the file picker, and a file can also be dropped anywhere on the area. Shows progress while uploading, then the file. Production builds it with Uppy; this is the markup and behaviour.",
+     "unresolved": false,
      "flags": [],
      "layout": "row",
-     "example": "<button type=\"button\" style=\"border:1px dashed var(--bs-primary-base);background:transparent;color:var(--bs-primary-base);border-radius:var(--bs-radius-5);padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;font-weight:600;font-family:inherit\"><i class=\"fa-solid fa-arrow-up-from-bracket\" style=\"font-size:18px\"></i>Upload additional Audition</button>"
+     "rules": [
+      "Built on Bootstrap’s file input: a real <code>input type=\"file\"</code> (visually hidden, with <code>accept</code>) and a <code>label</code> styled as the button. Keyboard and screen reader users use the button; dropping is an extra.",
+      "The area is <code>.fm-dropzone</code>: icon, title, hint, button. The title says what to upload (“Upload script PDF”), the hint says how (“Drop the PDF here or select it manually”), and the button names the file (“Choose a PDF”).",
+      "State the limits under the button when there are any (“PDF only, up to 5 MB”), and link them with <code>aria-describedby</code>.",
+      "The button is <code>btn-solid theme-primary</code> when uploading is the main action of the screen; otherwise <code>btn-outline theme-secondary</code>.",
+      "While a file is dragged over, the area shows the primary border and subtle fill (<code>.is-dragover</code>).",
+      "While it uploads: the file row with a <a href=\"#msg-7\">Progress</a> bar, its percentage and Cancel. Then the normal file row (icon, name, size, Remove). A polite live region says “… uploaded”.",
+      "A wrong type or size is rejected with a message in <code>.invalid-feedback</code> under the area, naming the limit (“Only PDF files, up to 5 MB.”).",
+      "Compact (<code>.fm-dropzone-sm</code>): one line under an existing list, for adding more files."
+     ],
+     "examples": [
+      {
+       "label": "Dropzone",
+       "badge": "Default",
+       "wide": true,
+       "caption": "Working: choose or drop a PDF. Try another file type to see the error.",
+       "html": "<div class=\"vstack gap-3\" style=\"width:100%;max-width:560px\" data-demo-dropzone><div class=\"fm-dropzone\"><span class=\"fm-dropzone-icon\" aria-hidden=\"true\"><i class=\"fa-solid fa-arrow-up-from-bracket\"></i></span><span class=\"fm-dropzone-title\">Upload script PDF</span><span class=\"fm-dropzone-hint\">Drop the PDF here or select it manually</span><input class=\"visually-hidden\" type=\"file\" id=\"dz-script\" accept=\"application/pdf,.pdf\" aria-describedby=\"dz-script-help\"><label class=\"btn-solid theme-primary btn-sm\" for=\"dz-script\"><i class=\"fa-solid fa-file-lines\" aria-hidden=\"true\"></i>Choose a PDF</label><span class=\"fs-xs fg-3\" id=\"dz-script-help\">PDF only, up to 5 MB</span></div><div class=\"invalid-feedback d-block\" data-dz-error hidden></div><ul class=\"list-unstyled m-0 vstack gap-3\" data-dz-list></ul><p class=\"visually-hidden\" aria-live=\"polite\" data-dz-status></p></div>"
+      },
+      {
+       "label": "Compact",
+       "badge": "",
+       "wide": true,
+       "caption": "Adding more files under a list.",
+       "html": "<div class=\"vstack gap-3\" style=\"width:100%;max-width:560px\" data-demo-dropzone><ul class=\"list-unstyled m-0 vstack gap-3\" data-dz-list><li class=\"d-flex align-items-center gap-3\"><i class=\"fa-regular fa-file-pdf fg-3\" aria-hidden=\"true\" style=\"font-size:20px\"></i><div class=\"vstack min-w-0\"><span>Full-Script-2026.pdf</span><span class=\"fs-xs fg-3\">1.2 MB</span></div><button type=\"button\" class=\"btn-text theme-secondary btn-xs btn-icon ms-auto\" aria-label=\"Remove Full-Script-2026.pdf\" data-demo-remove data-bs-toggle=\"tooltip\" data-bs-title=\"Remove\"><i class=\"fa-regular fa-trash-can\" aria-hidden=\"true\"></i></button></li></ul><div class=\"fm-dropzone fm-dropzone-sm\"><input class=\"visually-hidden\" type=\"file\" id=\"dz-more\" accept=\"application/pdf,.pdf\"><label for=\"dz-more\"><i class=\"fa-solid fa-arrow-up-from-bracket me-2\" aria-hidden=\"true\"></i>Upload additional Audition</label><span class=\"fs-xs fg-3\">or drop a PDF here</span></div><div class=\"invalid-feedback d-block\" data-dz-error hidden></div><p class=\"visually-hidden\" aria-live=\"polite\" data-dz-status></p></div>"
+      }
+     ]
     }
    ]
   },

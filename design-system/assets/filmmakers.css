@@ -339,3 +339,16 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
    button uses the selected-item style (bg-2, body text), as menus do: never
    primary, never solid secondary. */
 .btn-group > .btn-outline.theme-secondary.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
+
+/* Upload dropzone (BTN-9): a drop target around a real file input. The
+   button is a label for the input, so keyboards and screen readers use the
+   native picker; dropping a file is an extra. As production (Uppy). */
+.fm-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 32px 24px; text-align: center; border: 1px dashed var(--bs-border-emphasized); border-radius: var(--bs-radius-5); background: var(--bs-bg-1); }
+.fm-dropzone-icon { font-size: 24px; color: var(--bs-fg-3); }
+.fm-dropzone-title { font-weight: var(--bs-font-weight-semibold); }
+.fm-dropzone-hint { color: var(--bs-fg-2); }
+.fm-dropzone.is-dragover { border-color: var(--bs-primary-bg); background: var(--bs-primary-bg-subtle); }
+.fm-dropzone input[type="file"]:focus-visible + label { outline: var(--bs-focus-ring); outline-offset: 1px; }
+/* Compact: one line, for adding more files under a list. */
+.fm-dropzone-sm { flex-direction: row; gap: 8px; padding: 12px 16px; border-color: var(--bs-primary-border); background: transparent; }
+.fm-dropzone-sm label { color: var(--bs-primary-fg); font-weight: var(--bs-font-weight-semibold); cursor: pointer; }
