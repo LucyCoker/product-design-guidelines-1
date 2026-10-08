@@ -2746,7 +2746,7 @@
      "flags": [
       {
        "type": "ask",
-       "text": "Dot colour needs review: red (danger, as now), the customer primary colour, or always Bootstrap blue?"
+       "text": "Dot colour needs review: always red (as now), the customer primary colour, always Bootstrap blue, or blue/primary for “new” and red only when something needs urgent attention (danger)?"
       },
       {
        "type": "info",
