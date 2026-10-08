@@ -2337,10 +2337,6 @@
        "text": "The theme matches the meaning: info, warning or danger."
       },
       {
-       "kind": "a11y",
-       "text": "Every alert has an icon and text, never colour alone."
-      },
-      {
        "kind": "do",
        "text": "Say how to resolve the condition, with a link where there is a next step."
       },
