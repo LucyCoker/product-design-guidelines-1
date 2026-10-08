@@ -288,11 +288,7 @@
      "rules": [
       {
        "kind": "do",
-       "text": "For actions whose icon everyone knows: an overflow menu, close, and toolbar actions such as search and filter."
-      },
-      {
-       "kind": "do",
-       "text": "Only for overflow menus (ellipsis), close controls (xmark) and toolbar actions with a well-known icon (search, filter, sort). Anything else gets a text label."
+       "text": "Only for actions whose icon everyone knows: overflow menus (ellipsis), close (xmark), and toolbar actions such as search, filter and sort. Anything else gets a text label."
       },
       {
        "kind": "a11y",
