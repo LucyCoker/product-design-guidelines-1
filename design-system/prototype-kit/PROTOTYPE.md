@@ -19,7 +19,7 @@ Start from `design-system/prototype-kit/starter.html`. It already has the header
 - MUST NOT use Tailwind, shadcn, Material or any other UI kit, and MUST NOT write CSS for colours, fonts, spacing or components.
 - MUST NOT use hex, rgb or named colours. Colour comes from theme classes (`theme-primary`, `theme-secondary`, `theme-danger`…) and tokens (`var(--bs-…)`).
 - To preview a customer's colour, set `:root { --fm-primary: #hex; }`. Nothing else.
-- Light mode is the default: keep `data-bs-theme="light"` on `<html>`. Every token has a dark value too (`data-bs-theme="dark"` switches them), so colour that comes from tokens works in both. Do not add a dark mode switch to the product: whether it ships is an open decision.
+- Make every prototype in light mode: keep `data-bs-theme="light"` on `<html>`. Dark mode is in the code (every token has a dark value) only so we can check it works; it is not live for clients and may never be. Do not design or show dark mode, and do not add a dark mode switch.
 - Pictures of people are illustrations or placeholders, never real photos.
 - Icons are Font Awesome 7: `<i class="fa-solid fa-…">` or `fa-regular`.
 
