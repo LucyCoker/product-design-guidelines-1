@@ -2220,10 +2220,6 @@
       {
        "kind": "caution",
        "text": "Caution with the primary colour: only use it when the information is very important and gets lost on a busy page (for example Important information). At most one per page, and never to decorate."
-      },
-      {
-       "kind": "code",
-       "text": "Several accordions in a row that should open one at a time share a <code>name</code> on their <code>details</code>."
       }
      ],
      "examples": [
