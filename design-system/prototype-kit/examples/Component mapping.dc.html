@@ -401,6 +401,14 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-results:not(:has([data-view="list"]:checked)) .fm-results-table { display: none; }
 .fm-results:has([data-view="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
 
+/* Client zone on an avatar: the client orange, solid or subtle (.avatar-subtle). */
+.avatar.fm-client-zone {
+  --bs-theme-bg: var(--fm-accent-client-zone);
+  --bs-theme-contrast: var(--bs-white);
+  --bs-theme-bg-subtle: light-dark(var(--bs-orange-100), var(--bs-orange-900));
+  --bs-theme-fg: light-dark(var(--bs-orange-700), var(--bs-orange-300));
+}
+
 </style>
 </helmet>
 
@@ -983,7 +991,7 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 <div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
 <span class="badge theme-secondary badge-subtle" style="justify-self:start">AVT-1</span>
 <div><div>user avatar</div><code style="font-size:12px;color:var(--bs-fg-3)">custom</code></div>
-<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Avatar</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.avatar.avatar-xs.theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace. Initials fallback, weight 600 via the remapped medium token.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#avt-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Avatar</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.avatar.avatar-xs.theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace. A photo when there is one, otherwise initials, weight 600 via the remapped medium token. Client people can carry the client zone orange.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#avt-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"> · 1 open question</span></div></div>
 <div style="min-width:0;overflow-x:auto"><span class="avatar avatar-xs theme-secondary">C</span><span class="avatar avatar-sm theme-secondary">DZ</span></div>
 </div>
 
@@ -991,7 +999,7 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 <span class="badge theme-secondary badge-subtle" style="justify-self:start">AVT-2</span>
 <div><div>avatar list</div><code style="font-size:12px;color:var(--bs-fg-3)">custom</code></div>
 <div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/#stacks" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/#stacks" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Avatar stack</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.avatar-stack.avatar-stack-sm</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#avt-2" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
-<div style="min-width:0;overflow-x:auto"><div class="avatar-stack avatar-stack-sm"><span class="avatar avatar-sm theme-secondary">DZ</span><span class="avatar avatar-sm theme-secondary">CS</span><span class="avatar avatar-sm theme-secondary">MS</span><span class="avatar avatar-sm theme-secondary">+2</span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="avatar-stack avatar-stack-sm"><span class="avatar avatar-sm theme-secondary">+2</span><span class="avatar avatar-sm theme-secondary">MS</span><span class="avatar avatar-sm theme-secondary">CS</span><span class="avatar avatar-sm theme-secondary">DZ</span></div></div>
 </div>
 
 <div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">

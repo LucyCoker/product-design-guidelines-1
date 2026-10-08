@@ -359,3 +359,11 @@ a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: under
 .fm-results:has([data-view="list"]:checked) .fm-results-grid,
 .fm-results:not(:has([data-view="list"]:checked)) .fm-results-table { display: none; }
 .fm-results:has([data-view="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
+
+/* Client zone on an avatar: the client orange, solid or subtle (.avatar-subtle). */
+.avatar.fm-client-zone {
+  --bs-theme-bg: var(--fm-accent-client-zone);
+  --bs-theme-contrast: var(--bs-white);
+  --bs-theme-bg-subtle: light-dark(var(--bs-orange-100), var(--bs-orange-900));
+  --bs-theme-fg: light-dark(var(--bs-orange-700), var(--bs-orange-300));
+}
