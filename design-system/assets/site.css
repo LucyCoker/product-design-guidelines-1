@@ -464,3 +464,4 @@ body, .lib-top { background: var(--bs-bg-1); }
 [data-bs-theme="dark"] .lib-docs-link i { color: #a98eda; }
 .lib-item-meta .lib-replaces-from { font-weight: 600; color: var(--bs-fg-2); }
 .lib-code-notes .lib-rules { margin-top: 0; }
+#primary-menu .menu-item .lib-swatch, [data-primary] .lib-swatch { margin-inline-end: 8px; vertical-align: -1px; display: inline-block; }
