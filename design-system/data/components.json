@@ -4241,7 +4241,8 @@
        "text": "Guidance for a whole card, so not a form-text: that is reserved for the single control it is wired to with aria-describedby (FRM-5). role=\"note\" instead of role=\"alert\" because nothing changed and there is nothing to announce. The caret points at the card it explains."
       }
      ],
-     "usedOn": "Not confirmed yet: from the Selection or Manage Audition prototype"
+     "usedOn": "Not confirmed yet: from the Selection or Manage Audition prototype",
+     "suggestion": "Develop a help text component that works here and in other forms with a similar need. Use tooltips less for explaining things."
     }
    ]
   }
