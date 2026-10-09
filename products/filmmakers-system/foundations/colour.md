@@ -41,7 +41,7 @@ Four roles in use. Each does a different job. The final row is listed for refere
 
 | Colour           | Description                                                                                                   | Usage                                                                                                       |
 | ---------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| **Primary**      | Set per user. If not set, defaults to the Bootstrap primary                                                   | Main brand colour, for primary actions                                                                      |
+| **Primary**      | Set per user. If not set, defaults to the Bootstrap primary. Use **blue-600** to meet 4.5:1 minimum           | Main brand colour, for primary actions                                                                      |
 | **Secondary**    | Bootstrap default secondary palette                                                                           | The bulk of the user interface                                                                              |
 | **Status**       | Bootstrap semantic palette — danger, warning, success, info                                                   | States only. Never actions or decoration                                                                    |
 | **Accent**       | A Bootstrap palette colour assigned to a specific area — e.g. orange for the client area                      | Marks a distinct area. Rarely, adds meaning where the other roles cannot. Chrome and context, never actions |
@@ -96,12 +96,24 @@ Accent adds meaning to something where secondary, status and primary are not eno
 
 | Accent      | Colour           | Usage                                                                                       |
 | ----------- | ---------------- | ------------------------------------------------------------------------------------------- |
-| Client zone | Bootstrap orange | Marks areas of Selections where clients or other users outside the team can see the content |
+| Client zone | Bootstrap `orange-600` | Marks areas of Selections where clients or other users outside the team can see the content |
 
 
 ### Brand personas
 
 **Brand persona colours MUST NOT be used in Filmmakers System.** They compete with the per-user primary and with area accents.
+
+## Light and dark mode
+
+Filmmakers System has a light mode and a dark mode, both from Bootstrap 6. Every theme token is defined with `light-dark()`, so the same class shows the light value or the dark value depending on the colour scheme. The mode is set with `data-bs-theme="light"` or `data-bs-theme="dark"` on `<html>`, or on any element to force one mode there.
+
+- Light MUST stay the default. Dark mode is chosen by the person, with a third option to match their system setting.
+- Colour MUST come from theme tokens, so it switches with the mode. A fixed colour (a palette step, `--bs-white`, `--bs-black`) stays the same in both modes, so it MAY only be used where that is the point, such as white text on a dark band over a photo.
+- Every Filmmakers override MUST give a light and a dark value. The primary scale is mixed from the per-user primary: towards white for text and towards the dark body colour for surfaces in dark mode.
+- Contrast MUST be checked in both modes, for every primary.
+- Photos and illustrations do not change with the mode.
+
+The Library has a Light / Dark / Match system switch in its top bar and lists every token's light and dark value on the Colour page.
 
 ## Accessibility
 
@@ -135,7 +147,7 @@ This page defines roles and proportion. How each role is applied to a given situ
 
 ### Open decisions
 
-none
+**Dark mode in the product** — the tokens and the Library support dark mode. Whether the product offers it, and where people switch it, is not decided. Do not ship a dark mode switch in the product until it is. Listed in the Library's Decisions backlog.
 
 ### Watching
 

@@ -43,7 +43,7 @@ Where a question needs more than a line, the full **Pattern** is in the Product 
 - **Modal** — one short decision, or a form of about six fields, finished in under 30 seconds.
 - **Side panel** — editing one record while the list behind it stays useful.
 - **Page** — anything with its own URL, longer than two screens, multi-step, or needing reference to other content.
-- If a modal needs scrolling at largest modal size, use a page.
+- Modals may scroll. Long content scrolls inside the modal body, with the header and footer fixed so the actions stay visible.
 - Modals never open modals, never stack, never appear unprompted.
 
 
@@ -117,7 +117,7 @@ Five different states, five different messages. Never one generic "No data".
 - Bootstrap default → our documented rule → propose a new one. There is no fourth option.
 - A custom pattern is justified only when no existing one can be adapted, and it needs a written proposal.
 - "It's just this one screen" is how inconsistency starts.
-- Never invent a class name. If it isn't in the permitted table, **ASK**.
+- Never invent a class name. Use Bootstrap 6 classes and the documented Filmmakers classes (`fm-`, listed in the Library under Foundations › Filmmakers classes, defined in `filmmakers.css`). A new `fm-` class is added to that list, with a reason, before it is used. Anything else: **ASK**.
 ## What stays consistent everywhere
  
 These never vary by screen, area, product or persona:

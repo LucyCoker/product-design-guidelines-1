@@ -9,7 +9,7 @@ Which Bootstrap button group combinations we use, and how. For deciding which ac
 - A button group is **two or three related actions**, joined, all the same variant.
 - Four or more actions → show fewer and move the rest to an overflow menu.
 - Never all-primary. Never mixed variants.
-- Not for switching views, not for selecting a value, not for navigation.
+- Not for selecting a value or for navigation. Switching how the same content is shown (grid or list) uses a toggle group, below.
 
 ## What it is
 
@@ -27,7 +27,7 @@ A row of buttons with gaps between them is **not** a button group — that is a 
 | Four or more actions on the same object | One or two visible, rest in an overflow menu |
 | Actions with no relationship to each other | Separate buttons, not a group |
 | Variants of one action (Save / Save and new) | Split button |
-| Switching between views of the same content | Not a button group. See Unresolved |
+| Switching between views of the same content (small tiles, large tiles, list) | Toggle group |
 | Switching between different content sets | Tabs |
 | A yes/no or on/off choice | Switch or checkbox. See forms |
 | Choosing one value from a set | Radio group |
@@ -36,7 +36,7 @@ A row of buttons with gaps between them is **not** a button group — that is a 
 **Rules**
 
 - A button group MUST contain only actions that apply to the same object or data.
-- A button group MUST NOT be used to indicate a selection or a current state.
+- A button group of actions MUST NOT be used to indicate a selection or a current state. Only a toggle group shows a current choice.
 - A button group MUST NOT be used as navigation or as a substitute for tabs.
 - Where actions are not related, they MUST be separated rather than grouped. Grouping unrelated actions implies a relationship that isn't there.
 - A button group MUST NOT mix destructive and non-destructive actions. The proximity invites mistakes. See destructive actions.
@@ -103,15 +103,18 @@ A joined control reads as a single object. Mixing variants inside it breaks that
 ✅ Tabs for Videos / Pictures / Documents
 ❌ A button group for the same
 
+## Toggle group
+
+A toggle group chooses how the same content is shown, such as Small tiles, Large tiles and List view. It is a radio group, so exactly one option is chosen.
+
+- It MUST be built from Bootstrap's `.btn-check` toggle buttons (a `label.btn-check` with a radio inside) in a `.btn-group`, all `btn-outline theme-secondary`, with `role="radiogroup"` and an `aria-label`.
+- The chosen button MUST use the selected-item style: `--bs-bg-2` with body text, as menus do. Never primary, never solid secondary.
+- Icon-only options need an `aria-label` and a tooltip each.
+- It MUST NOT switch between different content sets (use tabs), and MUST NOT hold actions.
+
 ## Unresolved
 
 ### Open decisions
-
-**Segmented controls** — whether we use them at all. Every current use is either view switching (tabs), a binary choice (switch or checkbox), or content sections (tabs). If nothing legitimate remains, we say we do not use them.
-*Review by: [date]*
-
-**Selected state** — only needed if segmented controls are adopted. The conventional treatment is a solid secondary, which is banned in buttons, so a selected state would need defining.
-*Review by: [date]*
 
 **Toolbars** — whether a toolbar of several groups is a pattern we use, and how groups are separated within one.
 *Review by: [date]*
