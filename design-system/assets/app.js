@@ -792,7 +792,7 @@ async function setupKit() {
 }
 
 // Preview primary ----------------------------------------------------------
-const NAMES = { default: 'Default blue', 'var(--bs-red-600)': 'Red', 'var(--bs-green-600)': 'Green' }
+const NAMES = { default: 'Default blue', 'var(--bs-red-600)': 'Red', 'var(--bs-green-600)': 'Green', '#fc3082': 'Kosova Film', '#d62e33': 'BBFC' }
 
 function setPrimary(value) {
   const root = document.documentElement
