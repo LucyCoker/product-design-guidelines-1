@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="vendor/bootstrap.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/palette.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/theme-roles.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/typography.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/motion.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/tokens/fig-tokens.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/product/filmmakers.css">
+<link rel="stylesheet" href="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.1/css/all.min.css">
+<script type="module" src="vendor/bootstrap.bundle.min.js"></script>
+<script src="_ds/filmmakers-system-design-system-cfb8060d-cbca-4492-a393-3f8fa1ab7012/_ds_bundle.js"></script>
+<style>
+:root,body{color-scheme:light !important}
+:root{--bs-control-checked-bg:var(--bs-blue-600);--bs-control-checked-border-color:var(--bs-blue-600);--bs-progress-bar-bg:var(--bs-blue-600)}
+.form-control,select,input{accent-color:var(--bs-blue-600)}
+.breadcrumb-divider::before{content:var(--bs-breadcrumb-divider, "/")}
+.breadcrumb-link:hover,.nav-underline .nav-link:hover{background:var(--bs-bg-body) !important;color:var(--bs-primary-fg-emphasis) !important;text-decoration:none !important}
+.breadcrumb-link{padding:4px 8px;border-radius:var(--bs-radius-4)}
+.menu{--bs-menu-item-active-bg:var(--bs-bg-2);--bs-menu-item-active-color:var(--bs-fg-body);--bs-theme-bg:var(--bs-bg-2);--bs-theme-contrast:var(--bs-fg-body);--bs-theme-bg-subtle:var(--bs-bg-1)}
+html,body{margin:0}
+body{background:var(--bs-bg-body);color:var(--bs-fg-body);font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size)}
+a:not([class]){color:var(--bs-link-color);text-decoration:none}
+a:not([class]):hover{color:var(--bs-link-hover-color);text-decoration:underline}
+.menu{--bs-menu-item-active-bg:var(--bs-bg-2);--bs-menu-item-active-color:var(--bs-fg-body);--bs-theme-bg:var(--bs-bg-2);--bs-theme-contrast:var(--bs-fg-body);--bs-theme-bg-subtle:var(--bs-bg-1)}
+.list-group{--bs-list-group-active-bg:var(--bs-bg-2);--bs-list-group-active-color:var(--bs-fg-body);--bs-list-group-active-border-color:var(--bs-border-color)}
+.nav-pills{--bs-nav-pills-link-active-bg:var(--bs-bg-2);--bs-nav-pills-link-active-color:var(--bs-fg-body)}
+</style>
+<style>
+/* Filmmakers System Library theme layer (design-system/assets/filmmakers.css). Keep in sync with the Library. */
+/*
+ * Filmmakers System theme layer for Bootstrap 6.
+ *
+ * Load after bootstrap.min.css. It overrides Bootstrap tokens and adds the
+ * few custom classes the guidelines permit. It adds no new components.
+ *
+ * Sources: the product guidelines in this repo, and the product layer used by
+ * the Component mapping prototypes (Selection, Manage Audition).
+ * Bootstrap 6 alpha emits its root tokens outside any CSS layer, so these
+ * overrides are unlayered too and win by source order.
+ */
+
+/* ---------------------------------------------------------------------------
+ * Colour modes: light (default) and dark
+ *
+ * Bootstrap 6 defines every theme token with light-dark(), so the mode is
+ * just color-scheme: data-bs-theme="dark" on <html> (or any element) turns
+ * the tokens dark, data-bs-theme="light" turns them light. Light is the
+ * default; nothing switches on the OS setting unless the page asks it to.
+ * Every Filmmakers override below gives a light and a dark value too.
+ * ------------------------------------------------------------------------ */
+:root { color-scheme: light; }
+[data-bs-theme="light"] { color-scheme: light; }
+[data-bs-theme="dark"] { color-scheme: dark; }
+
+/* ---------------------------------------------------------------------------
+ * Primary
+ *
+ * One input, --fm-primary, drives every primary role. The default is
+ * Bootstrap blue-600 (colour.md). A customer primary sets --fm-primary on
+ * :root or on any [data-fm-primary] element. The mixes copy the Component
+ * mapping prototypes.
+ * ------------------------------------------------------------------------ */
+:root {
+  --fm-primary: var(--bs-blue-600);
+}
+
+:root,
+[data-fm-primary] {
+  /* light value, dark value: the dark mixes lighten the primary for text and
+     mix it into the dark body colour for surfaces, as Bootstrap's own
+     scales do (blue-400 text, blue-900 subtle on dark). */
+  --bs-primary-base: var(--fm-primary);
+  --bs-primary-bg: var(--fm-primary);
+  --bs-primary-fg: light-dark(var(--fm-primary), color-mix(in oklch, var(--fm-primary) 62%, var(--bs-white)));
+  --bs-primary-fg-emphasis: light-dark(color-mix(in oklch, var(--fm-primary) 78%, var(--bs-black)), color-mix(in oklch, var(--fm-primary) 45%, var(--bs-white)));
+  --bs-primary-bg-subtle: light-dark(color-mix(in oklch, var(--fm-primary) 12%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 22%, var(--bs-gray-975)));
+  --bs-primary-bg-muted: light-dark(color-mix(in oklch, var(--fm-primary) 26%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 38%, var(--bs-gray-975)));
+  --bs-primary-border: light-dark(color-mix(in oklch, var(--fm-primary) 55%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 60%, var(--bs-gray-975)));
+  --bs-primary-contrast: var(--bs-white);
+}
+
+/* ---------------------------------------------------------------------------
+ * Always Bootstrap blue
+ *
+ * These never follow the customer primary: checked controls, progress bars,
+ * native accent colour, and the focus ring.
+ * ------------------------------------------------------------------------ */
+:root {
+  --bs-control-checked-bg: var(--bs-blue-600);
+  --bs-control-checked-border-color: var(--bs-blue-600);
+  --bs-progress-bar-bg: var(--bs-blue-600);
+}
+
+/* Focus ring: Bootstrap's 3px ring with a 1px offset, in full-strength
+ * blue-500 for every theme (about 3.6:1 on white; Bootstrap's 50% mix is
+ * about 1.9:1 and fails the 3:1 focus indicators need). One colour, so it
+ * never follows the customer primary or a status theme. */
+:root {
+  --bs-primary-focus-ring: var(--bs-blue-500);
+  --bs-secondary-focus-ring: var(--bs-blue-500);
+  --bs-accent-focus-ring: var(--bs-blue-500);
+  --bs-success-focus-ring: var(--bs-blue-500);
+  --bs-danger-focus-ring: var(--bs-blue-500);
+  --bs-warning-focus-ring: var(--bs-blue-500);
+  --bs-info-focus-ring: var(--bs-blue-500);
+  --bs-inverse-focus-ring: var(--bs-blue-500);
+}
+
+/* Chip remove button: a 24x24px hit area around the 16px icon, so it meets
+ * WCAG 2.2 target size without changing how the chip looks. */
+.chip-dismiss { position: relative; }
+.chip-dismiss::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 24px;
+  block-size: 24px;
+  transform: translate(-50%, -50%);
+}
+
+.form-control,
+select,
+input { accent-color: var(--bs-blue-600); }
+
+/* ---------------------------------------------------------------------------
+ * Typography (typography.md)
+ * ------------------------------------------------------------------------ */
+:root {
+  /* Body is 14px: select Bootstrap's small size, never shrink the root. */
+  --bs-body-font-size: var(--bs-font-size-sm);
+  /* Bootstrap 6 defaults headings to 500, which typography.md bans. */
+  --bs-heading-font-weight: 600;
+}
+
+/* Headings keep Bootstrap's sizes. Set the visual role with a size utility:
+   .fs-2xl page title, .fs-lg section heading, .fs-md card or group heading. */
+
+:where(.btn, .btn-solid, .btn-outline, .btn-text) {
+  --bs-btn-font-weight: var(--bs-font-weight-semibold);
+}
+
+.table > thead th { font-weight: 600; }
+
+/* ---------------------------------------------------------------------------
+ * Component adjustments from the product layer
+ * ------------------------------------------------------------------------ */
+a:not([class]) { color: var(--bs-link-color); text-decoration: none; }
+a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: underline; }
+
+.breadcrumb-divider::before { content: var(--bs-breadcrumb-divider, "/"); }
+.breadcrumb-link { padding: 4px 8px; border-radius: var(--bs-radius-4); }
+.breadcrumb-link:hover,
+.nav-underline .nav-link:hover {
+  background: var(--bs-bg-body) !important;
+  color: var(--bs-primary-fg-emphasis) !important;
+  text-decoration: none !important;
+}
+
+/* Selected items are one step darker than the bg-1 hover, never primary. */
+.menu {
+  --bs-menu-item-active-bg: var(--bs-bg-2);
+  --bs-menu-item-active-color: var(--bs-fg-body);
+  --bs-theme-bg: var(--bs-bg-2);
+  --bs-theme-contrast: var(--bs-fg-body);
+  --bs-theme-bg-subtle: var(--bs-bg-1);
+}
+.list-group {
+  --bs-list-group-active-bg: var(--bs-bg-2);
+  --bs-list-group-active-color: var(--bs-fg-body);
+  --bs-list-group-active-border-color: var(--bs-border-color);
+}
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--bs-bg-2);
+  --bs-nav-pills-link-active-color: var(--bs-fg-body);
+}
+
+/* Icon and label spacing inside Font Awesome v5-style labels. */
+.fa5-text { margin-inline-start: 0.375rem; }
+
+/* ---------------------------------------------------------------------------
+ * Accent: client zone (colour.md, buttons.md)
+ *
+ * Bootstrap orange-600 (decided in review; replaces the mapping's #EF7428).
+ * About 4.4:1 on white, so the icon passes the 3:1 WCAG 2.1 AA needs.
+ * ------------------------------------------------------------------------ */
+:root {
+  --fm-accent-client-zone: var(--bs-orange-600);
+}
+
+.btn-outline.theme-secondary.fm-client-zone > i,
+.btn-outline.theme-secondary.fm-client-zone > .fm-icon {
+  color: var(--fm-accent-client-zone);
+}
+
+/* ---------------------------------------------------------------------------
+ * Action gutter (CNT-12, used by the Project card and Production list)
+ *
+ * Sized by the card it sits in, not the window: when the card is 900px or
+ * wider, a 180px column on the right, actions stacked. Narrower: a bar
+ * along the bottom of the card, actions in a row at the end. So the gutter
+ * never wraps below the content while still styled as a column.
+ * ------------------------------------------------------------------------ */
+.card:has(.fm-action-gutter) { container-type: inline-size; }
+.fm-action-gutter {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px 12px;
+  padding: .5rem .75rem;
+  background: var(--bs-bg-1);
+  border-block-start: 1px solid var(--bs-border-subtle);
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
+}
+@container (width >= 900px) {
+  .fm-action-gutter {
+    flex: 0 0 180px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    padding: .75rem;
+    border-block-start: 0;
+    border-inline-start: 1px solid var(--bs-border-subtle);
+    border-end-start-radius: 0;
+    border-start-end-radius: inherit;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Production list row (CNT-2)
+ *
+ * When the card is 900px or wider: one grid per list (--fm-row-cols),
+ * columns aligned across rows, the Action gutter as the last column.
+ * Narrower: the cells wrap and the gutter becomes a bar along the bottom.
+ * ------------------------------------------------------------------------ */
+.fm-production-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.fm-production-row > * { flex: 1 1 220px; min-width: 0; }
+.fm-production-row > .fm-row-media { flex: 0 0 164px; }
+.fm-production-row > .fm-action-gutter { flex: 1 1 100%; }
+@container (width >= 900px) {
+  .fm-production-row {
+    display: grid;
+    grid-template-columns: var(--fm-row-cols);
+    align-items: var(--fm-row-align, start);
+  }
+  .fm-production-row > .fm-action-gutter { align-self: stretch; }
+}
+
+/* ---------------------------------------------------------------------------
+ * Accordion colours (CNT-5)
+ *
+ * Grey (bg-1) header while closed, white while open, through Bootstrap's own
+ * accordion variables.
+ * ------------------------------------------------------------------------ */
+.accordion {
+  --bs-accordion-btn-bg: var(--bs-bg-1);
+  --bs-accordion-active-bg: var(--bs-bg-body);
+}
+
+/* ---------------------------------------------------------------------------
+ * Accordion Show / Hide label
+ *
+ * Bootstrap's accordion (details/summary) with the product's "Show" or
+ * "Hide" text before the chevron. CSS only: the label follows the native
+ * open state, so no script is needed. The label is aria-hidden because the
+ * browser already announces whether the details element is open.
+ * ------------------------------------------------------------------------ */
+.accordion-header .fm-accordion-label {
+  margin-inline-start: auto;
+  padding-inline-end: .5rem;
+  font-weight: var(--bs-font-weight-normal);
+  color: var(--bs-fg-2);
+}
+.accordion-header .fm-accordion-label + .accordion-icon { margin-inline-start: 0; }
+.accordion-item[open] > .accordion-header .fm-accordion-show,
+.accordion-item:not([open]) > .accordion-header .fm-accordion-hide { display: none; }
+
+/* ---------------------------------------------------------------------------
+ * Overflow tabs (NAV-11)
+ *
+ * Bootstrap pushes the More item to the far end (margin-inline-start: auto).
+ * The product keeps it right after the last visible tab.
+ * ------------------------------------------------------------------------ */
+.nav-overflow-item { margin-inline-start: 0; }
+
+/* ---------------------------------------------------------------------------
+ * Star rating (CNT-19)
+ *
+ * A radio group built from Bootstrap's .btn-check toggle buttons, so the
+ * keyboard (arrow keys) and screen readers get one choice out of five. CSS
+ * fills every star up to the checked one (Font Awesome solid is weight 900,
+ * regular 400) and previews on hover. The checked star gets no background
+ * or border; the focus ring still shows for keyboard users.
+ * ------------------------------------------------------------------------ */
+.fm-rating .btn-check { --bs-btn-color: var(--bs-fg-body); --bs-btn-hover-color: var(--bs-fg-body); --bs-btn-hover-bg: transparent; --bs-btn-active-bg: transparent; --bs-btn-active-border-color: transparent; --bs-btn-active-color: var(--bs-fg-body); }
+.fm-rating :where(.btn-check) > i { font-weight: 400; font-size: var(--bs-body-font-size); }
+/* :where() keeps the chosen fill weaker than the hover preview below. */
+.fm-rating :where(.btn-check:has(input:checked), .btn-check:has(~ .btn-check > input:checked)) > i { font-weight: 900; }
+.fm-rating:hover .btn-check > i { font-weight: 400; }
+.fm-rating .btn-check:hover > i,
+.fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
+.fm-rating [data-rating-clear][hidden] { display: none; }
+
+/* Profile tile, selectable (CNT-20), matching production search results.
+   The name sits over the photo on a translucent band (black 60%, so white
+   text keeps at least 4.5:1 over any photo); the band turns white with a
+   link-coloured name on hover. The checkbox sits top right and shows on
+   hover, on keyboard focus, when ticked, and always on touch screens.
+   A selected tile gets a 2px primary outline. */
+.fm-tile { position: relative; overflow: hidden; border: 0; }
+.fm-tile-photo { display: block; inline-size: 100%; aspect-ratio: var(--fm-tile-ratio, 1 / 1); object-fit: cover; }
+.fm-tile-band { position: absolute; inset-inline: 0; inset-block-end: 0; display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: color-mix(in oklch, var(--bs-black) 60%, transparent); color: var(--bs-white); }
+.fm-tile-band .fm-tile-name { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit; text-decoration: none; font-weight: var(--bs-font-weight-semibold); }
+.fm-tile-band .fm-tile-name::after { content: ""; position: absolute; inset: 0; }
+.fm-tile-band:hover, .fm-tile-band:focus-within { background: color-mix(in oklch, var(--bs-bg-body) 92%, transparent); }
+.fm-tile-band:hover .fm-tile-name, .fm-tile-band:focus-within .fm-tile-name { color: var(--bs-link-color); }
+.fm-tile-check { position: absolute; z-index: 1; inset-block-start: 8px; inset-inline-end: 8px; display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; border-radius: var(--bs-border-radius-sm); background: var(--bs-bg-body); cursor: pointer; opacity: 0; }
+.fm-tile:hover .fm-tile-check, .fm-tile:focus-within .fm-tile-check, .fm-tile-check:has(input:checked) { opacity: 1; }
+@media (hover: none) { .fm-tile-check { opacity: 1; } }
+.fm-tile:has(.fm-tile-check input:checked) { outline: 2px solid var(--bs-primary-bg); outline-offset: -2px; }
+
+/* Assignment status icon: Available green tick, In discussion yellow ?,
+   Blocked orange !, Booked red ban (as production).
+   Light shades on the dark band; on the body colour (hover band, list
+   rows) darker shades in light mode and light shades in dark mode. */
+.fm-status { flex: 0 0 auto; font-size: 1.15em; }
+.fm-status-available { color: var(--bs-green-500); }
+.fm-status-discussion { color: var(--bs-yellow-400); }
+.fm-status-blocked { color: var(--bs-orange-500); }
+.fm-status-booked { color: var(--bs-red-400); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-available { color: light-dark(var(--bs-green-700), var(--bs-green-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-discussion { color: light-dark(var(--bs-yellow-700), var(--bs-yellow-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: light-dark(var(--bs-orange-700), var(--bs-orange-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: light-dark(var(--bs-red-600), var(--bs-red-400)); }
+
+/* List view row: the same checkbox with a 24px target; a selected row gets
+   the subtle primary background. */
+.fm-row-check { display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; cursor: pointer; }
+.fm-row:has(.fm-row-check input:checked) { background: var(--bs-primary-bg-subtle); }
+
+/* Profile tile grid (CNT-20): default 150px track; large is 220px. */
+.fm-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--fm-tile-track, 150px), 1fr)); gap: 16px; }
+.fm-tile-grid-lg { --fm-tile-track: 220px; }
+
+/* View switcher for profile results: one Button group of toggle buttons,
+   Small tiles, Large tiles, List view. A radio group, so there is one
+   choice. The chosen button uses the Library's selected-item style (bg-2,
+   body text), as menus do: never primary, never solid secondary. */
+.fm-view-switch { display: flex; align-items: center; justify-content: flex-end; }
+/* Tile size: the same Font Awesome person, small (10px) and large (16px). */
+.fm-view-switch .fm-size-sm > i { font-size: 10px; }
+.fm-view-switch .fm-size-lg > i { font-size: 16px; }
+
+
+/* List view row photo: 160px square, as production; 96px on small screens. */
+.fm-row-photo { inline-size: 160px; aspect-ratio: 1 / 1; object-fit: cover; }
+@media (width < 576px) { .fm-row-photo { inline-size: 96px; } }
+
+/* Toggle group (Button group): a .btn-group of .btn-check radios. The chosen
+   button uses the selected-item style (bg-2, body text), as menus do: never
+   primary, never solid secondary. */
+.btn-group > .btn-outline.theme-secondary.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
+
+/* Upload dropzone (BTN-9): a drop target around a real file input. The
+   button is a label for the input, so keyboards and screen readers use the
+   native picker; dropping a file is an extra. As production (Uppy). */
+.fm-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 32px 24px; text-align: center; border: 1px dashed var(--bs-border-emphasized); border-radius: var(--bs-radius-5); background: var(--bs-bg-1); }
+.fm-dropzone-icon { font-size: 24px; color: var(--bs-fg-3); }
+.fm-dropzone-title { font-weight: var(--bs-font-weight-semibold); }
+.fm-dropzone-hint { color: var(--bs-fg-2); }
+.fm-dropzone.is-dragover { border-color: var(--bs-primary-bg); background: var(--bs-primary-bg-subtle); }
+.fm-dropzone input[type="file"]:focus-visible + label { outline: var(--bs-focus-ring); outline-offset: 1px; }
+/* Compact: one line, for adding more files under a list. */
+.fm-dropzone-sm { flex-direction: row; gap: 8px; padding: 12px 16px; border-color: var(--bs-primary-border); background: transparent; }
+.fm-dropzone-sm label { color: var(--bs-primary-fg); font-weight: var(--bs-font-weight-semibold); cursor: pointer; }
+
+/* Profile search results: the view switcher (.fm-view-switch) shows the grid,
+   the large grid or the list with :has(), so it works without a script.
+   .fm-results wraps the switcher and both views. */
+.fm-results:has([data-view="list"]:checked) .fm-results-grid,
+.fm-results:not(:has([data-view="list"]:checked)) .fm-results-table { display: none; }
+.fm-results:has([data-view="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
+
+/* Client zone on an avatar: the client orange, solid or subtle (.avatar-subtle). */
+.avatar.fm-client-zone {
+  --bs-theme-bg: var(--fm-accent-client-zone);
+  --bs-theme-contrast: var(--bs-white);
+  --bs-theme-bg-subtle: light-dark(var(--bs-orange-100), var(--bs-orange-900));
+  --bs-theme-fg: light-dark(var(--bs-orange-700), var(--bs-orange-300));
+}
+
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:var(--bs-bg-body);--fs-primary:{{ primaryColor }};--bs-primary-base:{{ primaryColor }};--bs-primary-bg:{{ primaryColor }};--bs-primary-fg:{{ primaryColor }};--bs-primary-fg-emphasis:{{ primaryFgEmphasis }};--bs-primary-bg-subtle:{{ primaryBgSubtle }};--bs-primary-bg-muted:{{ primaryBgMuted }};--bs-primary-border:{{ primaryBorder }};--row-pad:{{ rowPad }}">
+
+<header style="border-bottom:1px solid var(--bs-border-color);padding:24px 24px 20px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;gap:12px">
+<img src="assets/logo.svg" alt="Filmmakers System" style="height:26px;display:block">
+</div>
+<h1 style="font-size:30px;font-weight:600;margin:8px 0 0">Component mapping</h1>
+<p style="font-size:16px;color:var(--bs-fg-2);margin:0;max-width:72ch">Every component used in the Selection, Manage Audition and Sedcard (Summary view) prototypes, from the Bootstrap 3.4 name in the current product to its Bootstrap 6 replacement, with the v6 component rendered live. The v6 column and the examples come from the Filmmakers System Library, which is the source of truth.</p>
+<div><a class="btn-outline theme-secondary btn-sm" href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Open the Library</a></div>
+<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:12px;color:var(--bs-fg-3)">
+<span><strong style="font-weight:600;color:var(--bs-fg-2)">Direct</strong> — same component, renamed or re-classed</span>
+<span><strong style="font-weight:600;color:var(--bs-fg-2)">Replace</strong> — different component in v6</span>
+<span><strong style="font-weight:600;color:var(--bs-fg-2)">Retire</strong> — no v6 equivalent, removed</span>
+<span><strong style="font-weight:600;color:var(--bs-fg-2)">Added</strong> — new in v6, no v3.4 equivalent</span>
+<span><strong style="font-weight:600;color:var(--bs-fg-2)">Custom</strong> — built from Bootstrap parts for Filmmakers System</span>
+</div>
+</header>
+
+<div style="padding:16px 24px 0">
+<div class="alert alert-info" role="alert" style="margin:0;font-size:14px;background:var(--bs-blue-100);border-color:var(--bs-blue-300);color:var(--bs-blue-800)">Select a primary color other than blue in the top settings to show where Bootstrap blue is always used for specific components.</div>
+</div>
+
+<div style="padding:0 0 64px">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;padding:10px 24px;position:sticky;top:0;z-index:1010;background:var(--bs-bg-1);border-bottom:1px solid var(--bs-border-color);font-size:12px;font-weight:600;color:var(--bs-fg-2);text-transform:none">
+<span>Code</span><span>Bootstrap 3.4</span><span>Bootstrap 6</span><span>Example</span>
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Navigation</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-1</span>
+<div><div>header</div><code style="font-size:12px;color:var(--bs-fg-3)">.navbar-default</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Header</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.navbar + .container-fluid</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#shell-header" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><a class="btn-outline theme-secondary btn-sm" href="Header.dc.html"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Open Header page</a></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-2</span>
+<div><div>navbar-brand</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/#brand" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/#brand" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">navbar-brand</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.navbar-brand</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct. Logo at 34px; in v3.4 it sat without a navbar parent.</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Not in the Library yet: it is part of the Header (App shell).</div></div>
+<div><span class="navbar-brand"><img src="assets/logo.svg" alt="Filmmakers System" style="height:34px;display:block"></span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-3</span>
+<div><div>subheader</div><code style="font-size:12px;color:var(--bs-fg-3)">fixed green band</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navbar/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Subheader band</a></div><code style="font-size:12px;color:var(--bs-fg-3)">--bs-primary-bg-subtle</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#shell-subheader" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav class="navbar border rounded theme-primary" style="background:var(--bs-primary-bg-subtle);padding:0;min-height:0;overflow:hidden"><div class="container-fluid" style="padding:0;gap:0;align-items:stretch;flex-wrap:nowrap;max-width:100%"><div style="display:flex;align-items:stretch;flex:0 0 auto;clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%)"><a class="nav-link" href="#" aria-label="Home" data-bs-toggle="tooltip" data-bs-title="Home" style="display:flex;align-items:center;padding:8px 28px 8px 16px;background:var(--bs-primary-bg-muted);color:var(--bs-primary-fg-emphasis)" style-hover="background:var(--bs-primary-bg);color:var(--bs-primary-contrast)"><i class="fa-solid fa-house" aria-hidden="true"></i></a></div><div style="display:flex;align-items:center;color:var(--bs-primary-fg);padding-inline:2px 8px;flex:0 0 auto;min-width:0;font-weight:600;white-space:nowrap">Best Movie Ev...</div><div style="display:flex;align-items:stretch;flex:1 1 auto;min-width:0;background:color-mix(in oklch, var(--bs-primary-bg-subtle) 45%, var(--bs-bg-body))"><span aria-hidden="true" style="flex:0 0 auto;align-self:stretch;width:18px;margin-inline-start:-18px;background:var(--bs-primary-fg-emphasis);opacity:.45;clip-path:polygon(calc(100% - 1.5px) 0, 100% 0, 1.5px 100%, 0 100%)"></span><nav class="nav nav-underline" style="gap:0;margin-inline-start:8px;align-items:stretch;flex:0 1 auto;min-width:0;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)"><a class="nav-link" href="#" style="padding:10px 10px;flex:0 0 auto">Audition</a><a class="nav-link active" href="#" aria-current="page" style="padding:10px 10px;flex:0 0 auto;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)">Selection</a></nav></div></div></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-4</span>
+<div><div>subheader-breadcrumbs</div><code style="font-size:12px;color:var(--bs-fg-3)">.breadcrumb</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/breadcrumb/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/breadcrumb/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Breadcrumb</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.breadcrumb-item / -divider / -link</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-4" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav class="breadcrumb" aria-label="Breadcrumb" style="margin:0;align-items:center;flex-wrap:nowrap;white-space:nowrap;min-width:0;overflow:hidden"><span class="breadcrumb-item" style="flex:0 0 auto;display:flex;align-items:center"><a class="breadcrumb-link" href="#" style="font-weight:600;line-height:1.5">Your Projects</a></span><span class="breadcrumb-divider" aria-hidden="true" style="display:flex;align-items:center"></span><span class="breadcrumb-item" style="flex:0 0 auto;display:flex;align-items:center"><a class="breadcrumb-link" href="#" title="Best Movie Ever Best Movie Ever Best Movie Ever" style="font-weight:600;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:28px">Best Movie Ev...</a></span></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-5</span>
+<div><div>subheader-nav</div><code style="font-size:12px;color:var(--bs-fg-3)">.nav-tabs</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#underline" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#underline" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Nav underline</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.nav.nav-underline</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-5" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav class="nav nav-underline" style="gap:0;--bs-theme-fg:var(--bs-secondary-fg);--bs-nav-link-color:var(--bs-secondary-fg);--bs-nav-link-hover-color:var(--bs-secondary-fg-emphasis);--bs-nav-underline-link-active-color:var(--bs-primary-fg)"><a class="nav-link" href="#" style="display:flex;align-items:center;gap:8px;padding:10px 12px"><i class="fa-solid fa-photo-film" aria-hidden="true"></i>Audition</a><a class="nav-link" href="#" style="display:flex;align-items:center;gap:8px;padding:10px 12px"><i class="fa-solid fa-users" aria-hidden="true"></i>Extras</a><a class="nav-link active" href="#" aria-current="page" style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bs-bg-body);font-weight:600;color:var(--bs-primary-fg)"><i class="fa-solid fa-user-tag" aria-hidden="true"></i>Selection</a></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-6</span>
+<div><div>Count tabs</div><code style="font-size:12px;color:var(--bs-fg-3)">.nav-tabs.nav-justified</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Count tabs</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.nav.nav-tabs.nav-fill</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-6" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav class="nav nav-tabs nav-fill"><a class="nav-link active" href="#"><i class="fa-solid fa-layer-group" aria-hidden="true"></i>6</a><a class="nav-link" href="#"><i class="fa-solid fa-user" aria-hidden="true"></i>76</a><a class="nav-link" href="#"><i class="fa-solid fa-check" aria-hidden="true"></i>1 / 3</a></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-7</span>
+<div><div>Step tabs</div><code style="font-size:12px;color:var(--bs-fg-3)">.nav-tabs</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#fill-and-justify" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Step tabs</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.nav.nav-tabs.nav-fill</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-7" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav class="nav nav-tabs nav-fill"><a class="nav-link active" href="#">Invitation<i class="fa-regular fa-circle-question" aria-hidden="true"></i></a><a class="nav-link" href="#">Rating<i class="fa-regular fa-circle-question" aria-hidden="true"></i></a></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-8</span>
+<div><div>View tabs</div><code style="font-size:12px;color:var(--bs-fg-3)">.nav-tabs</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#tabs" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/#tabs" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">View tabs</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.nav.nav-tabs</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-8" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav class="nav nav-tabs" style="justify-content:flex-end;border-bottom:0;flex-wrap:nowrap"><a class="nav-link active" href="#">Upload view</a><a class="nav-link" href="#">Sort view</a></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-9</span>
+<div><div>Home icon link</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/navs-tabs/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Icon nav link</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.nav-link</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-9" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><a class="nav-link" href="#" aria-label="Home" data-bs-toggle="tooltip" data-bs-title="Home" style="display:inline-flex"><i class="fa-solid fa-house" aria-hidden="true"></i></a></div>
+</div>
+
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-10</span>
+<div><div>pagination</div><code style="font-size:12px;color:var(--bs-fg-3)">.pagination</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/pagination/#working-with-icons" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/pagination/#working-with-icons" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Pagination</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.pagination.pagination-sm + .page-item / .page-link</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-10" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><nav aria-label="Pagination"><ul class="pagination pagination-sm theme-primary" style="margin:0"><li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous page"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></a></li><li class="page-item active"><a class="page-link" href="#" aria-current="page">1</a></li><li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#" aria-label="Next page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li></ul></nav></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">NAV-11</span>
+<div><div>Scrolling tabs</div><code style="font-size:12px;color:var(--bs-fg-3)">.scrtabs-tab-container + .nav-tabs.nav-justified</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/nav-overflow/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/nav-overflow/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Overflow tabs</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.nav-overflow[data-bs-toggle=&quot;nav-overflow&quot;] &gt; .nav.nav-tabs &gt; .nav-item</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#nav-11" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><a class="btn-outline theme-secondary btn-sm" href="Sedcard (Summary view).dc.html"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>Open Sedcard page</a><div style="margin-top:12px"><div class="nav-overflow" data-bs-toggle="nav-overflow" data-bs-icon-placement="end" style="max-width:420px"><i class="fa-solid fa-ellipsis" data-bs-overflow-icon aria-hidden="true"></i><ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" href="#" aria-current="page">Summary</a></li><li class="nav-item"><a class="nav-link" href="#">Input</a></li><li class="nav-item"><a class="nav-link" href="#">Media</a></li><li class="nav-item"><a class="nav-link" href="#">Agencies</a></li><li class="nav-item"><a class="nav-link" href="#">Assignments</a></li><li class="nav-item"><a class="nav-link" href="#">Reviews</a></li><li class="nav-item"><a class="nav-link" href="#">History</a></li></ul></div></div></div>
+</div>
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Menus</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MNU-1</span>
+<div><div>dropdown</div><code style="font-size:12px;color:var(--bs-fg-3)">.dropdown-toggle / .dropdown-menu</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Menu</a></div><code style="font-size:12px;color:var(--bs-fg-3)">[data-bs-toggle=&quot;menu&quot;] + .menu &gt; .menu-item</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#menu-basic" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div><button type="button" class="btn-outline theme-secondary btn-sm" data-bs-toggle="menu" aria-expanded="false">Export<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button><div class="menu"><button type="button" class="menu-item">Download PDF</button><button type="button" class="menu-item">Download CSV</button><button type="button" class="menu-item">Copy link</button></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MNU-2</span>
+<div><div>dropdown-menu-right</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Placement</a></div><code style="font-size:12px;color:var(--bs-fg-3)">data-bs-placement=&quot;bottom-start&quot; · &quot;bottom-end&quot;</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct. This Bootstrap build has no <code>.menu-end</code>: use <code>data-bs-placement="bottom-end"</code>.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#menu-placement" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="d-flex justify-content-end w-100"><div><button type="button" class="btn-outline theme-secondary btn-sm" data-bs-toggle="menu" aria-expanded="false" data-bs-placement="bottom-end">Export<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button><div class="menu"><button type="button" class="menu-item">Download PDF</button><button type="button" class="menu-item">Download CSV</button><button type="button" class="menu-item">Copy link</button></div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MNU-3</span>
+<div><div>divider</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Headers and dividers</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.menu-header · hr.menu-divider</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#menu-groups" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="menu show position-static"><button type="button" class="menu-item">Edit</button><button type="button" class="menu-item">Duplicate</button><hr class="menu-divider"><button type="button" class="menu-item">Archive</button></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MNU-4</span>
+<div><div>action-menu-list</div><code style="font-size:12px;color:var(--bs-fg-3)">"more"</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Overflow menu</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-primary btn-xs + .menu</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#menu-overflow" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="d-flex gap-1 align-items-center"><button type="button" class="btn-text theme-primary btn-xs"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</button><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" aria-expanded="false"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><div class="menu"><button type="button" class="menu-item">Download</button><button type="button" class="menu-item">Copy link</button><hr class="menu-divider"><button type="button" class="menu-item theme-danger">Remove from selection</button></div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MNU-5</span>
+<div><div>dropdown</div><code style="font-size:12px;color:var(--bs-fg-3)">language switch</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Header menus</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-secondary btn-sm + .menu</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#shell-header-menus" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="d-flex flex-column align-items-start gap-2"><button type="button" class="btn-text theme-secondary btn-sm">EN<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button><div class="menu show position-static"><button type="button" class="menu-item active" aria-current="true">English</button><button type="button" class="menu-item">Deutsch</button></div></div></div>
+</div>
+
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Buttons</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-1</span>
+<div><div>btn btn-default</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Secondary</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-outline theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-secondary" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-outline theme-secondary btn-sm">Save draft</button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-2</span>
+<div><div>btn btn-primary</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Primary</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-solid theme-primary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-primary" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-solid theme-primary btn-sm">Publish selection</button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-3</span>
+<div><div>btn btn-link</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Row action</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-primary btn-xs</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-row-action" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-text theme-primary btn-xs"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-4</span>
+<div><div>btn btn-link</div><code style="font-size:12px;color:var(--bs-fg-3)">destructive</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Danger</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-danger · btn-solid theme-danger</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-danger" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-text theme-danger btn-sm"><i class="fa-solid fa-trash" aria-hidden="true"></i>Remove</button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-5</span>
+<div><div>btn with glyphicon only</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Tertiary</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-tertiary" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-text theme-secondary btn-sm btn-icon" aria-label="More actions" data-bs-toggle="tooltip" data-bs-title="More actions"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></button><button type="button" class="btn-text theme-secondary btn-sm btn-icon" aria-label="Search" data-bs-toggle="tooltip" data-bs-title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button><button type="button" class="btn-text theme-secondary btn-sm btn-icon" aria-label="Close" data-bs-toggle="tooltip" data-bs-title="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-6</span>
+<div><div>btn-group</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button-group/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Text labels</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-group &gt; btn-outline theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#bg-labels" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="btn-group btn-group-sm" role="group" aria-label="Profile actions"><button type="button" class="btn-outline theme-secondary btn-sm">Message</button><button type="button" class="btn-outline theme-secondary btn-sm">Release profiles</button></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-7</span>
+<div><div>btn-sm / btn-md</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/#sizes" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/#sizes" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Sizes</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-xs · btn-sm · (none) · btn-lg</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-sizes" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-outline theme-secondary btn-sm">Save draft</button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-8</span>
+<div><div>caret</div><code style="font-size:12px;color:var(--bs-fg-3)">span.caret</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/extend/icons/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/extend/icons/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Icon</a></div><code style="font-size:12px;color:var(--bs-fg-3)">fa-solid fa-caret-down</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Retire the class. v6 has no .caret; the glyph is drawn with the icon font.</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Not in the Library as its own entry: carets are Font Awesome icons (ICN-1).</div></div>
+<div><button type="button" class="btn-solid theme-primary btn-sm">Add profile(s)<i class="fa-solid fa-caret-down"></i></button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">BTN-9</span>
+<div><div>custom upload box</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Upload dropzone</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.fm-dropzone + input[type=file] + label.btn-solid + .progress</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-9" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="vstack gap-3" style="width:100%;max-width:560px" data-demo-dropzone><div class="fm-dropzone"><span class="fm-dropzone-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up-from-bracket" aria-hidden="true"></i></span><span class="fm-dropzone-title">Upload script PDF</span><span class="fm-dropzone-hint">Drop the PDF here or select it manually</span><input class="visually-hidden" type="file" id="dz-script" accept="application/pdf,.pdf" aria-describedby="dz-script-help"><label class="btn-solid theme-primary btn-sm" for="dz-script"><i class="fa-solid fa-file-lines" aria-hidden="true"></i>Choose a PDF</label><span class="fs-xs fg-3" id="dz-script-help">PDF only, up to 5 MB</span></div><div class="invalid-feedback d-block" data-dz-error hidden="hidden"></div><ul class="list-unstyled m-0 vstack gap-3" data-dz-list></ul><p class="visually-hidden" aria-live="polite" data-dz-status></p></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">BTN-10</span>
+<div><div>btn btn-link</div><code style="font-size:12px;color:var(--bs-fg-3)">back link</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/button/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Tertiary</a></div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-tertiary" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><a class="btn-text theme-secondary btn-sm" href="#"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i>All auditions</a></div>
+</div>
+
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Forms</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-1</span>
+<div><div>form-control</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/form-control/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Form control</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.form-control.form-control-sm</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><input class="form-control form-control-sm" type="text" aria-label="Project name" style="width:100%;max-width:280px"></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">FRM-2</span>
+<div><div>Filter bar dropdowns</div><code style="font-size:12px;color:var(--bs-fg-3)">select</code></div>
+<div><div style="font-weight:600">Retired for filters</div><code style="font-size:12px;color:var(--bs-fg-3)">select.form-control.form-control-sm</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Retired. Every filter dropdown is the Combobox (SF-3) - one control for single and multi value filters, with radio or checkbox items. The native select stays legal only inside a form, never in a filter bar or as a Sort by control.</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Not in the Library as its own entry: filters use the Combobox (SF-3); a select is for forms only (FRM-1).</div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--bs-fg-3)"><i class="fa-solid fa-ban" aria-hidden="true"></i>Not this</div><select class="form-control form-control-sm" aria-label="Status" disabled="disabled" style="max-width:200px"><option>Status: all</option></select><div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--bs-fg-3);margin-top:6px"><i class="fa-solid fa-check" aria-hidden="true"></i>This (SF-3)</div><button type="button" class="combobox-toggle form-control form-control-sm" style="width:200px"><span class="combobox-value">Status: Active</span><i class="fa-solid fa-caret-down combobox-caret"></i></button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-3</span>
+<div><div>input-group</div><code style="font-size:12px;color:var(--bs-fg-3)">.input-group-btn</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Input group</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.input-group.input-group-sm</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-3" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="input-group input-group-sm"><button type="button" class="combobox-toggle form-control form-control-sm" style="flex:0 0 auto;width:120px"><span class="combobox-value">Profile</span><i class="fa-solid fa-caret-down combobox-caret" aria-hidden="true"></i></button><input class="form-control" placeholder="Search..." aria-label="Search"><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" data-bs-toggle="tooltip" data-bs-title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-4</span>
+<div><div>input-group-addon</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/input-group/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Input group text</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.input-group-text</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-4" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="input-group input-group-sm" style="max-width:220px"><input class="form-control" placeholder="from" aria-label="Block from"><span class="input-group-text">—</span><input class="form-control" placeholder="to" aria-label="Block to"></div></div>
+</div>
+
+
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-5</span>
+<div><div>control-label</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/field/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/field/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Field</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.form-field + .form-label + .form-text</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-5" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="form-field" style="width:100%;max-width:280px"><label for="fld-name" class="form-label fw-semibold">Project name</label><input type="text" class="form-control form-control-sm" id="fld-name"></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-6</span>
+<div><div>form-group</div></div>
+<div><div style="font-weight:600">Retired</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Removed after v3. Spacing comes from flex gap and the spacing tokens.</div></div>
+<div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-7</span>
+<div><div>radio_switch</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#switches" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#switches" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Switch</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.form-field &gt; .switch + label</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-7" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="form-field"><div class="switch switch-sm"><input type="checkbox" role="switch" id="map-switch-sm" checked="checked"></div><label for="map-switch-sm">Expert mode</label></div></div>
+</div>
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-8</span>
+<div><div>production mode pill</div><code style="font-size:12px;color:var(--bs-fg-3)">new_production_dialog_mode_form</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/switch/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/switch/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Two-option switch</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.switch.theme-primary inside a bordered pill (.border-primary .rounded-pill)</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-8" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="d-flex align-items-center gap-2 border border-primary rounded-pill px-3 py-1 text-uppercase fs-sm" style="width:fit-content">
+<span class="fg-3" title="Lite Mode keeps the interface focused on essential functions. Perfect for new users or anyone who prefers a simple approach."><i class="fa-solid fa-shapes me-1" aria-hidden="true"></i>Lite</span>
+<div class="switch theme-primary"><input role="switch" aria-label="Mode" type="checkbox" id="production_mode_specimen"></div>
+<label class="fg-primary fw-semibold" title="Expert Mode gives experienced users the full feature set, including advanced settings and customization." for="production_mode_specimen"><i class="fa-solid fa-rocket me-1" aria-hidden="true"></i>Expert</label>
+</div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-9</span>
+<div><div>checkbox</div><code style="font-size:12px;color:var(--bs-fg-3)">.checkbox &gt; label &gt; input</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Checkbox</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.check.check-sm + label</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-9" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="form-field"><input type="checkbox" class="check check-sm" id="map-check-demo"><label for="map-check-demo">Different name for applicants/agents</label></div>
+<div class="form-field"><input type="checkbox" class="check check-sm" id="map-check-demo-2" checked="checked" aria-describedby="map-check-demo-2-help"><label for="map-check-demo-2">Notify agents on publish</label></div>
+<small class="form-text" id="map-check-demo-2-help" style="font-size:var(--bs-font-size-xs);line-height:var(--bs-line-height-xs)">Sends one email per agent when the audition goes live.</small></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-10</span>
+<div><div>radio</div><code style="font-size:12px;color:var(--bs-fg-3)">.radio &gt; label &gt; input</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#radios" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/checks-radios/#radios" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Radio</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.radio .radio-sm  + label</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-10" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px"><legend style="font-size:var(--bs-font-size-sm);font-weight:600;margin:0 0 4px;padding:0;float:none;width:auto;border:0">Profile visibility</legend>
+<div class="form-field"><input type="radio" class="radio radio-sm" name="map-visibility" id="map-pv-all" checked="checked"><label for="map-pv-all">Visible to all Casters</label></div>
+<div class="form-field"><input type="radio" class="radio radio-sm" name="map-visibility" id="map-pv-agency"><label for="map-pv-agency">Only visible to My Casting Agency 123</label></div>
+</fieldset></div>
+</div>
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-11</span>
+<div><div>has-error + help-block</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/validation/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/validation/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Validation</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.is-invalid + .invalid-feedback, [data-bs-validate]</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-11" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="form-field" style="width:100%;max-width:280px"><label for="val-srv" class="form-label fw-semibold">Email<span class="fg-danger" aria-hidden="true">*</span></label><input type="email" class="form-control form-control-sm is-invalid" id="val-srv" value="jo.becker@" aria-describedby="val-srv-err" required="required"><div class="invalid-feedback" id="val-srv-err"><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i> Enter an email address, like name@example.com.</div></div></div>
+</div>
+
+
+
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">FRM-12</span>
+<div><div>profile-sections</div><code style="font-size:12px;color:var(--bs-fg-3)">label &gt; input[type=checkbox]</code></div>
+<div><div style="font-weight:600">Section toggle bar</div><code style="font-size:12px;color:var(--bs-fg-3)">fieldset.bg-1 &gt; grid of .form-field &gt; .check.check-sm + label</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#frm-12" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><fieldset style="margin:0;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);background:var(--bs-bg-1);padding:10px 16px;width:100%;max-width:640px"><legend class="visually-hidden">Sections shown on this page</legend><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px 16px"><div class="form-field"><input type="checkbox" class="check check-sm" id="sec-1" checked="checked"><label for="sec-1">Contact</label></div><div class="form-field"><input type="checkbox" class="check check-sm" id="sec-2" checked="checked"><label for="sec-2">Assignments</label></div><div class="form-field"><input type="checkbox" class="check check-sm" id="sec-3"><label for="sec-3">Reviews</label></div><div class="form-field"><input type="checkbox" class="check check-sm" id="sec-4" checked="checked"><label for="sec-4">Agencies</label></div><div class="form-field"><input type="checkbox" class="check check-sm" id="sec-5"><label for="sec-5">History</label></div></div></fieldset></div>
+</div>
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Content</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-1</span>
+<div><div>production-box / box</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Card</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card / .card-body</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Consolidate.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card"><div class="card-body" style="display:flex;gap:12px;align-items:center"><div style="width:48px;height:48px;background:var(--bs-bg-2);border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5)"></div><div><div style="font-weight:600">Das Supertalent</div><div style="font-size:12px;color:var(--bs-fg-3)">Season 14</div></div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-2</span>
+<div><div>production-entity-list</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/list-group/#flush" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/list-group/#flush" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Production list</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card &gt; .list-group-flush &gt; .list-group-item &gt; .fm-production-row + .fm-action-gutter</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-2" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"> · 3 open questions</span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card" style="overflow:hidden;width:100%"><div class="list-group list-group-flush" role="list"><div class="list-group-item" role="listitem" style="padding:0"><div class="fm-production-row" style="--fm-row-cols:132px minmax(220px,1fr) minmax(520px,2.4fr) 140px;--fm-row-align:center"><div class="fm-row-media" style="padding:.75rem 1rem;min-width:0"><img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Cdefs%3E%3Cpattern id='p' width='14' height='14' patternUnits='userSpaceOnUse'%3E%3Crect width='14' height='14' fill='%235dd3c0'/%3E%3Ccircle cx='7' cy='7' r='3' fill='%2340b8a6'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='160' height='90' fill='url(%23p)'/%3E%3Cg transform='translate(80.0 45.0) scale(1.29)'%3E%3Cg%3E%3Ccircle r='26' fill='%2314213d'/%3E%3Ccircle cx='0' cy='-13' r='6' fill='%235dd3c0'/%3E%3Ccircle cx='12' cy='-4' r='6' fill='%235dd3c0'/%3E%3Ccircle cx='8' cy='11' r='6' fill='%235dd3c0'/%3E%3Ccircle cx='-8' cy='11' r='6' fill='%235dd3c0'/%3E%3Ccircle cx='-12' cy='-4' r='6' fill='%235dd3c0'/%3E%3Ccircle r='4' fill='%235dd3c0'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="Audition: Round 1" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle)"></div><div style="padding:.75rem 1rem;min-width:0"><a href="#" class="fw-semibold">Audition: Round 1</a> <span class="fg-3">(open)</span></div><div style="padding:.75rem 1rem;min-width:0"><span style="display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1.25rem"><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i><span class="fw-semibold">Self-tape</span></span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Only invited actors/agents can see this Audition" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-user-lock" aria-hidden="true"></i>Invitation only</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Roles" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-scroll" aria-hidden="true"></i><span class="visually-hidden">Roles</span>2</span><a href="#" class="fw-semibold" style="display:inline-flex"><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="3 new applications" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-user-plus" aria-hidden="true"></i><span class="visually-hidden">New applications</span>3</span></a><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Invitations" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="visually-hidden">Invitations</span>7</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="21/10/2023, 14:29 CEST" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-hourglass" aria-hidden="true"></i>Deadline expired</span></span></div><div class="fm-action-gutter"><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</a><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-clone" aria-hidden="true"></i>Duplicate</a><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="More actions for Audition: Round 1"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><ul class="menu" style="min-width:260px;max-width:320px"><li><button type="button" class="menu-item"><span class="menu-item-icon"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Archive Audition<small class="menu-item-description" style="white-space:normal;min-width:0">All information is kept, but the Audition is no longer visible to participants.</small></span></button></li></ul></div></div></div></div><div class="list-group-item" role="listitem" style="padding:0"><div class="fm-production-row" style="--fm-row-cols:132px minmax(220px,1fr) minmax(520px,2.4fr) 140px;--fm-row-align:center"><div class="fm-row-media" style="padding:.75rem 1rem;min-width:0"><div role="img" aria-label="No image" style="display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:16/9;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle);background:var(--bs-bg-2)"><i class="fa-solid fa-display fg-3" aria-hidden="true" style="font-size:1.5rem"></i></div></div><div style="padding:.75rem 1rem;min-width:0"><a href="#" class="fw-semibold">Best Movie - Breakdown 1</a> <span class="fg-3">(open)</span></div><div style="padding:.75rem 1rem;min-width:0"><span style="display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1.25rem"><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span class="fw-semibold">Breakdown</span></span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Everyone can see this Audition" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-users-line" aria-hidden="true"></i>Publicly visible</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Roles" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-scroll" aria-hidden="true"></i><span class="visually-hidden">Roles</span>0</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Applications" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-user-plus" aria-hidden="true"></i><span class="visually-hidden">Applications</span>0</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Invitations" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="visually-hidden">Invitations</span>3</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="21/10/2023, 14:29 CEST" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-hourglass" aria-hidden="true"></i>Deadline expired</span></span></div><div class="fm-action-gutter"><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</a><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-clone" aria-hidden="true"></i>Duplicate</a><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="More actions for Best Movie - Breakdown 1"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><ul class="menu" style="min-width:260px;max-width:320px"><li><button type="button" class="menu-item"><span class="menu-item-icon"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Archive Audition<small class="menu-item-description" style="white-space:normal;min-width:0">All information is kept, but the Audition is no longer visible to participants.</small></span></button></li><li><hr class="menu-divider"></li><li><button type="button" class="menu-item theme-danger"><span class="menu-item-icon"><i class="fa-solid fa-trash" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Delete Audition<small class="menu-item-description" style="white-space:normal;min-width:0">Deletes all applications, comments &amp; ratings. This cannot be undone.</small></span></button></li></ul></div></div></div></div><div class="list-group-item" role="listitem" style="padding:0"><div class="fm-production-row" style="--fm-row-cols:132px minmax(220px,1fr) minmax(520px,2.4fr) 140px;--fm-row-align:center"><div class="fm-row-media" style="padding:.75rem 1rem;min-width:0"><div role="img" aria-label="No image" style="display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:16/9;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle);background:var(--bs-bg-2)"><i class="fa-solid fa-display fg-3" aria-hidden="true" style="font-size:1.5rem"></i></div></div><div style="padding:.75rem 1rem;min-width:0"><a href="#" class="fw-semibold">Studio audition 1</a> <span class="fg-3">(open)</span></div><div style="padding:.75rem 1rem;min-width:0"><span style="display:flex;align-items:center;flex-wrap:wrap;gap:.5rem 1.25rem"><span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-calendar-week" aria-hidden="true"></i><span class="fw-semibold">Studio</span></span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Everyone can see this Audition" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-users-line" aria-hidden="true"></i>Publicly visible</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Active bookings" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-ticket" aria-hidden="true"></i><span class="visually-hidden">Active bookings</span>0</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Applications" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-user-plus" aria-hidden="true"></i><span class="visually-hidden">Applications</span>0</span><span tabindex="0" data-bs-toggle="tooltip" data-bs-title="No-shows" style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap"><i class="fa-solid fa-bomb" aria-hidden="true"></i><span class="visually-hidden">No-shows</span>0</span></span></div><div class="fm-action-gutter"><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</a><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-clone" aria-hidden="true"></i>Duplicate</a><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="More actions for Studio audition 1"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><ul class="menu" style="min-width:260px;max-width:320px"><li><button type="button" class="menu-item"><span class="menu-item-icon"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Archive Audition<small class="menu-item-description" style="white-space:normal;min-width:0">All information is kept, but the Audition is no longer visible to participants.</small></span></button></li><li><hr class="menu-divider"></li><li><button type="button" class="menu-item theme-danger"><span class="menu-item-icon"><i class="fa-solid fa-trash" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Delete Audition<small class="menu-item-description" style="white-space:normal;min-width:0">Deletes all applications, comments &amp; ratings. This cannot be undone.</small></span></button></li></ul></div></div></div></div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-3</span>
+<div><div>list-group</div></div>
+<div><div style="font-weight:600">Removed from the Library</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Only used inside the Entity list card (Section cards).</div></div>
+<div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-4</span>
+<div><div>Coworkers / Clients boxes</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">People card</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card-body + .avatar-stack</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-4" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card"><div class="card-body" style="display:flex;align-items:center;gap:12px"><span style="color:var(--bs-fg-3)">Coworkers:</span><div class="avatar-stack avatar-stack-sm"><span class="avatar avatar-sm theme-secondary">DZ</span><span class="avatar avatar-sm theme-secondary">CS</span><span class="avatar avatar-sm theme-secondary">+3</span></div></div></div><div class="card" style="background:var(--bs-bg-1)"><div class="card-body" style="display:flex;align-items:center;gap:8px;color:var(--bs-fg-2)"><i class="fa-solid fa-lock" aria-hidden="true"></i>No access to clients</div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-5</span>
+<div><div>expander</div><code style="font-size:12px;color:var(--bs-fg-3)">.collapse / .in</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/accordion/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/accordion/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Accordion</a></div><code style="font-size:12px;color:var(--bs-fg-3)">details.accordion-item &gt; summary.accordion-header + .fm-accordion-label + .accordion-body</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-5" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="accordion accordion-sm" style="width:100%;max-width:360px"><details class="accordion-item" open="open"><summary class="accordion-header fw-semibold">Statistics<span class="fm-accordion-label" aria-hidden="true"><span class="fm-accordion-show">Show</span><span class="fm-accordion-hide">Hide</span></span><i class="fa-solid fa-chevron-down accordion-icon" aria-hidden="true"></i></summary><div class="accordion-body"><dl class="m-0" style="display:grid;grid-template-columns:1fr auto;gap:4px 16px"><dt class="fw-normal">Profiles</dt><dd class="m-0 text-end">33,622</dd><dt class="fw-normal">Agency</dt><dd class="m-0 text-end">519</dd><dt class="fw-normal">Locations</dt><dd class="m-0 text-end">2,935</dd><dt class="fw-normal">Crew profiles</dt><dd class="m-0 text-end">319</dd><dt class="fw-normal">Companies</dt><dd class="m-0 text-end">29</dd></dl></div></details></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-6</span>
+<div><div>table table-striped</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/content/tables/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Table</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.table</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-6" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card" style="width:100%;overflow:hidden"><table class="table" style="margin:0"><thead><tr><th scope="col">Name</th><th scope="col">Permissions</th><th scope="col">Language</th><th scope="col">2FA</th><th scope="col">Profile access</th><th scope="col">Location access</th><th scope="col">Status</th></tr></thead><tbody><tr><td><div class="fw-semibold">Alex Martin</div><div class="fs-xs fg-3">alex.martin@example.com</div></td><td>Admin</td><td>English</td><td>Enabled</td><td>All profiles</td><td>All locations</td><td><span class="badge theme-success badge-subtle">Active</span></td></tr><tr><td><div class="fw-semibold">Sam Richter</div><div class="fs-xs fg-3">sam.richter@example.com</div></td><td>Limited</td><td>English</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class="badge theme-success badge-subtle">Active</span></td></tr><tr><td><div class="fw-semibold">Jo Becker</div><div class="fs-xs fg-3">jo.becker@example.com</div></td><td>Limited</td><td>German</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class="badge theme-success badge-subtle">Active</span></td></tr></tbody></table></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-7</span>
+<div><div>panel-heading</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/#header-and-footer" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/#header-and-footer" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Card header</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card-header</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-7" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card"><div class="card-header" style="font-weight:600">Roles</div><div class="card-body" style="font-size:14px;color:var(--bs-fg-2)">2 roles in this audition</div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-8</span>
+<div><div>dl-horizontal</div></div>
+<div><div style="font-weight:600">Removed from the Library</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Removed in review.</div></div>
+<div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">CNT-9</span>
+<div><div>thumbnail</div><code style="font-size:12px;color:var(--bs-fg-3)">.img-thumbnail</code></div>
+<div><div style="font-weight:600">Removed from the Library</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Only used inside the Profile tile, which was removed in review.</div></div>
+<div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">CNT-10</span>
+<div><div>profile tile</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Profile tile: Auditions</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card + .card-img-top + .badge + .btn-icon</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-10" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"> · 2 open questions</span></div></div>
+<div style="min-width:0;overflow-x:auto"><div role="list" aria-label="Profiles" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;width:100%;max-width:560px"><div class="card" role="listitem" style="overflow:hidden"><div style="position:relative"><img class="card-img-top" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 160'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23d8f3dc'/%3E%3Cstop offset='1' stop-color='%2395d5b2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='160' fill='url(%23bg)'/%3E%3Cg transform='translate(-20.0 0)'%3E%3Cpath d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='%23264653'/%3E%3Cpath d='M64 112 L80 132 L96 112 Z' fill='%235c3a26'/%3E%3Crect x='69' y='92' width='22' height='26' rx='8' fill='%235c3a26'/%3E%3Crect x='69' y='92' width='22' height='10' fill='rgba(0,0,0,.12)'/%3E%3Cellipse cx='80' cy='66' rx='26' ry='31' fill='%235c3a26'/%3E%3Cpath d='M55 56 C58 38 70 34 80 34 C92 34 103 39 105 56 C96 48 88 46 80 46 C72 46 63 49 55 56 Z' fill='%238a8f99' opacity='.9'/%3E%3Ccircle cx='70' cy='66' r='2.6' fill='%232b2d42'/%3E%3Ccircle cx='90' cy='66' r='2.6' fill='%232b2d42'/%3E%3Cpath d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='%238a8f99' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M72 80 Q80 86 88 80' stroke='%238c3b33' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E" alt="Markus John" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover"><span class="badge theme-inverse" style="position:absolute;top:8px;inset-inline-start:8px">A</span></div><div style="display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px"><div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px"><a href="#" class="fw-semibold">Markus John</a><span class="fs-xs fg-2">Lead: Georgie (Adult)</span></div><a class="btn-text theme-secondary btn-xs btn-icon" href="#" target="_blank" rel="noopener" aria-label="Open Markus John’s profile in a new tab" data-bs-toggle="tooltip" data-bs-title="Open profile in a new tab"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div></div><div class="card" role="listitem" style="overflow:hidden"><div style="position:relative"><img class="card-img-top" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 160'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fde2c8'/%3E%3Cstop offset='1' stop-color='%23f6bd8f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='160' fill='url(%23bg)'/%3E%3Cg transform='translate(-20.0 0)'%3E%3Ccircle cx='52' cy='48' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='60' cy='30' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='80' cy='22' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='100' cy='30' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='108' cy='48' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='110' cy='68' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='50' cy='68' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='56' cy='88' r='13' fill='%23c9a15a'/%3E%3Ccircle cx='104' cy='88' r='13' fill='%23c9a15a'/%3E%3Cpath d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='%23b56576'/%3E%3Cpath d='M64 112 L80 132 L96 112 Z' fill='%23f5dcc8'/%3E%3Crect x='69' y='92' width='22' height='26' rx='8' fill='%23f5dcc8'/%3E%3Crect x='69' y='92' width='22' height='10' fill='rgba(0,0,0,.12)'/%3E%3Cellipse cx='80' cy='66' rx='26' ry='31' fill='%23f5dcc8'/%3E%3Ccircle cx='60' cy='44' r='9' fill='%23c9a15a'/%3E%3Ccircle cx='72' cy='38' r='9' fill='%23c9a15a'/%3E%3Ccircle cx='86' cy='37' r='9' fill='%23c9a15a'/%3E%3Ccircle cx='99' cy='43' r='9' fill='%23c9a15a'/%3E%3Cpath d='M58 76 C60 96 70 100 80 100 C90 100 100 96 102 76 C96 88 88 90 80 90 C72 90 64 88 58 76 Z' fill='%23c9a15a' opacity='.85'/%3E%3Ccircle cx='70' cy='66' r='2.6' fill='%232b2d42'/%3E%3Ccircle cx='90' cy='66' r='2.6' fill='%232b2d42'/%3E%3Cpath d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='%23c9a15a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M72 80 Q80 86 88 80' stroke='%238c3b33' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E" alt="Lena Brandt" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover"><span class="badge theme-inverse" style="position:absolute;top:8px;inset-inline-start:8px">A</span></div><div style="display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px"><div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px"><a href="#" class="fw-semibold">Lena Brandt</a><span class="fs-xs fg-2">Lead: Georgie (Teen)</span></div><a class="btn-text theme-secondary btn-xs btn-icon" href="#" target="_blank" rel="noopener" aria-label="Open Lena Brandt’s profile in a new tab" data-bs-toggle="tooltip" data-bs-title="Open profile in a new tab"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div></div><div class="card" role="listitem" style="overflow:hidden"><div style="position:relative"><img class="card-img-top" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 160'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cfe3f5'/%3E%3Cstop offset='1' stop-color='%239fc2e6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='160' fill='url(%23bg)'/%3E%3Cg transform='translate(-20.0 0)'%3E%3Cpath d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='%23c9a15a'/%3E%3Cpath d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='%233d5a80'/%3E%3Cpath d='M64 112 L80 132 L96 112 Z' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='26' rx='8' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='10' fill='rgba(0,0,0,.12)'/%3E%3Cellipse cx='80' cy='66' rx='26' ry='31' fill='%23f2d4c2'/%3E%3Cpath d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='%23c9a15a'/%3E%3Ccircle cx='70' cy='66' r='2.6' fill='%232b2d42'/%3E%3Ccircle cx='90' cy='66' r='2.6' fill='%232b2d42'/%3E%3Cpath d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='%23c9a15a' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M72 80 Q80 86 88 80' stroke='%238c3b33' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cg fill='none' stroke='%232b2d42' stroke-width='2'%3E%3Ccircle cx='70' cy='66' r='7'/%3E%3Ccircle cx='90' cy='66' r='7'/%3E%3Cpath d='M77 66 H83'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="Jonas Weber" style="display:block;width:100%;aspect-ratio:3/4;object-fit:cover"><span class="badge theme-inverse" style="position:absolute;top:8px;inset-inline-start:8px">A</span></div><div style="display:flex;align-items:flex-start;gap:4px;padding:8px 8px 10px 12px"><div style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px"><a href="#" class="fw-semibold">Jonas Weber</a><span class="fs-xs fg-2">Supporting: Mira</span></div><a class="btn-text theme-secondary btn-xs btn-icon" href="#" target="_blank" rel="noopener" aria-label="Open Jonas Weber’s profile in a new tab" data-bs-toggle="tooltip" data-bs-title="Open profile in a new tab"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-11</span>
+<div><div>well / no-data text</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Empty state</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card + .card-body</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-11" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card" style="width:100%"><div class="card-body text-center fg-2 p-4"><div class="fw-semibold mb-1">No research entries yet</div><div class="fs-xs fg-3">Research entries you add appear here.</div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">CNT-12</span>
+<div><div>action panel</div><code style="font-size:12px;color:var(--bs-fg-3)">tinted gutter</code></div>
+<div><div style="font-weight:600">Action gutter</div><code style="font-size:12px;color:var(--bs-fg-3)">bg-1 + border-inline-start</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-12" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="display:grid;grid-template-columns:minmax(0,1fr) 132px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);overflow:hidden"><div style="padding:12px 16px;font-size:14px">Season 14: Erste Runde</div><div style="background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0"><button type="button" class="btn-text theme-primary btn-xs"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</button><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" aria-expanded="false" aria-label="More actions for Season 14: Erste Runde"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><div class="menu"><button type="button" class="menu-item theme-danger">Remove</button></div></div></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">CNT-13</span>
+<div><div>row action links</div><code style="font-size:12px;color:var(--bs-fg-3)">separated by |</code></div>
+<div><div style="font-weight:600">Row actions</div><code style="font-size:12px;color:var(--bs-fg-3)">btn-text theme-primary btn-xs + .menu</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-13" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="display:grid;grid-template-columns:minmax(0,1fr) 150px;border:1px solid var(--bs-border-subtle);border-radius:var(--bs-radius-5);max-width:480px"><div style="padding:12px 16px">Season 14: Erste Runde</div><div style="background:var(--bs-bg-1);border-inline-start:1px solid var(--bs-border-subtle);padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:0"><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</a><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" aria-expanded="false" aria-label="More actions for Season 14: Erste Runde"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><div class="menu"><button type="button" class="menu-item">Duplicate</button><button type="button" class="menu-item">View as applicant</button><button type="button" class="menu-item">Copy/Move</button><hr class="menu-divider"><button type="button" class="menu-item theme-danger">Remove</button></div></div></div></div></div>
+</div>
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">CNT-14</span>
+<div><div>project summary box with red gutter</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/card/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Project card</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.card + .fm-action-gutter + .menu</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-14" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><article class="card" style="width:100%;overflow:visible"><div style="display:flex;flex-wrap:wrap;align-items:stretch"><div style="flex:1 1 560px;min-width:0;display:flex;flex-wrap:wrap;align-items:flex-start;gap:1rem 1.5rem;padding:1rem"><img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 90'%3E%3Cdefs%3E%3Cpattern id='p' width='12' height='12' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'%3E%3Crect width='12' height='12' fill='%23ffd166'/%3E%3Crect width='6' height='12' fill='%23ffbf3c'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='160' height='90' fill='url(%23p)'/%3E%3Cg transform='translate(80.0 45.0) scale(1.29)'%3E%3Cg transform='translate(-30 -22)'%3E%3Crect y='14' width='60' height='36' rx='3' fill='%231f2937'/%3E%3Crect y='18' width='60' height='3' fill='%23ffffff' opacity='.4'/%3E%3Cg transform='rotate(-12 0 12)'%3E%3Crect width='60' height='12' rx='2' fill='%231f2937'/%3E%3Cpath d='M4 0 L12 0 L6 12 L-2 12 Z' fill='%23ffffff'/%3E%3Cpath d='M20 0 L28 0 L22 12 L14 12 Z' fill='%23ffffff'/%3E%3Cpath d='M36 0 L44 0 L38 12 L30 12 Z' fill='%23ffffff'/%3E%3Cpath d='M52 0 L60 0 L54 12 L46 12 Z' fill='%23ffffff'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E" alt="Season 14: Erste Runde" style="flex:0 0 260px;width:260px;min-width:0;max-width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle)"><div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:.75rem"><h2 class="fs-lg fw-semibold m-0" style="text-wrap:pretty">Season 14: Erste Runde</h2><div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:1rem 2rem"><div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;max-width:72ch"><p class="m-0">Casting for the first round of season 14. Leads and supporting roles, shooting in Berlin from March.</p><div style="display:flex;flex-wrap:wrap;gap:.5rem" aria-label="Attachments"><a class="chip" href="#" download><i class="fa-regular fa-file-pdf" aria-hidden="true"></i>Full-Script-2026.pdf</a></div></div><dl style="flex:0 1 240px;min-width:200px;display:grid;grid-template-columns:auto 1fr;gap:.25rem .75rem;margin:0"><dt class="fg-3" style="font-weight:400">Project no.</dt><dd class="m-0">1</dd><dt class="fg-3" style="font-weight:400">Production company</dt><dd class="m-0">Nordlicht Film</dd></dl></div></div></div><div class="fm-action-gutter"><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Messages</a><a class="btn-text theme-primary btn-xs" href="#"><i class="fa-solid fa-pencil" aria-hidden="true"></i>Edit</a><div><button type="button" class="btn-text theme-primary btn-xs" data-bs-toggle="menu" data-bs-placement="bottom-end" aria-expanded="false" aria-label="More actions for Season 14: Erste Runde"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button><ul class="menu" style="min-width:260px;max-width:320px"><li><h6 class="menu-header">View as client</h6></li><li><a class="menu-item" href="#"><span class="menu-item-icon"><i class="fa-solid fa-eye" aria-hidden="true" style="color:var(--fm-accent-client-zone)"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">View as “Production team”</span></a></li><li><hr class="menu-divider"></li><li><a class="menu-item" href="#"><span class="menu-item-icon"><i class="fa-solid fa-images" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Copy profile pictures<small class="menu-item-description" style="white-space:normal;min-width:0">Set the latest Audition picture for all profiles from this Project as profile picture for casters</small></span></a></li><li><hr class="menu-divider"></li><li><button class="menu-item" type="button"><span class="menu-item-icon"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Archive Project<small class="menu-item-description" style="white-space:normal;min-width:0">All roles are no longer visible. Applications, comments &amp; ratings are retained.</small></span></button></li><li><button class="menu-item theme-danger" disabled="disabled" aria-disabled="true" type="button"><span class="menu-item-icon"><i class="fa-solid fa-trash" aria-hidden="true"></i></span><span class="menu-item-content" style="white-space:normal;min-width:0">Delete Project<small class="menu-item-description" style="white-space:normal;min-width:0">The Project can not be deleted as long as there are candidates in Auditions or Selections.</small></span></button></li></ul></div></div></div></article></div>
+</div>
+
+
+
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-15</span>
+<div><div>dl-horizontal</div><code style="font-size:12px;color:var(--bs-fg-3)">.dl-horizontal</code></div>
+<div><div style="font-weight:600">Definition list</div><code style="font-size:12px;color:var(--bs-fg-3)">dl grid: minmax(120px, 180px) minmax(0, 1fr)</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-15" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><dl class="m-0" style="display:grid;grid-template-columns:minmax(120px,180px) minmax(0,1fr);gap:8px 16px;max-width:560px"><dt class="fw-normal fg-3">Eye color</dt><dd class="m-0">blue-green</dd><dt class="fw-normal fg-3">Height (cm)</dt><dd class="m-0">167</dd><dt class="fw-normal fg-3">Stature</dt><dd class="m-0">slim</dd></dl></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-16</span>
+<div><div>dl-horizontal (timeline)</div><code style="font-size:12px;color:var(--bs-fg-3)">.dl-horizontal-double-width-label</code></div>
+<div><div style="font-weight:600">Removed from the Library</div><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Merged into the Definition list (CNT-15) as its Activity example: the same two-column list with the timestamp as the label.</div></div>
+<div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-17</span>
+<div><div>h3 section heading</div><code style="font-size:12px;color:var(--bs-fg-3)">h3</code></div>
+<div><div style="font-weight:600">Section heading</div><code style="font-size:12px;color:var(--bs-fg-3)">h2 + border-bottom</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-17" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="display:flex;align-items:center;gap:8px;padding-bottom:4px;border-bottom:1px solid var(--bs-border-color);width:100%;max-width:640px"><h2 class="fs-md fw-semibold m-0" style="flex:1">Agencies</h2><button type="button" class="btn-text theme-secondary btn-xs btn-icon" aria-label="Add agency" data-bs-toggle="tooltip" data-bs-title="Add agency"><i class="fa-solid fa-plus" aria-hidden="true"></i></button></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-18</span>
+<div><div>caster-header</div><code style="font-size:12px;color:var(--bs-fg-3)">.caster-header + .caster-picture + .caster-header--actions</code></div>
+<div><div style="font-weight:600">Profile header</div><code style="font-size:12px;color:var(--bs-fg-3)">picture + h1 + badge + meta + Accordion (CNT-5) + action stack</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-18" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;width:100%;max-width:880px"><div style="display:flex;flex-direction:column;align-items:center;gap:4px;width:160px;flex:0 0 160px"><img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cfe3f5'/%3E%3Cstop offset='1' stop-color='%239fc2e6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='160' height='160' fill='url(%23bg)'/%3E%3Cpath d='M18 160 C22 122 52 112 80 112 C108 112 138 122 142 160 Z' fill='%233d5a80'/%3E%3Cpath d='M64 112 L80 132 L96 112 Z' fill='%23f2d4c2'/%3E%3Crect x='69' y='92' width='22' height='26' rx='8' fill='%23e8bfa6'/%3E%3Cpath d='M44 70 C40 30 66 18 82 18 C104 18 122 34 118 72 C116 92 112 104 106 110 L54 110 C48 102 45 88 44 70 Z' fill='%235b3a29'/%3E%3Cellipse cx='80' cy='66' rx='26' ry='31' fill='%23f2d4c2'/%3E%3Cpath d='M54 58 C56 36 70 30 84 31 C98 32 108 42 106 58 C96 46 80 42 64 50 C60 52 57 55 54 58 Z' fill='%235b3a29'/%3E%3Ccircle cx='70' cy='66' r='2.6' fill='%232b2d42'/%3E%3Ccircle cx='90' cy='66' r='2.6' fill='%232b2d42'/%3E%3Cpath d='M64 58 Q70 55 75 58 M85 58 Q90 55 96 58' stroke='%235b3a29' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M72 80 Q80 86 88 80' stroke='%23b5655b' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='64' cy='76' rx='5' ry='3' fill='%23f0a8a0' opacity='.45'/%3E%3Cellipse cx='96' cy='76' rx='5' ry='3' fill='%23f0a8a0' opacity='.45'/%3E%3C/svg%3E" alt="Helga Bellinghausen" style="display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--bs-radius-5);border:1px solid var(--bs-border-subtle)"><div class="d-flex gap-1"><button type="button" class="btn-outline theme-secondary btn-icon" aria-label="Videos" data-bs-toggle="tooltip" data-bs-title="Videos"><i class="fa-solid fa-video" aria-hidden="true"></i></button><button type="button" class="btn-outline theme-secondary btn-icon" aria-label="Pictures" data-bs-toggle="tooltip" data-bs-title="Pictures"><i class="fa-solid fa-images" aria-hidden="true"></i></button></div></div><div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:200px"><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><h1 class="fs-2xl fw-semibold m-0">Helga Bellinghausen</h1><span class="badge theme-warning badge-subtle"><i class="fa-solid fa-circle-question" aria-hidden="true"></i>In discussion</span></div><div class="fg-2">ID: 1114 | (E) Professional Actor</div><div class="accordion accordion-sm" style="max-width:420px"><details class="accordion-item"><summary class="accordion-header fw-semibold fg-primary">Important information<span class="fm-accordion-label" aria-hidden="true"><span class="fm-accordion-show">Show</span><span class="fm-accordion-hide">Hide</span></span><i class="fa-solid fa-chevron-down accordion-icon" aria-hidden="true"></i></summary><div class="accordion-body">Not available 12 to 14 November.</div></details></div></div><div style="display:flex;flex-direction:column;gap:6px;min-width:140px"><button type="button" class="btn-solid theme-primary btn-sm" style="justify-content:center">Add profile<i class="fa-solid fa-caret-down" aria-hidden="true"></i></button><button type="button" class="btn-outline theme-secondary btn-sm" style="justify-content:center">Send message</button></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">CNT-19</span>
+<div><div>ajaxful-rating / rating stars</div><code style="font-size:12px;color:var(--bs-fg-3)">ul.ajaxful-rating, .fa-star</code></div>
+<div><div style="font-weight:600">Star rating</div><code style="font-size:12px;color:var(--bs-fg-3)">.fm-rating &gt; [role=radiogroup] &gt; label.btn-check.btn-text.btn-icon &gt; input[type=radio] + fa-star</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#cnt-19" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="width:100%"><div class="fm-rating d-flex align-items-center gap-2"><span id="rating-demo-label">Rating</span><div class="d-flex" role="radiogroup" aria-labelledby="rating-demo-label"><label class="btn-check btn-text theme-secondary btn-xs btn-icon"><input type="radio" name="rating-demo" value="1" aria-label="1 out of 5 stars" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon"><input type="radio" name="rating-demo" value="2" aria-label="2 out of 5 stars" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon"><input type="radio" name="rating-demo" value="3" aria-label="3 out of 5 stars" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon"><input type="radio" name="rating-demo" value="4" aria-label="4 out of 5 stars" autocomplete="off" checked="checked"><i class="fa-regular fa-star" aria-hidden="true"></i></label><label class="btn-check btn-text theme-secondary btn-xs btn-icon"><input type="radio" name="rating-demo" value="5" aria-label="5 out of 5 stars" autocomplete="off"><i class="fa-regular fa-star" aria-hidden="true"></i></label></div><span class="fg-2" data-rating-value aria-live="polite">4 stars</span><button type="button" class="btn-text theme-secondary btn-sm" data-rating-clear>Clear rating</button></div></div></div>
+</div>
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Messaging</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-1</span>
+<div><div>alert alert-info</div><code style="font-size:12px;color:var(--bs-fg-3)">.alert-link</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Alert</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.alert.theme-info</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="alert theme-info" role="alert" style="margin:0;width:100%"><i class="fa-solid fa-circle-info" aria-hidden="true" style="margin-top:3px"></i><div>This project is administrated by <strong>Filmmakers System</strong>.</div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-6</span>
+<div><div>help-block beside a card</div><code style="font-size:12px;color:var(--bs-fg-3)">.help-block</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/alerts/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Note</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.alert.theme-info[role=&quot;note&quot;]</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-6" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"> · 1 open question</span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="alert theme-info" role="note" style="margin:0;display:flex;gap:8px"><i class="fa-solid fa-caret-left" style="margin-top:3px" aria-hidden="true"></i><span>Determine the name of the Audition and provide as comprehensive information as possible.</span></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-7</span>
+<div><div>progress</div><code style="font-size:12px;color:var(--bs-fg-3)">.progress-bar with inline width</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/progress/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/progress/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Progress</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.progress &gt; .progress-bar</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-7" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="card" style="width:100%;max-width:640px" data-demo-upload-page><div class="card-body vstack gap-3"><h3 class="fs-md fw-semibold m-0">Audition files</h3><ul class="list-unstyled m-0 vstack gap-3" data-upload-list><li class="d-flex align-items-center gap-3"><i class="fa-regular fa-file-pdf fg-3" aria-hidden="true" style="font-size:20px"></i><div class="vstack min-w-0"><span>Full-Script-2026.pdf</span><span class="fs-xs fg-3">1.2 MB</span></div><button type="button" class="btn-text theme-secondary btn-xs btn-icon ms-auto" aria-label="Remove Full-Script-2026.pdf" data-bs-toggle="tooltip" data-bs-title="Remove"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button></li></ul><button type="button" data-demo-upload style="border:1px dashed var(--bs-primary-base);background:transparent;color:var(--bs-primary-base);border-radius:var(--bs-radius-5);padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;font-weight:600;font-family:inherit"><i class="fa-solid fa-arrow-up-from-bracket" style="font-size:18px" aria-hidden="true"></i>Upload additional Audition</button><p class="visually-hidden" aria-live="polite" data-upload-status></p></div></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-2</span>
+<div><div>label label-default</div><code style="font-size:12px;color:var(--bs-fg-3)">.label-danger</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Badge</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.badge.theme-* + .badge-subtle</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-2" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><span class="badge theme-success badge-subtle">Active</span><span class="badge theme-warning badge-subtle">Invited</span><span class="badge theme-secondary badge-subtle">Inactive</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-3</span>
+<div><div>notification-icon</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/badge/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Notification dot</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.position-absolute.top-0.start-100.translate-middle.p-1.bg-danger.rounded-circle</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-3" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"> · 1 open question</span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-text theme-secondary btn-sm btn-icon" aria-label="Notifications" data-bs-toggle="tooltip" data-bs-title="Notifications"><span class="position-relative d-inline-flex"><i class="fa-regular fa-bell" aria-hidden="true"></i><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New notifications</span></span></span></button><button type="button" class="btn-text theme-secondary btn-sm btn-icon" aria-label="Messages" data-bs-toggle="tooltip" data-bs-title="Messages"><span class="position-relative d-inline-flex"><i class="fa-regular fa-envelope" aria-hidden="true"></i><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger rounded-circle"><span class="visually-hidden">New messages</span></span></span></button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-4</span>
+<div><div>tooltip</div><code style="font-size:12px;color:var(--bs-fg-3)">data-toggle</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/tooltips/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/tooltips/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Tooltip</a></div><code style="font-size:12px;color:var(--bs-fg-3)">data-bs-toggle=&quot;tooltip&quot;</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Direct.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-4" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-text theme-secondary btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-title="Visible for client" aria-label="Visible for client"><i class="fa-regular fa-eye" aria-hidden="true"></i></button></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">MSG-5</span>
+<div><div>visible-for-client icon</div></div>
+<div><div style="font-weight:600">Client zone</div><code style="font-size:12px;color:var(--bs-fg-3)">btn-outline theme-secondary fm-client-zone</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom. The accent is now <code>orange-600</code> (about 4.4:1 on white), not #EF7428.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#btn-client-zone" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="btn-outline theme-secondary btn-sm fm-client-zone"><i class="fa-regular fa-eye" aria-hidden="true"></i>View as client</button></div>
+</div>
+
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-8</span>
+<div><div>(none)</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/chips/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/chips/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Chip</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.chip + .chip-dismiss, a.chip</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-8" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="chip"><span>Status: Inactive</span><button type="button" class="chip-dismiss" aria-label="Remove the Status filter"><i class="fa-solid fa-xmark" style="font-size:11px" aria-hidden="true"></i></button></span><span class="chip"><span>Language: German</span><button type="button" class="chip-dismiss" aria-label="Remove Language German"><i class="fa-solid fa-xmark" style="font-size:11px" aria-hidden="true"></i></button></span></div></div>
+</div>
+
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">MSG-10</span>
+<div><div>(none)</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/toasts/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/toasts/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Toast</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.toast-container &gt; .toast</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#msg-10" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="d-flex flex-column align-items-center gap-3"><div class="toast show theme-success" data-bs-autohide="true" data-bs-delay="5000" role="status" aria-live="polite" aria-atomic="true"><div class="d-flex align-items-center gap-2 pe-2"><div class="toast-body d-flex align-items-center gap-2 flex-grow-1"><i class="fa-solid fa-circle-check" aria-hidden="true"></i><span>Project archived.</span></div><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Dismiss"></button></div></div><button type="button" class="btn-outline theme-secondary btn-xs" data-demo-toast><i class="fa-solid fa-rotate-right" aria-hidden="true"></i>Show again</button></div></div>
+</div>
+</div>
+
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Table</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">TBL-1</span>
+<div><div>result count above the table</div></div>
+<div><div style="font-weight:600">Table footer</div><code style="font-size:12px;color:var(--bs-fg-3)">count + NAV-10 in a bordered row</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#tbl-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)"><span class="fs-xs fw-semibold">1-3 of 4 coworkers</span><nav aria-label="Pagination" style="margin-inline-start:auto"><ul class="pagination pagination-sm theme-primary" style="margin:0"><li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous page"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></a></li><li class="page-item active"><a class="page-link" href="#" aria-current="page">1</a></li><li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#" aria-label="Next page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li></ul></nav></div></div>
+</div>
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Search and filter</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">SF-1</span>
+<div><div>filter bar</div><code style="font-size:12px;color:var(--bs-fg-3)">inline labels + selects</code></div>
+<div><div style="font-weight:600">Complex</div><code style="font-size:12px;color:var(--bs-fg-3)">input-group + combobox-toggle + chip</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#sf-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><a class="btn-outline theme-secondary btn-sm" href="Search and filter.dc.html"><i class="fa-solid fa-arrow-up-right-from-square"></i>Open Search and filter</a><div style="margin-top:12px"><div data-filterbar="" data-variant="bar" style="width:100%;max-width:440px"><div data-fb-card=""><div class="card" style="overflow:visible;width:100%"><div style="position:relative;display:flex;align-items:center;gap:8px;flex-wrap:nowrap;padding:12px 16px 6px;background:var(--bs-bg-1)"><div class="input-group input-group-sm" style="flex:1 1 auto;min-width:0;max-width:240px"><input class="form-control form-control-sm" type="search" data-query="" placeholder="Search name" aria-label="Search profiles by name" value=""><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" data-bs-toggle="tooltip" data-bs-title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><div class="btn-group btn-group-sm" role="group" aria-label="Filter and sort" style="position:static;margin-inline-start:auto;flex:0 0 auto"><button type="button" class="btn-outline theme-secondary btn-sm" data-toggle="more" aria-expanded="false" aria-controls="fb5-more" aria-label="More filters, 1 applied" style="white-space:nowrap"><i class="fa-solid fa-filter" aria-hidden="true"></i>More filters</button><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" data-toggle="sort" aria-expanded="false" aria-label="Sort by: Last name" data-bs-toggle="tooltip" data-bs-title="Sort by: Last name"><i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i></button></div></div><div style="display:flex;align-items:center;padding:0 16px 8px;border-bottom:1px solid var(--bs-border-color);background:var(--bs-bg-1)"><span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><button type="button" data-applied="" data-bs-toggle="dialog" data-bs-target="#fb5-applied" aria-haspopup="dialog" style="background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer">2 filters applied</button><button type="button" class="chip-dismiss" data-clear="" aria-label="Clear filters" data-bs-toggle="tooltip" data-bs-title="Clear filters"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span></div><div style="display:flex;align-items:center;gap:12px;padding:4px 16px;border-bottom:1px solid var(--bs-border-subtle);min-height:28px" class="fs-xs fw-semibold" data-count="" tabindex="-1">7 of 12 profiles</div></div></div><dialog class="dialog" id="fb5-applied" aria-labelledby="fb5-applied-title"><div class="dialog-header"><h2 class="dialog-title fs-md fw-semibold" id="fb5-applied-title">Applied filters</h2><button type="button" class="btn-close" data-bs-dismiss="dialog" aria-label="Close"></button></div><div class="dialog-body"><div role="group" aria-label="Applied filters" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>Language: English</span><button type="button" class="chip-dismiss" data-chip="0" aria-label="Remove Language English" data-bs-toggle="tooltip" data-bs-title="Remove Language English"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span><span class="chip theme-primary" style="--bs-chip-bg:var(--bs-primary-bg-muted);--bs-chip-color:var(--bs-fg-body);--bs-chip-height:1.5rem;--bs-chip-padding-x:.5rem;--bs-chip-gap:.25rem"><span>Language: German</span><button type="button" class="chip-dismiss" data-chip="1" aria-label="Remove Language German" data-bs-toggle="tooltip" data-bs-title="Remove Language German"><i class="fa-solid fa-xmark" aria-hidden="true" style="font-size:11px"></i></button></span></div></div><div class="dialog-footer" style="justify-content:space-between"><button type="button" class="btn-text theme-primary btn-sm" data-clear="" data-dialog-clear=""><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button><button type="button" class="btn-solid theme-primary btn-sm" data-bs-dismiss="dialog">View results</button></div></dialog></div></div></div>
+</div>
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">SF-2</span>
+<div><div>(none)</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/popovers/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/popovers/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Popover</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.popover + .popover-body</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#sf-2" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="popover bs-popover-bottom show" role="dialog" aria-label="Notifications" style="position:relative;display:block;max-width:none;width:300px"><div class="popover-body" style="display:flex;flex-direction:column;gap:10px"><div style="display:grid;gap:2px"><span>Jo Becker accepted the invitation.</span><small class="fs-xs fg-3">2 hours ago</small></div><hr class="m-0"><div style="display:grid;gap:2px"><span>Selection “Season 14” was shared with you.</span><small class="fs-xs fg-3">Yesterday</small></div></div></div></div>
+</div>
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">SF-3</span>
+<div><div>dropdown of checkboxes</div><code style="font-size:12px;color:var(--bs-fg-3)">.dropdown + .checkbox</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/combobox/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/forms/combobox/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Combobox</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.combobox-toggle + .menu + .check / .radio</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#sf-3" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><button type="button" class="combobox-toggle form-control form-control-sm" aria-expanded="false" style="width:170px"><span class="combobox-value" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Permissions: All</span><i class="fa-solid fa-caret-down combobox-caret" aria-hidden="true"></i></button></div>
+</div>
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-warning badge-subtle" style="justify-self:start">SF-4</span>
+<div><div>filter bar inline labels + selects</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/menu/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Simple</a></div><code style="font-size:12px;color:var(--bs-fg-3)">input-group + btn-subtle theme-secondary + menu (data-bs-toggle=&quot;menu&quot;)</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Custom.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#sf-4" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div data-simplefilter="" style="width:100%"><div class="card" style="overflow:visible;width:100%;--bs-card-border-width:0"><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 16px"><div style="display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap;flex:1 1 auto;min-width:0"><div class="input-group input-group-sm" style="width:240px;flex:0 0 auto"><input class="form-control form-control-sm" type="search" data-query="" placeholder="Search name, email" aria-label="Search coworkers" value=""><button type="button" class="btn-outline theme-secondary btn-sm btn-icon" aria-label="Search" title="Search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button></div><div style="display:flex"><button type="button" class="btn-subtle theme-secondary btn-sm" data-bs-toggle="menu" data-bs-auto-close="true" data-bs-strategy="fixed" aria-expanded="false" style="white-space:nowrap;gap:6px"><span style="font-weight:600;color:var(--bs-fg-body)">Permissions:</span><span data-value-of="permissions" style="color: var(--bs-link-color); font-weight: 400;">All</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button><div class="menu" data-menu="permissions" style="min-width:200px"><button type="button" class="menu-item selected" data-pick="permissions" data-value="All" aria-current="true">All<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="permissions" data-value="Admin">Admin<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="permissions" data-value="Limited">Limited<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="permissions" data-value="Read only">Read only<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button></div></div><div style="display:flex"><button type="button" class="btn-subtle theme-secondary btn-sm" data-bs-toggle="menu" data-bs-auto-close="true" data-bs-strategy="fixed" aria-expanded="false" style="white-space:nowrap;gap:6px"><span style="font-weight:600;color:var(--bs-fg-body)">Status:</span><span data-value-of="status" style="color: var(--bs-link-color); font-weight: 400;">All</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button><div class="menu" data-menu="status" style="min-width:200px"><button type="button" class="menu-item selected" data-pick="status" data-value="All" aria-current="true">All<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="status" data-value="Active">Active<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="status" data-value="Inactive">Inactive<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button></div></div><div style="display:flex"><button type="button" class="btn-subtle theme-secondary btn-sm" data-bs-toggle="menu" data-bs-auto-close="outside" data-bs-strategy="fixed" aria-expanded="false" style="white-space:nowrap;gap:6px"><span style="font-weight:600;color:var(--bs-fg-body)">Language:</span><span data-value-of="language" style="color: var(--bs-link-color); font-weight: 400;">All</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button><div class="menu" data-menu="language" style="min-width:200px"><button type="button" class="menu-item" data-pick="language" data-value="English">English<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="language" data-value="German">German<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="language" data-value="French">French<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="language" data-value="Spanish">Spanish<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="language" data-value="Italian">Italian<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="language" data-value="Polish">Polish<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="language" data-value="Portuguese">Portuguese<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button></div></div><div style="display:flex"><button type="button" class="btn-subtle theme-secondary btn-sm" data-bs-toggle="menu" data-bs-auto-close="true" data-bs-strategy="fixed" aria-expanded="false" style="white-space:nowrap;gap:6px"><span style="font-weight:600;color:var(--bs-fg-body)">2FA:</span><span data-value-of="twofa" style="color: var(--bs-link-color); font-weight: 400;">All</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button><div class="menu" data-menu="twofa" style="min-width:200px"><button type="button" class="menu-item selected" data-pick="twofa" data-value="All" aria-current="true">All<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="twofa" data-value="Enabled">Enabled<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="twofa" data-value="Disabled">Disabled<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button></div></div><button type="button" class="btn-text theme-primary btn-sm" data-clear="" hidden="" style="white-space:nowrap"><i class="fa-solid fa-xmark" aria-hidden="true"></i>Clear filters</button></div><div style="display:flex;flex:0 0 auto"><button type="button" class="btn-subtle theme-secondary btn-sm" data-bs-toggle="menu" data-bs-auto-close="true" data-bs-placement="bottom-end" data-bs-strategy="fixed" aria-expanded="false" style="white-space:nowrap;gap:6px"><span style="font-weight:600;color:var(--bs-fg-body)">Sort by:</span><span data-value-of="sort" style="color:var(--bs-link-color)">Last created</span><i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:12px;color:var(--bs-fg-2)"></i></button><div class="menu" data-menu="sort" style="min-width:200px"><button type="button" class="menu-item selected" data-pick="sort" data-value="Last created" aria-current="true">Last created<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="sort" data-value="Last name">Last name<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button><button type="button" class="menu-item" data-pick="sort" data-value="First name">First name<i class="fa-solid fa-check menu-item-check" aria-hidden="true"></i></button></div></div></div><div data-results=""><div class="fs-xs fw-semibold" style="display:flex;align-items:center;padding:4px 16px;background:var(--bs-bg-1);min-height:28px">1-5 of 20 coworkers</div><div style="overflow-x:auto"><table class="table" style="margin:0"><thead><tr><th scope="col">Name</th><th scope="col">Permissions</th><th scope="col">Language</th><th scope="col">2FA</th><th scope="col">Profile access</th><th scope="col">Location access</th><th scope="col">Status</th></tr></thead><tbody><tr><td><div class="fw-semibold">Zoe Roth</div><div class="fs-xs fg-3">zoe.roth@example.com</div></td><td>Read only</td><td>Spanish</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class="badge theme-success badge-subtle">Active</span></td></tr><tr><td><div class="fw-semibold">Tom Braun</div><div class="fs-xs fg-3">tom.braun@example.com</div></td><td>Admin</td><td>German</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class="badge theme-secondary badge-subtle">Inactive</span></td></tr><tr><td><div class="fw-semibold">Lea Hoffmann</div><div class="fs-xs fg-3">lea.hoffmann@example.com</div></td><td>Limited</td><td>German</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class="badge theme-success badge-subtle">Active</span></td></tr><tr><td><div class="fw-semibold">Mia Graf</div><div class="fs-xs fg-3">mia.graf@example.com</div></td><td>Limited</td><td>French</td><td>Disabled</td><td>No profiles</td><td>No locations</td><td><span class="badge theme-success badge-subtle">Active</span></td></tr><tr><td style="border-bottom-width:0"><div class="fw-semibold">Jo Becker</div><div class="fs-xs fg-3">jo.becker@example.com</div></td><td style="border-bottom-width:0">Limited</td><td style="border-bottom-width:0">English</td><td style="border-bottom-width:0">Disabled</td><td style="border-bottom-width:0">No profiles</td><td style="border-bottom-width:0">No locations</td><td style="border-bottom-width:0"><span class="badge theme-success badge-subtle">Active</span></td></tr></tbody></table></div><div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:10px 16px;background:var(--bs-bg-1)"><span class="fs-xs fw-semibold">1-5 of 20 coworkers</span><nav aria-label="Pagination" style="margin-inline-start:auto"><ul class="pagination pagination-sm theme-primary" style="margin:0"><li class="page-item disabled"><a class="page-link" href="#" data-goto="0" aria-label="Previous page"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></a></li><li class="page-item active"><a class="page-link" href="#" data-goto="1" aria-current="page">1</a></li><li class="page-item"><a class="page-link" href="#" data-goto="2">2</a></li><li class="page-item"><a class="page-link" href="#" data-goto="3">3</a></li><li class="page-item"><a class="page-link" href="#" data-goto="4">4</a></li><li class="page-item"><a class="page-link" href="#" data-goto="2" aria-label="Next page"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a></li></ul></nav></div></div></div></div></div>
+</div>
+</div>
+</div>
+
+<h2 style="font-size:20px;font-weight:600;margin:0;padding:32px 24px 12px">Avatars, icons and theming</h2>
+<div style="border-top:1px solid var(--bs-border-color)">
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">AVT-1</span>
+<div><div>user avatar</div><code style="font-size:12px;color:var(--bs-fg-3)">custom</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Avatar</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.avatar.avatar-xs.theme-secondary</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#avt-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><span class="avatar avatar-xs theme-secondary">C</span><span class="avatar avatar-sm theme-secondary">DZ</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">AVT-2</span>
+<div><div>avatar list</div><code style="font-size:12px;color:var(--bs-fg-3)">custom</code></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/#stacks" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/components/avatar/#stacks" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Avatar stack</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.avatar-stack.avatar-stack-sm</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#avt-2" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><div class="avatar-stack avatar-stack-sm"><span class="avatar avatar-sm theme-secondary">+2</span><span class="avatar avatar-sm theme-secondary">MS</span><span class="avatar avatar-sm theme-secondary">CS</span><span class="avatar avatar-sm theme-secondary">DZ</span></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">ICN-1</span>
+<div><div>glyphicon</div></div>
+<div><div style="font-weight:600">Solid icons</div><code style="font-size:12px;color:var(--bs-fg-3)">fa-solid</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#icn-1" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><i class="fa-solid fa-house" aria-hidden="true"></i><i class="fa-solid fa-pencil" aria-hidden="true"></i><i class="fa-solid fa-trash" aria-hidden="true"></i><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><i class="fa-solid fa-ellipsis" aria-hidden="true"></i></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-secondary badge-subtle" style="justify-self:start">ICN-2</span>
+<div><div>glyphicon</div></div>
+<div><div style="font-weight:600">Regular icons</div><code style="font-size:12px;color:var(--bs-fg-3)">fa-regular</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Replace.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#icn-2" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><i class="fa-regular fa-bell" aria-hidden="true"></i><i class="fa-regular fa-eye" aria-hidden="true"></i><i class="fa-regular fa-image" aria-hidden="true"></i><i class="fa-regular fa-copy" aria-hidden="true"></i><i class="fa-regular fa-circle-question" aria-hidden="true"></i></div>
+</div>
+
+<div style="display:grid;grid-template-columns:76px minmax(150px,0.85fr) minmax(190px,1fr) minmax(280px,1.35fr);gap:20px;align-items:start;padding:var(--row-pad) 24px;border-bottom:1px solid var(--bs-border-subtle)">
+<span class="badge theme-info badge-subtle" style="justify-self:start">ICN-3</span>
+<div><div>—</div></div>
+<div><div style="font-weight:600"><a href="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/helpers/visually-hidden/" target="_blank" rel="noreferrer" title="https://v6-dev--twbs-bootstrap.netlify.app/docs/6.0/helpers/visually-hidden/" style="color:inherit;text-decoration:underline;text-decoration-color:var(--bs-border-color);text-underline-offset:2px">Screen-reader label</a></div><code style="font-size:12px;color:var(--bs-fg-3)">.visually-hidden</code><div style="font-size:12px;color:var(--bs-fg-3);margin-top:4px">Added.</div><div style="font-size:12px;margin-top:6px"><a href="https://claude.ai/artifact/FQt7nwgRNVrfmdwb3Psvkg#icn-3" target="_blank" rel="noreferrer">In the Library<i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" style="font-size:10px;margin-inline-start:4px"></i></a><span style="color:var(--bs-fg-3)"></span></div></div>
+<div style="min-width:0;overflow-x:auto"><i class="fa-solid fa-user" aria-hidden="true"></i>76<span class="visually-hidden">people in this selection</span><span style="font-size:12px;color:var(--bs-fg-3);margin-inline-start:8px">+ "people in this selection"</span></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;primary&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#0070d0&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#0070d0&quot;,&quot;#be273b&quot;,&quot;#00934c&quot;,&quot;#9027a6&quot;]},&quot;dense&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { primary: null };
+  componentDidMount() { this.initTips(); }
+  componentDidUpdate() { this.initTips(); }
+  initTips() {
+    const bs = window.bootstrap;
+    if (!bs || !bs.Tooltip) return;
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => bs.Tooltip.getOrCreateInstance(el));
+  }
+  set(c) { this.setState({ primary: c }); }
+  mapUpStart = () => {
+    if (this._upTimer) return;
+    this.setState({ mapUpPct: 0 });
+    this._upTimer = setInterval(() => {
+      const next = (this.state.mapUpPct ?? 0) + 12;
+      if (next >= 100) { clearInterval(this._upTimer); this._upTimer = null; this.setState({ mapUpPct: 100 }); }
+      else this.setState({ mapUpPct: next });
+    }, 180);
+  };
+  componentWillUnmount() { if (this._upTimer) clearInterval(this._upTimer); }
+  renderVals() {
+    const dense = this.props.dense ?? false;
+    const up = this.state.mapUpPct ?? 45;
+    const p = this.props.primary || this.state.primary || '#0070d0';
+    const mixWhite = (pct) => `color-mix(in oklch, ${p} ${pct}%, var(--bs-white))`;
+    return {
+      primaryColor: p,
+      mapUpPct: up,
+      mapUpLabel: up + '%',
+      mapUpBarStyle: { width: up + '%' },
+      mapUpStart: this.mapUpStart,
+      primaryFgEmphasis: `color-mix(in oklch, ${p} 78%, var(--bs-black))`,
+      primaryBgSubtle: mixWhite(12),
+      primaryBgMuted: mixWhite(26),
+      primaryBorder: mixWhite(55),
+      rowPad: dense ? '10px' : '18px',
+      setBlue: () => this.set('var(--bs-blue-600)'),
+      setRed: () => this.set('var(--bs-red-600)'),
+      setGreen: () => this.set('var(--bs-green-600)'),
+      mapSwitchOn: this.state.mapSwitchOn ?? true,
+      toggleMapSwitch: (e) => this.setState({ mapSwitchOn: e.target.checked }),
+      modeExpert: this.state.modeExpert ?? false,
+      toggleMode: (e) => this.setState({ modeExpert: e.target.checked })
+    };
+  }
+}
+</script>
+</body>
+</html>

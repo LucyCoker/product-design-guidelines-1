@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Library</title>
+<meta name="description" content="Filmmakers System components on Bootstrap 6, with our tokens and guidelines.">
+<link rel="stylesheet" href="assets/bootstrap.min.css">
+<link rel="stylesheet" href="assets/fontawesome.css">
+<link rel="stylesheet" href="assets/filmmakers.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>/* Colour mode before first paint: light, dark, or auto (the OS setting). */(function(){var m="light";try{m=localStorage.getItem("lib-colour-mode")||"light"}catch(e){}var d=m==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):m;document.documentElement.setAttribute("data-bs-theme",d);document.documentElement.style.setProperty("color-scheme",d,"important")})()</script>
+</head>
+<body>
+<!--lib:body-start-->
+<header class="lib-top">
+  <a class="navbar-brand lib-logo" href="#"><img src="assets/filmmakers-logo.png" alt="Filmmakers" width="124" height="22"><span class="lib-logo-sep" aria-hidden="true"></span><span class="lib-logo-name">The Library</span></a>
+  
+  <div class="lib-search" role="search">
+    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+    <input id="lib-search" class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search the library" role="combobox" aria-expanded="false" aria-controls="lib-search-results" aria-autocomplete="list" autocomplete="off" spellcheck="false">
+    <kbd class="lib-search-key" aria-hidden="true">/</kbd>
+    <div class="menu show lib-search-results" id="lib-search-results" role="listbox" aria-label="Search results" hidden></div>
+  </div>
+  <a class="btn-outline theme-secondary btn-sm lib-kit-link" href="#prototype-kit" aria-label="Prototype kit" title="Prototype kit"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><span>Prototype kit</span></a>
+  <span class="lib-spacer"></span>
+  <div class="btn-group btn-group-sm lib-mode" role="radiogroup" aria-label="Colour mode">
+    <label class="btn-check btn-outline theme-secondary btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Light"><input type="radio" name="lib-mode" value="light" aria-label="Light mode" autocomplete="off"><i class="fa-solid fa-sun" aria-hidden="true"></i></label>
+    <label class="btn-check btn-outline theme-secondary btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Dark"><input type="radio" name="lib-mode" value="dark" aria-label="Dark mode" autocomplete="off"><i class="fa-solid fa-moon" aria-hidden="true"></i></label>
+    <label class="btn-check btn-outline theme-secondary btn-sm btn-icon" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Match system"><input type="radio" name="lib-mode" value="auto" aria-label="Match system setting" autocomplete="off"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i></label>
+  </div>
+  <label class="fs-sm fg-3" for="primary-picker">Preview primary</label>
+  <button type="button" class="btn-outline theme-secondary btn-sm" data-bs-toggle="menu" aria-expanded="false" id="primary-toggle">
+    <span class="lib-swatch" aria-hidden="true"></span><span id="primary-name">Default blue</span><i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+  </button>
+  <div class="menu menu-end" aria-labelledby="primary-toggle">
+    <button type="button" class="menu-item active" data-primary="default"><span class="lib-swatch" style="background:var(--bs-blue-600)" aria-hidden="true"></span>Default blue <span class="fg-3">&nbsp;blue-600</span></button>
+    <button type="button" class="menu-item" data-primary="var(--bs-green-600)"><span class="lib-swatch" style="background:var(--bs-green-600)" aria-hidden="true"></span>Green <span class="fg-3">&nbsp;green-600</span></button>
+    <button type="button" class="menu-item" data-primary="#fc3082"><span class="lib-swatch" style="background:#fc3082" aria-hidden="true"></span>Kosova Film <span class="fg-3">&nbsp;#fc3082</span></button>
+    <button type="button" class="menu-item" data-primary="#d62e33"><span class="lib-swatch" style="background:#d62e33" aria-hidden="true"></span>BBFC <span class="fg-3">&nbsp;#d62e33</span></button>
+  </div>
+  <input type="color" id="primary-picker" class="form-control form-control-sm form-control-color" value="#006ac9" title="Pick any customer primary">
+</header>
+
+<div class="lib-shell">
+  <nav class="lib-side" aria-label="Library">
+    <div class="lib-side-group">
+      <a href="#foundations" class="lib-side-title">Foundations</a>
+      <a href="#colour" class="lib-sub">Colour</a>
+      <a href="#typography" class="lib-sub">Typography</a>
+      <a href="#icons" class="lib-sub">Icons</a>
+      <a href="#tokens" class="lib-sub">Spacing and more</a>
+      <a href="#fm-classes" class="lib-sub">Filmmakers classes</a>
+    </div>
+    <div class="lib-side-group" id="side-components">
+      <a href="#components" class="lib-side-title">Components</a>
+    </div>
+    <div class="lib-side-group" id="side-forms">
+      <a href="#forms" class="lib-side-title">Forms</a>
+    </div>
+    <div class="lib-side-group" id="side-organisms">
+      <a href="#organisms" class="lib-side-title">Organisms</a>
+    </div>
+    <div class="lib-side-group" id="side-organisms-area">
+      <a href="#organisms-area" class="lib-side-title">Organisms: Area specific</a>
+    </div>
+    <div class="lib-side-group" id="side-app-shell">
+      <a href="#app-shell" class="lib-side-title">App shell</a>
+    </div>
+    <div class="lib-side-group" id="side-templates">
+      <a href="#templates" class="lib-side-title">Templates</a>
+    </div>
+    <div class="lib-side-group">
+      <a href="#guidelines" class="lib-side-title">Guidelines</a>
+      <a href="#backlog" class="lib-sub">Decisions backlog</a>
+      <a href="#dev-review" class="lib-sub">Developer review<span class="lib-count" id="dev-review-count"></span></a>
+    </div>
+    <div class="lib-side-group">
+      <a href="#prototype-kit" class="lib-side-title">Prototype kit</a>
+    </div>
+    <div class="lib-side-group" id="side-candidates">
+      <a href="#candidates" class="lib-side-title">Component candidates</a>
+    </div>
+  </nav>
+
+  <main class="lib-main">
+<section class="lib-page" data-page="foundations" data-title="Foundations" hidden>
+
+<div class="lib-page-head">
+        <h1 class="fs-2xl">Foundations</h1>
+        <p>Colour, type and icons. Values come from Bootstrap 6 with the Filmmakers layer on top. Everything else in the library is built from these.</p>
+      </div>
+<div class="lib-cards" data-overview="foundations"></div>
+</section>
+<section class="lib-page" data-page="colour" data-parent="foundations" data-title="Colour" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Colour</span></nav>
+
+        <div class="lib-page-head">
+          <h1 class="fs-2xl">Colour</h1>
+          <p>Primary is set per customer. Use the <b>Preview primary</b> control at the top to see any customer colour. The swatches are shown once for light mode and once for dark mode.</p>
+        </div>
+
+        <h2 class="fs-lg m-0">Light mode</h2>
+        <div class="lib-mode-panel vstack gap-3" data-bs-theme="light">
+        <h3 class="fs-md m-0">Primary roles</h3>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg)"></span><b>Primary</b><code>--bs-primary-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-fg-emphasis)"></span><b>Emphasis</b><code>--bs-primary-fg-emphasis · 78% + black</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-border)"></span><b>Border</b><code>--bs-primary-border · 55% + white</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg-muted)"></span><b>Muted</b><code>--bs-primary-bg-muted · 26% + white</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg-subtle)"></span><b>Subtle</b><code>--bs-primary-bg-subtle · 12% + white</code></div>
+        </div>
+
+        <h3 class="fs-md m-0">Always Bootstrap blue</h3>
+        <p class="lib-note">These never follow the customer primary.</p>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-control-checked-bg)"></span><b>Checked controls</b><code>--bs-control-checked-bg · blue-600</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-progress-bar-bg)"></span><b>Progress</b><code>--bs-progress-bar-bg · blue-600</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-focus-ring-color)"></span><b>Focus ring</b><code>--bs-*-focus-ring · blue-500</code></div>
+        </div>
+
+        <h3 class="fs-md m-0">Neutrals</h3>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-bg-body)"></span><b>Body</b><code>--bs-bg-body</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-bg-1)"></span><b>Surface 1</b><code>--bs-bg-1 · hover, gutters</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-bg-2)"></span><b>Surface 2</b><code>--bs-bg-2 · selected</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-border-color)"></span><b>Border</b><code>--bs-border-color</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-fg-body)"></span><b>Text</b><code>--bs-fg-body</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-fg-2)"></span><b>Text secondary</b><code>--bs-fg-2</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-fg-3)"></span><b>Text muted</b><code>--bs-fg-3</code></div>
+        </div>
+
+        <h3 class="fs-md m-0">Status and accent</h3>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-success-bg)"></span><b>Success</b><code>--bs-success-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-danger-bg)"></span><b>Danger</b><code>--bs-danger-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-warning-bg)"></span><b>Warning</b><code>--bs-warning-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-info-bg)"></span><b>Info</b><code>--bs-info-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--fm-accent-client-zone)"></span><b>Client zone</b><code>--fm-accent-client-zone</code></div>
+        </div>
+
+
+        </div>
+        <h2 class="fs-lg m-0">Dark mode</h2>
+        <p class="lib-note">The same tokens with <code>data-bs-theme="dark"</code>. Status colours and the fixed blues do not change; surfaces, text, borders and the primary mixes do.</p>
+        <div class="lib-mode-panel vstack gap-3" data-bs-theme="dark">
+        <h3 class="fs-md m-0">Primary roles</h3>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg)"></span><b>Primary</b><code>--bs-primary-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-fg-emphasis)"></span><b>Emphasis</b><code>--bs-primary-fg-emphasis · 45% + white</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-border)"></span><b>Border</b><code>--bs-primary-border · 60% + gray-975</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg-muted)"></span><b>Muted</b><code>--bs-primary-bg-muted · 38% + gray-975</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-primary-bg-subtle)"></span><b>Subtle</b><code>--bs-primary-bg-subtle · 22% + gray-975</code></div>
+        </div>
+
+        <h3 class="fs-md m-0">Always Bootstrap blue</h3>
+        <p class="lib-note">These never follow the customer primary.</p>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-control-checked-bg)"></span><b>Checked controls</b><code>--bs-control-checked-bg · blue-600</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-progress-bar-bg)"></span><b>Progress</b><code>--bs-progress-bar-bg · blue-600</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-focus-ring-color)"></span><b>Focus ring</b><code>--bs-*-focus-ring · blue-500</code></div>
+        </div>
+
+        <h3 class="fs-md m-0">Neutrals</h3>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-bg-body)"></span><b>Body</b><code>--bs-bg-body</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-bg-1)"></span><b>Surface 1</b><code>--bs-bg-1 · hover, gutters</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-bg-2)"></span><b>Surface 2</b><code>--bs-bg-2 · selected</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-border-color)"></span><b>Border</b><code>--bs-border-color</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-fg-body)"></span><b>Text</b><code>--bs-fg-body</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-fg-2)"></span><b>Text secondary</b><code>--bs-fg-2</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-fg-3)"></span><b>Text muted</b><code>--bs-fg-3</code></div>
+        </div>
+
+        <h3 class="fs-md m-0">Status and accent</h3>
+        <div class="lib-swatches">
+          <div class="lib-swatch-item"><span style="background:var(--bs-success-bg)"></span><b>Success</b><code>--bs-success-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-danger-bg)"></span><b>Danger</b><code>--bs-danger-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-warning-bg)"></span><b>Warning</b><code>--bs-warning-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--bs-info-bg)"></span><b>Info</b><code>--bs-info-bg</code></div>
+          <div class="lib-swatch-item"><span style="background:var(--fm-accent-client-zone)"></span><b>Client zone</b><code>--fm-accent-client-zone</code></div>
+        </div>
+
+
+        </div>
+        <h3 class="fs-md m-0" id="colour-modes">Light and dark</h3>
+        <p class="lib-note">Every colour is a Bootstrap 6 token defined with <code>light-dark()</code>, so one class works in both modes. The mode is <code>data-bs-theme="light"</code> or <code>"dark"</code> on <code>&lt;html&gt;</code>, or on any element to force a mode there. Use the <b>colour mode</b> switch at the top to see the whole Library in either mode. Values are Bootstrap palette steps; primary mixes start from <code>--fm-primary</code>.</p>
+        <div class="lib-table-wrap"><table class="table table-sm mb-0 lib-token-table"><thead><tr><th scope="col">Group</th><th scope="col">Token and role</th><th scope="col">Light</th><th scope="col">Dark</th></tr></thead><tbody><tr><td>Surfaces</td><td><code>--bs-bg-body</code><br><span class="fg-3 fs-xs">Page and card background</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-bg-body)"></span><code>white</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-bg-body)"></span><code>gray-975</code></td></tr><tr><td>Surfaces</td><td><code>--bs-bg-1</code><br><span class="fg-3 fs-xs">Hover, gutters, filter bars</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-bg-1)"></span><code>gray-025</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-bg-1)"></span><code>gray-950</code></td></tr><tr><td>Surfaces</td><td><code>--bs-bg-2</code><br><span class="fg-3 fs-xs">Selected items</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-bg-2)"></span><code>gray-050</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-bg-2)"></span><code>gray-900</code></td></tr><tr><td>Surfaces</td><td><code>--bs-bg-3</code><br><span class="fg-3 fs-xs">Pressed, strong fills</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-bg-3)"></span><code>gray-100</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-bg-3)"></span><code>gray-800</code></td></tr><tr><td>Text</td><td><code>--bs-fg-body</code><br><span class="fg-3 fs-xs">Body text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-fg-body)"></span><code>gray-900</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-fg-body)"></span><code>gray-050</code></td></tr><tr><td>Text</td><td><code>--bs-fg-1</code><br><span class="fg-3 fs-xs">Strong text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-fg-1)"></span><code>gray-800</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-fg-1)"></span><code>gray-200</code></td></tr><tr><td>Text</td><td><code>--bs-fg-2</code><br><span class="fg-3 fs-xs">Secondary text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-fg-2)"></span><code>gray-700</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-fg-2)"></span><code>gray-300</code></td></tr><tr><td>Text</td><td><code>--bs-fg-3</code><br><span class="fg-3 fs-xs">Muted text, labels</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-fg-3)"></span><code>gray-600</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-fg-3)"></span><code>gray-500</code></td></tr><tr><td>Borders</td><td><code>--bs-border-color</code><br><span class="fg-3 fs-xs">Borders</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-border-color)"></span><code>gray-200</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-border-color)"></span><code>gray-700</code></td></tr><tr><td>Borders</td><td><code>--bs-border-subtle</code><br><span class="fg-3 fs-xs">Dividers</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-border-subtle)"></span><code>gray-100/200 mix</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-border-subtle)"></span><code>gray-800/900 mix</code></td></tr><tr><td>Borders</td><td><code>--bs-border-emphasized</code><br><span class="fg-3 fs-xs">Strong borders</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-border-emphasized)"></span><code>gray-400</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-border-emphasized)"></span><code>gray-600</code></td></tr><tr><td>Links</td><td><code>--bs-link-color</code><br><span class="fg-3 fs-xs">Links</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-link-color)"></span><code>primary</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-link-color)"></span><code>primary text (lighter)</code></td></tr><tr><td>Primary</td><td><code>--bs-primary-bg</code><br><span class="fg-3 fs-xs">Primary fills (solid buttons)</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-primary-bg)"></span><code>--fm-primary</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-primary-bg)"></span><code>--fm-primary</code></td></tr><tr><td>Primary</td><td><code>--bs-primary-fg</code><br><span class="fg-3 fs-xs">Primary text and icons</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-primary-fg)"></span><code>--fm-primary</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-primary-fg)"></span><code>62% primary + white</code></td></tr><tr><td>Primary</td><td><code>--bs-primary-fg-emphasis</code><br><span class="fg-3 fs-xs">Hover text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-primary-fg-emphasis)"></span><code>78% primary + black</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-primary-fg-emphasis)"></span><code>45% primary + white</code></td></tr><tr><td>Primary</td><td><code>--bs-primary-border</code><br><span class="fg-3 fs-xs">Primary borders</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-primary-border)"></span><code>55% primary + white</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-primary-border)"></span><code>60% primary + gray-975</code></td></tr><tr><td>Primary</td><td><code>--bs-primary-bg-muted</code><br><span class="fg-3 fs-xs">Chips</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-primary-bg-muted)"></span><code>26% primary + white</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-primary-bg-muted)"></span><code>38% primary + gray-975</code></td></tr><tr><td>Primary</td><td><code>--bs-primary-bg-subtle</code><br><span class="fg-3 fs-xs">Selected rows, subtle fills</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-primary-bg-subtle)"></span><code>12% primary + white</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-primary-bg-subtle)"></span><code>22% primary + gray-975</code></td></tr><tr><td>Status</td><td><code>--bs-success-fg</code><br><span class="fg-3 fs-xs">Success text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-success-fg)"></span><code>green-600</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-success-fg)"></span><code>green-400</code></td></tr><tr><td>Status</td><td><code>--bs-success-bg-subtle</code><br><span class="fg-3 fs-xs">Success surface</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-success-bg-subtle)"></span><code>green-100</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-success-bg-subtle)"></span><code>green-900</code></td></tr><tr><td>Status</td><td><code>--bs-danger-fg</code><br><span class="fg-3 fs-xs">Danger text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-danger-fg)"></span><code>red-600</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-danger-fg)"></span><code>red-400</code></td></tr><tr><td>Status</td><td><code>--bs-danger-bg-subtle</code><br><span class="fg-3 fs-xs">Danger surface</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-danger-bg-subtle)"></span><code>red-100</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-danger-bg-subtle)"></span><code>red-900</code></td></tr><tr><td>Status</td><td><code>--bs-warning-fg</code><br><span class="fg-3 fs-xs">Warning text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-warning-fg)"></span><code>yellow-700</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-warning-fg)"></span><code>yellow-400</code></td></tr><tr><td>Status</td><td><code>--bs-warning-bg-subtle</code><br><span class="fg-3 fs-xs">Warning surface</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-warning-bg-subtle)"></span><code>yellow-100</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-warning-bg-subtle)"></span><code>yellow-900</code></td></tr><tr><td>Status</td><td><code>--bs-info-fg</code><br><span class="fg-3 fs-xs">Info text</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-info-fg)"></span><code>cyan-600</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-info-fg)"></span><code>cyan-400</code></td></tr><tr><td>Status</td><td><code>--bs-info-bg-subtle</code><br><span class="fg-3 fs-xs">Info surface</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-info-bg-subtle)"></span><code>cyan-100</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-info-bg-subtle)"></span><code>cyan-900</code></td></tr><tr><td>Status</td><td><code>--bs-inverse-bg</code><br><span class="fg-3 fs-xs">Inverse surface (tooltips)</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-inverse-bg)"></span><code>gray-900</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-inverse-bg)"></span><code>gray-025</code></td></tr><tr><td>Fixed</td><td><code>--bs-control-checked-bg</code><br><span class="fg-3 fs-xs">Checked controls</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-control-checked-bg)"></span><code>blue-600</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-control-checked-bg)"></span><code>blue-600</code></td></tr><tr><td>Fixed</td><td><code>--bs-focus-ring-color</code><br><span class="fg-3 fs-xs">Focus ring</span></td><td><span class="lib-token-chip is-light" style="background:var(--bs-focus-ring-color)"></span><code>blue-500</code></td><td><span class="lib-token-chip is-dark" style="background:var(--bs-focus-ring-color)"></span><code>blue-500</code></td></tr><tr><td>Fixed</td><td><code>--fm-accent-client-zone</code><br><span class="fg-3 fs-xs">Client zone icon</span></td><td><span class="lib-token-chip is-light" style="background:var(--fm-accent-client-zone)"></span><code>orange-600</code></td><td><span class="lib-token-chip is-dark" style="background:var(--fm-accent-client-zone)"></span><code>orange-600</code></td></tr></tbody></table></div>
+
+        <ul class="lib-rules">
+          <li><b>At most one primary action per screen.</b> Primary never means new, recommended or important.</li>
+          <li><b>Status colours report state only.</b> Never actions, emphasis or decoration.</li>
+          <li><b>Colour is never the only signal.</b> Pair it with an icon or text.</li>
+          <li><b>No hex values in component or page CSS.</b></li>
+          <li><b>Only tokens switch with the mode.</b> A fixed colour (hex, <code>--bs-white</code>, a palette step) stays the same in dark mode, so use it only where that is meant, such as text on a photo.</li>
+        </ul>
+        <p class="lib-flag"><i class="fa-solid fa-circle-info fg-3" aria-hidden="true"></i><span><b>Decided:</b> the focus ring is Bootstrap’s 3px ring in full-strength <code>blue-500</code> (<code>#0087fe</code>) for every theme, about 3.6:1 on white. It passes the 3:1 the Colour guideline asks for focus indicators.</span></p>
+        <p class="lib-flag"><i class="fa-solid fa-circle-info fg-3" aria-hidden="true"></i><span><b>Decided:</b> client zone is Bootstrap <code>orange-600</code> (<code>#cd5100</code>), about 4.4:1 on white, so the icon passes the 3:1 WCAG 2.1 AA needs for icons. It replaces the mapping’s <code>#EF7428</code> and <code>orange-500</code> (about 2.9:1).</span></p>
+      
+</section>
+<section class="lib-page" data-page="typography" data-parent="foundations" data-title="Typography" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Typography</span></nav>
+
+        <div class="lib-page-head">
+          <h1 class="fs-2xl">Typography</h1>
+          <p>The native system font stack, two weights, and a 14px body. Headings use Bootstrap’s size utilities for their role.</p>
+        </div>
+        <h3 class="fs-md m-0">Headings</h3>
+        <p class="lib-note">Three roles. Page title and section heading scale with the screen: the left sample is the smallest size, the right one the largest.</p>
+        <div class="lib-type-scale">
+          <div class="lib-type-head"><span>Role</span><span>Smallest</span><span>Largest</span></div>
+          <div class="lib-type-role">
+            <div><b>Page title</b><code>.fs-2xl</code><span>28–32px · 600</span></div>
+            <p class="fw-semibold" style="font-size:1.75rem">Project details</p>
+            <p class="fw-semibold" style="font-size:2rem">Project details</p>
+          </div>
+          <div class="lib-type-role">
+            <div><b>Section heading</b><code>.fs-lg</code><span>18–20px · 600</span></div>
+            <p class="fw-semibold" style="font-size:1.125rem">Audition schedule</p>
+            <p class="fw-semibold" style="font-size:1.25rem">Audition schedule</p>
+          </div>
+          <div class="lib-type-role">
+            <div><b>Card or group heading</b><code>.fs-md</code><span>16px · 600</span></div>
+            <p class="fs-md fw-semibold">Availability</p>
+            <p class="fs-xs fg-3">Same at every screen width</p>
+          </div>
+        </div>
+
+        <h3 class="fs-md m-0">Body</h3>
+        <div class="lib-type-scale">
+          <div class="lib-type-role lib-type-body">
+            <div><b>Body large</b><code>.fs-md</code><span>16px · 400</span></div>
+            <p class="fs-md">Paragraphs people read, such as a brief.</p>
+          </div>
+          <div class="lib-type-role lib-type-body">
+            <div><b>Body</b><span class="badge theme-primary badge-subtle">Default</span><span>14px · 400</span></div>
+            <p>Anything people scan, operate or fill in.</p>
+          </div>
+          <div class="lib-type-role lib-type-body">
+            <div><b>Caption</b><code>.fs-xs</code><span>12px · 400</span></div>
+            <p class="fs-xs">Updated 12 minutes ago · tooltips, timestamps, legal</p>
+          </div>
+        </div>
+
+        <h3 class="fs-md m-0">In context</h3>
+        <div class="lib-type-context">
+          <h1 class="fs-2xl fw-semibold">Project details</h1>
+          <h2 class="fs-lg fw-semibold">Audition schedule</h2>
+          <div class="card"><div class="card-body">
+            <h3 class="fs-md fw-semibold mb-1">Callback, day two</h3>
+            <p class="m-0">Twelve people are invited. Each slot is 20 minutes, in Studio B.</p>
+            <p class="fs-xs fg-3 m-0 mt-2">Updated 12 minutes ago</p>
+          </div></div>
+          <p class="fs-md m-0">The production company wants to see the shortlist by Friday. Add notes to each person before you share the selection.</p>
+        </div>
+
+        <ul class="lib-rules">
+          <li><b>Heading roles use size utilities:</b> <code>.fs-2xl</code> page title, <code>.fs-lg</code> section heading, <code>.fs-md</code> card or group heading. No custom heading scale.</li>
+          <li><b>The heading element follows the page structure,</b> not the size. For example <code>&lt;h1 class="fs-2xl fw-semibold"&gt;</code>.</li>
+          <li><b>Weights 400 and 600 only.</b> Never 500: Segoe UI on Windows has no Medium face. Replace <code>.fw-medium</code> with <code>.fw-semibold</code>.</li>
+          <li><b>De-emphasise with colour</b> (<code>.fg-2</code>, <code>.fg-3</code>), not size, weight or italics.</li>
+          <li><b>12px is the floor.</b> Never for anything people must read to finish a task.</li>
+        </ul>
+      
+</section>
+<section class="lib-page" data-page="icons" data-parent="foundations" data-title="Icons" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Icons</span></nav>
+
+        <div class="lib-page-head">
+          <h1 class="fs-2xl">Icons</h1>
+          <p>Font Awesome 7. Icons inherit the text colour.</p>
+        </div>
+        <div id="icons-items"></div>
+      
+</section>
+<section class="lib-page" data-page="tokens" data-parent="foundations" data-title="Spacing, elevation and motion" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Spacing, elevation and motion</span></nav>
+
+        <div class="lib-page-head">
+          <h1 class="fs-2xl">Spacing, elevation and motion</h1>
+          <p>These come from the design system token files.</p>
+        </div>
+        <div class="card"><div class="card-body text-center fg-2 p-4">
+          <div class="fw-semibold mb-1">Waiting for the token files</div>
+          <div class="fs-xs fg-3">Spacing, elevation and motion appear here once the token files are connected.</div>
+        </div></div>
+      
+</section>
+<section class="lib-page" data-page="fm-classes" data-parent="foundations" data-title="Filmmakers classes" hidden>
+<nav class="lib-crumbs" aria-label="Breadcrumb"><a href="#foundations">Foundations</a><span aria-hidden="true">/</span><span>Filmmakers classes</span></nav>
+
+        <div class="lib-page-head">
+          <h1 class="fs-2xl">Filmmakers classes</h1>
+          <p>The only classes that are not Bootstrap 6. Each one covers a layout Bootstrap has no class for, and is defined in <code>filmmakers.css</code>. Use them only in the components listed.</p>
+        </div>
+        <div class="lib-table-wrap"><table class="table table-sm mb-0"><thead><tr><th scope="col">Class</th><th scope="col">What it does</th><th scope="col">Used by</th></tr></thead><tbody><tr><td><code>.fm-action-gutter</code></td><td>Action gutter: the column (or bottom bar under 900px) that holds a card’s actions</td><td>Project card, Production list</td></tr><tr><td><code>.fm-production-row</code></td><td>A list row that is a grid at 900px and wider, and wraps below</td><td>Production list</td></tr><tr><td><code>.fm-row-media</code></td><td>The image cell of a Production list row</td><td>Production list</td></tr><tr><td><code>.fm-accordion-label, .fm-accordion-show, .fm-accordion-hide</code></td><td>The Show / Hide label in an accordion header</td><td>Accordion</td></tr><tr><td><code>.fm-rating</code></td><td>Star rating built from Bootstrap toggle buttons</td><td>Star rating</td></tr><tr><td><code>.fm-client-zone</code></td><td>Gives a secondary button’s icon the client zone accent (<code>--fm-accent-client-zone</code>), or an avatar the client orange</td><td>Client zone button, Avatar</td></tr><tr><td><code>.fm-dropzone, .fm-dropzone-icon, -title, -hint, .fm-dropzone-sm</code></td><td>Upload dropzone: the dashed drop area around a file input; compact one-line version</td><td>Upload dropzone</td></tr><tr><td><code>.fm-icon</code></td><td>A custom icon that sits where a Font Awesome icon would</td><td>Client zone button</td></tr><tr><td><code>.fm-tile, .fm-tile-photo, .fm-tile-band, .fm-tile-name, .fm-tile-check</code></td><td>Selectable Profile tile: square photo, name band over the photo, checkbox shown on hover</td><td>Profile tile: search results</td></tr><tr><td><code>.fm-tile-grid, .fm-tile-grid-lg</code></td><td>The tile grid, 150px tracks, or 220px for large tiles</td><td>Profile tile: search results</td></tr><tr><td><code>.fm-status, .fm-status-available, -discussion, -blocked, -booked</code></td><td>Assignment status icon colours</td><td>Profile tile: search results</td></tr><tr><td><code>.fm-row, .fm-row-check, .fm-row-photo</code></td><td>Profile List view row: checkbox and 160px photo</td><td>Profile tile: search results</td></tr><tr><td><code>.fm-view-switch, .fm-size-sm, .fm-size-lg</code></td><td>View switcher: Small tiles, Large tiles, List view</td><td>Profile tile: search results</td></tr><tr><td><code>.fm-results, .fm-results-grid, .fm-results-table</code></td><td>Wraps the view switcher and both views, and shows the grid, large grid or list for the chosen view (CSS only)</td><td>Profile tile: search results</td></tr></tbody></table></div>
+        <ul class="lib-rules">
+          <li><b>Never invent a class.</b> Use Bootstrap 6 classes, and these where a component uses them.</li>
+          <li><b>A new <code>fm-</code> class is added here first,</b> with what it does and why Bootstrap cannot do it, before it is used.</li>
+          <li><b>No <code>fm-</code> class sets colour, type or spacing values of its own.</b> They use Bootstrap tokens.</li>
+        </ul>
+</section>
+<section class="lib-page" data-page="components" data-title="Components" hidden>
+
+<div class="lib-page-head">
+        <h1 class="fs-2xl">Components</h1>
+        <p>Every Bootstrap 6 component used in the Selection and Manage Audition prototypes. Codes match the Component mapping document. Form controls have their own Forms section, larger compositions have their own Organisms section, and the header, subheader band and footer are in App shell.</p>
+      </div>
+<div class="lib-cards" data-overview="components"></div>
+<div id="components-excluded"></div>
+</section>
+<div id="component-pages"></div>
+<section class="lib-page" data-page="forms" data-title="Forms" hidden>
+<div class="lib-page-head">
+  <h1 class="fs-2xl">Forms</h1>
+  <p>Form controls, laid out as in the Bootstrap 6 docs. Every input sits beside a label, and filters use the Combobox.</p>
+</div>
+<div class="lib-cards" data-overview="forms"></div>
+</section>
+<div id="form-pages"></div>
+<section class="lib-page" data-page="organisms" data-title="Organisms" hidden>
+
+<div class="lib-page-head">
+        <h1 class="fs-2xl">Organisms</h1>
+        <p>Larger compositions built from components. Each one does a whole job on a page.</p>
+      </div>
+<div class="lib-cards" data-overview="organisms"></div>
+</section>
+<div id="organism-pages"></div>
+<section class="lib-page" data-page="organisms-area" data-title="Organisms: Area specific" hidden>
+
+<div class="lib-page-head">
+        <h1 class="fs-2xl">Organisms: Area specific</h1>
+        <p>Organisms used in one area of the product only, such as the Sedcard. Shared organisms are in Organisms.</p>
+      </div>
+<div class="lib-cards" data-overview="organisms-area"></div>
+</section>
+<div id="organism-area-pages"></div>
+<section class="lib-page" data-page="app-shell" data-title="App shell" hidden>
+
+<div class="lib-page-head">
+        <h1 class="fs-2xl">App shell</h1>
+        <p>The elements that frame every page and never change: header, subheader band and footer. Pages and templates sit inside them.</p>
+      </div>
+<div class="lib-cards" data-overview="app-shell"></div>
+</section>
+<div id="shell-pages"></div>
+<div id="template-pages"></div>
+<section class="lib-page" data-page="templates" data-title="Templates" hidden>
+
+
+      <div class="lib-page-head">
+        <h1 class="fs-2xl">Templates</h1>
+        <p>Whole pages built from organisms, inside the App shell.</p>
+      </div>
+      <div class="lib-cards" data-overview="templates"></div>
+    
+</section>
+<section class="lib-page" data-page="candidates" data-title="Component candidates" hidden>
+<div class="lib-page-head">
+  <h1 class="fs-2xl">Component candidates</h1>
+  <p>Custom components the product uses today that are not ready to build with. Each one waits for one of three decisions: keep it custom and document it, align it with Bootstrap 6 defaults, or review the UX of the page it lives on first. Do not use these in new work until they move out of this section.</p>
+</div>
+<div class="lib-table-wrap"><table class="table table-sm mb-0"><thead><tr><th scope="col">Candidate</th><th scope="col">Suggestion</th><th scope="col">Pages used</th><th scope="col">Questions</th></tr></thead><tbody id="candidate-table"></tbody></table></div>
+</section>
+<div id="candidate-pages"></div>
+<section class="lib-page" data-page="guidelines" data-title="Guidelines" hidden>
+
+
+      <div class="lib-page-head">
+        <h1 class="fs-2xl">Guidelines</h1>
+        <p>How to choose between the components above. The same Markdown powers the guidelines site and the instructions AI tools read.</p>
+      </div>
+      <div class="lib-cards">
+        <a class="card" href="https://denkungsart.github.io/product-design-guidelines/patterns/button-hierarchy/" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Button hierarchy</b><p>Choose emphasis when several actions compete.</p></div></a>
+        <a class="card" href="https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Patterns%20overview" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Patterns overview</b><p>One-line answers for building a prototype.</p></div></a>
+        <a class="card" href="https://github.com/denkungsart/product-design-guidelines/blob/main/patterns/Button%20groups" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Button groups</b><p>Two or three related actions, joined into one control.</p></div></a>
+        <a class="card" href="https://github.com/LucyCoker/product-design-guidelines-1/blob/claude/design-system-page-setup-2rkgnc/patterns/help-text.md" target="_blank" rel="noopener"><div class="card-body"><small>Pattern · Draft</small><b>Help text</b><p>Where help lives, and alternatives to help behind an icon.</p></div></a>
+        <a class="card" href="https://denkungsart.github.io/product-design-guidelines/patterns/destructive-actions/" target="_blank" rel="noopener"><div class="card-body"><small>Pattern</small><b>Destructive actions</b><p>Irreversible, reversible and consequential actions.</p></div></a>
+        <a class="card" href="https://denkungsart.github.io/product-design-guidelines/products/filmmakers-system/foundations/colour/" target="_blank" rel="noopener"><div class="card-body"><small>Foundation</small><b>Colour</b><p>Primary, secondary, status and accent roles.</p></div></a>
+        <a class="card" href="https://denkungsart.github.io/product-design-guidelines/products/filmmakers-system/foundations/typography/" target="_blank" rel="noopener"><div class="card-body"><small>Foundation</small><b>Typography</b><p>The type scale, weights and accessibility.</p></div></a>
+        <a class="card" href="https://denkungsart.github.io/product-design-guidelines/products/filmmakers-system/components/buttons/" target="_blank" rel="noopener"><div class="card-body"><small>Component</small><b>Buttons</b><p>Permitted variants, themes and sizes.</p></div></a>
+      </div>
+      <ul class="lib-rules">
+        <li><b>Source order:</b> production frontend, then these guidelines, then Bootstrap 6.</li>
+        <li><b>ASK</b> marks a decision that has not been made. Do not guess it; leave it visibly open.</li>
+        <li><b>MUST</b> is not negotiable. <b>SHOULD</b> needs a reason to break. <b>MAY</b> is a free choice.</li>
+      </ul>
+    
+</section>
+<section class="lib-page" data-page="backlog" data-title="Decisions backlog" hidden>
+<div class="lib-page-head">
+  <h1 class="fs-2xl">Decisions backlog</h1>
+  <p>Questions that are parked on purpose, so the component pages stay clear. Nothing here blocks building with the Library. Each one says why it waits and when to pick it up.</p>
+</div>
+<div class="lib-table-wrap"><table class="table table-sm mb-0"><thead><tr><th scope="col">Question</th><th scope="col">What is undecided</th><th scope="col">Why it waits</th><th scope="col">Revisit</th></tr></thead><tbody id="backlog-items"></tbody></table></div>
+</section>
+<section class="lib-page" data-page="dev-review" data-title="Developer review" hidden>
+<div class="lib-page-head">
+  <h1 class="fs-2xl">Developer review</h1>
+  <p>Code notes and accessibility notes a developer should confirm: technical claims about Bootstrap 6 or the production code. On a component, the “Needs developer review” tag sits on the Code notes or Accessibility title. When a note is checked, remove its tag.</p>
+</div>
+<div class="lib-table-wrap"><table class="table table-sm mb-0"><thead><tr><th scope="col">Component</th><th scope="col">Type</th><th scope="col">Bullet</th></tr></thead><tbody id="dev-review-items"></tbody></table></div>
+</section>
+<section class="lib-page" data-page="prototype-kit" data-title="Prototype kit" hidden>
+<div class="lib-page-head">
+  <h1 class="fs-2xl">Prototype kit</h1>
+  <p>Start any prototype from the real design system. Claude Design, Claude Code, Lovable, v0 or Bolt: the prototype loads the same CSS as this library, and copies markup from it. Nothing gets rebuilt, so nothing drifts.</p>
+  <p class="lib-flag"><i class="fa-solid fa-circle-info fg-3" aria-hidden="true"></i><span><b>Make prototypes in light mode.</b> Dark mode is in the code only so we can check it works. It is not live for clients, and may never be.</span></p>
+</div>
+
+<div class="lib-steps">
+  <div class="card"><div class="card-body">
+    <small>Step 1</small><b>Copy the prompt</b>
+    <p>One block: the rules, the CSS links and the starter page with the header and subheader band.</p>
+  </div></div>
+  <div class="card"><div class="card-body">
+    <small>Step 2</small><b>Say what to build</b>
+    <p>Paste it into the tool and replace the last line with the screen you want.</p>
+  </div></div>
+  <div class="card"><div class="card-body">
+    <small>Step 3</small><b>Check the result</b>
+    <p>Paste the prototype's HTML into the checker at the bottom. It finds classes and combinations the design system does not allow.</p>
+  </div></div>
+</div>
+
+<h2 class="fs-lg m-0">The prompt</h2>
+<p class="lib-note">Works as one message in Claude Design, Claude Code, Lovable, v0 and Bolt. For a tool with a project knowledge or custom instructions setting, put the brief there once and send only what to build each time.</p>
+<div class="lib-code-box"><button type="button" class="btn-solid theme-primary btn-xs lib-copy">Copy</button><pre><code id="kit-all">Loading…</code></pre></div>
+
+<h2 class="fs-lg m-0">The parts</h2>
+<p class="lib-note">The same content, separately, for when you only need one piece.</p>
+
+<h2 class="fs-lg m-0">1. The CSS</h2>
+<div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code id="kit-links"></code></pre></div>
+<p class="lib-flag"><span class="badge theme-warning badge-subtle">To do</span><span>These links serve the files from GitHub through jsDelivr, and work once this branch is merged to <code>main</code>. For links you control, turn on GitHub Pages for the repo.</span></p>
+
+<h2 class="fs-lg m-0">2. The brief</h2>
+<p class="lib-note">Also in the repo as <code>design-system/prototype-kit/PROTOTYPE.md</code>, with <code>llms.txt</code> for tools that read one.</p>
+<div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code id="kit-brief">Loading…</code></pre></div>
+
+<h2 class="fs-lg m-0">3. The starter page</h2>
+<p class="lib-note"><code>design-system/prototype-kit/starter.html</code></p>
+<div class="lib-code-box"><button type="button" class="btn-text theme-secondary btn-xs lib-copy">Copy</button><pre><code id="kit-starter">Loading…</code></pre></div>
+
+<h2 class="fs-lg m-0">4. Check a prototype</h2>
+<p class="lib-note">Paste HTML from any prototype. The checker reads it here in your browser; nothing is sent anywhere.</p>
+<div class="lib-checker">
+  <label for="kit-check" class="fw-semibold">Prototype HTML</label>
+  <textarea id="kit-check" class="form-control font-monospace" rows="8" spellcheck="false" placeholder="&lt;button class=&quot;btn-solid theme-secondary&quot;&gt;Save&lt;/button&gt;"></textarea>
+  <div><button type="button" class="btn-outline theme-secondary btn-sm" id="kit-check-run">Check</button></div>
+  <div id="kit-check-out" aria-live="polite"></div>
+</div>
+</section>
+  </main>
+</div>
+
+<script type="module" src="assets/app.js"></script>
+<!--lib:body-end-->
+</body>
+</html>

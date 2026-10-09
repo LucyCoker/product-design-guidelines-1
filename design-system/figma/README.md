@@ -1,0 +1,136 @@
+# Figma
+
+How the component library and Figma stay in sync.
+
+**Code first.** Designs change in code or in this repo, never in Figma. Figma is a read-only copy of the library: it is rebuilt from the files here, and the audit plugin flags anything that drifts.
+
+| What | File | How it gets into Figma |
+|---|---|---|
+| Variables (colour, spacing, radius, type) | `tokens.json` | Tokens Studio plugin, synced with this GitHub repo |
+| Component names and variants | `components.json` | Build the Figma library to this list |
+| Button state colours (hover, active, focus) | `button-states.json`, and `button/*` variables in `tokens.json` | Generated. Bind hover and active variants to the `button/…` variables |
+| Which variable goes where | `bindings.json` | Follow it when building a component. Never pick a `palette/*` colour on a component |
+| Component → code links | `code-connect/*.figma.ts` | Figma Code Connect (`npx figma connect publish`) |
+| Audit | `audit-plugin/` | Figma plugin: compares the file with the library |
+
+## 1. Variables
+
+`tokens.json` is generated. Do not edit it by hand.
+
+```sh
+npm install --prefix design-system
+npm run figma --prefix design-system
+```
+
+The script loads `bootstrap.min.css` and `filmmakers.css` in a browser and reads the final value of every token. The colours in Figma are the colours the product renders, including every `color-mix()` primary shade.
+
+It produces these Figma collections:
+
+| Collection | Modes | Contents |
+|---|---|---|
+| Palette | one | All Bootstrap hues, steps 025–975, white, black |
+| Theme | one | Secondary and status roles, surfaces, text, borders, always-blue controls, client zone |
+| Primary | Default Blue, Red, Green | The nine primary roles for each preview primary |
+| Size | one | Spacing and radius |
+| Typography | one | Weights, sizes and text styles h1–caption |
+
+Every variable carries its CSS name as code syntax (for example `var(--bs-primary-bg)`), so Dev Mode shows the same name developers use.
+
+Tokens Studio shows the code syntax but does not write it into Figma variables. After each export, run the **Filmmakers code syntax** plugin in `code-syntax-plugin/`:
+
+1. In the Figma desktop app: *Plugins → Development → Import plugin from manifest…* and pick `design-system/figma/code-syntax-plugin/manifest.json`. You do this once.
+2. After each Tokens Studio export: *Plugins → Development → Filmmakers code syntax*. It reports how many variables it updated.
+
+The plugin's list of names is generated with `tokens.json`, so rerun `npm run figma` before pulling a new version.
+
+**In Figma:** install Tokens Studio, choose GitHub as the sync provider, and point it at this repo, branch `main`, file `design-system/figma/tokens.json`. Then use *Styles & Variables → Export to Figma*. The Primary modes come from Tokens Studio themes, which may need a Tokens Studio Pro licence; without it, each primary set exports as its own collection. When `tokens.json` changes, pull in Tokens Studio and export again.
+
+Tokens Studio only pulls. Give it a GitHub token with **Contents: Read-only**, so nobody can push token changes from Figma by accident.
+
+## 2. Component names
+
+`components.json` lists one Figma component for every entry in the library:
+
+- **Figma page:** the library section (Foundations, Components, Organisms, App shell).
+- **Component name:** `Group/Entry`, for example `Buttons/Primary` or `Menus/Overflow menu`.
+- **Variant property `Version`:** the versions shown on the library page, for example `Label`, `Icon and label`, `Disabled`.
+
+Keep the names exactly as listed. That is what lets the library, Code Connect and anyone searching Figma find the same thing.
+
+## 3. Code Connect
+
+Code Connect makes Dev Mode show our Bootstrap markup for a component. `code-connect/buttons.figma.ts` is a starter for the Buttons page.
+
+1. Copy each component's link from Figma and replace `FILE_KEY` and `NODE_ID`.
+2. Give each button component the variant properties `Version` and `Size` from `components.json`, and a text property `Label`.
+3. Run `npx figma connect publish` from `design-system/figma/` with a Figma access token.
+
+## Daily sync
+
+Three places hold the design system. Each one owns different things.
+
+| Place | Owns | Who changes it |
+|---|---|---|
+| **Code** (`filmmakers.css` on Bootstrap 6) | Token values, what components actually look like | Developers |
+| **GitHub** (this repo) | The rules (`products/`, `patterns/`), the component list (`design-system/data/`), and the generated Figma files (`design-system/figma/`) | Anyone, through pull requests |
+| **Figma** | A read-only copy of the library, for designing screens | Rebuilt from GitHub, never edited by hand |
+
+The library website and the Figma files are both generated from GitHub, so GitHub is the source of truth. Changes flow one way: code and GitHub → library and Figma. Nothing flows back from Figma.
+
+### When something changes in code
+1. A developer changes `filmmakers.css`, or updates Bootstrap.
+2. They run `npm run figma --prefix design-system` and commit the result with the change. The **Design system sync** check on the pull request fails if they forget.
+3. After merge, a designer pulls in Tokens Studio and exports to Figma.
+4. The designer runs the **Filmmakers audit** plugin. It should show everything in sync.
+
+### When a designer wants a change
+Figma is not where changes are made. Propose it where the source lives:
+1. Open a pull request, or ask Claude Code on the web, to change `filmmakers.css`, the guideline page or `components.json`. Prototype it with the Prototype kit if it needs showing.
+2. Once merged, it reaches Figma through the normal pull and export.
+
+### When a component changes
+1. Update the guideline page and `design-system/data/components.json` (and `bindings.json` if the colours change). The library website updates on merge.
+2. Run `npm run figma`, commit.
+3. The designer updates the Figma component, then runs the audit.
+
+### Auditing: is everything in sync?
+Run the **Filmmakers audit** plugin in the Figma file (import `audit-plugin/manifest.json` once, like the code syntax plugin). It checks four things against the library:
+
+| Check | Finds |
+|---|---|
+| Variables | Tokens missing in Figma, values that differ in any mode, variables that exist only in Figma |
+| Code syntax | Variables without their `var(--bs-…)` name |
+| Components | Library entries missing in Figma, missing variants, components that exist only in Figma |
+| Bindings | Buttons bound to the wrong variable, and any component using a raw colour or a `palette/*` colour |
+
+*Copy report* gives a Markdown summary to paste into a pull request or to Claude. Differences are fixed in Figma, to match the library. Something marked "only in Figma" is deleted, or proposed for the library through a pull request.
+
+The GitHub check covers the other half: code and library against the Figma files. Together they answer "is anything out of sync, and which source needs updating?"
+
+## Pilot: test the sync before building everything
+
+Build one slice end to end, in a blank Figma file, before building the full library. The slice is the Primary collection and `Buttons/Primary`. Each step has a pass check. Stop at the first failure and fix it before going on.
+
+**Before you start**
+- The branch with `design-system/figma/` must be on GitHub. Tokens Studio reads it from there.
+- Know your Figma plan (Code Connect needs Organization or Enterprise) and whether you have Tokens Studio Pro (needed for modes).
+
+| Step | Do | Pass when |
+|---|---|---|
+| 1. Variables in | Tokens Studio → Settings → Add sync provider → GitHub. Repo `denkungsart/product-design-guidelines`, the pilot branch, path `design-system/figma/tokens.json`. Pull, then *Export to Figma* (variables and text styles). | Figma has Palette, Theme, Primary, Size and Typography collections. `primary/bg` is `#006ac9` in Default Blue and `#b61e35` in Red. After running the code syntax plugin, code syntax on `primary/bg` reads `var(--bs-primary-bg)`. |
+| 2. One component | On a page named Components, build `Buttons/Primary` as a component set with variant properties `Version` (Label, Icon and label, Disabled, On a brand surface) and `Size` (Small, Extra small, Medium), and a text property `Label`. Bind every property exactly as listed in `bindings.json`: fill and stroke `primary/bg`, text `primary/contrast`, radius `radius/5`. Never pick a `palette/*` colour. | Switching the frame's Primary mode to Red recolours the button. It matches the library page with the Red preview side by side. |
+| 3. Code Connect | Paste the component's link into `code-connect/buttons.figma.ts`, then `npx figma connect publish` from `design-system/figma/`. | Dev Mode on the button shows `<button type="button" class="btn-solid theme-primary btn-sm">…</button>`. |
+| 4. Change in code | Change one value in `filmmakers.css` (for example the Green preview primary). Run `npm run figma`, commit, push. Pull in Tokens Studio and export again. | Figma updates the variable in place. Components bound to it update, and nothing breaks or duplicates. |
+| 5. Names line up | Compare the Figma component names with `components.json`. | Every name matches exactly, including the `Group/Entry` path. |
+
+**Skipped for now — do before developers or AI tools use the file**
+- [ ] Run the **Filmmakers code syntax** plugin, so Dev Mode and AI tools see `var(--bs-…)` names instead of hex values. Skipped during the pilot on purpose.
+
+**What the pilot decides**
+- If steps 1–3 need a plan you do not have, choose between upgrading and keeping Figma variables-only (no Code Connect).
+
+## Open decisions
+
+- **ASK — Figma plan.** Code Connect needs a Figma Organization or Enterprise plan. Writing variables through Figma's REST API instead of Tokens Studio needs Enterprise.
+- **ASK — Font in Figma.** The product uses the system font stack, which Figma cannot use. `tokens.json` uses Roboto as a placeholder. Pick the font designers should use.
+- **ASK — Which primaries become modes.** The Primary collection has Default Blue, Red and Green, like the library preview. Add real customer colours if designers need them.

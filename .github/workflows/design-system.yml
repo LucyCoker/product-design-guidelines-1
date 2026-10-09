@@ -1,0 +1,32 @@
+# Checks that the Figma hand-off files still match the library and the CSS.
+# If someone changes filmmakers.css, Bootstrap or components.json without
+# rerunning `npm run figma`, this fails and says which files are stale.
+name: Design system sync
+
+on:
+  pull_request:
+    paths: ['design-system/**']
+  push:
+    branches: [main]
+    paths: ['design-system/**']
+
+jobs:
+  figma-files-up-to-date:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --prefix design-system
+      - run: npx --yes playwright@1.56.1 install --with-deps chromium
+      - run: npm run figma --prefix design-system
+      - name: Compare with committed files
+        run: |
+          # The audit plugin stamps the build date and branch, so ignore it here.
+          if ! git diff --quiet -- design-system/figma ':!design-system/figma/audit-plugin/code.js'; then
+            echo "::error::The Figma files are out of date. Run 'npm run figma --prefix design-system' and commit the result."
+            git diff --stat -- design-system/figma
+            exit 1
+          fi
+          echo "Figma files match the library and CSS."

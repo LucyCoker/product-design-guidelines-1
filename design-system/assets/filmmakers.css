@@ -1,0 +1,369 @@
+/*
+ * Filmmakers System theme layer for Bootstrap 6.
+ *
+ * Load after bootstrap.min.css. It overrides Bootstrap tokens and adds the
+ * few custom classes the guidelines permit. It adds no new components.
+ *
+ * Sources: the product guidelines in this repo, and the product layer used by
+ * the Component mapping prototypes (Selection, Manage Audition).
+ * Bootstrap 6 alpha emits its root tokens outside any CSS layer, so these
+ * overrides are unlayered too and win by source order.
+ */
+
+/* ---------------------------------------------------------------------------
+ * Colour modes: light (default) and dark
+ *
+ * Bootstrap 6 defines every theme token with light-dark(), so the mode is
+ * just color-scheme: data-bs-theme="dark" on <html> (or any element) turns
+ * the tokens dark, data-bs-theme="light" turns them light. Light is the
+ * default; nothing switches on the OS setting unless the page asks it to.
+ * Every Filmmakers override below gives a light and a dark value too.
+ * ------------------------------------------------------------------------ */
+:root { color-scheme: light; }
+[data-bs-theme="light"] { color-scheme: light; }
+[data-bs-theme="dark"] { color-scheme: dark; }
+
+/* ---------------------------------------------------------------------------
+ * Primary
+ *
+ * One input, --fm-primary, drives every primary role. The default is
+ * Bootstrap blue-600 (colour.md). A customer primary sets --fm-primary on
+ * :root or on any [data-fm-primary] element. The mixes copy the Component
+ * mapping prototypes.
+ * ------------------------------------------------------------------------ */
+:root {
+  --fm-primary: var(--bs-blue-600);
+}
+
+:root,
+[data-fm-primary] {
+  /* light value, dark value: the dark mixes lighten the primary for text and
+     mix it into the dark body colour for surfaces, as Bootstrap's own
+     scales do (blue-400 text, blue-900 subtle on dark). */
+  --bs-primary-base: var(--fm-primary);
+  --bs-primary-bg: var(--fm-primary);
+  --bs-primary-fg: light-dark(var(--fm-primary), color-mix(in oklch, var(--fm-primary) 62%, var(--bs-white)));
+  --bs-primary-fg-emphasis: light-dark(color-mix(in oklch, var(--fm-primary) 78%, var(--bs-black)), color-mix(in oklch, var(--fm-primary) 45%, var(--bs-white)));
+  --bs-primary-bg-subtle: light-dark(color-mix(in oklch, var(--fm-primary) 12%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 22%, var(--bs-gray-975)));
+  --bs-primary-bg-muted: light-dark(color-mix(in oklch, var(--fm-primary) 26%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 38%, var(--bs-gray-975)));
+  --bs-primary-border: light-dark(color-mix(in oklch, var(--fm-primary) 55%, var(--bs-white)), color-mix(in oklch, var(--fm-primary) 60%, var(--bs-gray-975)));
+  --bs-primary-contrast: var(--bs-white);
+}
+
+/* ---------------------------------------------------------------------------
+ * Always Bootstrap blue
+ *
+ * These never follow the customer primary: checked controls, progress bars,
+ * native accent colour, and the focus ring.
+ * ------------------------------------------------------------------------ */
+:root {
+  --bs-control-checked-bg: var(--bs-blue-600);
+  --bs-control-checked-border-color: var(--bs-blue-600);
+  --bs-progress-bar-bg: var(--bs-blue-600);
+}
+
+/* Focus ring: Bootstrap's 3px ring with a 1px offset, in full-strength
+ * blue-500 for every theme (about 3.6:1 on white; Bootstrap's 50% mix is
+ * about 1.9:1 and fails the 3:1 focus indicators need). One colour, so it
+ * never follows the customer primary or a status theme. */
+:root {
+  --bs-primary-focus-ring: var(--bs-blue-500);
+  --bs-secondary-focus-ring: var(--bs-blue-500);
+  --bs-accent-focus-ring: var(--bs-blue-500);
+  --bs-success-focus-ring: var(--bs-blue-500);
+  --bs-danger-focus-ring: var(--bs-blue-500);
+  --bs-warning-focus-ring: var(--bs-blue-500);
+  --bs-info-focus-ring: var(--bs-blue-500);
+  --bs-inverse-focus-ring: var(--bs-blue-500);
+}
+
+/* Chip remove button: a 24x24px hit area around the 16px icon, so it meets
+ * WCAG 2.2 target size without changing how the chip looks. */
+.chip-dismiss { position: relative; }
+.chip-dismiss::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 24px;
+  block-size: 24px;
+  transform: translate(-50%, -50%);
+}
+
+.form-control,
+select,
+input { accent-color: var(--bs-blue-600); }
+
+/* ---------------------------------------------------------------------------
+ * Typography (typography.md)
+ * ------------------------------------------------------------------------ */
+:root {
+  /* Body is 14px: select Bootstrap's small size, never shrink the root. */
+  --bs-body-font-size: var(--bs-font-size-sm);
+  /* Bootstrap 6 defaults headings to 500, which typography.md bans. */
+  --bs-heading-font-weight: 600;
+}
+
+/* Headings keep Bootstrap's sizes. Set the visual role with a size utility:
+   .fs-2xl page title, .fs-lg section heading, .fs-md card or group heading. */
+
+:where(.btn, .btn-solid, .btn-outline, .btn-text) {
+  --bs-btn-font-weight: var(--bs-font-weight-semibold);
+}
+
+.table > thead th { font-weight: 600; }
+
+/* ---------------------------------------------------------------------------
+ * Component adjustments from the product layer
+ * ------------------------------------------------------------------------ */
+a:not([class]) { color: var(--bs-link-color); text-decoration: none; }
+a:not([class]):hover { color: var(--bs-link-hover-color); text-decoration: underline; }
+
+.breadcrumb-divider::before { content: var(--bs-breadcrumb-divider, "/"); }
+.breadcrumb-link { padding: 4px 8px; border-radius: var(--bs-radius-4); }
+.breadcrumb-link:hover,
+.nav-underline .nav-link:hover {
+  background: var(--bs-bg-body) !important;
+  color: var(--bs-primary-fg-emphasis) !important;
+  text-decoration: none !important;
+}
+
+/* Selected items are one step darker than the bg-1 hover, never primary. */
+.menu {
+  --bs-menu-item-active-bg: var(--bs-bg-2);
+  --bs-menu-item-active-color: var(--bs-fg-body);
+  --bs-theme-bg: var(--bs-bg-2);
+  --bs-theme-contrast: var(--bs-fg-body);
+  --bs-theme-bg-subtle: var(--bs-bg-1);
+}
+.list-group {
+  --bs-list-group-active-bg: var(--bs-bg-2);
+  --bs-list-group-active-color: var(--bs-fg-body);
+  --bs-list-group-active-border-color: var(--bs-border-color);
+}
+.nav-pills {
+  --bs-nav-pills-link-active-bg: var(--bs-bg-2);
+  --bs-nav-pills-link-active-color: var(--bs-fg-body);
+}
+
+/* Icon and label spacing inside Font Awesome v5-style labels. */
+.fa5-text { margin-inline-start: 0.375rem; }
+
+/* ---------------------------------------------------------------------------
+ * Accent: client zone (colour.md, buttons.md)
+ *
+ * Bootstrap orange-600 (decided in review; replaces the mapping's #EF7428).
+ * About 4.4:1 on white, so the icon passes the 3:1 WCAG 2.1 AA needs.
+ * ------------------------------------------------------------------------ */
+:root {
+  --fm-accent-client-zone: var(--bs-orange-600);
+}
+
+.btn-outline.theme-secondary.fm-client-zone > i,
+.btn-outline.theme-secondary.fm-client-zone > .fm-icon {
+  color: var(--fm-accent-client-zone);
+}
+
+/* ---------------------------------------------------------------------------
+ * Action gutter (CNT-12, used by the Project card and Production list)
+ *
+ * Sized by the card it sits in, not the window: when the card is 900px or
+ * wider, a 180px column on the right, actions stacked. Narrower: a bar
+ * along the bottom of the card, actions in a row at the end. So the gutter
+ * never wraps below the content while still styled as a column.
+ * ------------------------------------------------------------------------ */
+.card:has(.fm-action-gutter) { container-type: inline-size; }
+.fm-action-gutter {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2px 12px;
+  padding: .5rem .75rem;
+  background: var(--bs-bg-1);
+  border-block-start: 1px solid var(--bs-border-subtle);
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
+}
+@container (width >= 900px) {
+  .fm-action-gutter {
+    flex: 0 0 180px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    padding: .75rem;
+    border-block-start: 0;
+    border-inline-start: 1px solid var(--bs-border-subtle);
+    border-end-start-radius: 0;
+    border-start-end-radius: inherit;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Production list row (CNT-2)
+ *
+ * When the card is 900px or wider: one grid per list (--fm-row-cols),
+ * columns aligned across rows, the Action gutter as the last column.
+ * Narrower: the cells wrap and the gutter becomes a bar along the bottom.
+ * ------------------------------------------------------------------------ */
+.fm-production-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.fm-production-row > * { flex: 1 1 220px; min-width: 0; }
+.fm-production-row > .fm-row-media { flex: 0 0 164px; }
+.fm-production-row > .fm-action-gutter { flex: 1 1 100%; }
+@container (width >= 900px) {
+  .fm-production-row {
+    display: grid;
+    grid-template-columns: var(--fm-row-cols);
+    align-items: var(--fm-row-align, start);
+  }
+  .fm-production-row > .fm-action-gutter { align-self: stretch; }
+}
+
+/* ---------------------------------------------------------------------------
+ * Accordion colours (CNT-5)
+ *
+ * Grey (bg-1) header while closed, white while open, through Bootstrap's own
+ * accordion variables.
+ * ------------------------------------------------------------------------ */
+.accordion {
+  --bs-accordion-btn-bg: var(--bs-bg-1);
+  --bs-accordion-active-bg: var(--bs-bg-body);
+}
+
+/* ---------------------------------------------------------------------------
+ * Accordion Show / Hide label
+ *
+ * Bootstrap's accordion (details/summary) with the product's "Show" or
+ * "Hide" text before the chevron. CSS only: the label follows the native
+ * open state, so no script is needed. The label is aria-hidden because the
+ * browser already announces whether the details element is open.
+ * ------------------------------------------------------------------------ */
+.accordion-header .fm-accordion-label {
+  margin-inline-start: auto;
+  padding-inline-end: .5rem;
+  font-weight: var(--bs-font-weight-normal);
+  color: var(--bs-fg-2);
+}
+.accordion-header .fm-accordion-label + .accordion-icon { margin-inline-start: 0; }
+.accordion-item[open] > .accordion-header .fm-accordion-show,
+.accordion-item:not([open]) > .accordion-header .fm-accordion-hide { display: none; }
+
+/* ---------------------------------------------------------------------------
+ * Overflow tabs (NAV-11)
+ *
+ * Bootstrap pushes the More item to the far end (margin-inline-start: auto).
+ * The product keeps it right after the last visible tab.
+ * ------------------------------------------------------------------------ */
+.nav-overflow-item { margin-inline-start: 0; }
+
+/* ---------------------------------------------------------------------------
+ * Star rating (CNT-19)
+ *
+ * A radio group built from Bootstrap's .btn-check toggle buttons, so the
+ * keyboard (arrow keys) and screen readers get one choice out of five. CSS
+ * fills every star up to the checked one (Font Awesome solid is weight 900,
+ * regular 400) and previews on hover. The checked star gets no background
+ * or border; the focus ring still shows for keyboard users.
+ * ------------------------------------------------------------------------ */
+.fm-rating .btn-check { --bs-btn-color: var(--bs-fg-body); --bs-btn-hover-color: var(--bs-fg-body); --bs-btn-hover-bg: transparent; --bs-btn-active-bg: transparent; --bs-btn-active-border-color: transparent; --bs-btn-active-color: var(--bs-fg-body); }
+.fm-rating :where(.btn-check) > i { font-weight: 400; font-size: var(--bs-body-font-size); }
+/* :where() keeps the chosen fill weaker than the hover preview below. */
+.fm-rating :where(.btn-check:has(input:checked), .btn-check:has(~ .btn-check > input:checked)) > i { font-weight: 900; }
+.fm-rating:hover .btn-check > i { font-weight: 400; }
+.fm-rating .btn-check:hover > i,
+.fm-rating .btn-check:has(~ .btn-check:hover) > i { font-weight: 900; }
+.fm-rating [data-rating-clear][hidden] { display: none; }
+
+/* Profile tile, selectable (CNT-20), matching production search results.
+   The name sits over the photo on a translucent band (black 60%, so white
+   text keeps at least 4.5:1 over any photo); the band turns white with a
+   link-coloured name on hover. The checkbox sits top right and shows on
+   hover, on keyboard focus, when ticked, and always on touch screens.
+   A selected tile gets a 2px primary outline. */
+.fm-tile { position: relative; overflow: hidden; border: 0; }
+.fm-tile-photo { display: block; inline-size: 100%; aspect-ratio: var(--fm-tile-ratio, 1 / 1); object-fit: cover; }
+.fm-tile-band { position: absolute; inset-inline: 0; inset-block-end: 0; display: flex; align-items: center; gap: 6px; padding: 6px 10px; background: color-mix(in oklch, var(--bs-black) 60%, transparent); color: var(--bs-white); }
+.fm-tile-band .fm-tile-name { min-inline-size: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: inherit; text-decoration: none; font-weight: var(--bs-font-weight-semibold); }
+.fm-tile-band .fm-tile-name::after { content: ""; position: absolute; inset: 0; }
+.fm-tile-band:hover, .fm-tile-band:focus-within { background: color-mix(in oklch, var(--bs-bg-body) 92%, transparent); }
+.fm-tile-band:hover .fm-tile-name, .fm-tile-band:focus-within .fm-tile-name { color: var(--bs-link-color); }
+.fm-tile-check { position: absolute; z-index: 1; inset-block-start: 8px; inset-inline-end: 8px; display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; border-radius: var(--bs-border-radius-sm); background: var(--bs-bg-body); cursor: pointer; opacity: 0; }
+.fm-tile:hover .fm-tile-check, .fm-tile:focus-within .fm-tile-check, .fm-tile-check:has(input:checked) { opacity: 1; }
+@media (hover: none) { .fm-tile-check { opacity: 1; } }
+.fm-tile:has(.fm-tile-check input:checked) { outline: 2px solid var(--bs-primary-bg); outline-offset: -2px; }
+
+/* Assignment status icon: Available green tick, In discussion yellow ?,
+   Blocked orange !, Booked red ban (as production).
+   Light shades on the dark band; on the body colour (hover band, list
+   rows) darker shades in light mode and light shades in dark mode. */
+.fm-status { flex: 0 0 auto; font-size: 1.15em; }
+.fm-status-available { color: var(--bs-green-500); }
+.fm-status-discussion { color: var(--bs-yellow-400); }
+.fm-status-blocked { color: var(--bs-orange-500); }
+.fm-status-booked { color: var(--bs-red-400); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-available { color: light-dark(var(--bs-green-700), var(--bs-green-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-discussion { color: light-dark(var(--bs-yellow-700), var(--bs-yellow-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-blocked { color: light-dark(var(--bs-orange-700), var(--bs-orange-400)); }
+:is(.fm-tile-band:hover, .fm-tile-band:focus-within, .fm-row) .fm-status-booked { color: light-dark(var(--bs-red-600), var(--bs-red-400)); }
+
+/* List view row: the same checkbox with a 24px target; a selected row gets
+   the subtle primary background. */
+.fm-row-check { display: flex; align-items: center; justify-content: center; inline-size: 24px; block-size: 24px; margin: 0; cursor: pointer; }
+.fm-row:has(.fm-row-check input:checked) { background: var(--bs-primary-bg-subtle); }
+
+/* Profile tile grid (CNT-20): default 150px track; large is 220px. */
+.fm-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--fm-tile-track, 150px), 1fr)); gap: 16px; }
+.fm-tile-grid-lg { --fm-tile-track: 220px; }
+
+/* View switcher for profile results: one Button group of toggle buttons,
+   Small tiles, Large tiles, List view. A radio group, so there is one
+   choice. The chosen button uses the Library's selected-item style (bg-2,
+   body text), as menus do: never primary, never solid secondary. */
+.fm-view-switch { display: flex; align-items: center; justify-content: flex-end; }
+/* Tile size: the same Font Awesome person, small (10px) and large (16px). */
+.fm-view-switch .fm-size-sm > i { font-size: 10px; }
+.fm-view-switch .fm-size-lg > i { font-size: 16px; }
+
+
+/* List view row photo: 160px square, as production; 96px on small screens. */
+.fm-row-photo { inline-size: 160px; aspect-ratio: 1 / 1; object-fit: cover; }
+@media (width < 576px) { .fm-row-photo { inline-size: 96px; } }
+
+/* Toggle group (Button group): a .btn-group of .btn-check radios. The chosen
+   button uses the selected-item style (bg-2, body text), as menus do: never
+   primary, never solid secondary. */
+.btn-group > .btn-outline.theme-secondary.btn-check:has(input:checked) { --bs-btn-active-bg: var(--bs-bg-2); --bs-btn-active-border-color: var(--bs-theme-border); --bs-btn-active-color: var(--bs-fg-body); }
+
+/* Upload dropzone (BTN-9): a drop target around a real file input. The
+   button is a label for the input, so keyboards and screen readers use the
+   native picker; dropping a file is an extra. As production (Uppy). */
+.fm-dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 32px 24px; text-align: center; border: 1px dashed var(--bs-border-emphasized); border-radius: var(--bs-radius-5); background: var(--bs-bg-1); }
+.fm-dropzone-icon { font-size: 24px; color: var(--bs-fg-3); }
+.fm-dropzone-title { font-weight: var(--bs-font-weight-semibold); }
+.fm-dropzone-hint { color: var(--bs-fg-2); }
+.fm-dropzone.is-dragover { border-color: var(--bs-primary-bg); background: var(--bs-primary-bg-subtle); }
+.fm-dropzone input[type="file"]:focus-visible + label { outline: var(--bs-focus-ring); outline-offset: 1px; }
+/* Compact: one line, for adding more files under a list. */
+.fm-dropzone-sm { flex-direction: row; gap: 8px; padding: 12px 16px; border-color: var(--bs-primary-border); background: transparent; }
+.fm-dropzone-sm label { color: var(--bs-primary-fg); font-weight: var(--bs-font-weight-semibold); cursor: pointer; }
+
+/* Profile search results: the view switcher (.fm-view-switch) shows the grid,
+   the large grid or the list with :has(), so it works without a script.
+   .fm-results wraps the switcher and both views. */
+.fm-results:has([data-view="list"]:checked) .fm-results-grid,
+.fm-results:not(:has([data-view="list"]:checked)) .fm-results-table { display: none; }
+.fm-results:has([data-view="large"]:checked) .fm-results-grid { --fm-tile-track: 220px; }
+
+/* Client zone on an avatar: the client orange, solid or subtle (.avatar-subtle). */
+.avatar.fm-client-zone {
+  --bs-theme-bg: var(--fm-accent-client-zone);
+  --bs-theme-contrast: var(--bs-white);
+  --bs-theme-bg-subtle: light-dark(var(--bs-orange-100), var(--bs-orange-900));
+  --bs-theme-fg: light-dark(var(--bs-orange-700), var(--bs-orange-300));
+}
