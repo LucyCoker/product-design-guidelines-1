@@ -197,6 +197,7 @@ function render(data) {
   const candRows = data.groups.filter((g) => g.section === 'candidates').flatMap((g) => g.items.map((item) => {
     const asks = item.flags.filter((f) => f.type === 'ask' && !f.text.startsWith('Candidate: decide'))
     return `<tr><td><a href="#${g.id}"><b>${escapeHtml(item.name)}</b></a><br><span class="fs-xs fg-3">${item.code}</span></td>
+      <td>${item.suggestion ? escapeHtml(item.suggestion) : '<span class="fg-3">None yet</span>'}</td>
       <td>${escapeHtml(item.usedOn || '')}</td>
       <td>${asks.length ? `<ul class="lib-rules">${asks.map((f) => `<li>${escapeHtml(f.text)}</li>`).join('')}</ul>` : '<span class="fg-3">Only the keep / align / review decision.</span>'}</td></tr>`
   }))

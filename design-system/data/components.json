@@ -3965,7 +3965,8 @@
      ],
      "review": "Candidate",
      "replacesFrom": "custom",
-     "usedOn": "Production pages: the Auditions and Selections lists"
+     "usedOn": "Production pages: the Auditions and Selections lists",
+     "suggestion": "Change to Bootstrap 6 with some UX improvements: less primary colour, remove the “open” link, and so on."
     }
    ]
   },
