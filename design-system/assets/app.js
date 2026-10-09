@@ -191,6 +191,17 @@ function render(data) {
     `<div class="lib-page-head"><h2 class="fs-lg">Not included</h2><p>Retired in the mapping, with no Bootstrap 6 component.</p></div>
      <ul class="lib-rules">${data.excluded.map((e) => `<li><b>${e.code}</b> ${escapeHtml(e.replaces)}: ${escapeHtml(e.reason)}</li>`).join('')}</ul>`
 
+  // Component candidates: one table row per candidate, with where it is used
+  // and its open questions (the shared keep / align / review question is in
+  // the page intro, so it is left out here).
+  const candRows = data.groups.filter((g) => g.section === 'candidates').flatMap((g) => g.items.map((item) => {
+    const asks = item.flags.filter((f) => f.type === 'ask' && !f.text.startsWith('Candidate: decide'))
+    return `<tr><td><a href="#${g.id}"><b>${escapeHtml(item.name)}</b></a><br><span class="fs-xs fg-3">${item.code}</span></td>
+      <td>${escapeHtml(item.usedOn || '')}</td>
+      <td>${asks.length ? `<ul class="lib-rules">${asks.map((f) => `<li>${escapeHtml(f.text)}</li>`).join('')}</ul>` : '<span class="fg-3">Only the keep / align / review decision.</span>'}</td></tr>`
+  }))
+  $('#candidate-table').innerHTML = candRows.join('')
+
   // Overview pages list their child pages as cards.
   for (const overview of $$('[data-overview]')) {
     const parent = overview.dataset.overview
