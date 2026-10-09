@@ -64,8 +64,7 @@
         "Version": [
           "Label",
           "Icon and label",
-          "Disabled",
-          "On a brand surface"
+          "Disabled"
         ],
         "Size": [
           "Small",
@@ -86,6 +85,25 @@
           "Icon only",
           "Back link",
           "Disabled"
+        ],
+        "Size": [
+          "Small",
+          "Extra small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Buttons/Icon only",
+      "libraryId": "btn-icon-only",
+      "classes": "btn-text theme-secondary btn-icon",
+      "variants": {
+        "Version": [
+          "Uses",
+          "Outline",
+          "Sizes",
+          "In a group"
         ],
         "Size": [
           "Small",
@@ -215,10 +233,27 @@
     },
     {
       "figmaPage": "Components",
-      "figmaName": "File upload/Upload button",
+      "figmaName": "Button group/Toggle group",
+      "libraryId": "bg-toggle",
+      "classes": ".btn-group + label.btn-check.btn-outline.theme-secondary",
+      "variants": {
+        "Version": [
+          "Views",
+          "With text"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "File upload/Upload dropzone",
       "libraryId": "btn-9",
-      "classes": "",
-      "variants": {}
+      "classes": ".fm-dropzone + input[type=file] + label.btn-solid + .progress",
+      "variants": {
+        "Version": [
+          "Dropzone",
+          "Compact"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
@@ -268,6 +303,17 @@
       "libraryId": "nav-10",
       "classes": ".pagination.pagination-sm + .page-item / .page-link",
       "variants": {}
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Navigation/Overflow tabs",
+      "libraryId": "nav-11",
+      "classes": ".nav-overflow[data-bs-toggle=\"nav-overflow\"] > .nav.nav-tabs > .nav-item",
+      "variants": {
+        "Version": [
+          "Overflow tabs"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
@@ -461,17 +507,40 @@
     },
     {
       "figmaPage": "Forms",
-      "figmaName": "Switch/Switch",
-      "libraryId": "frm-7",
-      "classes": ".form-field > .switch + label",
-      "variants": {}
+      "figmaName": "Rating/Star rating",
+      "libraryId": "cnt-19",
+      "classes": ".fm-rating > [role=radiogroup] > label.btn-check.btn-text.btn-icon > input[type=radio] + fa-star",
+      "variants": {
+        "Version": [
+          "Editable",
+          "Read-only",
+          "Read-only, small"
+        ]
+      }
     },
     {
       "figmaPage": "Forms",
-      "figmaName": "Switch/Lite and Expert mode switch",
+      "figmaName": "Switch/Switch",
+      "libraryId": "frm-7",
+      "classes": ".form-field > .switch + label",
+      "variants": {
+        "Version": [
+          "Small",
+          "Medium"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Forms",
+      "figmaName": "Switch/Two-option switch",
       "libraryId": "frm-8",
-      "classes": ".switch.theme-primary inside a bordered pill",
-      "variants": {}
+      "classes": ".switch.theme-primary inside a bordered pill (.border-primary .rounded-pill)",
+      "variants": {
+        "Version": [
+          "Lite and Expert mode",
+          "All and Fitting"
+        ]
+      }
     },
     {
       "figmaPage": "Forms",
@@ -504,10 +573,29 @@
     },
     {
       "figmaPage": "Components",
+      "figmaName": "Lists/Definition list",
+      "libraryId": "cnt-15",
+      "classes": "dl grid: minmax(120px, 180px) minmax(0, 1fr)",
+      "variants": {
+        "Version": [
+          "Attributes",
+          "Activity"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
       "figmaName": "Accordion/Accordion",
       "libraryId": "cnt-5",
-      "classes": ".accordion.accordion-flush",
-      "variants": {}
+      "classes": "details.accordion-item > summary.accordion-header + .fm-accordion-label + .accordion-body",
+      "variants": {
+        "Version": [
+          "Closed",
+          "Standalone",
+          "Inside a card",
+          "Important"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
@@ -522,13 +610,6 @@
           "Dismissible"
         ]
       }
-    },
-    {
-      "figmaPage": "Components",
-      "figmaName": "Alert/Note",
-      "libraryId": "msg-6",
-      "classes": ".alert.theme-info[role=\"note\"]",
-      "variants": {}
     },
     {
       "figmaPage": "Components",
@@ -547,7 +628,12 @@
       "figmaName": "Progress/Progress",
       "libraryId": "msg-7",
       "classes": ".progress > .progress-bar",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Uploading a file",
+          "Bar only"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
@@ -568,8 +654,20 @@
       "classes": ".popover + .popover-body",
       "variants": {
         "Version": [
-          "Form controls",
           "List"
+        ]
+      }
+    },
+    {
+      "figmaPage": "Components",
+      "figmaName": "Dialog/Dialog",
+      "libraryId": "dialog",
+      "classes": "dialog.dialog > .dialog-header + .dialog-body + .dialog-footer",
+      "variants": {
+        "Version": [
+          "Form",
+          "Confirm an irreversible action",
+          "Long content"
         ]
       }
     },
@@ -589,28 +687,45 @@
       "figmaPage": "Components",
       "figmaName": "Badges/Notification dot",
       "libraryId": "msg-3",
-      "classes": ".badge-dot.theme-danger",
-      "variants": {}
+      "classes": ".position-absolute.top-0.start-100.translate-middle.p-1.bg-danger.rounded-circle",
+      "variants": {
+        "Version": [
+          "On an icon button",
+          "After a text label"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
       "figmaName": "Avatar/Avatar",
       "libraryId": "avt-1",
       "classes": ".avatar.avatar-xs.theme-secondary",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Initials",
+          "Photo",
+          "Client"
+        ]
+      }
     },
     {
       "figmaPage": "Components",
       "figmaName": "Avatar/Avatar stack",
       "libraryId": "avt-2",
       "classes": ".avatar-stack.avatar-stack-sm",
-      "variants": {}
+      "variants": {
+        "Version": [
+          "Initials",
+          "Photos and a client",
+          "Wrapping"
+        ]
+      }
     },
     {
       "figmaPage": "Organisms",
       "figmaName": "Search and filter/Complex",
       "libraryId": "sf-1",
-      "classes": "input-group + combobox-toggle + popover + chip",
+      "classes": "input-group + combobox-toggle + chip",
       "variants": {
         "Version": [
           "Working example"
@@ -677,22 +792,21 @@
     },
     {
       "figmaPage": "Organisms",
-      "figmaName": "Section cards/Production list",
-      "libraryId": "cnt-2",
-      "classes": ".card > .list-group-flush > .list-group-item > .fm-production-row + .fm-action-gutter",
-      "variants": {
-        "Version": [
-          "Auditions",
-          "Selections"
-        ]
-      }
-    },
-    {
-      "figmaPage": "Organisms",
       "figmaName": "Section cards/People card",
       "libraryId": "cnt-4",
       "classes": ".card-body + .avatar-stack",
       "variants": {}
+    },
+    {
+      "figmaPage": "Organisms",
+      "figmaName": "Page sections/Section heading",
+      "libraryId": "cnt-17",
+      "classes": "h2 + border-bottom",
+      "variants": {
+        "Version": [
+          "Section heading"
+        ]
+      }
     },
     {
       "figmaPage": "Organisms",
@@ -716,8 +830,29 @@
       }
     },
     {
+      "figmaName": "Sedcard/Profile header",
+      "libraryId": "cnt-18",
+      "classes": "picture + h1 + badge + meta + Accordion (CNT-5) + action stack",
+      "variants": {
+        "Version": [
+          "Profile header",
+          "No picture"
+        ]
+      }
+    },
+    {
+      "figmaName": "Sedcard/Section toggle bar",
+      "libraryId": "frm-12",
+      "classes": "fieldset.bg-1 > grid of .form-field > .check.check-sm + label",
+      "variants": {
+        "Version": [
+          "Section toggle bar"
+        ]
+      }
+    },
+    {
       "figmaPage": "App shell",
-      "figmaName": "App shell/Header menus",
+      "figmaName": "Header/Header menus",
       "libraryId": "shell-header-menus",
       "classes": "btn-text theme-secondary btn-sm + .menu",
       "variants": {
@@ -729,10 +864,21 @@
     },
     {
       "figmaPage": "App shell",
-      "figmaName": "App shell/Subheader band",
+      "figmaName": "Subheader band/Subheader band",
       "libraryId": "shell-subheader",
       "classes": "--bs-primary-bg-subtle",
       "variants": {}
+    },
+    {
+      "figmaPage": "App shell",
+      "figmaName": "Footer/Footer",
+      "libraryId": "shell-footer",
+      "classes": "footer.bg-1.border-top + responsive flex utilities + btn-link / btn-text / btn-outline",
+      "variants": {
+        "Version": [
+          "Footer"
+        ]
+      }
     },
     {
       "figmaPage": "Templates",
@@ -744,6 +890,48 @@
           "Coworkers"
         ]
       }
+    },
+    {
+      "figmaName": "Production list/Production list",
+      "libraryId": "cnt-2",
+      "classes": ".card > .list-group-flush > .list-group-item > .fm-production-row + .fm-action-gutter",
+      "variants": {
+        "Version": [
+          "Auditions",
+          "Selections"
+        ]
+      }
+    },
+    {
+      "figmaName": "Profile tile: Auditions/Profile tile: Auditions",
+      "libraryId": "cnt-10",
+      "classes": ".card + .card-img-top + .badge + .btn-icon",
+      "variants": {
+        "Version": [
+          "Photo",
+          "No photo"
+        ]
+      }
+    },
+    {
+      "figmaName": "Profile tile: search results/Profile tile: search results",
+      "libraryId": "cnt-20",
+      "classes": ".card + .check + tooltip + .fm-tile-band + .fm-status + .fm-tile-grid + .fm-view-switch",
+      "variants": {
+        "Version": [
+          "With the view switcher",
+          "Grid view",
+          "Grid view, large",
+          "No photo",
+          "List view"
+        ]
+      }
+    },
+    {
+      "figmaName": "Note/Note",
+      "libraryId": "msg-6",
+      "classes": ".alert.theme-info[role=\"note\"]",
+      "variants": {}
     }
   ]
 }
