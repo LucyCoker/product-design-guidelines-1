@@ -4207,7 +4207,8 @@
       }
      ],
      "replacesFrom": "custom",
-     "usedOn": "Profile search results (actor search), Grid and List view"
+     "usedOn": "Profile search results (actor search), Grid and List view",
+     "suggestion": "Discuss whether Profile search needs a UX review, or any updates soon. If so, do them all together."
     }
    ]
   },
