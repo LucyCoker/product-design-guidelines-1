@@ -1,0 +1,18 @@
+{
+  "$description": "Where the Claude Design System built by scripts/build-claude.mjs is published. See README.md \u203a Claude Design System.",
+  "title": "Filmmakers System",
+  "repository": "LucyCoker/product-design-guidelines-1",
+  "artifact": "https://claude.ai/artifact/YMi6yBcHrDquH8gJM717Pz",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-17T12:00:00Z"
+  },
+  "assets": {
+    "logo": {
+      "name": "filmmakers-logo.png",
+      "blob": "f96ded1a6c4babc38b666ff45344c437",
+      "size": 12174,
+      "type": "image/png"
+    }
+  }
+}

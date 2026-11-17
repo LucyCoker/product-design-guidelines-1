@@ -24,8 +24,18 @@ Sections: Foundations, Components (including Organisms), Templates (empty for no
 
 | `figma/` | Figma hand-off: variables (`tokens.json`), component names (`components.json`), Code Connect. See `figma/README.md`. |
 | `scripts/build-figma.mjs` | Regenerates the `figma/` files: `npm run figma --prefix design-system` |
+| `scripts/build-claude.mjs`, `claude.config.json` | Builds the Claude Design System from the library: `npm run claude --prefix design-system`. See below. |
 
 To add or change a component, edit `data/components.json`, then rerun the Figma build.
+
+## Claude Design System
+
+The "Filmmakers System" Design System on claude.ai (link in `claude.config.json`) is what Claude uses as the starting point for prototypes and designs. It is generated from this library and read-only on claude.ai: never edit it there.
+
+- **What goes in:** the light-mode tokens resolved from `bootstrap.min.css` and `filmmakers.css`; one card per library group, with its live examples, rules, flags and markup; the brief from `prototype-kit/PROTOTYPE.md` as the brand book; the colour, typography, buttons and pattern pages as sections; the logo. Component candidates are left out. ASK flags and the decisions backlog are listed.
+- **Rebuild:** `npm run claude --prefix design-system` writes `design-system/claude/project/` (not committed). Set `CHROMIUM_PATH` if Playwright cannot find Chromium.
+- **Publish:** ask Claude Code, in this repository, to publish `design-system/claude/project/` to the artifact in `claude.config.json` (one Artifact publish with `root: design-system/claude`). Do this after each merge to main that changes the library or the guidelines.
+- **Logo:** uploaded once to the artifact; its id is in `claude.config.json`. Upload again only if the logo changes.
 
 ## Run it locally
 
