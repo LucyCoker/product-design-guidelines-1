@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "figma": "node scripts/build-figma.mjs",
-    "claude": "node scripts/build-claude.mjs"
+    "figma": "node scripts/build-figma.mjs"
   },
   "devDependencies": {
     "playwright-core": "1.56.1"
